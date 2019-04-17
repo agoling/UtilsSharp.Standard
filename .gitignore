@@ -3,3 +3,5 @@
 ################################################################################
 
 /.vs/DotNetUtils.Core/v15
+/.vs
+/src/DotNetUtils.Core/.vs/DotNetUtils.Core/v15/Server/sqlite3

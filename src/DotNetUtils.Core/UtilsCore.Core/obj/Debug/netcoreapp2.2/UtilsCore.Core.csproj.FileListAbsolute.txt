@@ -19,6 +19,7 @@ D:\GitHub\Project\DotNetUtils.Core\UtilsCore.Core\obj\Debug\netcoreapp2.2\UtilsC
 D:\GitHub\Project\DotNetUtils.Core\src\DotNetUtils.Core\UtilsCore.Core\bin\Debug\netcoreapp2.2\UtilsCore.Core.deps.json
 D:\GitHub\Project\DotNetUtils.Core\src\DotNetUtils.Core\UtilsCore.Core\bin\Debug\netcoreapp2.2\UtilsCore.Core.dll
 D:\GitHub\Project\DotNetUtils.Core\src\DotNetUtils.Core\UtilsCore.Core\bin\Debug\netcoreapp2.2\UtilsCore.Core.pdb
+D:\GitHub\Project\DotNetUtils.Core\src\DotNetUtils.Core\UtilsCore.Core\obj\Debug\netcoreapp2.2\UtilsCore.Core.csprojAssemblyReference.cache
 D:\GitHub\Project\DotNetUtils.Core\src\DotNetUtils.Core\UtilsCore.Core\obj\Debug\netcoreapp2.2\UtilsCore.Core.csproj.CoreCompileInputs.cache
 D:\GitHub\Project\DotNetUtils.Core\src\DotNetUtils.Core\UtilsCore.Core\obj\Debug\netcoreapp2.2\UtilsCore.Core.AssemblyInfoInputs.cache
 D:\GitHub\Project\DotNetUtils.Core\src\DotNetUtils.Core\UtilsCore.Core\obj\Debug\netcoreapp2.2\UtilsCore.Core.AssemblyInfo.cs

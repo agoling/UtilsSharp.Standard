@@ -19,10 +19,22 @@ namespace UtilsCore.Core.Result
     }
 
     /// <summary>
+    /// 返回结果模型
+    /// </summary>
+    /// <typeparam name="T">自定义结果模型</typeparam>
+    public class BaseEntityResult<T> : BaseInfoResult where T : new()
+    {
+        /// <summary>
+        /// 返回对象结果
+        /// </summary>
+        public T Data { get; set; } = new T();
+    }
+
+    /// <summary>
     /// 返回分页结果模型
     /// </summary>
     /// <typeparam name="T">自定义结果模型</typeparam>
-    public class BasePagedResult<T>: BaseResult<BasePagedInfoResult<T>>
+    public class BasePagedResult<T>: BaseEntityResult<BasePagedInfoResult<T>>
     {
        
     }
@@ -98,7 +110,7 @@ namespace UtilsCore.Core.Result
         /// <summary>
         /// 页码
         /// </summary>
-        public int PageIndex { get; set; }
+        public int PageIndex { get; set; } = 1;
 
         /// <summary>
         /// 每页大小
@@ -113,7 +125,18 @@ namespace UtilsCore.Core.Result
         /// <summary>
         /// 总页数
         /// </summary>
-        public int TotalPages => TotalCount % PageSize == 0 ? TotalCount / PageSize : TotalCount / PageSize + 1;
+        public int TotalPages
+        {
+            get
+            {
+                int currTotalPages = TotalCount > 0 ? 1 : 0;
+                if (PageSize > 0)
+                {
+                    currTotalPages = TotalCount % PageSize == 0 ? TotalCount / PageSize : TotalCount / PageSize + 1;
+                }
+                return currTotalPages;
+            }
+        }
 
         /// <summary>
         /// 排序

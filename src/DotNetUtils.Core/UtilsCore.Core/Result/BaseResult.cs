@@ -81,6 +81,15 @@ namespace UtilsCore.Core.Result
             Message = message;
             ErrorCode = code;
         }
+
+        /// <summary>
+        /// 设置错误提示
+        /// </summary>
+        /// <param name="message">提示信息</param>
+        public void SetError(string message)
+        {
+            SetError(message, null);
+        }
     }
 
     /// <summary>

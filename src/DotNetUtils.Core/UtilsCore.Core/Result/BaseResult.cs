@@ -10,7 +10,7 @@ namespace UtilsCore.Core.Result
     /// 返回结果模型
     /// </summary>
     /// <typeparam name="T">自定义结果模型</typeparam>
-    public class BaseResult<T>: BaseInfoResult
+    public class BaseResult<T> : BaseInfoResult
     {
         /// <summary>
         /// 返回对象结果
@@ -34,9 +34,9 @@ namespace UtilsCore.Core.Result
     /// 返回分页结果模型
     /// </summary>
     /// <typeparam name="T">自定义结果模型</typeparam>
-    public class BasePagedResult<T>: BaseEntityResult<BasePagedInfoResult<T>>
+    public class BasePagedResult<T> : BaseEntityResult<BasePagedInfoResult<T>>
     {
-       
+
     }
 
     /// <summary>
@@ -52,13 +52,13 @@ namespace UtilsCore.Core.Result
         /// <summary>
         /// 错误码:200是操作成功
         /// </summary>
-        public Enum ErrorCode { get; set; } = BaseHttpCode.操作成功;
+        public int? ErrorCode { get; set; } = 200;
 
         /// <summary>
         /// 提示信息
         /// </summary>
         public string Message { get; set; }
-        
+
         /// <summary>
         /// 设置错误消息
         /// </summary>
@@ -75,29 +75,11 @@ namespace UtilsCore.Core.Result
         /// </summary>
         /// <param name="message">提示信息</param>
         /// <param name="code">错误码</param>
-        public void SetError(string message, Enum code)
+        public void SetError(string message, int? code)
         {
             Success = false;
             Message = message;
             ErrorCode = code;
-        }
-
-        /// <summary>
-        /// 设置错误提示
-        /// </summary>
-        /// <param name="code">错误码</param>
-        public void SetError(Enum code)
-        {
-            SetError(code?.ToString(), code);
-        }
-
-        /// <summary>
-        /// 设置错误消息
-        /// </summary>
-        /// <param name="message">提示信息</param>
-        public void SetError(string message)
-        {
-            SetError(message, BaseHttpCode.业务提示);
         }
     }
 
@@ -163,21 +145,5 @@ namespace UtilsCore.Core.Result
         /// </summary>
         public object Params { get; set; }
 
-    }
-
-    /// <summary>
-    /// 基础提示码
-    /// </summary>
-    public enum BaseHttpCode
-    {
-        /// <summary>
-        /// 操作成功
-        /// </summary>
-        操作成功 = 200,
-
-        /// <summary>
-        /// 业务提示
-        /// </summary>
-        业务提示 = 9999
     }
 }

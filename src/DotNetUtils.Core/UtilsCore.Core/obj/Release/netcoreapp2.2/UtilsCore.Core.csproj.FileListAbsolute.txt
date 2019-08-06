@@ -6,4 +6,3 @@ D:\GitHub\Project\DotNetUtils.Core\src\DotNetUtils.Core\UtilsCore.Core\obj\Relea
 D:\GitHub\Project\DotNetUtils.Core\src\DotNetUtils.Core\UtilsCore.Core\obj\Release\netcoreapp2.2\UtilsCore.Core.AssemblyInfo.cs
 D:\GitHub\Project\DotNetUtils.Core\src\DotNetUtils.Core\UtilsCore.Core\obj\Release\netcoreapp2.2\UtilsCore.Core.dll
 D:\GitHub\Project\DotNetUtils.Core\src\DotNetUtils.Core\UtilsCore.Core\obj\Release\netcoreapp2.2\UtilsCore.Core.pdb
-D:\GitHub\Project\DotNetUtils.Core\src\DotNetUtils.Core\UtilsCore.Core\obj\Release\netcoreapp2.2\UtilsCore.Core.csprojAssemblyReference.cache

@@ -1,0 +1,245 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>UtilsCore.Core</name>
+    </assembly>
+    <members>
+        <member name="T:UtilsCore.Core.Interface.IPagedList`1">
+             <summary>
+            列表分页接口
+             </summary>
+        </member>
+        <member name="P:UtilsCore.Core.Interface.IPagedList`1.PageIndex">
+            <summary>
+            当前页
+            </summary>
+        </member>
+        <member name="P:UtilsCore.Core.Interface.IPagedList`1.PageSize">
+            <summary>
+            每页显示条数
+            </summary>
+        </member>
+        <member name="P:UtilsCore.Core.Interface.IPagedList`1.TotalCount">
+            <summary>
+            总记录数
+            </summary>
+        </member>
+        <member name="P:UtilsCore.Core.Interface.IPagedList`1.TotalPages">
+            <summary>
+            总页数
+            </summary>
+        </member>
+        <member name="P:UtilsCore.Core.Interface.IPagedList`1.HasPreviousPage">
+            <summary>
+            是否存在上一页
+            </summary>
+        </member>
+        <member name="P:UtilsCore.Core.Interface.IPagedList`1.HasNextPage">
+            <summary>
+            是否存在下一页
+            </summary>
+        </member>
+        <member name="T:UtilsCore.Core.Result.BaseResult`1">
+            <summary>
+            返回结果模型
+            </summary>
+            <typeparam name="T">自定义结果模型</typeparam>
+        </member>
+        <member name="P:UtilsCore.Core.Result.BaseResult`1.Result">
+            <summary>
+            返回对象结果
+            </summary>
+        </member>
+        <member name="T:UtilsCore.Core.Result.BaseEntityResult`1">
+            <summary>
+            返回结果模型
+            </summary>
+            <typeparam name="T">自定义结果模型</typeparam>
+        </member>
+        <member name="P:UtilsCore.Core.Result.BaseEntityResult`1.Result">
+            <summary>
+            返回对象结果
+            </summary>
+        </member>
+        <member name="T:UtilsCore.Core.Result.BasePagedResult`1">
+            <summary>
+            返回分页结果模型
+            </summary>
+            <typeparam name="T">自定义结果模型</typeparam>
+        </member>
+        <member name="T:UtilsCore.Core.Result.BaseInfoResult">
+            <summary>
+            基础结果信息
+            </summary>
+        </member>
+        <member name="P:UtilsCore.Core.Result.BaseInfoResult.Code">
+             <summary>
+             返回码	标识	说明
+            200	success 请求成功
+            999	defaultError 系统繁忙，此时请开发者稍候再试
+            3000	nullData 未找到数据
+            4000	notLogin 未登录
+            5000	exception 异常
+            5010	dataIsValid 数据验证不通过
+            6000	dataExpire 数据过期
+            7000	businessError 默认业务性异常
+             </summary>
+        </member>
+        <member name="P:UtilsCore.Core.Result.BaseInfoResult.Msg">
+            <summary>
+            提示信息
+            </summary>
+        </member>
+        <member name="M:UtilsCore.Core.Result.BaseInfoResult.SetError(UtilsCore.Core.Result.BaseInfoResult)">
+            <summary>
+            设置错误消息
+            </summary>
+            <param name="result">基础结果信息</param>
+        </member>
+        <member name="M:UtilsCore.Core.Result.BaseInfoResult.SetError(System.String,System.Int32)">
+            <summary>
+            设置错误提示
+            </summary>
+            <param name="msg">提示信息</param>
+            <param name="code">错误码</param>
+        </member>
+        <member name="M:UtilsCore.Core.Result.BaseInfoResult.SetError(System.String)">
+            <summary>
+            设置错误提示
+            </summary>
+            <param name="msg">提示信息</param>
+        </member>
+        <member name="T:UtilsCore.Core.Result.BasePagedInfoResult`1">
+            <summary>
+            分页基础结果信息
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="P:UtilsCore.Core.Result.BasePagedInfoResult`1.PageIndex">
+            <summary>
+            页码
+            </summary>
+        </member>
+        <member name="P:UtilsCore.Core.Result.BasePagedInfoResult`1.PageSize">
+            <summary>
+            每页大小
+            </summary>
+        </member>
+        <member name="P:UtilsCore.Core.Result.BasePagedInfoResult`1.TotalCount">
+            <summary>
+            总条数
+            </summary>
+        </member>
+        <member name="P:UtilsCore.Core.Result.BasePagedInfoResult`1.TotalPages">
+            <summary>
+            总页数
+            </summary>
+        </member>
+        <member name="P:UtilsCore.Core.Result.BasePagedInfoResult`1.OrderBy">
+            <summary>
+            排序
+            </summary>
+        </member>
+        <member name="P:UtilsCore.Core.Result.BasePagedInfoResult`1.HasPreviousPage">
+            <summary>
+            是否有上一页
+            </summary>
+        </member>
+        <member name="P:UtilsCore.Core.Result.BasePagedInfoResult`1.HasNextPage">
+            <summary>
+            是否有下一页
+            </summary>
+        </member>
+        <member name="P:UtilsCore.Core.Result.BasePagedInfoResult`1.List">
+            <summary>
+            结果信息
+            </summary>
+        </member>
+        <member name="P:UtilsCore.Core.Result.BasePagedInfoResult`1.Params">
+            <summary>
+            参数信息
+            </summary>
+        </member>
+        <member name="T:UtilsCore.Core.Result.EnumEntity">
+            <summary>
+            枚举对象模型
+            </summary>
+        </member>
+        <member name="P:UtilsCore.Core.Result.EnumEntity.EnumName">
+            <summary>  
+            枚举名称  
+            </summary>  
+        </member>
+        <member name="P:UtilsCore.Core.Result.EnumEntity.EnumValue">
+            <summary>  
+            枚举对象的值  
+            </summary>  
+        </member>
+        <member name="P:UtilsCore.Core.Result.EnumEntity.Description">
+            <summary>  
+            枚举的描述  
+            </summary>  
+        </member>
+        <member name="T:UtilsCore.Core.Result.PagedList`1">
+            <summary>
+            列表分页
+            </summary>
+            <typeparam name="T">分页项类型</typeparam>
+        </member>
+        <member name="M:UtilsCore.Core.Result.PagedList`1.#ctor(System.Linq.IQueryable{`0},System.Int32,System.Int32)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="source">数据源</param>
+            <param name="pageIndex">当前页</param>
+            <param name="pageSize">每页显示条数</param>
+        </member>
+        <member name="M:UtilsCore.Core.Result.PagedList`1.#ctor(System.Collections.Generic.IList{`0},System.Int32,System.Int32)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="source">数据源</param>
+            <param name="pageIndex">当前页</param>
+            <param name="pageSize">每页显示条数</param>
+        </member>
+        <member name="M:UtilsCore.Core.Result.PagedList`1.#ctor(System.Collections.Generic.IEnumerable{`0},System.Int32,System.Int32,System.Int32)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="source">数据源</param>
+            <param name="pageIndex">当前页</param>
+            <param name="pageSize">每页显示条数</param>
+            <param name="totalCount">总记录数</param>
+        </member>
+        <member name="P:UtilsCore.Core.Result.PagedList`1.PageIndex">
+            <summary>
+            当前页
+            </summary>
+        </member>
+        <member name="P:UtilsCore.Core.Result.PagedList`1.PageSize">
+            <summary>
+            每页显示条数
+            </summary>
+        </member>
+        <member name="P:UtilsCore.Core.Result.PagedList`1.TotalCount">
+            <summary>
+            总记录数
+            </summary>
+        </member>
+        <member name="P:UtilsCore.Core.Result.PagedList`1.TotalPages">
+            <summary>
+            总页数
+            </summary>
+        </member>
+        <member name="P:UtilsCore.Core.Result.PagedList`1.HasPreviousPage">
+            <summary>
+            是否存在上一页
+            </summary>
+        </member>
+        <member name="P:UtilsCore.Core.Result.PagedList`1.HasNextPage">
+            <summary>
+            是否存在下一页
+            </summary>
+        </member>
+    </members>
+</doc>

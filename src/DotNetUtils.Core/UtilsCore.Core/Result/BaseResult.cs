@@ -15,7 +15,7 @@ namespace UtilsCore.Core.Result
         /// <summary>
         /// 返回对象结果
         /// </summary>
-        public T Data { get; set; }
+        public T Result { get; set; }
     }
 
     /// <summary>
@@ -27,7 +27,7 @@ namespace UtilsCore.Core.Result
         /// <summary>
         /// 返回对象结果
         /// </summary>
-        public T Data { get; set; } = new T();
+        public T Result { get; set; } = new T();
     }
 
     /// <summary>
@@ -45,19 +45,22 @@ namespace UtilsCore.Core.Result
     public abstract class BaseInfoResult
     {
         /// <summary>
-        /// 是否操作成功
+        /// 返回码	标识	说明
+        ///200	success 请求成功
+        ///999	defaultError 系统繁忙，此时请开发者稍候再试
+        ///3000	nullData 未找到数据
+        ///4000	notLogin 未登录
+        ///5000	exception 异常
+        ///5010	dataIsValid 数据验证不通过
+        ///6000	dataExpire 数据过期
+        ///7000	businessError 默认业务性异常
         /// </summary>
-        public bool Success { get; set; } = true;
-
-        /// <summary>
-        /// 错误码:200是操作成功
-        /// </summary>
-        public int? ErrorCode { get; set; } = 200;
+        public int Code { get; set; } = 200;
 
         /// <summary>
         /// 提示信息
         /// </summary>
-        public string Message { get; set; }
+        public string Msg { get; set; } = "请求成功";
 
         /// <summary>
         /// 设置错误消息
@@ -65,30 +68,28 @@ namespace UtilsCore.Core.Result
         /// <param name="result">基础结果信息</param>
         public void SetError(BaseInfoResult result)
         {
-            Success = false;
-            Message = result.Message;
-            ErrorCode = result.ErrorCode;
+            Code = result.Code;
+            Msg = result.Msg;
         }
 
         /// <summary>
         /// 设置错误提示
         /// </summary>
-        /// <param name="message">提示信息</param>
+        /// <param name="msg">提示信息</param>
         /// <param name="code">错误码</param>
-        public void SetError(string message, int? code)
+        public void SetError(string msg, int code)
         {
-            Success = false;
-            Message = message;
-            ErrorCode = code;
+            Msg = msg;
+            Code = code;
         }
 
         /// <summary>
         /// 设置错误提示
         /// </summary>
-        /// <param name="message">提示信息</param>
-        public void SetError(string message)
+        /// <param name="msg">提示信息</param>
+        public void SetError(string msg)
         {
-            SetError(message, null);
+            SetError(msg, 999);
         }
     }
 

@@ -692,11 +692,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\GitHub\\Project\\DotNetUtils.Core\\src\\UtilsSharp.Core\\UtilsCore.Core\\UtilsCore.Core.csproj",
+      "projectUniqueName": "D:\\GitHub\\Project\\UtilsSharp.Core\\src\\UtilsSharp.Core\\UtilsCore.Core\\UtilsCore.Core.csproj",
       "projectName": "UtilsCore.Core",
-      "projectPath": "D:\\GitHub\\Project\\DotNetUtils.Core\\src\\UtilsSharp.Core\\UtilsCore.Core\\UtilsCore.Core.csproj",
+      "projectPath": "D:\\GitHub\\Project\\UtilsSharp.Core\\src\\UtilsSharp.Core\\UtilsCore.Core\\UtilsCore.Core.csproj",
       "packagesPath": "C:\\Users\\Administrator\\.nuget\\packages\\",
-      "outputPath": "D:\\GitHub\\Project\\DotNetUtils.Core\\src\\UtilsSharp.Core\\UtilsCore.Core\\obj\\",
+      "outputPath": "D:\\GitHub\\Project\\UtilsSharp.Core\\src\\UtilsSharp.Core\\UtilsCore.Core\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

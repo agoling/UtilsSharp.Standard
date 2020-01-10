@@ -5,11 +5,15 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>D:\GitHub\Project\DotNetUtils.Core\src\DotNetUtils.Core\UtilsCore.Core\UtilsCore.Core.xml</DocumentationFile>
+    <DocumentationFile>D:\GitHub\Project\UtilsSharp.Core\src\UtilsSharp.Core\UtilsCore.Core\UtilsCore.Core.xml</DocumentationFile>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DocumentationFile>D:\GitHub\Project\UtilsSharp.Core\src\UtilsSharp.Core\UtilsCore.Core\UtilsCore.Core.xml</DocumentationFile>
   </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Dependency.Core\Dependency.Core.csproj" />
+  </ItemGroup>
 
 </Project>

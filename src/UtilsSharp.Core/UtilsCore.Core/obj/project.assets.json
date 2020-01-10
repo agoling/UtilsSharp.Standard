@@ -207,6 +207,16 @@
         "build": {
           "build/netstandard2.0/NETStandard.Library.targets": {}
         }
+      },
+      "Dependency.Core/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v2.2",
+        "compile": {
+          "bin/placeholder/Dependency.Core.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Dependency.Core.dll": {}
+        }
       }
     }
   },
@@ -678,10 +688,16 @@
         "netstandard.library.2.0.3.nupkg.sha512",
         "netstandard.library.nuspec"
       ]
+    },
+    "Dependency.Core/1.0.0": {
+      "type": "project",
+      "path": "../Dependency.Core/Dependency.Core.csproj",
+      "msbuildProject": "../Dependency.Core/Dependency.Core.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v2.2": [
+      "Dependency.Core >= 1.0.0",
       "Microsoft.NETCore.App >= 2.2.0"
     ]
   },
@@ -715,7 +731,11 @@
       },
       "frameworks": {
         "netcoreapp2.2": {
-          "projectReferences": {}
+          "projectReferences": {
+            "D:\\GitHub\\Project\\UtilsSharp.Core\\src\\UtilsSharp.Core\\Dependency.Core\\Dependency.Core.csproj": {
+              "projectPath": "D:\\GitHub\\Project\\UtilsSharp.Core\\src\\UtilsSharp.Core\\Dependency.Core\\Dependency.Core.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

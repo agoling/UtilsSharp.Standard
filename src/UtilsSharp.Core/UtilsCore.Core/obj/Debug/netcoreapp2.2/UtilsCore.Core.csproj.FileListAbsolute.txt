@@ -43,4 +43,8 @@ D:\GitHub\Project\UtilsSharp.Core\src\UtilsSharp.Core\UtilsCore.Core\obj\Debug\n
 D:\GitHub\Project\UtilsSharp.Core\src\UtilsSharp.Core\UtilsCore.Core\obj\Debug\netcoreapp2.2\UtilsCore.Core.AssemblyInfo.cs
 D:\GitHub\Project\UtilsSharp.Core\src\UtilsSharp.Core\UtilsCore.Core\obj\Debug\netcoreapp2.2\UtilsCore.Core.dll
 D:\GitHub\Project\UtilsSharp.Core\src\UtilsSharp.Core\UtilsCore.Core\obj\Debug\netcoreapp2.2\UtilsCore.Core.pdb
+D:\GitHub\Project\UtilsSharp.Core\src\UtilsSharp.Core\UtilsCore.Core\bin\Debug\netcoreapp2.2\Dependency.Core.dll
+D:\GitHub\Project\UtilsSharp.Core\src\UtilsSharp.Core\UtilsCore.Core\bin\Debug\netcoreapp2.2\Dependency.Core.pdb
+D:\GitHub\Project\UtilsSharp.Core\src\UtilsSharp.Core\UtilsCore.Core\bin\Debug\netcoreapp2.2\Dependency.Core.xml
 D:\GitHub\Project\UtilsSharp.Core\src\UtilsSharp.Core\UtilsCore.Core\obj\Debug\netcoreapp2.2\UtilsCore.Core.csprojAssemblyReference.cache
+D:\GitHub\Project\UtilsSharp.Core\src\UtilsSharp.Core\UtilsCore.Core\obj\Debug\netcoreapp2.2\UtilsCore.Core.csproj.CopyComplete

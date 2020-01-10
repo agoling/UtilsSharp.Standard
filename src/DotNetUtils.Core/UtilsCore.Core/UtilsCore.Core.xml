@@ -92,7 +92,7 @@
         </member>
         <member name="M:UtilsCore.Core.Result.BaseInfoResult.SetError(UtilsCore.Core.Result.BaseInfoResult)">
             <summary>
-            设置错误消息
+            设置错误提示
             </summary>
             <param name="result">基础结果信息</param>
         </member>

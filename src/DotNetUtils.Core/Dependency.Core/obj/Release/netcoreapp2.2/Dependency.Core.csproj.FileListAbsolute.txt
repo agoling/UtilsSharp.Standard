@@ -1,8 +1,0 @@
-D:\GitHub\Project\DotNetUtils.Core\src\DotNetUtils.Core\Dependency.Core\bin\Release\netcoreapp2.2\Dependency.Core.deps.json
-D:\GitHub\Project\DotNetUtils.Core\src\DotNetUtils.Core\Dependency.Core\bin\Release\netcoreapp2.2\Dependency.Core.dll
-D:\GitHub\Project\DotNetUtils.Core\src\DotNetUtils.Core\Dependency.Core\bin\Release\netcoreapp2.2\Dependency.Core.pdb
-D:\GitHub\Project\DotNetUtils.Core\src\DotNetUtils.Core\Dependency.Core\obj\Release\netcoreapp2.2\Dependency.Core.csproj.CoreCompileInputs.cache
-D:\GitHub\Project\DotNetUtils.Core\src\DotNetUtils.Core\Dependency.Core\obj\Release\netcoreapp2.2\Dependency.Core.AssemblyInfoInputs.cache
-D:\GitHub\Project\DotNetUtils.Core\src\DotNetUtils.Core\Dependency.Core\obj\Release\netcoreapp2.2\Dependency.Core.AssemblyInfo.cs
-D:\GitHub\Project\DotNetUtils.Core\src\DotNetUtils.Core\Dependency.Core\obj\Release\netcoreapp2.2\Dependency.Core.dll
-D:\GitHub\Project\DotNetUtils.Core\src\DotNetUtils.Core\Dependency.Core\obj\Release\netcoreapp2.2\Dependency.Core.pdb

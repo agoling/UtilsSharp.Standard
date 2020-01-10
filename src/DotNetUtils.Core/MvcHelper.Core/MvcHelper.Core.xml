@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>MvcHelper.Core</name>
+    </assembly>
+    <members>
+        <member name="T:MvcHelper.Core.AutofacConfig">
+            <summary>
+            Autofac配置文件
+            </summary>
+        </member>
+        <member name="P:MvcHelper.Core.AutofacConfig.Container">
+            <summary>
+            IOC容器
+            </summary>
+        </member>
+        <member name="M:MvcHelper.Core.AutofacConfig.Register(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            负责调用autofac框架实现业务逻辑层和数据仓储层程序集中的类型对象的创建
+            负责创建MVC控制器类的对象(调用控制器中的有参构造函数)
+            </summary>
+            <param name="services">IServiceCollection</param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

@@ -37,7 +37,6 @@ D:\GitHub\Project\UtilsSharp.Core\src\UtilsSharp.Core\Dependency.Core\bin\Debug\
 D:\GitHub\Project\UtilsSharp.Core\src\UtilsSharp.Core\Dependency.Core\bin\Debug\netcoreapp2.2\Dependency.Core.dll
 D:\GitHub\Project\UtilsSharp.Core\src\UtilsSharp.Core\Dependency.Core\bin\Debug\netcoreapp2.2\Dependency.Core.pdb
 D:\GitHub\Project\UtilsSharp.Core\src\UtilsSharp.Core\Dependency.Core\bin\Debug\netcoreapp2.2\Dependency.Core.xml
-D:\GitHub\Project\UtilsSharp.Core\src\UtilsSharp.Core\Dependency.Core\obj\Debug\netcoreapp2.2\Dependency.Core.csprojAssemblyReference.cache
 D:\GitHub\Project\UtilsSharp.Core\src\UtilsSharp.Core\Dependency.Core\obj\Debug\netcoreapp2.2\Dependency.Core.csproj.CoreCompileInputs.cache
 D:\GitHub\Project\UtilsSharp.Core\src\UtilsSharp.Core\Dependency.Core\obj\Debug\netcoreapp2.2\Dependency.Core.AssemblyInfoInputs.cache
 D:\GitHub\Project\UtilsSharp.Core\src\UtilsSharp.Core\Dependency.Core\obj\Debug\netcoreapp2.2\Dependency.Core.AssemblyInfo.cs

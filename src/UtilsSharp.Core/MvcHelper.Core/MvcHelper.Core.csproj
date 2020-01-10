@@ -9,7 +9,7 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>D:\GitHub\Project\DotNetUtils.Core\src\DotNetUtils.Core\MvcHelper.Core\MvcHelper.Core.xml</DocumentationFile>
+    <DocumentationFile>D:\GitHub\Project\UtilsSharp.Core\src\UtilsSharp.Core\MvcHelper.Core\MvcHelper.Core.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>

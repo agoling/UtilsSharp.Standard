@@ -57,7 +57,7 @@ namespace UtilsSharp.Standard
         ///<para>2000|apiError|接口异常</para>
         ///3000|networkError|网络异常
         ///<para>4000|notLogin|未登录</para>
-        ///4010|authExpire|授权到期
+        ///4010|authExpire|授权过期
         ///<para>5000|exception|异常错误</para>
         ///6000|dataNotFound|数据找不到
         ///<para>6010|dataNotValid|数据验证不通过</para>
@@ -93,7 +93,7 @@ namespace UtilsSharp.Standard
         ///<para>2000|apiError|接口异常</para>
         ///3000|networkError|网络异常
         ///<para>4000|notLogin|未登录</para>
-        ///4010|authExpire|授权到期
+        ///4010|authExpire|授权过期
         ///<para>5000|exception|异常错误</para>
         ///6000|dataNotFound|数据找不到
         ///<para>6010|dataNotValid|数据验证不通过</para>

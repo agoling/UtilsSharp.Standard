@@ -98,7 +98,7 @@ namespace UtilsSharp
         }
 
         /// <summary>
-        /// 验证IP地址是否合法,如果为空认为验证合格
+        /// 验证IP地址是否合法，如果为空认为验证不合格
         /// </summary>
         /// <param name="ip">要验证的IP地址</param>        
         public static bool IsIp(string ip)
@@ -111,6 +111,22 @@ namespace UtilsSharp
             ip = ip.Trim();
             const string pattern = @"^((2[0-4]\d|25[0-5]|[01]?\d\d?)\.){3}(2[0-4]\d|25[0-5]|[01]?\d\d?)$";
             return IsMatch(ip, pattern);
+        }
+
+        /// <summary>
+        /// 验证手机号码是否合法，如果为空认为验证不合格
+        /// </summary>
+        /// <param name="mobile">要验证的手机号码</param>        
+        public static bool IsMobile(string mobile)
+        {
+            //如果为空认为验证不合格
+            if (string.IsNullOrEmpty(mobile))
+            {
+                return false;
+            }
+            mobile = mobile.Trim();
+            const string pattern = @"^1[3-9]\d{9}$";
+            return IsMatch(mobile, pattern);
         }
 
         /// <summary>

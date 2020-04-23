@@ -5,3 +5,12 @@ D:\GitHub\Project\UtilsSharp.Standard\UtilsSharp\obj\Debug\netstandard2.0\UtilsS
 D:\GitHub\Project\UtilsSharp.Standard\UtilsSharp\bin\Debug\netstandard2.0\UtilsSharp.pdb
 D:\GitHub\Project\UtilsSharp.Standard\UtilsSharp\obj\Debug\netstandard2.0\UtilsSharp.dll
 D:\GitHub\Project\UtilsSharp.Standard\UtilsSharp\obj\Debug\netstandard2.0\UtilsSharp.pdb
+D:\GitHub\Project\UtilsSharp.Standard\src\UtilsSharp.Standard\UtilsSharp\bin\Debug\netstandard2.0\UtilsSharp.deps.json
+D:\GitHub\Project\UtilsSharp.Standard\src\UtilsSharp.Standard\UtilsSharp\bin\Debug\netstandard2.0\UtilsSharp.dll
+D:\GitHub\Project\UtilsSharp.Standard\src\UtilsSharp.Standard\UtilsSharp\bin\Debug\netstandard2.0\UtilsSharp.pdb
+D:\GitHub\Project\UtilsSharp.Standard\src\UtilsSharp.Standard\UtilsSharp\obj\Debug\netstandard2.0\UtilsSharp.AssemblyInfoInputs.cache
+D:\GitHub\Project\UtilsSharp.Standard\src\UtilsSharp.Standard\UtilsSharp\obj\Debug\netstandard2.0\UtilsSharp.AssemblyInfo.cs
+D:\GitHub\Project\UtilsSharp.Standard\src\UtilsSharp.Standard\UtilsSharp\obj\Debug\netstandard2.0\UtilsSharp.dll
+D:\GitHub\Project\UtilsSharp.Standard\src\UtilsSharp.Standard\UtilsSharp\obj\Debug\netstandard2.0\UtilsSharp.pdb
+D:\GitHub\Project\UtilsSharp.Standard\src\UtilsSharp.Standard\UtilsSharp\bin\Debug\netstandard2.0\UtilsSharp.xml
+D:\GitHub\Project\UtilsSharp.Standard\src\UtilsSharp.Standard\UtilsSharp\obj\Debug\netstandard2.0\UtilsSharp.csprojAssemblyReference.cache

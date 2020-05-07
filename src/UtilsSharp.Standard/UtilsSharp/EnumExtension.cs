@@ -21,8 +21,7 @@ namespace UtilsSharp
         {
             Type type = en.GetType();
             FieldInfo fd = type.GetField(en.ToString());
-            if (fd == null)
-                return string.Empty;
+            if (fd == null)return string.Empty;
             object[] attrs = fd.GetCustomAttributes(typeof(DescriptionAttribute), false);
             string name = string.Empty;
             foreach (DescriptionAttribute attr in attrs)

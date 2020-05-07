@@ -72,29 +72,5 @@ namespace UtilsSharp
                 throw new Exception(ex.Message);
             }
         }
-
-        /// <summary>
-        /// 枚举转List
-        /// </summary>
-        /// <typeparam name="T">枚举对象</typeparam>
-        /// <returns></returns>
-        public List<EnumEntity> EnumToList<T>()
-        {
-            var list = new List<EnumEntity>();
-            foreach (var e in Enum.GetValues(typeof(T)))
-            {
-                var model = new EnumEntity();
-                var objArr = e.GetType().GetField(e.ToString()).GetCustomAttributes(typeof(DescriptionAttribute), true);
-                if (objArr.Length > 0)
-                {
-                    var da = objArr[0] as DescriptionAttribute;
-                    if (da != null) model.Description = da.Description;
-                }
-                model.EnumValue = Convert.ToInt32(e);
-                model.EnumName = e.ToString();
-                list.Add(model);
-            }
-            return list;
-        }
     }
 }

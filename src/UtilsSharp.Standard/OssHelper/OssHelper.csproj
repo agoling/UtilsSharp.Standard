@@ -2,16 +2,22 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <PackageId>UtilsSharp.OssHelper</PackageId>
+    <Product>UtilsSharp.OssHelper</Product>
+    <Company>Agoling</Company>
+    <Authors>Agoling</Authors>
+    <Description>Aliyun Oss帮助类
+</Description>
+    <PackageTags>https://github.com/agoling/UtilsSharp.Standard</PackageTags>
+    <RepositoryUrl>https://github.com/agoling/UtilsSharp.Standard</RepositoryUrl>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Aliyun.OSS.SDK.NetCore" Version="2.10.0" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
     <PackageReference Include="System.Configuration.ConfigurationManager" Version="4.7.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\UtilsSharp\UtilsSharp.csproj" />
+    <PackageReference Include="UtilsSharp" Version="2.0.0" />
   </ItemGroup>
 
 </Project>

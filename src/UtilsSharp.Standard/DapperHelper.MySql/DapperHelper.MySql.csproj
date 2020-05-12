@@ -2,6 +2,15 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <PackageId>UtilsSharp.DapperHelper.MySql</PackageId>
+    <Product>UtilsSharp.DapperHelper.MySql</Product>
+    <Company>Agoling</Company>
+    <Authors>Agoling</Authors>
+    <Description>本项目是Mysql帮助类基于.net standard2.0封装，属于UtilsSharp项目分支，依赖于Dapper</Description>
+    <PackageTags>UtilsSharp DapperHelper Dapper帮助类 Mysql帮助类</PackageTags>
+    <PackageProjectUrl>https://github.com/agoling/UtilsSharp.Standard</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/agoling/UtilsSharp.Standard</RepositoryUrl>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <ItemGroup>

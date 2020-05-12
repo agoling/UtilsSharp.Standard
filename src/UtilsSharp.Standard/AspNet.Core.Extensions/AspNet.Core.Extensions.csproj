@@ -2,6 +2,15 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Authors>Agoling</Authors>
+    <Company>Agoling</Company>
+    <Product>UtilsSharp.AspNet.Core.Extensions</Product>
+    <PackageId>UtilsSharp.AspNet.Core.Extensions</PackageId>
+    <Description>本项目是.net core3.1扩展类，属于UtilsSharp项目分支</Description>
+    <PackageProjectUrl>https://github.com/agoling/UtilsSharp.Standard</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/agoling/UtilsSharp.Standard</RepositoryUrl>
+    <PackageTags>UtilsSharp UtilsSharp.AspNet.Core.Extensions .netcore3.1帮助类  netcore帮助类</PackageTags>
   </PropertyGroup>
 
   <ItemGroup>
@@ -9,11 +18,8 @@
     <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="6.0.0" />
     <PackageReference Include="Autofac.Extras.DynamicProxy" Version="5.0.0" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\LoggerHelper\LoggerHelper.csproj" />
-    <ProjectReference Include="..\UtilsSharp\UtilsSharp.csproj" />
+    <PackageReference Include="UtilsSharp" Version="2.0.0" />
+    <PackageReference Include="UtilsSharp.LoggerHelper" Version="1.0.0" />
   </ItemGroup>
 
 </Project>

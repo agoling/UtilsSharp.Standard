@@ -2,6 +2,15 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <PackageId>UtilsSharp.DapperHelper.MsSql</PackageId>
+    <Company>Agoling</Company>
+    <Authors>Agoling</Authors>
+    <Product>UtilsSharp.DapperHelper.MsSql</Product>
+    <Description>本项目是MsSql帮助类基于.net standard2.0封装，属于UtilsSharp项目分支，依赖于Dapper</Description>
+    <PackageProjectUrl>https://github.com/agoling/UtilsSharp.Standard</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/agoling/UtilsSharp.Standard</RepositoryUrl>
+    <PackageTags>UtilsSharp DapperHelper Dapper帮助类 MsSql帮助类</PackageTags>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <ItemGroup>

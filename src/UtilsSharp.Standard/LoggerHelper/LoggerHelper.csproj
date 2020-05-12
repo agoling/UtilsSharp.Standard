@@ -2,6 +2,15 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <PackageId>UtilsSharp.LoggerHelper</PackageId>
+    <Product>UtilsSharp.LoggerHelper</Product>
+    <Description>本项目是日志帮助类基于.net standard2.0封装，属于UtilsSharp项目分支，依赖于Nlog</Description>
+    <Authors>Agoling</Authors>
+    <Company>Agoling</Company>
+    <PackageProjectUrl>https://github.com/agoling/UtilsSharp.Standard</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/agoling/UtilsSharp.Standard</RepositoryUrl>
+    <PackageTags>UtilsSharp  UtilsSharp.LoggerHelper 日志帮助类</PackageTags>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <ItemGroup>

@@ -2,6 +2,14 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <Authors>Agoling</Authors>
+    <PackageId>UtilsSharp.RedisCacheManager</PackageId>
+    <Product>UtilsSharp.RedisCacheManager</Product>
+    <Description>本项目是Redis缓存帮助类基于.net standard2.0封装，属于UtilsSharp项目分支，依赖于CSRedisCore</Description>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageProjectUrl>https://github.com/agoling/UtilsSharp.Standard</PackageProjectUrl>
+    <PackageTags>UtilsSharp UtilsSharp.RedisCacheManager  Redis帮助类  Redis缓存</PackageTags>
+    <RepositoryUrl>https://github.com/agoling/UtilsSharp.Standard</RepositoryUrl>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
@@ -11,10 +19,7 @@
   <ItemGroup>
     <PackageReference Include="CSRedisCore" Version="3.6.2" />
     <PackageReference Include="System.Configuration.ConfigurationManager" Version="4.7.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\UtilsSharp\UtilsSharp.csproj" />
+    <PackageReference Include="UtilsSharp" Version="2.0.0" />
   </ItemGroup>
 
 </Project>

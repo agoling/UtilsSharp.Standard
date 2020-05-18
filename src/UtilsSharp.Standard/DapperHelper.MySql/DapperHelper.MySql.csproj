@@ -10,7 +10,7 @@
     <PackageTags>UtilsSharp DapperHelper Dapper帮助类 Mysql帮助类</PackageTags>
     <PackageProjectUrl>https://github.com/agoling/UtilsSharp.Standard</PackageProjectUrl>
     <RepositoryUrl>https://github.com/agoling/UtilsSharp.Standard</RepositoryUrl>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <ItemGroup>

@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <Authors>Agoling</Authors>
     <Company>Agoling</Company>
     <Product>UtilsSharp.ElasticSearchHelper.Nest</Product>

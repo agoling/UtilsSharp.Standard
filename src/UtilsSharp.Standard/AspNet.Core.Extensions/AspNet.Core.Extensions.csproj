@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <Authors>Agoling</Authors>
     <Company>Agoling</Company>
     <Product>UtilsSharp.AspNet.Core.Extensions</Product>
@@ -11,6 +11,7 @@
     <PackageProjectUrl>https://github.com/agoling/UtilsSharp.Standard</PackageProjectUrl>
     <RepositoryUrl>https://github.com/agoling/UtilsSharp.Standard</RepositoryUrl>
     <PackageTags>UtilsSharp UtilsSharp.AspNet.Core.Extensions .netcore3.1帮助类  netcore帮助类</PackageTags>
+    <Version>1.0.1</Version>
   </PropertyGroup>
 
   <ItemGroup>

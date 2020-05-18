@@ -10,7 +10,7 @@
 </Description>
     <PackageTags>https://github.com/agoling/UtilsSharp.Standard</PackageTags>
     <RepositoryUrl>https://github.com/agoling/UtilsSharp.Standard</RepositoryUrl>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <ItemGroup>

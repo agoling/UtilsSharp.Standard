@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.Loader;
 using Autofac;
 using Autofac.Extras.DynamicProxy;
 using Castle.DynamicProxy;
@@ -30,8 +32,7 @@ namespace AspNet.Core.Extensions
         public void Init(ContainerBuilder builder)
         {
             //获取所有相关类库的程序集
-            var assemblies = Assembly.GetEntryAssembly()?.GetReferencedAssemblies().Select(Assembly.Load);
-            var enumerable = assemblies as Assembly[] ?? (assemblies ?? throw new InvalidOperationException()).ToArray();
+            var enumerable = AssemblyHelper.GetAllAssemblies();
             builder.RegisterAssemblyTypes(enumerable.ToArray()).Where(t => typeof(ISingletonDependency).IsAssignableFrom(t) && typeof(ISingletonDependency) != t).AsImplementedInterfaces().SingleInstance().EnableInterfaceInterceptors();//注册类
             builder.RegisterAssemblyTypes(enumerable.ToArray()).Where(t => typeof(ITransientDependency).IsAssignableFrom(t) && typeof(ITransientDependency) != t).AsImplementedInterfaces().InstancePerDependency().EnableInterfaceInterceptors();//注册类
             builder.RegisterAssemblyTypes(enumerable.ToArray()).Where(t => typeof(IUnitOfWorkDependency).IsAssignableFrom(t) && typeof(IUnitOfWorkDependency) != t).AsImplementedInterfaces().InstancePerLifetimeScope().EnableInterfaceInterceptors();//注册类
@@ -46,8 +47,7 @@ namespace AspNet.Core.Extensions
         public void Init<T>(ContainerBuilder builder) where T: class,IInterceptor
         {
             //获取所有相关类库的程序集
-            var assemblies = Assembly.GetEntryAssembly()?.GetReferencedAssemblies().Select(Assembly.Load);
-            var enumerable = assemblies as Assembly[] ?? (assemblies ?? throw new InvalidOperationException()).ToArray();
+            var enumerable = AssemblyHelper.GetAllAssemblies();
             builder.RegisterType<T>();//注册拦截器
             builder.RegisterAssemblyTypes(enumerable.ToArray()).Where(t => typeof(ISingletonDependency).IsAssignableFrom(t) && typeof(ISingletonDependency) != t).AsImplementedInterfaces().SingleInstance().InterceptedBy(typeof(T)).EnableInterfaceInterceptors();//注册类并为其添加拦截器
             builder.RegisterAssemblyTypes(enumerable.ToArray()).Where(t => typeof(ITransientDependency).IsAssignableFrom(t) && typeof(ITransientDependency) != t).AsImplementedInterfaces().InstancePerDependency().InterceptedBy(typeof(T)).EnableInterfaceInterceptors();//注册类并为其添加拦截器

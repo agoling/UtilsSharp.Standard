@@ -9,12 +9,6 @@
             Redis缓存
             </summary>
         </member>
-        <member name="M:RedisCacheManager.RedisCache.GetCacheTypeName">
-            <summary>
-            获取当前缓存实例类型名字
-            </summary>
-            <returns></returns>
-        </member>
         <member name="M:RedisCacheManager.RedisCache.Set(System.String,System.Object,System.Int32)">
             <summary>
             添加缓存
@@ -39,6 +33,12 @@
             </summary>
             <param name="keys">缓存keys</param>
         </member>
+        <member name="M:RedisCacheManager.RedisCache.RemoveByPattern(System.String)">
+            <summary>
+            移除缓存(pattern方式)
+            </summary>
+            <param name="pattern">如：test*</param>
+        </member>
         <member name="M:RedisCacheManager.RedisCache.IsExists(System.String)">
             <summary>
             验证缓存是否存在
@@ -61,6 +61,13 @@
             <param name="key">缓存Key</param>
             <returns>缓存数据</returns>
         </member>
+        <member name="M:RedisCacheManager.RedisCache.GetByPattern(System.String)">
+            <summary>
+            获取缓存(pattern方式)
+            </summary>
+            <param name="pattern">如：test*</param>
+            <returns>缓存数据</returns>
+        </member>
         <member name="T:RedisCacheManager.RedisManager">
             <summary>
             Redis注册管理
@@ -69,11 +76,6 @@
         <member name="F:RedisCacheManager.RedisManager.RedisConnection">
             <summary>
             链接字符串
-            </summary>
-        </member>
-        <member name="F:RedisCacheManager.RedisManager.RootKey">
-            <summary>
-            RootKey
             </summary>
         </member>
         <member name="M:RedisCacheManager.RedisManager.Register">

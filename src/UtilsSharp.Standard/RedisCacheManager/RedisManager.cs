@@ -14,11 +14,6 @@ namespace RedisCacheManager
         /// 链接字符串
         /// </summary>
         public static readonly string RedisConnection = ConfigurationManager.AppSettings["RedisConnection"];
-        /// <summary>
-        /// RootKey
-        /// </summary>
-
-        public static readonly string RootKey = ConfigurationManager.AppSettings["RedisRootKey"];
 
         /// <summary>
         /// 注册

@@ -1,25 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
-using System.Text;
-using UtilsSharp.Standard.Interface;
+using System.Linq;
 
 namespace RedisCacheManager
 {
     /// <summary>
     /// Redis缓存
     /// </summary>
-    public class RedisCache: ICacheManager
+    public class RedisCache
     {
-        /// <summary>
-        /// 获取当前缓存实例类型名字
-        /// </summary>
-        /// <returns></returns>
-        public string GetCacheTypeName()
-        {
-            return "redis";
-        }
-
         /// <summary>
         /// 添加缓存
         /// </summary>
@@ -27,14 +17,9 @@ namespace RedisCacheManager
         /// <param name="value">缓存数据</param>
         /// <param name="expireSeconds">缓存时间(秒)</param>
         /// <returns>是否成功</returns>
-        public bool Set(string key, object value, int expireSeconds = -1)
+        public static bool Set(string key, object value, int expireSeconds = -1)
         {
-            var currentKey = key;
-            if (!string.IsNullOrEmpty(RedisManager.RootKey))
-            {
-                currentKey = $"{RedisManager.RootKey}:{key}";
-            }
-            return RedisHelper.Set(currentKey, value, expireSeconds);
+            return RedisHelper.Set(key, value, expireSeconds);
         }
 
         /// <summary>
@@ -44,36 +29,33 @@ namespace RedisCacheManager
         /// <param name="value">缓存数据</param>
         /// <param name="expire">缓存时间戳</param>
         /// <returns>是否成功</returns>
-        public bool Set(string key, object value, TimeSpan expire)
+        public static bool Set(string key, object value, TimeSpan expire)
         {
-            var currentKey = key;
-            if (!string.IsNullOrEmpty(RedisManager.RootKey))
-            {
-                currentKey = $"{RedisManager.RootKey}:{key}";
-            }
-            return RedisHelper.Set(currentKey, value, expire);
+            return RedisHelper.Set(key, value, expire);
         }
 
         /// <summary>
         /// 移除缓存
         /// </summary>
         /// <param name="keys">缓存keys</param>
-        public long Remove(params string[] keys)
+        public static long Remove(params string[] keys)
         {
-            var currentKeys=new List<string>();
-            if (!string.IsNullOrEmpty(RedisManager.RootKey))
+            return RedisHelper.Del(keys);
+        }
+
+        /// <summary>
+        /// 移除缓存(pattern方式)
+        /// </summary>
+        /// <param name="pattern">如：test*</param>
+        public static long RemoveByPattern(string pattern)
+        {
+            var keys = RedisHelper.Keys(pattern);
+            var newKeys = new List<string>();
+            if (keys != null && keys.Length > 0)
             {
-                foreach (var key in keys)
-                {
-                    var currentKey = $"{RedisManager.RootKey}:{key}"; ;
-                    currentKeys.Add(currentKey);
-                }
+                newKeys.AddRange(from item in keys let index = item.IndexOf(":", StringComparison.Ordinal) select item.Substring(index + 1));
             }
-            else
-            {
-                currentKeys.AddRange(keys);
-            }
-            return RedisHelper.Del(currentKeys.ToArray());
+            return RedisHelper.Del(newKeys.ToArray());
         }
 
         /// <summary>
@@ -81,14 +63,9 @@ namespace RedisCacheManager
         /// </summary>
         /// <param name="key">缓存key</param>
         /// <returns >是否存在</returns>
-        public bool IsExists(string key)
+        public static bool IsExists(string key)
         {
-            var currentKey = key;
-            if (!string.IsNullOrEmpty(RedisManager.RootKey))
-            {
-                currentKey = $"{RedisManager.RootKey}:{key}";
-            }
-            return RedisHelper.Exists(currentKey);
+            return RedisHelper.Exists(key);
         }
 
         /// <summary>
@@ -96,14 +73,9 @@ namespace RedisCacheManager
         /// </summary>
         /// <param name="key">缓存Key</param>
         /// <returns>缓存数据</returns>
-        public string Get(string key)
+        public static string Get(string key)
         {
-            var currentKey = key;
-            if (!string.IsNullOrEmpty(RedisManager.RootKey))
-            {
-                currentKey = $"{RedisManager.RootKey}:{key}";
-            }
-            return RedisHelper.Get(currentKey);
+            return RedisHelper.Get(key);
         }
 
         /// <summary>
@@ -112,14 +84,26 @@ namespace RedisCacheManager
         /// <typeparam name="T">缓存数据类型</typeparam>
         /// <param name="key">缓存Key</param>
         /// <returns>缓存数据</returns>
-        public T Get<T>(string key)
+        public static T Get<T>(string key)
         {
-            var currentKey = key;
-            if (!string.IsNullOrEmpty(RedisManager.RootKey))
-            {
-                currentKey = $"{RedisManager.RootKey}:{key}";
-            }
-            return RedisHelper.Get<T>(currentKey);
+            return RedisHelper.Get<T>(key);
         }
+
+        /// <summary>
+        /// 获取缓存(pattern方式)
+        /// </summary>
+        /// <param name="pattern">如：test*</param>
+        /// <returns>缓存数据</returns>
+        public static string[] GetByPattern(string pattern)
+        {
+            var keys = RedisHelper.Keys(pattern);
+            var newKeys = new List<string>();
+            if (keys != null && keys.Length > 0)
+            {
+                newKeys.AddRange(from item in keys let index = item.IndexOf(":", StringComparison.Ordinal) select item.Substring(index + 1));
+            }
+            return newKeys.ToArray();
+        }
+
     }
 }

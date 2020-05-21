@@ -12,6 +12,40 @@ namespace UtilsSharp
     /// </summary>
     public static class EnumExtension
     {
+
+        /// <summary>
+        /// 字符串转换为枚举
+        /// </summary>
+        /// <typeparam name="T">枚举</typeparam>
+        /// <param name="value">枚举值不区分(字符串)</param>
+        /// <returns></returns>
+        public static T ToEnum<T>(this string value) where T : Enum
+        {
+            return (T)Enum.Parse(typeof(T), value, true);
+        }
+
+        /// <summary>
+        /// 数值转换为枚举
+        /// </summary>
+        /// <typeparam name="T">枚举</typeparam>
+        /// <param name="value">枚举值(数值)</param>
+        /// <returns></returns>
+        public static T ToEnum<T>(this int value) where T : Enum
+        {
+            return (T)Enum.ToObject(typeof(T), value);
+        }
+
+        /// <summary>
+        /// 判断某个值是否定义在枚举中
+        /// </summary>
+        /// <typeparam name="T">枚举</typeparam>
+        /// <param name="value">值</param>
+        /// <returns></returns>
+        public static bool IsDefined<T>(this object value) where T : Enum
+        {
+            return Enum.IsDefined(typeof(T), value);
+        }
+
         /// <summary>
         /// 获取枚举的描述信息
         /// </summary>

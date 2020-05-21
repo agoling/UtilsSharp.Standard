@@ -879,6 +879,30 @@
             枚举扩展类
             </summary>
         </member>
+        <member name="M:UtilsSharp.EnumExtension.ToEnum``1(System.String)">
+            <summary>
+            字符串转换为枚举
+            </summary>
+            <typeparam name="T">枚举</typeparam>
+            <param name="value">枚举值不区分(字符串)</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.EnumExtension.ToEnum``1(System.Int32)">
+            <summary>
+            数值转换为枚举
+            </summary>
+            <typeparam name="T">枚举</typeparam>
+            <param name="value">枚举值(数值)</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.EnumExtension.IsDefined``1(System.Object)">
+            <summary>
+            判断某个值是否定义在枚举中
+            </summary>
+            <typeparam name="T">枚举</typeparam>
+            <param name="value">值</param>
+            <returns></returns>
+        </member>
         <member name="M:UtilsSharp.EnumExtension.GetEnumDescription(System.Enum)">
             <summary>
             获取枚举的描述信息
@@ -2152,6 +2176,13 @@
             中文版指定一周的某天
             </summary>
             <param name="dayOfWeek">指定一周的某天</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.TimeHelper.GetDateTime(System.Int64)">
+            <summary>
+            时间戳转DateTime
+            </summary>
+            <param name="longTime">时间戳</param>
             <returns></returns>
         </member>
         <member name="T:UtilsSharp.UtilsHelper">

@@ -17,7 +17,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LoggerHelper", "LoggerHelpe
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RedisCacheManager", "RedisCacheManager\RedisCacheManager.csproj", "{D3322554-0F32-4DB8-A9E4-D73DED74A969}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OssHelper", "OssHelper\OssHelper.csproj", "{501848CF-2FB3-4C25-B58A-3D93656F73CB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OssHelper", "OssHelper\OssHelper.csproj", "{501848CF-2FB3-4C25-B58A-3D93656F73CB}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestDemo", "TestDemo\TestDemo.csproj", "{237C6579-25B1-4B8F-BC70-5529B8322D11}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestProject", "UnitTestProject\UnitTestProject.csproj", "{B449FAEC-F409-4B40-8A1C-28C61504EAE5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -57,6 +61,14 @@ Global
 		{501848CF-2FB3-4C25-B58A-3D93656F73CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{501848CF-2FB3-4C25-B58A-3D93656F73CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{501848CF-2FB3-4C25-B58A-3D93656F73CB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{237C6579-25B1-4B8F-BC70-5529B8322D11}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{237C6579-25B1-4B8F-BC70-5529B8322D11}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{237C6579-25B1-4B8F-BC70-5529B8322D11}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{237C6579-25B1-4B8F-BC70-5529B8322D11}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B449FAEC-F409-4B40-8A1C-28C61504EAE5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B449FAEC-F409-4B40-8A1C-28C61504EAE5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B449FAEC-F409-4B40-8A1C-28C61504EAE5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B449FAEC-F409-4B40-8A1C-28C61504EAE5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

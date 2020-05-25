@@ -2310,6 +2310,11 @@
             请求与响应的超时时间默认100秒(单位毫秒)
             </summary>
         </member>
+        <member name="P:UtilsSharp.WebHelper.Header">
+            <summary>
+            Header
+            </summary>
+        </member>
         <member name="M:UtilsSharp.WebHelper.DoPost``1(System.String,System.Object,System.Text.Encoding,System.String)">
             <summary>
             执行HTTP POST请求

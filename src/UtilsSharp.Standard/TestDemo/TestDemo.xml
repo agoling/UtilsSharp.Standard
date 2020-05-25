@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>TestDemo</name>
+    </assembly>
+    <members>
+        <member name="M:TestDemo.Startup.ConfigureContainer(Autofac.ContainerBuilder)">
+            <summary>
+            依赖注入映射
+            </summary>
+            <param name="builder">builder</param>
+        </member>
+        <member name="M:TestDemo.ValuesController.Get">
+            <summary>
+            IEnumerable
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:TestDemo.ValuesController.Get(System.Int32)">
+            <summary>
+            Get
+            </summary>
+            <param name="id">id</param>
+            <returns></returns>
+        </member>
+        <member name="M:TestDemo.ValuesController.Post(System.String)">
+            <summary>
+            Post
+            </summary>
+            <param name="value">value</param>
+        </member>
+        <member name="M:TestDemo.ValuesController.Put(System.Int32,System.String)">
+            <summary>
+            Put
+            </summary>
+            <param name="id">id</param>
+            <param name="value">value</param>
+        </member>
+        <member name="M:TestDemo.ValuesController.Delete(System.Int32)">
+            <summary>
+            Delete
+            </summary>
+            <param name="id">id</param>
+        </member>
+    </members>
+</doc>

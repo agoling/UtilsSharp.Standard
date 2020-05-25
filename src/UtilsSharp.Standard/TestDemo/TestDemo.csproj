@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>D:\GitHub\Project\UtilsSharp.Standard\src\UtilsSharp.Standard\TestDemo\TestDemo.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DocumentationFile>D:\GitHub\Project\UtilsSharp.Standard\src\UtilsSharp.Standard\TestDemo\TestDemo.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AspNet.Core.Extensions\AspNet.Core.Extensions.csproj" />
+  </ItemGroup>
+
+</Project>

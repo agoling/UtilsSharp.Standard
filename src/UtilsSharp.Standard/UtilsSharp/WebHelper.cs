@@ -33,6 +33,10 @@ namespace UtilsSharp
         /// 请求与响应的超时时间默认100秒(单位毫秒)
         /// </summary>
         public int Timeout { set; get; } = 100000;
+        /// <summary>
+        /// Header
+        /// </summary>
+        public WebHeaderCollection Header { set; get; }
 
         /// <summary>
         /// 执行HTTP POST请求
@@ -255,6 +259,10 @@ namespace UtilsSharp
             httpWebRequest.Accept = Accept;
             httpWebRequest.UserAgent = UserAgent;
             httpWebRequest.Timeout = Timeout;
+            if (Header != null)
+            {
+                httpWebRequest.Headers = Header;
+            }
             return httpWebRequest;
         }
 

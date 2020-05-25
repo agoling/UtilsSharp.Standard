@@ -269,8 +269,7 @@ namespace UtilsSharp
             var result = new BaseResult<object>();
             try
             {
-                var webHelper = new WebHelper();
-                webHelper.Header = new WebHeaderCollection {{"Content-Type", "application/json ;charset=utf-8"}};
+                var webHelper = new WebHelper {ContentType = "application/json;charset=utf-8"};
                 result = webHelper.DoPost<object>(webhook, message);
                 return result;
             }

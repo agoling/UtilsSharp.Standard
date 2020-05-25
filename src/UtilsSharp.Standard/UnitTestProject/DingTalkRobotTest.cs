@@ -13,7 +13,7 @@ namespace UnitTestProject
         public void TestMethod1()
         {
             var content = "【日常提醒】测试提醒";
-            var webhook ="https://xxxxxxxxxxx";
+            var webhook = "https://xxxxxxxxxx";
             var r = DingTalkRobot.SendTextMessage(webhook, content, null, false);
         }
     }

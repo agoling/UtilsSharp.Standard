@@ -21,7 +21,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OssHelper", "OssHelper\OssH
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestDemo", "TestDemo\TestDemo.csproj", "{237C6579-25B1-4B8F-BC70-5529B8322D11}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestProject", "UnitTestProject\UnitTestProject.csproj", "{B449FAEC-F409-4B40-8A1C-28C61504EAE5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitTestProjectNetCore", "UnitTestProject\UnitTestProjectNetCore.csproj", "{B449FAEC-F409-4B40-8A1C-28C61504EAE5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestProjectNet", "UnitTestProjectNet\UnitTestProjectNet.csproj", "{A86B4F09-784E-477C-8703-B446F395125D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -69,6 +71,10 @@ Global
 		{B449FAEC-F409-4B40-8A1C-28C61504EAE5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B449FAEC-F409-4B40-8A1C-28C61504EAE5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B449FAEC-F409-4B40-8A1C-28C61504EAE5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A86B4F09-784E-477C-8703-B446F395125D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A86B4F09-784E-477C-8703-B446F395125D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A86B4F09-784E-477C-8703-B446F395125D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A86B4F09-784E-477C-8703-B446F395125D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

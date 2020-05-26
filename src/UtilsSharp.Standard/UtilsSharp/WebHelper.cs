@@ -52,6 +52,10 @@ namespace UtilsSharp
             BaseResult<T> result = new BaseResult<T>();
             HttpWebRequest httpWebRequest = null;
             HttpWebResponse httpWebResponse = null;
+            if (rspEncoding == null)
+            {
+                rspEncoding = Encoding.GetEncoding("UTF-8");
+            }
             try
             {
                 httpWebRequest = GetWebRequest(url, "POST");

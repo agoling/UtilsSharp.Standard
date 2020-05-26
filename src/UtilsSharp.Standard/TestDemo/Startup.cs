@@ -4,7 +4,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using AspNet.Core.Extensions.Autofac;
 using AspNet.Core.Extensions;
-using AspNet.Core.Extensions.Autofac;
 using AspNet.Core.Extensions.Interceptor;
 using AspNet.Core.Extensions.Swagger;
 using Autofac;

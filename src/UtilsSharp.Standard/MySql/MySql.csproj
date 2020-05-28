@@ -1,0 +1,27 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <PackageId>UtilsSharp.MySql</PackageId>
+    <Product>UtilsSharp.MySql</Product>
+    <Company>Agoling</Company>
+    <Authors>Agoling</Authors>
+    <Description>本项目是Mysql帮助类基于.net standard2.0封装，属于UtilsSharp项目分支，依赖于Dapper</Description>
+    <PackageProjectUrl>https://github.com/agoling/UtilsSharp.Standard</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/agoling/UtilsSharp.Standard</RepositoryUrl>
+    <PackageTags>UtilsSharp Dapper帮助类  Mysql帮助类</PackageTags>
+    <Version>1.0.1</Version>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DocumentationFile>D:\GitHub\Project\UtilsSharp.Standard\src\UtilsSharp.Standard\MySql\MySql.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Dapper" Version="2.0.35" />
+    <PackageReference Include="Dapper.SimpleCRUD" Version="2.2.0.1" />
+    <PackageReference Include="MySql.Data" Version="8.0.20" />
+    <PackageReference Include="UtilsSharp.OptionConfig" Version="1.0.1" />
+  </ItemGroup>
+
+</Project>

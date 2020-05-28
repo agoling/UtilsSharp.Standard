@@ -45,7 +45,6 @@ namespace UtilsSharp
         public static IConfigurationSection GetSection(string key)
         {
             return config.GetSection(key);
-            
         }
 
         /// <summary>

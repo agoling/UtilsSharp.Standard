@@ -1,0 +1,87 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>MsSql</name>
+    </assembly>
+    <members>
+        <member name="T:MsSql.BaseEntity">
+            <summary>
+            基类
+            </summary>
+        </member>
+        <member name="P:MsSql.BaseEntity.CreateTime">
+            <summary>
+            新增默认时间
+            </summary>
+        </member>
+        <member name="P:MsSql.BaseEntity.Id">
+            <summary>
+            新增 0
+            </summary>
+        </member>
+        <member name="T:MsSql.IBaseEntity">
+            <summary>
+            基类
+            </summary>
+        </member>
+        <member name="T:MsSql.MsSqlBaseDataMapping`1">
+            <summary>
+            MsSql基础操作
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:MsSql.MsSqlBaseDataMapping`1.GetDbConnection">
+            <summary>
+            初始化链接
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MsSql.MsSqlBaseDataMapping`1.Add(`0)">
+            <summary>
+            添加
+            </summary>
+            <param name="t"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MsSql.MsSqlBaseDataMapping`1.Update(`0)">
+            <summary>
+            更新
+            </summary>
+            <param name="t"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MsSql.MsSqlBaseDataMapping`1.Save(`0)">
+            <summary>
+            保存
+            </summary>
+            <param name="t"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MsSql.MsSqlBaseDataMapping`1.Delete(`0)">
+            <summary>
+            删除
+            </summary>
+            <param name="t"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MsSql.MsSqlBaseDataMapping`1.Get(System.Int64)">
+            <summary>
+            根据id获取
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MsSql.MsSqlBaseDataMapping`1.GetAllList">
+            <summary>
+            获取所有的列表
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MsSql.MsSqlBaseDataMapping`1.BulkAdd(System.Collections.Generic.List{`0})">
+            <summary>
+            批量插入
+            </summary>
+            <param name="entitys"></param>
+        </member>
+    </members>
+</doc>

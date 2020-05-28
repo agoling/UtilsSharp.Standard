@@ -1,0 +1,139 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>AspNetCore</name>
+    </assembly>
+    <members>
+        <member name="T:AspNetCore.AspNetCoreBuilderExtensions">
+            <summary>
+            AspNetCoreBuilderExtensions
+            </summary>
+        </member>
+        <member name="M:AspNetCore.AspNetCoreBuilderExtensions.UseAspNetCoreExtensions(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
+            <summary>
+            注册AspNetCore扩展
+            </summary>
+            <param name="app">IApplicationBuilder</param>
+            <returns></returns>
+        </member>
+        <member name="M:AspNetCore.AspNetCoreBuilderExtensions.UseSwaggerExtensions(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
+            <summary>
+            注册swagger
+            </summary>
+            <param name="app">IApplicationBuilder</param>
+            <returns></returns>
+        </member>
+        <member name="M:AspNetCore.AspNetCoreBuilderExtensions.UseAutofacExtensions(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
+            <summary>
+            注册依赖注入
+            </summary>
+            <param name="app">IApplicationBuilder</param>
+            <returns></returns>
+        </member>
+        <member name="T:AspNetCore.AspNetCoreExtensions">
+            <summary>
+            AspNetCoreExtensions
+            </summary>
+        </member>
+        <member name="M:AspNetCore.AspNetCoreExtensions.AddAspNetCoreExtensions(Microsoft.Extensions.DependencyInjection.IServiceCollection,AspNetCore.Swagger.SwaggerDocOptions)">
+            <summary>
+            添加AspNetCore扩展服务
+            </summary>
+            <param name="services">services</param>
+            <param name="swaggerDocOptions">swaggerDocOptions</param>
+            <returns></returns>
+        </member>
+        <member name="M:AspNetCore.AspNetCoreExtensions.AddSwaggerExtensions(Microsoft.Extensions.DependencyInjection.IServiceCollection,AspNetCore.Swagger.SwaggerDocOptions)">
+            <summary>
+            添加Swagger扩展服务
+            </summary>
+            <param name="services">services</param>
+            <param name="swaggerDocOptions">swaggerDocOptions</param>
+            <returns></returns>
+        </member>
+        <member name="T:AspNetCore.AspNetCoreExtensionsConfig">
+            <summary>
+            AspNetCoreExtensions 配置文件
+            </summary>
+        </member>
+        <member name="P:AspNetCore.AspNetCoreExtensionsConfig.SwaggerDocOptions">
+            <summary>
+            SwaggerDocOptions
+            </summary>
+        </member>
+        <member name="T:AspNetCore.AssemblyHelper">
+            <summary>
+            程序集帮助类
+            </summary>
+        </member>
+        <member name="M:AspNetCore.AssemblyHelper.GetClassInterfacePairs(System.String)">
+            <summary>
+            获取类以及类实现的接口键值对
+            </summary>
+            <param name="assemblyName">程序集名称</param>
+            <returns>类以及类实现的接口键值对</returns>
+        </member>
+        <member name="M:AspNetCore.AssemblyHelper.GetAllAssemblies">
+            <summary>
+            获取所有的程序集
+            </summary>
+            <returns>程序集集合</returns>
+        </member>
+        <member name="M:AspNetCore.AssemblyHelper.GetAssembly(System.String)">
+            <summary>
+            获取指定的程序集
+            </summary>
+            <param name="assemblyName">程序集名称</param>
+            <returns>程序集</returns>
+        </member>
+        <member name="T:AspNetCore.Autofac.AutofacContainer">
+            <summary>
+            依赖注入Container
+            </summary>
+        </member>
+        <member name="T:AspNetCore.Autofac.AutofacStartup">
+            <summary>
+            依赖注入抽象类
+            </summary>
+        </member>
+        <member name="M:AspNetCore.Autofac.AutofacStartup.ConfigureContainer(Autofac.ContainerBuilder)">
+            <summary>
+            依赖注入映射
+            </summary>
+            <param name="builder">ContainerBuilder</param>
+        </member>
+        <member name="M:AspNetCore.Autofac.AutofacStartup.Init(Autofac.ContainerBuilder)">
+            <summary>
+            依赖注入初始化 [Intercept(typeof(LoggerInterceptor))]
+            </summary>
+            <param name="builder">ContainerBuilder</param>
+        </member>
+        <member name="M:AspNetCore.Autofac.AutofacStartup.Init``1(Autofac.ContainerBuilder)">
+            <summary>
+            依赖注入初始化
+            </summary>
+            <typeparam name="T">IInterceptor 拦截器</typeparam>
+            <param name="builder">ContainerBuilder</param>
+        </member>
+        <member name="T:AspNetCore.Interceptor.LoggerInterceptor">
+            <summary>
+            日志拦截器
+            </summary>
+        </member>
+        <member name="T:AspNetCore.Swagger.SwaggerDocOptions">
+            <summary>
+            SwaggerDocOptions
+            </summary>
+        </member>
+        <member name="P:AspNetCore.Swagger.SwaggerDocOptions.Name">
+            <summary>
+            Name
+            </summary>
+        </member>
+        <member name="P:AspNetCore.Swagger.SwaggerDocOptions.OpenApiInfo">
+            <summary>
+            OpenApiInfo
+            </summary>
+        </member>
+    </members>
+</doc>

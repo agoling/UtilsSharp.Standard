@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <Authors>Agoling</Authors>
+    <Company>Agoling</Company>
+    <Description>UtilsSharp工具类共享配置库</Description>
+    <PackageProjectUrl>https://github.com/agoling/UtilsSharp.Standard</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/agoling/UtilsSharp.Standard</RepositoryUrl>
+    <PackageTags>数据库共享配置 UtilsSharp OptionConfig</PackageTags>
+    <PackageId>UtilsSharp.OptionConfig</PackageId>
+    <Product>UtilsSharp.OptionConfig</Product>
+    <Version>1.0.1</Version>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>D:\GitHub\Project\UtilsSharp.Standard\src\UtilsSharp.Standard\OptionConfig\OptionConfig.xml</DocumentationFile>
+  </PropertyGroup>
+
+</Project>

@@ -2190,11 +2190,11 @@
             公共工具类
             </summary>
         </member>
-        <member name="M:UtilsSharp.UtilsHelper.CreateInstance">
-            <summary>
-            初始化
-            </summary>
-            <returns></returns>
+        <member name="M:UtilsSharp.UtilsHelper.GetIp">
+            <summary>  
+            提取开启代理/cdn服务后的客户端真实IP  
+            </summary>  
+            <returns></returns>  
         </member>
         <member name="M:UtilsSharp.UtilsHelper.CalcProgress(System.Int32,System.Int32,System.Int32)">
             <summary>

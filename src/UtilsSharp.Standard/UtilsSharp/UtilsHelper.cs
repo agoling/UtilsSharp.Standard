@@ -3,27 +3,33 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using Newtonsoft.Json;
 using UtilsSharp.Entity;
+using UtilsSharp.Standard;
 
 namespace UtilsSharp
 {
     /// <summary>
     /// 公共工具类
     /// </summary>
-    public class UtilsHelper
+    public static class UtilsHelper
     {
-        private UtilsHelper()
+        /// <summary>  
+        /// 提取开启代理/cdn服务后的客户端真实IP  
+        /// </summary>  
+        /// <returns></returns>  
+        public static string GetIp()
         {
-
-        }
-        private static readonly UtilsHelper Current = new UtilsHelper();
-
-        /// <summary>
-        /// 初始化
-        /// </summary>
-        /// <returns></returns>
-        public static UtilsHelper CreateInstance()
-        {
-            return Current;
+            string ip;
+            string xForwardedFor = HttpContext.Current.Request.Headers["X-Forwarded-For"];
+            if (!string.IsNullOrWhiteSpace(xForwardedFor))
+            {
+                ip = xForwardedFor;
+            }
+            else
+            {
+                string cfConnectingIp = HttpContext.Current.Request.Headers["CF-Connecting-IP"];
+                ip = !string.IsNullOrWhiteSpace(cfConnectingIp) ? cfConnectingIp : HttpContext.Current.Request.Host.Value;
+            }
+            return ip;
         }
 
         /// <summary>
@@ -33,7 +39,7 @@ namespace UtilsSharp
         /// <param name="totalCount">总条数</param>
         /// <param name="completeProgress">总完成进度</param>
         /// <returns></returns>
-        public int CalcProgress(int step, int totalCount, int completeProgress = 100)
+        public static int CalcProgress(int step, int totalCount, int completeProgress = 100)
         {
             try
             {
@@ -57,7 +63,7 @@ namespace UtilsSharp
         /// <typeparam name="T">对象模型</typeparam>
         /// <param name="obj">对象</param>
         /// <returns></returns>
-        public T DeepCopy<T>(T obj)
+        public static T DeepCopy<T>(this T obj)
         {
             try
             {

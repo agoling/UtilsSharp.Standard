@@ -12,12 +12,12 @@ namespace UtilsSharp.Standard
         /// <summary>
         /// 页码
         /// </summary>
-        public int PageIndex { set; get; }
+        public int PageIndex { set; get; } = 1;
 
         /// <summary>
         /// 每页大小
         /// </summary>
-        public int PageSize { set; get; }
+        public int PageSize { set; get; } = 10;
 
         /// <summary>
         /// 搜索关键字

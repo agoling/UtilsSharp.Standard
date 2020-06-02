@@ -12,7 +12,6 @@ namespace UtilsSharp
     /// </summary>
     public static class EnumExtension
     {
-
         /// <summary>
         /// 字符串转换为枚举
         /// </summary>

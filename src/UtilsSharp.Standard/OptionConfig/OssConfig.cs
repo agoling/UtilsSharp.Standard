@@ -1,17 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Configuration;
-using System.Linq;
 using System.Text;
-using System.Xml;
-using UtilsSharp.Standard;
 
-namespace OssHelper
+namespace OptionConfig
 {
+    /// <summary>
+    /// OssHelper存储配置文件
+    /// </summary>
+    public static class OssHelperConfig
+    {
+        public static OssConfig OssConfig { set; get; }
+    }
+
     /// <summary>
     /// Oss存储配置文件
     /// </summary>
-    public class OssConfig:ConfigurationSectionHandler<OssConfig>
+    public class OssConfig
     {
         /// <summary>
         /// OssEndpoint 外网

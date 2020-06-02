@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -8,6 +7,7 @@ using System.Security.Cryptography;
 using System.Text;
 using Aliyun.OSS;
 using Newtonsoft.Json;
+using OptionConfig;
 
 namespace OssHelper
 {
@@ -60,7 +60,7 @@ namespace OssHelper
         {
             if (Config==null)
             {
-                Config=ConfigurationManager.GetSection("OssConfig") as OssConfig;
+                Config = OssHelperConfig.OssConfig;
             }
             if (Config==null)
             {

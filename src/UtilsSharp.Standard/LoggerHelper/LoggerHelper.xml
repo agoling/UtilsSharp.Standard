@@ -1,0 +1,176 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>LoggerHelper</name>
+    </assembly>
+    <members>
+        <member name="T:LoggerHelper.Logger">
+            <summary>
+            日志管理系统
+            </summary>
+        </member>
+        <member name="M:LoggerHelper.Logger.Trace(System.String,System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            追踪
+            </summary>
+            <param name="message">日志信息</param>
+            <param name="logId">日志Id</param>
+            <param name="param">入参</param>
+            <param name="userId">用户Id</param>
+            <param name="func">功能名称</param>
+            <param name="requestUrl">请求地址</param>
+            <returns></returns>
+        </member>
+        <member name="M:LoggerHelper.Logger.Info(System.String,System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            信息
+            </summary>
+            <param name="message">错误信息</param>
+            <param name="logId">日志Id</param>
+            <param name="param">入参</param>
+            <param name="userId">阿里Id</param>
+            <param name="func">功能名称</param>
+            <param name="requestUrl">请求地址</param>
+            <returns></returns>
+        </member>
+        <member name="M:LoggerHelper.Logger.Debug(System.String,System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            调试
+            </summary>
+            <param name="message">日志信息</param>
+            <param name="logId">日志Id</param>
+            <param name="param">入参</param>
+            <param name="userId">阿里Id</param>
+            <param name="func">功能名称</param>
+            <param name="requestUrl">请求地址</param>
+            <returns></returns>
+        </member>
+        <member name="M:LoggerHelper.Logger.Warn(System.String,System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            警告
+            </summary>
+            <param name="message">日志信息</param>
+            <param name="logId">日志Id</param>
+            <param name="param">入参</param>
+            <param name="userId">用户Id</param>
+            <param name="func">功能名称</param>
+            <param name="requestUrl">请求地址</param>
+            <returns></returns>
+        </member>
+        <member name="M:LoggerHelper.Logger.Error(System.String,System.Exception,System.String,System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            异常错误
+            </summary>
+            <param name="message">日志信息</param>
+            <param name="ex">Exception</param>
+            <param name="logId">日志Id</param>
+            <param name="errCode">错误码</param>
+            <param name="param">入参</param>
+            <param name="userId">阿里Id</param>
+            <param name="func">功能名称</param>
+            <param name="requestUrl">请求地址</param>
+            <returns></returns>
+        </member>
+        <member name="M:LoggerHelper.Logger.Fatal(System.String,System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            致命
+            </summary>
+            <param name="message">日志信息</param>
+            <param name="logId">日志Id</param>
+            <param name="param">入参</param>
+            <param name="userId">用户Id</param>
+            <param name="func">功能名称</param>
+            <param name="requestUrl">请求地址</param>
+            <returns></returns>
+        </member>
+        <member name="M:LoggerHelper.Logger.Off(System.String,System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            关闭
+            </summary>
+            <param name="message">日志信息</param>
+            <param name="logId">日志Id</param>
+            <param name="param">入参</param>
+            <param name="userId">用户Id</param>
+            <param name="func">功能名称</param>
+            <param name="requestUrl">请求地址</param>
+            <returns></returns>
+        </member>
+        <member name="M:LoggerHelper.Logger.WriteLog(NLog.LogLevel,System.String,System.Exception,System.String,System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            写日志
+            </summary>
+            <param name="level">日志等级</param>
+            <param name="message">日志信息</param>
+            <param name="ex">Exception</param>
+            <param name="logId">日志Id</param>
+            <param name="requestUrl">请求地址</param>
+            <param name="param">入参</param>
+            <param name="userId">用户Id</param>
+            <param name="func">功能名称</param>
+            <param name="errCode">错误码</param>
+            <returns></returns>
+        </member>
+        <member name="M:LoggerHelper.Logger.WriteLog(LoggerHelper.LoggerEntity)">
+            <summary>
+            写日志
+            </summary>
+            <param name="model">日志模型</param>
+            <returns></returns>
+        </member>
+        <member name="T:LoggerHelper.LoggerEntity">
+            <summary>
+            日志模型
+            </summary>
+        </member>
+        <member name="P:LoggerHelper.LoggerEntity.LogId">
+            <summary>
+            日志标识
+            </summary>
+        </member>
+        <member name="P:LoggerHelper.LoggerEntity.Level">
+            <summary>
+            日志等级
+            </summary>
+        </member>
+        <member name="P:LoggerHelper.LoggerEntity.ErrorCode">
+            <summary>
+            错误码
+            </summary>
+        </member>
+        <member name="P:LoggerHelper.LoggerEntity.Message">
+            <summary>
+            日志标题信息
+            </summary>
+        </member>
+        <member name="P:LoggerHelper.LoggerEntity.Ex">
+            <summary>
+            异常
+            </summary>
+        </member>
+        <member name="P:LoggerHelper.LoggerEntity.UserId">
+            <summary>
+            用户Id
+            </summary>
+        </member>
+        <member name="P:LoggerHelper.LoggerEntity.Tag">
+            <summary>
+            备注
+            </summary>
+        </member>
+        <member name="P:LoggerHelper.LoggerEntity.RequestUrl">
+            <summary>
+            请求地址
+            </summary>
+        </member>
+        <member name="P:LoggerHelper.LoggerEntity.Params">
+            <summary>
+            参数
+            </summary>
+        </member>
+        <member name="P:LoggerHelper.LoggerEntity.Func">
+            <summary>
+            方法
+            </summary>
+        </member>
+    </members>
+</doc>

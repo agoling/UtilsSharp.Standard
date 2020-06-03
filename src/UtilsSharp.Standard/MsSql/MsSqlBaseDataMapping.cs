@@ -13,7 +13,10 @@ namespace MsSql
     /// <typeparam name="T"></typeparam>
     public abstract class MsSqlBaseDataMapping<T> where T : IBaseEntity
     {
-        static MsSqlBaseDataMapping()
+        /// <summary>
+        /// 初始化
+        /// </summary>
+        private static void Init()
         {
             //标识使用MsSql
             SimpleCRUD.SetDialect(SimpleCRUD.Dialect.SQLServer);
@@ -25,6 +28,7 @@ namespace MsSql
         /// <returns></returns>
         public IDbConnection GetDbConnection()
         {
+            Init();
             return new SqlConnection(MsSqlConfig.MsSqlConnection);
         }
 

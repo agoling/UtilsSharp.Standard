@@ -30,6 +30,11 @@
             </summary>
             <typeparam name="T"></typeparam>
         </member>
+        <member name="M:MySql.MySqlBaseDataMapping`1.Init">
+            <summary>
+            初始化
+            </summary>
+        </member>
         <member name="M:MySql.MySqlBaseDataMapping`1.GetDbConnection">
             <summary>
             初始化链接

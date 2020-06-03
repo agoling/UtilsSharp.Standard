@@ -13,7 +13,10 @@ namespace MySql
     /// <typeparam name="T"></typeparam>
     public abstract class MySqlBaseDataMapping<T> where T : IBaseEntity
     {
-        static MySqlBaseDataMapping()
+        /// <summary>
+        /// 初始化
+        /// </summary>
+        private static void Init()
         {
             //标识使用MySql
             SimpleCRUD.SetDialect(SimpleCRUD.Dialect.MySQL);
@@ -25,6 +28,7 @@ namespace MySql
         /// <returns></returns>
         public IDbConnection GetDbConnection()
         {
+            Init();
             return new MySqlConnection(MySqlConfig.MySqlConnection);
         }
 

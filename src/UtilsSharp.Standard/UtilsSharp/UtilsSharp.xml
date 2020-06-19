@@ -2178,18 +2178,11 @@
             <param name="dayOfWeek">指定一周的某天</param>
             <returns></returns>
         </member>
-        <member name="M:UtilsSharp.TimeHelper.TimeStampToDateTime(System.String)">
+        <member name="M:UtilsSharp.TimeHelper.GetDateTime(System.Int64)">
             <summary>
             时间戳转DateTime
             </summary>
-            <param name="timeStamp">时间戳</param>
-            <returns></returns>
-        </member>
-        <member name="M:UtilsSharp.TimeHelper.DateTimeToTimeStamp(System.DateTime)">
-            <summary>
-            DateTime转时间戳
-            </summary>
-            <param name="dateTime">DateTime</param>
+            <param name="longTime">时间戳</param>
             <returns></returns>
         </member>
         <member name="T:UtilsSharp.UtilsHelper">

@@ -20,11 +20,11 @@ namespace UtilsSharp
         /// <summary>
         /// 浏览器ContentType
         /// </summary>
-        public string ContentType { set; get; } = "application/x-www-form-urlencoded";
+        public string ContentType { set; get; } = "";
         /// <summary>
         /// 浏览器Accept
         /// </summary>
-        public string Accept { set; get; } = "image/gif, image/x-xbitmap, image/jpeg, image/pjpeg, application/x-shockwave-flash, application/x-silverlight, application/vnd.ms-excel, application/vnd.ms-powerpoint, application/msword, application/x-ms-application, application/x-ms-xbap, application/vnd.ms-xpsdocument, application/xaml+xml, application/x-silverlight-2-b1, */*";
+        public string Accept { set; get; } = "";
         /// <summary>
         /// 浏览器UserAgent
         /// </summary>

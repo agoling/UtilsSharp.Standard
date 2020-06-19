@@ -148,21 +148,31 @@ namespace UtilsSharp
             }
         }
 
-
         /// <summary>
         /// 时间戳转DateTime
         /// </summary>
-        /// <param name="longTime">时间戳</param>
+        /// <param name="timeStamp">时间戳</param>
         /// <returns></returns>
-        public static DateTime GetDateTime(long longTime)
+        public static DateTime TimeStampToDateTime(string timeStamp)
         {
-            var begtime = longTime * 10000000;//100毫微秒为单位,需要转化的int日期
-            var dt1970 = new DateTime(1970, 1, 1, 8, 0, 0);
-            var tricks1970 = dt1970.Ticks;//1970年1月1日刻度
-            var timeTricks = tricks1970 + begtime;//日志日期刻度
-            var dt = new DateTime(timeTricks);//转化为DateTim
-            return dt;
+            var startTime = TimeZoneInfo.ConvertTimeFromUtc(new DateTime(1970, 1, 1), TimeZoneInfo.Local).ToLocalTime();
+            var lTime = long.Parse(timeStamp + "0000000");
+            var toNow = new TimeSpan(lTime);
+            return startTime.Add(toNow);
         }
+
+        /// <summary>
+        /// DateTime转时间戳
+        /// </summary>
+        /// <param name="dateTime">DateTime</param>
+        /// <returns></returns>
+        public static int DateTimeToTimeStamp(DateTime dateTime)
+        {
+            var startTime = TimeZoneInfo.ConvertTimeFromUtc(new DateTime(1970, 1, 1), TimeZoneInfo.Local).ToLocalTime();
+            return (int)(dateTime - startTime).TotalSeconds;
+        }
+
+        
 
     }
 }

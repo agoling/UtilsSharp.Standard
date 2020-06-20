@@ -20,7 +20,7 @@ namespace UtilsSharp
         /// <summary>
         /// 浏览器ContentType
         /// </summary>
-        public string ContentType { set; get; } = "";
+        public string ContentType { set; get; } = "application/x-www-form-urlencoded";
         /// <summary>
         /// 浏览器Accept
         /// </summary>
@@ -47,7 +47,7 @@ namespace UtilsSharp
         /// <param name="rspEncoding">响应编码</param>
         /// <param name="dateTimeFormat">参数时间格式</param>
         /// <returns></returns>
-        public BaseResult<T> DoPost<T>(string url, object parameters, Encoding rspEncoding = null,string dateTimeFormat = "yyyy-MM-dd HH:mm:ss")
+        public BaseResult<T> DoPost<T>(string url, object parameters, Encoding rspEncoding = null, string dateTimeFormat = "yyyy-MM-dd HH:mm:ss")
         {
             BaseResult<T> result = new BaseResult<T>();
             HttpWebRequest httpWebRequest = null;
@@ -71,7 +71,7 @@ namespace UtilsSharp
                 reqStreamWriter.Write(@params);
                 reqStreamWriter.Close();
 
-                httpWebResponse = (HttpWebResponse) httpWebRequest.GetResponse();
+                httpWebResponse = (HttpWebResponse)httpWebRequest.GetResponse();
                 var responseStream = httpWebResponse.GetResponseStream();
                 if (responseStream != null)
                 {
@@ -101,13 +101,13 @@ namespace UtilsSharp
         /// 执行HTTP POST请求
         /// </summary>
         /// <param name="url">请求地址</param>
-        /// <param name="proxy">代理请求信息</param>
-        /// <param name="rspEncoding">响应编码</param>
+        /// <param name="parameters">参数</param>
         /// <returns></returns>
-        public BaseResult<string> DoPost(string url, WebProxy proxy = null, Encoding rspEncoding = null)
+        public BaseResult<string> DoPost(string url, IDictionary<string, string> parameters)
         {
-            return DoPost(url, null,null, proxy, rspEncoding);
+            return DoPost(url, parameters, null, null, null);
         }
+
 
         /// <summary>
         /// 执行HTTP POST请求
@@ -117,9 +117,9 @@ namespace UtilsSharp
         /// <param name="cookieContainer">CookieContainer</param>
         /// <param name="proxy">代理请求信息</param>
         /// <param name="rspEncoding">响应编码</param>
-        public BaseResult<string> DoPost(string url, IDictionary<string, string> parameters, CookieContainer cookieContainer, WebProxy proxy=null, Encoding rspEncoding = null)
+        public BaseResult<string> DoPost(string url, IDictionary<string, string> parameters, CookieContainer cookieContainer, WebProxy proxy = null, Encoding rspEncoding = null)
         {
-            BaseResult<string> result=new BaseResult();
+            BaseResult<string> result = new BaseResult();
             HttpWebRequest httpWebRequest = null;
             HttpWebResponse httpWebResponse = null;
             if (rspEncoding == null)
@@ -128,23 +128,27 @@ namespace UtilsSharp
             }
             try
             {
-                var byteRequest = Encoding.Default.GetBytes(BuildQuery(parameters));
                 httpWebRequest = GetWebRequest(url, "POST");
-                httpWebRequest.ContentLength = byteRequest.Length;
                 //cookie
                 if (cookieContainer != null)
                 {
                     httpWebRequest.CookieContainer = cookieContainer;
                 }
                 //代理请求
-                if (proxy!=null)
+                if (proxy != null)
                 {
                     httpWebRequest.Proxy = proxy;
                 }
-                var stream = httpWebRequest.GetRequestStream();
-                stream.Write(byteRequest, 0, byteRequest.Length);
-                stream.Close();
-                httpWebResponse = (HttpWebResponse) httpWebRequest.GetResponse();
+                //参数不为空
+                if (parameters != null)
+                {
+                    var byteRequest = Encoding.Default.GetBytes(BuildQuery(parameters));
+                    httpWebRequest.ContentLength = byteRequest.Length;
+                    var stream = httpWebRequest.GetRequestStream();
+                    stream.Write(byteRequest, 0, byteRequest.Length);
+                    stream.Close();
+                }
+                httpWebResponse = (HttpWebResponse)httpWebRequest.GetResponse();
                 var responseStream = httpWebResponse.GetResponseStream();
                 if (responseStream != null)
                 {
@@ -174,22 +178,22 @@ namespace UtilsSharp
         /// 执行HTTP GET请求
         /// </summary>
         /// <param name="url">请求地址</param>
-        /// <param name="proxy">代理请求信息</param>
-        /// <param name="rspEncoding">响应编码</param>
+        /// <param name="parameters">参数</param>
         /// <returns></returns>
-        public BaseResult<string> DoGet(string url,WebProxy proxy = null, Encoding rspEncoding = null)
+        public BaseResult<string> DoGet(string url, IDictionary<string, string> parameters)
         {
-            return DoGet(url, null, proxy,rspEncoding);
+            return DoGet(url, parameters, null, null, null);
         }
 
         /// <summary>
         /// 执行HTTP GET请求
         /// </summary>
         /// <param name="url">地址</param>
+        /// <param name="parameters">参数</param>
         /// <param name="cookieContainer">CookieContainer</param>
         /// <param name="proxy">代理请求信息</param>
         /// <param name="rspEncoding">响应编码</param>
-        public BaseResult<string> DoGet(string url, CookieContainer cookieContainer, WebProxy proxy = null, Encoding rspEncoding = null)
+        public BaseResult<string> DoGet(string url, IDictionary<string, string> parameters, CookieContainer cookieContainer, WebProxy proxy = null, Encoding rspEncoding = null)
         {
             BaseResult<string> result = new BaseResult();
             HttpWebRequest httpWebRequest = null;
@@ -200,6 +204,15 @@ namespace UtilsSharp
             }
             try
             {
+                //参数不为空
+                if (parameters != null)
+                {
+                    if (!string.IsNullOrEmpty(url))
+                    {
+                        var urlArray = url.Split('?');
+                        url = $"{urlArray[0]}?{BuildQuery(parameters)}";
+                    }
+                }
                 httpWebRequest = GetWebRequest(url, "GET");
                 //cookie
                 if (cookieContainer != null)
@@ -243,7 +256,7 @@ namespace UtilsSharp
         /// <param name="url">url</param>
         /// <param name="method">HttpMethod</param>
         /// <returns></returns>
-        private HttpWebRequest GetWebRequest(string url,string method)
+        private HttpWebRequest GetWebRequest(string url, string method)
         {
             HttpWebRequest httpWebRequest;
             if (url.Contains("https"))

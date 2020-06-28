@@ -6,7 +6,7 @@
     <Product>UtilsSharp.MsSql</Product>
     <Company>Agoling</Company>
     <Authors>Agoling</Authors>
-    <Version>1.1.0</Version>
+    <Version>1.1.1</Version>
     <Description>本项目是MsSql帮助类基于.net standard2.0封装，属于UtilsSharp项目分支，依赖于Dapper</Description>
     <PackageProjectUrl>https://github.com/agoling/UtilsSharp.Standard</PackageProjectUrl>
     <RepositoryUrl>https://github.com/agoling/UtilsSharp.Standard</RepositoryUrl>

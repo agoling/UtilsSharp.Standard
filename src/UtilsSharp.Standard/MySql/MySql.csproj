@@ -10,7 +10,7 @@
     <PackageProjectUrl>https://github.com/agoling/UtilsSharp.Standard</PackageProjectUrl>
     <RepositoryUrl>https://github.com/agoling/UtilsSharp.Standard</RepositoryUrl>
     <PackageTags>UtilsSharp Dapper帮助类  Mysql帮助类</PackageTags>
-    <Version>1.1.0</Version>
+    <Version>1.1.1</Version>
     <PackageIcon>UtilsSharp.jpg</PackageIcon>
     <PackageIconUrl />
     <ApplicationIcon>UtilsSharp.ico</ApplicationIcon>

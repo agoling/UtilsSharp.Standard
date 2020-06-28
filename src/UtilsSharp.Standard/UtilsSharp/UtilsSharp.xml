@@ -2178,19 +2178,36 @@
             <param name="dayOfWeek">指定一周的某天</param>
             <returns></returns>
         </member>
-        <member name="M:UtilsSharp.TimeHelper.TimeStampToDateTime(System.String)">
+        <member name="M:UtilsSharp.TimeHelper.TimeStampToDateTime(System.String,UtilsSharp.TimeStampType)">
             <summary>
             时间戳转DateTime
             </summary>
             <param name="timeStamp">时间戳</param>
+            <param name="type">类型：秒，毫秒</param>
             <returns></returns>
         </member>
-        <member name="M:UtilsSharp.TimeHelper.DateTimeToTimeStamp(System.DateTime)">
+        <member name="M:UtilsSharp.TimeHelper.DateTimeToTimeStamp(System.DateTime,UtilsSharp.TimeStampType)">
             <summary>
             DateTime转时间戳
             </summary>
             <param name="dateTime">DateTime</param>
+            <param name="type">类型：秒，毫秒</param>
             <returns></returns>
+        </member>
+        <member name="T:UtilsSharp.TimeStampType">
+            <summary>
+            时间戳类型
+            </summary>
+        </member>
+        <member name="F:UtilsSharp.TimeStampType.秒">
+            <summary>
+            秒类型
+            </summary>
+        </member>
+        <member name="F:UtilsSharp.TimeStampType.毫秒">
+            <summary>
+            毫秒类型
+            </summary>
         </member>
         <member name="T:UtilsSharp.UtilsHelper">
             <summary>

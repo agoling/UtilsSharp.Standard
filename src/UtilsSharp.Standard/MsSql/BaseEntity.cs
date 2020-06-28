@@ -10,13 +10,13 @@ namespace MsSql
     public abstract class BaseEntity : IBaseEntity
     {
         /// <summary>
-        /// 新增默认时间
+        /// 主键Id
         /// </summary>
-        public DateTime CreateTime { get; set; } = DateTime.Now;
+        public long Id { get; set; } = 0;
 
         /// <summary>
-        /// 新增 0
+        /// 创建时间
         /// </summary>
-        public int Id { get; set; } = 0;
+        public DateTime CreateTime { get; set; } = DateTime.Now;
     }
 }

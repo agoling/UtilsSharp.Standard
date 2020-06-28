@@ -152,27 +152,50 @@ namespace UtilsSharp
         /// 时间戳转DateTime
         /// </summary>
         /// <param name="timeStamp">时间戳</param>
+        /// <param name="type">类型：秒，毫秒</param>
         /// <returns></returns>
-        public static DateTime TimeStampToDateTime(string timeStamp)
+        public static DateTime TimeStampToDateTime(string timeStamp, TimeStampType type= TimeStampType.秒)
         {
             var startTime = TimeZoneInfo.ConvertTimeFromUtc(new DateTime(1970, 1, 1), TimeZoneInfo.Local).ToLocalTime();
-            var lTime = long.Parse(timeStamp + "0000000");
-            var toNow = new TimeSpan(lTime);
-            return startTime.Add(toNow);
+            var time = long.Parse(timeStamp);
+            return type switch
+            {
+                TimeStampType.秒 => startTime.AddSeconds(time),
+                TimeStampType.毫秒 => startTime.AddMilliseconds(time),
+                _ => startTime.AddSeconds(time)
+            };
         }
 
         /// <summary>
         /// DateTime转时间戳
         /// </summary>
         /// <param name="dateTime">DateTime</param>
+        /// <param name="type">类型：秒，毫秒</param>
         /// <returns></returns>
-        public static int DateTimeToTimeStamp(DateTime dateTime)
+        public static long DateTimeToTimeStamp(DateTime dateTime, TimeStampType type = TimeStampType.秒)
         {
             var startTime = TimeZoneInfo.ConvertTimeFromUtc(new DateTime(1970, 1, 1), TimeZoneInfo.Local).ToLocalTime();
-            return (int)(dateTime - startTime).TotalSeconds;
+            return type switch
+            {
+                TimeStampType.秒 => (long)(dateTime - startTime).TotalSeconds,
+                TimeStampType.毫秒 => (long)(dateTime - startTime).TotalMilliseconds,
+                _ => (long)(dateTime - startTime).TotalSeconds
+            };
         }
+    }
 
-        
-
+    /// <summary>
+    /// 时间戳类型
+    /// </summary>
+    public enum TimeStampType
+    {
+        /// <summary>
+        /// 秒类型
+        /// </summary>
+        秒=0,
+        /// <summary>
+        /// 毫秒类型
+        /// </summary>
+        毫秒=1
     }
 }

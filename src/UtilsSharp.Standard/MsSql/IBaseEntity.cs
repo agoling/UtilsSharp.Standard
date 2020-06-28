@@ -9,8 +9,14 @@ namespace MsSql
     /// </summary>
     public interface IBaseEntity
     {
-        int Id { get; set; }
+        /// <summary>
+        /// 主键Id
+        /// </summary>
+        long Id { get; set; }
 
+        /// <summary>
+        /// 创建时间
+        /// </summary>
         DateTime CreateTime { get; set; }
     }
 }

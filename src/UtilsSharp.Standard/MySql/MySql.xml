@@ -9,14 +9,14 @@
             基类
             </summary>
         </member>
-        <member name="P:MySql.BaseEntity.CreateTime">
-            <summary>
-            新增默认时间
-            </summary>
-        </member>
         <member name="P:MySql.BaseEntity.Id">
             <summary>
-            新增 0
+            主键Id
+            </summary>
+        </member>
+        <member name="P:MySql.BaseEntity.CreateTime">
+            <summary>
+            创建时间
             </summary>
         </member>
         <member name="T:MySql.IBaseEntity">
@@ -24,11 +24,21 @@
             基类
             </summary>
         </member>
+        <member name="P:MySql.IBaseEntity.Id">
+            <summary>
+            主键Id
+            </summary>
+        </member>
+        <member name="P:MySql.IBaseEntity.CreateTime">
+            <summary>
+            创建时间
+            </summary>
+        </member>
         <member name="T:MySql.MySqlBaseDataMapping`1">
             <summary>
             MySql基础操作
             </summary>
-            <typeparam name="T"></typeparam>
+            <typeparam name="T">模型</typeparam>
         </member>
         <member name="M:MySql.MySqlBaseDataMapping`1.Init">
             <summary>
@@ -45,35 +55,35 @@
             <summary>
             添加
             </summary>
-            <param name="t"></param>
+            <param name="t">模型</param>
             <returns></returns>
         </member>
         <member name="M:MySql.MySqlBaseDataMapping`1.Update(`0)">
             <summary>
             更新
             </summary>
-            <param name="t"></param>
+            <param name="t">模型</param>
             <returns></returns>
         </member>
         <member name="M:MySql.MySqlBaseDataMapping`1.Save(`0)">
             <summary>
             保存
             </summary>
-            <param name="t"></param>
+            <param name="t">模型</param>
             <returns></returns>
         </member>
         <member name="M:MySql.MySqlBaseDataMapping`1.Delete(`0)">
             <summary>
             删除
             </summary>
-            <param name="t"></param>
+            <param name="t">模型</param>
             <returns></returns>
         </member>
         <member name="M:MySql.MySqlBaseDataMapping`1.Get(System.Int64)">
             <summary>
             根据id获取
             </summary>
-            <param name="id"></param>
+            <param name="id">id</param>
             <returns></returns>
         </member>
         <member name="M:MySql.MySqlBaseDataMapping`1.GetAllList">

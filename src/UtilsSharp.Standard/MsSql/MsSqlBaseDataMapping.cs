@@ -10,7 +10,7 @@ namespace MsSql
     /// <summary>
     /// MsSql基础操作
     /// </summary>
-    /// <typeparam name="T"></typeparam>
+    /// <typeparam name="T">模型</typeparam>
     public abstract class MsSqlBaseDataMapping<T> where T : IBaseEntity
     {
         /// <summary>
@@ -35,7 +35,7 @@ namespace MsSql
         /// <summary>
         /// 添加
         /// </summary>
-        /// <param name="t"></param>
+        /// <param name="t">模型</param>
         /// <returns></returns>
         public virtual int Add(T t)
         {
@@ -48,7 +48,7 @@ namespace MsSql
         /// <summary>
         /// 更新
         /// </summary>
-        /// <param name="t"></param>
+        /// <param name="t">模型</param>
         /// <returns></returns>
         public virtual int Update(T t)
         {
@@ -60,7 +60,7 @@ namespace MsSql
         /// <summary>
         /// 保存
         /// </summary>
-        /// <param name="t"></param>
+        /// <param name="t">模型</param>
         /// <returns></returns>
         public virtual int Save(T t)
         {
@@ -70,7 +70,7 @@ namespace MsSql
         /// <summary>
         /// 删除
         /// </summary>
-        /// <param name="t"></param>
+        /// <param name="t">模型</param>
         /// <returns></returns>
         public virtual int Delete(T t)
         {
@@ -82,7 +82,7 @@ namespace MsSql
         /// <summary>
         /// 根据id获取
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="id">id</param>
         /// <returns></returns>
         public virtual T Get(long id)
         {

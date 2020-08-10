@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using Dapper;
 using MySql.Data.MySqlClient;
 using OptionConfig;
 
@@ -13,14 +12,6 @@ namespace MySql
     /// <typeparam name="T">模型</typeparam>
     public abstract class MySqlBaseDataMapping<T> where T : IBaseEntity
     {
-        /// <summary>
-        /// 初始化
-        /// </summary>
-        private static void Init()
-        {
-            //标识使用MySql
-            SimpleCRUD.SetDialect(SimpleCRUD.Dialect.MySQL);
-        }
 
         /// <summary>
         /// 初始化链接
@@ -28,7 +19,6 @@ namespace MySql
         /// <returns></returns>
         public IDbConnection GetDbConnection()
         {
-            Init();
             return new MySqlConnection(MySqlConfig.MySqlConnection);
         }
 

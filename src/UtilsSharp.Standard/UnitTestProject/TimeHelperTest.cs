@@ -18,7 +18,6 @@ namespace UnitTestProjectNetCore
 
             var bb = TimeHelper.DateTimeToTimeStamp(DateTime.Now,TimeStampType.毫秒);
 
-
         }
     }
 }

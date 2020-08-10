@@ -10,7 +10,7 @@
     <PackageProjectUrl>https://github.com/agoling/UtilsSharp.Standard</PackageProjectUrl>
     <RepositoryUrl>https://github.com/agoling/UtilsSharp.Standard</RepositoryUrl>
     <PackageTags>UtilsSharp Dapper帮助类  Mysql帮助类</PackageTags>
-    <Version>1.1.1</Version>
+    <Version>2.0.0</Version>
     <PackageIcon>UtilsSharp.jpg</PackageIcon>
     <PackageIconUrl />
     <ApplicationIcon>UtilsSharp.ico</ApplicationIcon>
@@ -22,7 +22,6 @@
 
   <ItemGroup>
     <PackageReference Include="Dapper" Version="2.0.35" />
-    <PackageReference Include="Dapper.SimpleCRUD" Version="2.2.0.1" />
     <PackageReference Include="MySql.Data" Version="8.0.20" />
     <PackageReference Include="UtilsSharp.OptionConfig" Version="1.0.1" />
   </ItemGroup>

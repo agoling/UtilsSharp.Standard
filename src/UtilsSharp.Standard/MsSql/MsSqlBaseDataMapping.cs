@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using Dapper;
 using OptionConfig;
 
 namespace MsSql
@@ -14,21 +13,11 @@ namespace MsSql
     public abstract class MsSqlBaseDataMapping<T> where T : IBaseEntity
     {
         /// <summary>
-        /// 初始化
-        /// </summary>
-        private static void Init()
-        {
-            //标识使用MsSql
-            SimpleCRUD.SetDialect(SimpleCRUD.Dialect.SQLServer);
-        }
-
-        /// <summary>
         /// 初始化链接
         /// </summary>
         /// <returns></returns>
         public IDbConnection GetDbConnection()
         {
-            Init();
             return new SqlConnection(MsSqlConfig.MsSqlConnection);
         }
 

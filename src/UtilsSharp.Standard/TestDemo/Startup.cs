@@ -22,7 +22,8 @@ namespace TestDemo
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            var docOptions = new SwaggerDocOptions { Name = "v1", OpenApiInfo = { Title = "WeiXinMp", Version = "v1", Description = "我是描述" } };
+            var docOptions = new SwaggerDocOptions { Name = "v1", OpenApiInfo = { Title = "WeiXinMp", Version = "v1", Description = "我是描述" }, Enable = true };
+            docOptions.HeaderParameters.Add(new HeaderParameter(){Name = "token",Value = "" });
             services.AddAspNetCoreExtensions(docOptions);
         }
 
@@ -35,14 +36,9 @@ namespace TestDemo
             }
 
             app.UseRouting();
+            //注册扩展
             app.UseAspNetCoreExtensions();
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapGet("/", async context =>
-                {
-                    await context.Response.WriteAsync("Hello World!");
-                });
-            });
+            app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
         }
 
         /// <summary>

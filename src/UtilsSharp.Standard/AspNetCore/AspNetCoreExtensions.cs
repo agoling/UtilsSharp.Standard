@@ -5,8 +5,6 @@ using System.Reflection;
 using System.Text;
 using AspNetCore.Swagger;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.DependencyModel;
-using Microsoft.OpenApi.Models;
 
 namespace AspNetCore
 {
@@ -40,20 +38,28 @@ namespace AspNetCore
                 swaggerDocOptions = new SwaggerDocOptions();
             }
             AspNetCoreExtensionsConfig.SwaggerDocOptions = swaggerDocOptions;
-            services.AddSwaggerGen(c =>
+            if (swaggerDocOptions.Enable)
             {
-                c.SwaggerDoc(swaggerDocOptions.Name, swaggerDocOptions.OpenApiInfo);
-                var enumerable = AssemblyHelper.GetAllAssemblies();
-                foreach (var item in enumerable)
+                services.AddSwaggerGen(c =>
                 {
-                    var xmlName = $"{item.GetName().Name}.xml";
-                    var xmlPath = item.ManifestModule.FullyQualifiedName.Replace(item.ManifestModule.Name, xmlName);
-                    if (File.Exists(xmlPath))
+                    c.CustomSchemaIds(i => i.FullName);
+                    c.SwaggerDoc(swaggerDocOptions.Name, swaggerDocOptions.OpenApiInfo);
+                    var enumerable = AssemblyHelper.GetAllAssemblies();
+                    foreach (var item in enumerable)
                     {
-                        c.IncludeXmlComments(xmlPath, true); //添加控制器层注释（true表示显示控制器注释）
+                        var xmlName = $"{item.GetName().Name}.xml";
+                        var xmlPath = item.ManifestModule.FullyQualifiedName.Replace(item.ManifestModule.Name, xmlName);
+                        if (File.Exists(xmlPath))
+                        {
+                            c.IncludeXmlComments(xmlPath, true); //添加控制器层注释（true表示显示控制器注释）
+                        }
                     }
-                }
-            });
+                    if (swaggerDocOptions.HeaderParameters != null && swaggerDocOptions.HeaderParameters.Count > 0)
+                    {
+                        c.OperationFilter<AddRequiredHeaderParameter>();//添加header参数
+                    }
+                });
+            }
             return services;
         }
 

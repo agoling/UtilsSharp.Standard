@@ -38,12 +38,12 @@ namespace AspNetCore
         /// <returns></returns>
         public static IApplicationBuilder UseSwaggerExtensions(this IApplicationBuilder app)
         {
+            var swaggerDocOptions = AspNetCoreExtensionsConfig.SwaggerDocOptions;
+            if (!swaggerDocOptions.Enable) return app;
             // Enable middleware to serve generated Swagger as a JSON endpoint.
             app.UseSwagger();
-
             // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.),
             // specifying the Swagger JSON endpoint.
-            var swaggerDocOptions = AspNetCoreExtensionsConfig.SwaggerDocOptions;
             app.UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint($"/swagger/{swaggerDocOptions.Name}/swagger.json", $"{swaggerDocOptions.OpenApiInfo.Title} {swaggerDocOptions.OpenApiInfo.Version}");

@@ -15,11 +15,10 @@ namespace TestDemo.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        public IEnumerable<string> Get()
+        public string Get()
         {
             var token = UtilsSharp.Standard.HttpContext.Current.Request.Headers["token"];
-            var accesstoken = UtilsSharp.Standard.HttpContext.Current.Request.Headers["accesstoken"];
-            return new string[] { "value1", "value2" };
+            return "value";
         }
 
         /// <summary>

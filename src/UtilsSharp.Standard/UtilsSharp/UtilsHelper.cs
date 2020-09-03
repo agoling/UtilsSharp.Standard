@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
+using Microsoft.AspNetCore.Hosting.Server;
+using Microsoft.AspNetCore.Hosting.Server.Features;
 using Newtonsoft.Json;
 using UtilsSharp.Entity;
 using UtilsSharp.Standard;
@@ -12,23 +15,25 @@ namespace UtilsSharp
     /// </summary>
     public static class UtilsHelper
     {
-        /// <summary>  
-        /// 提取开启代理/cdn服务后的客户端真实IP  
-        /// </summary>  
-        /// <returns></returns>  
-        public static string GetIp()
+        /// <summary>
+        /// 获取客户端Ip
+        /// </summary>
+        /// <returns></returns>
+        public static string GetClientIp()
         {
-            string ip;
-            string xForwardedFor = HttpContext.Current.Request.Headers["X-Forwarded-For"];
-            if (!string.IsNullOrWhiteSpace(xForwardedFor))
-            {
-                ip = xForwardedFor;
-            }
-            else
-            {
-                string cfConnectingIp = HttpContext.Current.Request.Headers["CF-Connecting-IP"];
-                ip = !string.IsNullOrWhiteSpace(cfConnectingIp) ? cfConnectingIp : HttpContext.Current.Request.Host.Value;
-            }
+            var ip = HttpContext.Current.Connection.RemoteIpAddress.ToString();
+            return ip;
+        }
+
+        /// <summary>
+        /// 获取服务端Ip
+        /// </summary>
+        /// <returns></returns>
+        public static string GetServerIp()
+        {
+            var ip = System.Net.Dns.GetHostEntry(System.Net.Dns.GetHostName()).AddressList
+                .FirstOrDefault(address => address.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork)
+                ?.ToString();
             return ip;
         }
 

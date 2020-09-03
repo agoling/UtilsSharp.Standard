@@ -2214,11 +2214,17 @@
             公共工具类
             </summary>
         </member>
-        <member name="M:UtilsSharp.UtilsHelper.GetIp">
-            <summary>  
-            提取开启代理/cdn服务后的客户端真实IP  
-            </summary>  
-            <returns></returns>  
+        <member name="M:UtilsSharp.UtilsHelper.GetClientIp">
+            <summary>
+            获取客户端Ip
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.UtilsHelper.GetServerIp">
+            <summary>
+            获取服务端Ip
+            </summary>
+            <returns></returns>
         </member>
         <member name="M:UtilsSharp.UtilsHelper.CalcProgress(System.Int32,System.Int32,System.Int32)">
             <summary>

@@ -20,11 +20,7 @@ namespace UtilsSharp
         /// <returns></returns>
         public static string TransferenceRegex(string str)
         {
-            if (string.IsNullOrEmpty(str))
-            {
-                return str;
-            }
-
+            if (string.IsNullOrEmpty(str)) return str;
             return str.Replace("\\", "\\\\").Replace("*", "\\*")
                 .Replace("+", "\\+").Replace("|", "\\|")
                 .Replace("{", "\\{").Replace("}", "\\}")
@@ -42,6 +38,7 @@ namespace UtilsSharp
         /// <returns></returns>
         public static string HtmlToTxt(string htmlStr)
         {
+            if (string.IsNullOrEmpty(htmlStr)) return htmlStr;
             string[] aryReg ={
                 @"<script[^>]*?>.*?</script>",
                 @"<(\/\s*)?!?((\w+:)?\w+)(\w+(\s*=?\s*(([""'])(\\[""'tbnr]|[^\7])*?\7|\w+)|.{0})|\s)*?(\/\s*)?>",
@@ -99,6 +96,7 @@ namespace UtilsSharp
         /// <returns></returns>
         public static string CutChar(string str, int charLength)
         {
+            if (string.IsNullOrEmpty(str) || charLength <= 0) return str;
             var bytes = Encoding.Unicode.GetBytes(str);
             var n = 0;  //  表示当前的字节数
             var i = 0;  //  要截取的字节数
@@ -143,10 +141,7 @@ namespace UtilsSharp
         /// <returns></returns>
         public static string CutString(string str, int strCount)
         {
-            if (string.IsNullOrEmpty(str) || strCount <= 0)
-            {
-                return str;
-            }
+            if (string.IsNullOrEmpty(str) || strCount <= 0) return str;
             return str.Length >= strCount ? str.Substring(0, strCount) : str;
         }
 
@@ -194,6 +189,7 @@ namespace UtilsSharp
         /// <returns></returns>
         public static string Compress(string str)
         {
+            if (string.IsNullOrEmpty(str)) return str;
             var compressBeforeByte = Encoding.GetEncoding("UTF-8").GetBytes(str);
             var ms = new MemoryStream();
             var zip = new GZipStream(ms, CompressionMode.Compress, true);
@@ -214,6 +210,7 @@ namespace UtilsSharp
         /// <returns></returns>
         public static string DeCompress(string str)
         {
+            if (string.IsNullOrEmpty(str)) return str;
             var decompressBeforeByte = Convert.FromBase64String(str);
             var ms = new MemoryStream(decompressBeforeByte);
             var zip = new GZipStream(ms, CompressionMode.Decompress, true);

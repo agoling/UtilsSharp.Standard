@@ -683,6 +683,24 @@
             <param name="title">文本</param>
             <returns></returns>
         </member>
+        <member name="T:UtilsSharp.DirectoryHelper">
+            <summary>
+            文件夹帮助类
+            </summary>
+        </member>
+        <member name="M:UtilsSharp.DirectoryHelper.GetDesktopDirectory">
+            <summary>
+            获取桌面目录路径
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.DirectoryHelper.ConvertToDirectory(System.String)">
+            <summary>
+            得到绝对目录路径
+            </summary>
+            <param name="dirPath">目录路径如：dir/{DateTime.Now.Date:yyyy-MM-dd}/ </param>
+            <returns></returns>
+        </member>
         <member name="T:UtilsSharp.Entity.MarkdownMessage">
             <summary>
             Markdown消息内容类
@@ -958,13 +976,6 @@
             <param name="bytes">参数</param>
             <returns></returns>
         </member>
-        <member name="M:UtilsSharp.FileHelper.MapPath(System.String)">
-            <summary>
-            得到绝对路径
-            </summary>
-            <param name="strPath">目录路径如：dir/{DateTime.Now.Date:yyyy-MM-dd}/ </param>
-            <returns></returns>
-        </member>
         <member name="T:UtilsSharp.ImageHelper">
             <summary>
             图片帮助类
@@ -1172,6 +1183,23 @@
             </summary>
             <param name="pPath">图片路径</param>
             <param name="pSavedPath">保存路径</param>
+        </member>
+        <member name="T:UtilsSharp.IpHelper">
+            <summary>
+            Ip帮助类
+            </summary>
+        </member>
+        <member name="M:UtilsSharp.IpHelper.GetClientIp">
+            <summary>
+            获取客户端Ip
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.IpHelper.GetServerIp">
+            <summary>
+            获取服务端Ip
+            </summary>
+            <returns></returns>
         </member>
         <member name="T:UtilsSharp.MapperHelper`2">
             <summary>
@@ -1546,6 +1574,24 @@
             <param name="retryInterval">重试间隔</param>
             <param name="retryCount">重试次数</param>
             <returns>返回类型T</returns>
+        </member>
+        <member name="T:UtilsSharp.ShortcutHelper">
+            <summary>
+            生成快捷方式
+            </summary>
+        </member>
+        <member name="M:UtilsSharp.ShortcutHelper.UrlToDesktop(System.String,System.String)">
+            <summary>
+            创建Url桌面快捷方式
+            </summary>
+            <param name="linkName">链接名称</param>
+            <param name="linkUrl">链接地址</param>
+        </member>
+        <member name="M:UtilsSharp.ShortcutHelper.AppToDesktop(System.String)">
+            <summary>
+            创建应用桌面快捷方式
+            </summary>
+            <param name="linkName">链接名称</param>
         </member>
         <member name="T:UtilsSharp.Standard.BaseBackgroundWorker">
             <summary>
@@ -2213,18 +2259,6 @@
             <summary>
             公共工具类
             </summary>
-        </member>
-        <member name="M:UtilsSharp.UtilsHelper.GetClientIp">
-            <summary>
-            获取客户端Ip
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:UtilsSharp.UtilsHelper.GetServerIp">
-            <summary>
-            获取服务端Ip
-            </summary>
-            <returns></returns>
         </member>
         <member name="M:UtilsSharp.UtilsHelper.CalcProgress(System.Int32,System.Int32,System.Int32)">
             <summary>

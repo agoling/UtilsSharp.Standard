@@ -99,32 +99,5 @@ namespace UtilsSharp
             stream.Seek(0, SeekOrigin.Begin);
             return stream;
         }
-
-
-        /// <summary>
-        /// 得到绝对路径
-        /// </summary>
-        /// <param name="strPath">目录路径如：dir/{DateTime.Now.Date:yyyy-MM-dd}/ </param>
-        /// <returns></returns>
-        public static string MapPath(string strPath)
-        {
-            string dir;
-            strPath = strPath.Replace("/", "\\");
-            if (!strPath.StartsWith("\\"))
-            {
-                dir = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, strPath);
-            }
-            else
-            {
-                strPath = strPath.Substring(strPath.IndexOf('\\', 0)).TrimStart('\\');
-                strPath = strPath.TrimStart('\\');
-                dir = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, strPath);
-            }
-            if (!Directory.Exists(dir))
-            {
-                Directory.CreateDirectory(dir);
-            }
-            return dir;
-        }
     }
 }

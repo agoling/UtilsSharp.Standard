@@ -1,0 +1,161 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>OptionConfig</name>
+    </assembly>
+    <members>
+        <member name="T:OptionConfig.ElasticSearchConfig">
+            <summary>
+            ElasticSearch配置
+            </summary>
+        </member>
+        <member name="P:OptionConfig.ElasticSearchConfig.EsHttpAddress">
+            <summary>
+            连接字符串
+            </summary>
+        </member>
+        <member name="P:OptionConfig.ElasticSearchConfig.EsDefaultIndex">
+            <summary>
+            默认索引
+            </summary>
+        </member>
+        <member name="P:OptionConfig.ElasticSearchConfig.EsNetworkProxy">
+            <summary>
+            网络代理
+            </summary>
+        </member>
+        <member name="P:OptionConfig.ElasticSearchConfig.EsConnectionLimit">
+            <summary>
+            连接数限制
+            </summary>
+        </member>
+        <member name="T:OptionConfig.MsSqlConfig">
+            <summary>
+            MsSql配置
+            </summary>
+        </member>
+        <member name="P:OptionConfig.MsSqlConfig.MsSqlConnection">
+            <summary>
+            连接字符串
+            </summary>
+        </member>
+        <member name="T:OptionConfig.MySqlConfig">
+            <summary>
+            MySql配置
+            </summary>
+        </member>
+        <member name="P:OptionConfig.MySqlConfig.MySqlConnection">
+            <summary>
+            连接字符串
+            </summary>
+        </member>
+        <member name="T:OptionConfig.OssHelperConfig">
+            <summary>
+            OssHelper存储配置文件
+            </summary>
+        </member>
+        <member name="T:OptionConfig.OssConfig">
+            <summary>
+            Oss存储配置文件
+            </summary>
+        </member>
+        <member name="P:OptionConfig.OssConfig.OssEndpoint">
+            <summary>
+            OssEndpoint 外网
+            </summary>
+        </member>
+        <member name="P:OptionConfig.OssConfig.OssEndpointIn">
+            <summary>
+            OssEndpoint 内网
+            </summary>
+        </member>
+        <member name="P:OptionConfig.OssConfig.OssAccessKeyId">
+            <summary>
+            OssAccessKeyId
+            </summary>
+        </member>
+        <member name="P:OptionConfig.OssConfig.OssAccessKeySecret">
+            <summary>
+            OssAccessKeySecret
+            </summary>
+        </member>
+        <member name="P:OptionConfig.OssConfig.OssBucketName">
+            <summary>
+            OssBucketName
+            </summary>
+        </member>
+        <member name="P:OptionConfig.OssConfig.OssProtocol">
+            <summary>
+            Oss协议
+            http://
+            或
+            https://
+            </summary>
+        </member>
+        <member name="P:OptionConfig.OssConfig.OssHost">
+            <summary>
+            OssHost
+            </summary>
+        </member>
+        <member name="P:OptionConfig.OssConfig.OssCallbackUrl">
+            <summary>
+            Oss回调地址
+            </summary>
+        </member>
+        <member name="P:OptionConfig.OssConfig.OssCallbackHost">
+            <summary>
+            Oss回调Host
+            </summary>
+        </member>
+        <member name="P:OptionConfig.OssConfig.OssCallbackExpireTime">
+            <summary>
+            Oss回调过期时间
+            </summary>
+        </member>
+        <member name="P:OptionConfig.OssConfig.OssRootDir">
+            <summary>
+            Oss文件根目录
+            </summary>
+        </member>
+        <member name="P:OptionConfig.OssConfig.OssRootTemporaryDir">
+            <summary>
+            Oss临时文件根目录（oss可配置文件到期自动删除）
+            </summary>
+        </member>
+        <member name="T:OptionConfig.RabbitMQConfig">
+            <summary>
+            RabbitMQ配置
+            </summary>
+        </member>
+        <member name="P:OptionConfig.RabbitMQConfig.HostName">
+            <summary>
+            HostName
+            </summary>
+        </member>
+        <member name="P:OptionConfig.RabbitMQConfig.Port">
+            <summary>
+            端口
+            </summary>
+        </member>
+        <member name="P:OptionConfig.RabbitMQConfig.UserName">
+            <summary>
+            用户名
+            </summary>
+        </member>
+        <member name="P:OptionConfig.RabbitMQConfig.Password">
+            <summary>
+            密码
+            </summary>
+        </member>
+        <member name="T:OptionConfig.RedisConfig">
+            <summary>
+            Redis配置
+            </summary>
+        </member>
+        <member name="P:OptionConfig.RedisConfig.RedisConnection">
+            <summary>
+            连接字符串
+            </summary>
+        </member>
+    </members>
+</doc>

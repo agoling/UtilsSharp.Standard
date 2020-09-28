@@ -10,7 +10,7 @@
     <PackageTags>数据库共享配置 UtilsSharp OptionConfig</PackageTags>
     <PackageId>UtilsSharp.OptionConfig</PackageId>
     <Product>UtilsSharp.OptionConfig</Product>
-    <Version>1.0.3</Version>
+    <Version>1.0.4</Version>
     <PackageIcon>UtilsSharp.jpg</PackageIcon>
     <PackageIconUrl />
     <ApplicationIcon>UtilsSharp.ico</ApplicationIcon>

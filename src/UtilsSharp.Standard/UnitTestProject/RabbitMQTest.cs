@@ -15,7 +15,7 @@ namespace UnitTestProjectNetCore
         [TestMethod]
         public void Send()
         {
-            RabbitMQHelper mq = new RabbitMQHelper();
+            RabbitMQHelper mq = new RabbitMQHelper("amqp://alimquser:sfayxgtxkmuh@192.168.0.144:5672");
 
             const string queueName = "my_queue";
             const string exchangeName = "my_exchanged";
@@ -25,12 +25,12 @@ namespace UnitTestProjectNetCore
             mqTests.Add("测试1");
             mqTests.Add("测试2");
             mqTests.Add("测试3");
-            mq.Send(ExchangeType.Direct,exchangeName, routingKey, queueName, "测试数据");
+            mq.Send(exchangeName, routingKey, queueName, "测试数据");
 
             //mq.Send(ExchangeType.Direct, exchangeName, routingKey, queueName, "我是测试aab");
 
-            //Action<string> action = new Action<string>(shoudao);
-            //mq.Receive(action);
+            Action<string> action = new Action<string>(shoudao);
+            mq.CreateConsumer(exchangeName, routingKey, queueName, action);
         }
 
         public void shoudao(string msg)

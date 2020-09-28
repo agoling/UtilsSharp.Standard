@@ -10,20 +10,8 @@ namespace OptionConfig
     public static class RabbitMQConfig
     {
         /// <summary>
-        /// HostName
+        /// RabbitMQConnection
         /// </summary>
-        public static string HostName { set; get; }
-        /// <summary>
-        /// 端口
-        /// </summary>
-        public static int Port { set; get; }
-        /// <summary>
-        /// 用户名
-        /// </summary>
-        public static string UserName { set; get; }
-        /// <summary>
-        /// 密码
-        /// </summary>
-        public static string Password { set; get; }
+        public static string RabbitMQConnection { set; get; }
     }
 }

@@ -9,6 +9,9 @@ namespace OptionConfig
     /// </summary>
     public static class OssHelperConfig
     {
+        /// <summary>
+        /// Oss存储配置文件
+        /// </summary>
         public static OssConfig OssConfig { set; get; }
     }
 

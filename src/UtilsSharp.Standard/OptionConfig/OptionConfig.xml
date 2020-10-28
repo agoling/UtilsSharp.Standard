@@ -54,6 +54,11 @@
             OssHelper存储配置文件
             </summary>
         </member>
+        <member name="P:OptionConfig.OssHelperConfig.OssConfig">
+            <summary>
+            Oss存储配置文件
+            </summary>
+        </member>
         <member name="T:OptionConfig.OssConfig">
             <summary>
             Oss存储配置文件
@@ -122,29 +127,39 @@
             Oss临时文件根目录（oss可配置文件到期自动删除）
             </summary>
         </member>
-        <member name="T:OptionConfig.RabbitMQConfig">
+        <member name="T:OptionConfig.RabbitMqHelperConfig">
+            <summary>
+            RabbitMqHelper配置
+            </summary>
+        </member>
+        <member name="P:OptionConfig.RabbitMqHelperConfig.RabbitMqConfig">
             <summary>
             RabbitMQ配置
             </summary>
         </member>
-        <member name="P:OptionConfig.RabbitMQConfig.HostName">
+        <member name="T:OptionConfig.RabbitMqConfig">
             <summary>
-            HostName
+            RabbitMQ配置
             </summary>
         </member>
-        <member name="P:OptionConfig.RabbitMQConfig.Port">
+        <member name="P:OptionConfig.RabbitMqConfig.RabbitMqConnection">
             <summary>
-            端口
+            RabbitMQConnection
             </summary>
         </member>
-        <member name="P:OptionConfig.RabbitMQConfig.UserName">
+        <member name="P:OptionConfig.RabbitMqConfig.RequestedConnectionTimeout">
             <summary>
-            用户名
+            请求连接超时设置
             </summary>
         </member>
-        <member name="P:OptionConfig.RabbitMQConfig.Password">
+        <member name="P:OptionConfig.RabbitMqConfig.RequestedHeartbeat">
+             <summary>
+            请求心跳设置
+             </summary>
+        </member>
+        <member name="P:OptionConfig.RabbitMqConfig.AutomaticRecoveryEnabled">
             <summary>
-            密码
+            是否自动恢复
             </summary>
         </member>
         <member name="T:OptionConfig.RedisConfig">

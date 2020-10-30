@@ -68,13 +68,14 @@ namespace RabbitMQ
         private void Init()
         {
             _rabbitConnectionFactory = new ConnectionFactory() { Uri = new Uri(_rabbitMqAddress) };
+            
             if (_requestedConnectionTimeout != default)
             {
-                _rabbitConnectionFactory.RequestedConnectionTimeout = _requestedConnectionTimeout;
+                _rabbitConnectionFactory.RequestedConnectionTimeout = _requestedConnectionTimeout.Milliseconds;
             }
             if (_requestedHeartbeat != default)
             {
-                _rabbitConnectionFactory.RequestedHeartbeat = _requestedHeartbeat;
+                _rabbitConnectionFactory.RequestedHeartbeat =(ushort)_requestedHeartbeat.Seconds;
             }
             if (_automaticRecoveryEnabled != null)
             {
@@ -105,7 +106,7 @@ namespace RabbitMQ
         /// <returns></returns>
         public uint GetConsumerCount(string queueName)
         {
-            var channel = GetChannel();
+            using var channel = GetChannel();
             return channel.ConsumerCount(queueName);
         }
 
@@ -116,7 +117,7 @@ namespace RabbitMQ
         /// <returns></returns>
         public uint GetMessageCount(string queueName)
         {
-            var channel = GetChannel();
+            using var channel = GetChannel();
             return channel.MessageCount(queueName);
         }
 
@@ -127,7 +128,7 @@ namespace RabbitMQ
         /// <param name="exchangeType">交换机类型</param>
         public void ExchangeDeclare(string exchangeName, string exchangeType = ExchangeType.Direct)
         {
-            var channel = GetChannel();
+            using var channel = GetChannel();
             channel.ExchangeDeclare(exchangeName, exchangeType, true, false, null);
         }
 
@@ -138,7 +139,7 @@ namespace RabbitMQ
         /// <param name="arguments">参数</param>
         public void QueueDeclare(string queueName, IDictionary<string, object> arguments=null)
         {
-            var channel = GetChannel();
+            using var channel = GetChannel();
             channel.QueueDeclare(queueName, true, false, false, arguments);
         }
 
@@ -148,7 +149,7 @@ namespace RabbitMQ
         /// <param name="queueName"></param>
         public void QueueDelete(string queueName)
         {
-            var channel = GetChannel();
+            using var channel = GetChannel();
             channel.QueueDelete(queue: queueName);
         }
 
@@ -160,7 +161,7 @@ namespace RabbitMQ
         /// <param name="routingKey">路由key</param>
         public void QueueBind(string queueName,string exchangeName, string routingKey)
         {
-            var channel = GetChannel();
+            using var channel = GetChannel();
             channel.QueueBind(queueName, exchangeName, routingKey, null);
         }
 
@@ -174,10 +175,10 @@ namespace RabbitMQ
         {
             if (content == null) return;
             var message = content.GetType().Name != "String" ? JsonConvert.SerializeObject(content) : content.ToString();
-            var channel = GetChannel();
+            using var channel = GetChannel();
             var properties = channel.CreateBasicProperties();
             properties.Persistent = true;
-            properties.DeliveryMode = 1;
+            properties.DeliveryMode = 2;
             byte[] body = Encoding.UTF8.GetBytes(message);
             //开始发送
             channel.BasicPublish(exchangeName, routingKey, properties, body);
@@ -193,10 +194,10 @@ namespace RabbitMQ
         {
             if (contents == null|| contents.Count ==0) return;
             var type = contents.First().GetType().Name;
-            var channel = GetChannel();
+            using var channel = GetChannel();
             var properties = channel.CreateBasicProperties();
-            properties.Persistent = true;
-            properties.DeliveryMode = 1;
+            properties.Persistent = true;//是否持久化
+            properties.DeliveryMode = 2;
             foreach (var content in contents)
             {
                 var message = type != "String" ? JsonConvert.SerializeObject(content) : content.ToString();
@@ -218,7 +219,7 @@ namespace RabbitMQ
             if (content == null) return;
             expiration = expiration * 1000;
             var message = content.GetType().Name != "String" ? JsonConvert.SerializeObject(content) : content.ToString();
-            var channel = GetChannel();
+            using var channel = GetChannel();
             var properties = channel.CreateBasicProperties();
             properties.Expiration = expiration.ToString();
             byte[] body = Encoding.UTF8.GetBytes(message);
@@ -238,7 +239,7 @@ namespace RabbitMQ
             if (contents == null || contents.Count == 0) return;
             expiration = expiration * 1000;
             var type = contents.First().GetType().Name;
-            var channel = GetChannel();
+            using var channel = GetChannel();
             var properties = channel.CreateBasicProperties();
             properties.Expiration = expiration.ToString();
             foreach (var content in contents)
@@ -263,13 +264,12 @@ namespace RabbitMQ
         {
             Task.Run(() =>
             {
-                var channel = GetChannel();
+                using var channel = GetChannel();
                 channel.BasicQos(prefetchSize: 0, prefetchCount: 1, global: false);
                 EventingBasicConsumer consumer = new EventingBasicConsumer(channel);
                 consumer.Received += (model, ea) =>
                 {
-                    ReadOnlyMemory<byte> body = ea.Body;
-                    var message = Encoding.UTF8.GetString(body.ToArray());
+                    var message = Encoding.UTF8.GetString(ea.Body);
                     try
                     {
                         callback.Invoke(message);
@@ -331,14 +331,14 @@ namespace RabbitMQ
         /// <returns></returns>
         private MessageAskModel GetMessage(string queueName, bool autoAck = true)
         {
-            var channel = GetChannel();
+            using var channel = GetChannel();
             if (channel.MessageCount(queueName) == 0) return null;
             var baseResult = channel.BasicGet(queueName, autoAck);
             if (baseResult == null) return null;
             var message = new MessageAskModel()
             {
                 DeliveryTag = baseResult.DeliveryTag,
-                Message = Encoding.UTF8.GetString(baseResult.Body.ToArray())
+                Message = Encoding.UTF8.GetString(baseResult.Body)
             };
             return message;
         }

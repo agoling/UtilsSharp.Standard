@@ -17,29 +17,13 @@ namespace RabbitMQ
     /// </summary>
     public class RabbitMqHelper
     {
-        private  ConnectionFactory _rabbitConnectionFactory;
-        private  IConnection _rabbitConnection;
-        private readonly string _rabbitMqAddress;
-        private readonly TimeSpan _requestedConnectionTimeout;
-        private readonly TimeSpan _requestedHeartbeat;
-        private bool? _automaticRecoveryEnabled;
+        private static  ConnectionFactory _rabbitConnectionFactory;
+        private static  IConnection _rabbitConnection;
+        private static  string _rabbitMqAddress;
+        private static TimeSpan _requestedConnectionTimeout;
+        private static TimeSpan _requestedHeartbeat;
+        private static bool? _automaticRecoveryEnabled;
 
-
-        /// <summary>
-        /// 构造函数
-        /// </summary>
-        public RabbitMqHelper(string rabbitMqAddress, TimeSpan requestedConnectionTimeout = default, TimeSpan requestedHeartbeat = default, bool? automaticRecoveryEnabled = null)
-        {
-            if (string.IsNullOrEmpty(rabbitMqAddress))
-            {
-                throw new Exception("rabbitMqConnection cannot be null or empty");
-            }
-            _rabbitMqAddress = rabbitMqAddress;
-            _requestedConnectionTimeout = requestedConnectionTimeout;
-            _requestedHeartbeat = requestedHeartbeat;
-            _automaticRecoveryEnabled = automaticRecoveryEnabled;
-            Init();
-        }
 
         /// <summary>
         /// 构造函数
@@ -65,7 +49,7 @@ namespace RabbitMQ
         /// <summary>
         /// 初始化
         /// </summary>
-        private void Init()
+        private static void Init()
         {
             _rabbitConnectionFactory = new ConnectionFactory() { Uri = new Uri(_rabbitMqAddress) };
             
@@ -89,7 +73,7 @@ namespace RabbitMQ
         /// 获取Channel
         /// </summary>
         /// <returns></returns>
-        public IModel GetChannel()
+        public static IModel GetChannel()
         {
             if (!_rabbitConnection.IsOpen)
             {

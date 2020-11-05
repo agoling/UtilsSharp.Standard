@@ -11,7 +11,7 @@
     <PackageIcon>UtilsSharp.jpg</PackageIcon>
     <RepositoryUrl>https://github.com/agoling/UtilsSharp.Standard</RepositoryUrl>
     <PackageTags>RabbitMQ帮助类 RabbitMQ公共类 RabbitMQ封装 RabbitMQ类库</PackageTags>
-    <Version>2.0.1</Version>
+    <Version>2.0.2</Version>
     <LangVersion>8.0</LangVersion>
   </PropertyGroup>
 

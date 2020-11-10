@@ -19,12 +19,12 @@ namespace ElasticSearch
         /// <summary>
         /// 新索引别名
         /// </summary>
-        public abstract string AliasIndex { get; set; }
+        public virtual string AliasIndex { get; set; } = "";
 
         /// <summary>
         /// 映射并创建索引类型
         /// </summary>
-        public abstract EsMappingType EsMappingType { get; set; }
+        public virtual EsMappingType EsMappingType { get; set; } = EsMappingType.Default;
 
         /// <summary>
         /// 分片数

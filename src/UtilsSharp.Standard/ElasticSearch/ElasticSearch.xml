@@ -115,6 +115,43 @@
             按年创建索引
             </summary>
         </member>
+        <member name="T:ElasticSearch.EsBaseDataSource`1">
+            <summary>
+            Es基础数据源
+            </summary>
+        </member>
+        <member name="M:ElasticSearch.EsBaseDataSource`1.Save(`0)">
+            <summary>
+            单条保存
+            </summary>
+            <param name="t">参数</param>
+        </member>
+        <member name="M:ElasticSearch.EsBaseDataSource`1.Save(System.Collections.Generic.List{`0})">
+            <summary>
+            批量保存
+            </summary>
+            <param name="entitys">参数</param>
+        </member>
+        <member name="M:ElasticSearch.EsBaseDataSource`1.IncrementModify(System.String,System.Collections.Generic.Dictionary{System.String,System.Object})">
+            <summary>
+            增量更新
+            </summary>
+            <param name="id">Id</param>
+            <param name="incrementModifyParams">增量参数：key-字段,value-修改的值</param>
+        </member>
+        <member name="M:ElasticSearch.EsBaseDataSource`1.Get(System.String)">
+            <summary>
+            获取一条数据
+            </summary>
+            <param name="id">Id</param>
+            <returns></returns>
+        </member>
+        <member name="M:ElasticSearch.EsBaseDataSource`1.Delete(System.String[])">
+            <summary>
+            批量删除
+            </summary>
+            <param name="ids">Id</param>
+        </member>
         <member name="T:ElasticSearch.EsClientProvider">
             <summary>
             Es客户端
@@ -198,6 +235,43 @@
             <summary>
             分片数
             </summary>
+        </member>
+        <member name="T:ElasticSearch.IEsBaseDataSource`1">
+            <summary>
+             Es基础数据源
+            </summary>
+        </member>
+        <member name="M:ElasticSearch.IEsBaseDataSource`1.Save(`0)">
+            <summary>
+            单条保存
+            </summary>
+            <param name="t">参数</param>
+        </member>
+        <member name="M:ElasticSearch.IEsBaseDataSource`1.Save(System.Collections.Generic.List{`0})">
+            <summary>
+            批量保存
+            </summary>
+            <param name="entitys">参数</param>
+        </member>
+        <member name="M:ElasticSearch.IEsBaseDataSource`1.IncrementModify(System.String,System.Collections.Generic.Dictionary{System.String,System.Object})">
+            <summary>
+            增量更新
+            </summary>
+            <param name="id">Id</param>
+            <param name="incrementModifyParams">增量参数：key-字段,value-修改的值</param>
+        </member>
+        <member name="M:ElasticSearch.IEsBaseDataSource`1.Get(System.String)">
+            <summary>
+            获取一条数据
+            </summary>
+            <param name="id">Id</param>
+            <returns></returns>
+        </member>
+        <member name="M:ElasticSearch.IEsBaseDataSource`1.Delete(System.String[])">
+            <summary>
+            批量删除
+            </summary>
+            <param name="ids">Id</param>
         </member>
     </members>
 </doc>

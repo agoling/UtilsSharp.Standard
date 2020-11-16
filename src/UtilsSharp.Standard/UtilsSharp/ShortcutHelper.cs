@@ -18,13 +18,15 @@ namespace UtilsSharp
         /// <param name="linkUrl">链接地址</param>
         public static void UrlToDesktop(string linkName, string linkUrl)
         {
-            string deskDir = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
-            using (StreamWriter writer = new StreamWriter(deskDir + "\\" + linkName + ".url"))
+            if (string.IsNullOrEmpty(linkName))
             {
-                writer.WriteLine("[InternetShortcut]");
-                writer.WriteLine("URL=" + linkUrl);
-                writer.Flush();
+                throw new Exception("linkName不能为空");
             }
+            var deskDir = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
+            using StreamWriter writer = new StreamWriter(deskDir + "\\" + linkName + ".url");
+            writer.WriteLine("[InternetShortcut]");
+            writer.WriteLine("URL=" + linkUrl);
+            writer.Flush();
         }
 
         /// <summary>
@@ -33,17 +35,19 @@ namespace UtilsSharp
         /// <param name="linkName">链接名称</param>
         public static void AppToDesktop(string linkName)
         {
-            string deskDir = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
-            using (StreamWriter writer = new StreamWriter(deskDir + "\\" + linkName + ".url"))
+            if (string.IsNullOrEmpty(linkName))
             {
-                string app = System.Reflection.Assembly.GetExecutingAssembly().Location;
-                writer.WriteLine("[InternetShortcut]");
-                writer.WriteLine("URL=file:///" + app);
-                writer.WriteLine("IconIndex=0");
-                string icon = app.Replace('\\', '/');
-                writer.WriteLine("IconFile=" + icon);
-                writer.Flush();
+                throw new Exception("linkName不能为空");
             }
+            var deskDir = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
+            using var writer = new StreamWriter(deskDir + "\\" + linkName + ".url");
+            var app = System.Reflection.Assembly.GetExecutingAssembly().Location;
+            writer.WriteLine("[InternetShortcut]");
+            writer.WriteLine("URL=file:///" + app);
+            writer.WriteLine("IconIndex=0");
+            var icon = app.Replace('\\', '/');
+            writer.WriteLine("IconFile=" + icon);
+            writer.Flush();
         }
     }
 }

@@ -505,9 +505,101 @@
         </member>
         <member name="M:UtilsSharp.CryptoHelper.ToMd5(System.String)">
             <summary>
-            转换为MD5
+            MD5加密
             </summary>
-            <param name="origin"></param>
+            <param name="str">加密字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.CryptoHelper.ToDesEncrypt(System.String,System.String,System.String)">
+            <summary>
+            DES加密
+            </summary>
+            <param name="str">加密字符串</param>
+            <param name="secretKey">密文</param>
+            <param name="iv">向量</param>
+            <returns>加密后的字符串</returns>
+        </member>
+        <member name="M:UtilsSharp.CryptoHelper.ToDesDecrypt(System.String,System.String,System.String)">
+            <summary>
+            DES解密方法
+            </summary>
+            <param name="str">解密字符串</param>
+            <param name="secretKey">密文</param>
+            <param name="iv">向量</param>
+            <returns>解密后的字符串</returns>
+        </member>
+        <member name="M:UtilsSharp.CryptoHelper.ToRsaEncrypt(System.String,System.String)">
+            <summary> 
+            RSA加密 
+            </summary> 
+            <param name="str">加密字符串</param> 
+            <param name="secretKey">密文</param> 
+            <returns></returns> 
+        </member>
+        <member name="M:UtilsSharp.CryptoHelper.ToRsaDecrypt(System.String,System.String)">
+            <summary> 
+            RSA解密 
+            </summary> 
+            <param name="str">解密字符串</param> 
+            <param name="secretKey">密匙容器的名称</param> 
+            <returns></returns> 
+        </member>
+        <member name="M:UtilsSharp.CryptoHelper.ToSha1Encrypt(System.String)">
+            <summary>
+            SHA1加密
+            </summary>
+            <param name="str">加密字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.CryptoHelper.ToSha256Encrypt(System.String)">
+            <summary>
+            SHA256加密
+            </summary>
+            <param name="str">加密字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.CryptoHelper.ToSha384Encrypt(System.String)">
+            <summary>
+            SHA384加密
+            </summary>
+            <param name="str">加密字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.CryptoHelper.ToSha512Encrypt(System.String)">
+            <summary>
+            SHA512加密
+            </summary>
+            <param name="str">加密字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.CryptoHelper.ToBase64Encrypt(System.String)">
+            <summary>
+            Base64加密
+            </summary>
+            <param name="str">需要加密的字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.CryptoHelper.ToBase64Encrypt(System.String,System.Text.Encoding)">
+            <summary>
+            Base64加密
+            </summary>
+            <param name="str">需要加密的字符串</param>
+            <param name="encode">字符编码</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.CryptoHelper.ToBase64Decrypt(System.String)">
+            <summary>
+            Base64解密
+            </summary>
+            <param name="str">需要解密的字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.CryptoHelper.ToBase64Decrypt(System.String,System.Text.Encoding)">
+            <summary>
+            Base64解密
+            </summary>
+            <param name="str">需要解密的字符串</param>
+            <param name="encode">字符的编码</param>
             <returns></returns>
         </member>
         <member name="M:UtilsSharp.CryptoHelper.ToAesEncrypt(System.String,System.String)">

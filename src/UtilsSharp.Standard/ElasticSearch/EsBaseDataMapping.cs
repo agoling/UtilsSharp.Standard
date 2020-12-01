@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using Nest;
+using OptionConfig;
 
 namespace ElasticSearch
 {
@@ -10,12 +11,6 @@ namespace ElasticSearch
     /// </summary>
     public abstract class EsBaseDataMapping<T> where T : class, new()
     {
-        // ReSharper disable once StaticMemberInGenericType
-        private static DateTime lastCreateIndexTime = DateTime.MinValue;   //索引最后创建时间
-
-        // ReSharper disable once StaticMemberInGenericType
-        private static string currentIndex = string.Empty;                 //当前索引
-
         /// <summary>
         /// 新索引别名
         /// </summary>
@@ -31,6 +26,10 @@ namespace ElasticSearch
         /// </summary>
         public virtual int NumberOfShards => 5;
 
+        /// <summary>
+        /// 获取当前索引
+        /// </summary>
+        public string CurrentIndex => GetIndex(DateTime.Now);
 
         /// <summary>
         /// 当前Es客户端
@@ -39,18 +38,13 @@ namespace ElasticSearch
         {
             get
             {
-                if (IsCreate) { IndexCreateAndMapping(); }
-                return EsClientProvider.GetClient();
+                var currClient = EsClientProvider.GetClient();
+                var exists = currClient.IndexExists(CurrentIndex).Exists;
+                if (!exists) { IndexCreateAndMapping(); }
+                return currClient;
             }
         }
 
-        /// <summary>
-        /// 获取当前索引
-        /// </summary>
-        public string CurrentIndex => string.IsNullOrEmpty(currentIndex) ? GetIndex(DateTime.Now) : currentIndex;
-
-
-        #region 获取指定时间索引
         /// <summary>
         /// 获取指定时间索引
         /// </summary>
@@ -58,11 +52,18 @@ namespace ElasticSearch
         /// <returns></returns>
         public string GetIndex(DateTime dateTime)
         {
+            if (string.IsNullOrEmpty(AliasIndex))
+            {
+                EsMappingType = EsMappingType.Default;
+            }
+            else if (EsMappingType == EsMappingType.Default)
+            {
+                EsMappingType = EsMappingType.New;
+            }
             switch (EsMappingType)
             {
                 case EsMappingType.Default:
-                    EsClientProvider.Init();
-                    return EsClientProvider.BaseEsConnectionSettings.EsDefaultIndex;
+                    return ElasticSearchConfig.EsDefaultIndex;
                 case EsMappingType.New:
                     return AliasIndex;
                 case EsMappingType.Hour:
@@ -74,52 +75,12 @@ namespace ElasticSearch
                 case EsMappingType.Year:
                     return $"{AliasIndex}_{dateTime:yyyy}";
                 default:
-                    return EsClientProvider.BaseEsConnectionSettings.EsDefaultIndex;
+                    return ElasticSearchConfig.EsDefaultIndex;
             }
         }
-        #endregion
 
-        #region 创建索引条件
         /// <summary>
-        /// 根据条件是否创建索引
-        /// </summary>
-        private bool IsCreate
-        {
-            get
-            {
-                if (string.IsNullOrEmpty(AliasIndex))
-                {
-                    EsMappingType = EsMappingType.Default;
-                }
-                else if (EsMappingType == EsMappingType.Default)
-                {
-                    EsMappingType = EsMappingType.New;
-                }
-
-                switch (EsMappingType)
-                {
-                    case EsMappingType.Default:
-                        return lastCreateIndexTime == DateTime.MinValue;
-                    case EsMappingType.New:
-                        return lastCreateIndexTime == DateTime.MinValue;
-                    case EsMappingType.Hour:
-                        return lastCreateIndexTime.Hour < DateTime.Now.Hour;
-                    case EsMappingType.Day:
-                        return lastCreateIndexTime.Day < DateTime.Now.Day;
-                    case EsMappingType.Month:
-                        return lastCreateIndexTime.Month < DateTime.Now.Month;
-                    case EsMappingType.Year:
-                        return lastCreateIndexTime.Year < DateTime.Now.Year;
-                    default:
-                        return lastCreateIndexTime == DateTime.MinValue;
-                }
-            }
-        }
-        #endregion
-
-        #region 创建索引并映射
-        /// <summary>
-        /// 创建索引
+        /// 创建指定时间索引
         /// </summary>
         private void IndexCreateAndMapping()
         {
@@ -130,10 +91,8 @@ namespace ElasticSearch
                 Index = CurrentIndex
             };
             EsClientProvider.CreateIndex(esMappingSettings, EntityMapping);
-            IndexCreateEnd();
         }
 
-        #region 实体映射
         /// <summary>
         /// 实体映射
         /// </summary>
@@ -142,17 +101,6 @@ namespace ElasticSearch
         public virtual void EntityMapping(ElasticClient client, string index)
         {
             client.Map<T>(m => m.AutoMap().AllField(a => a.Enabled(false)).Index(index));
-        }
-        #endregion
-        #endregion
-
-        /// <summary>
-        /// 创建索引之后操作
-        /// </summary>
-        private void IndexCreateEnd()
-        {
-            lastCreateIndexTime = DateTime.Now;
-            currentIndex = GetIndex(DateTime.Now);
         }
     }
 

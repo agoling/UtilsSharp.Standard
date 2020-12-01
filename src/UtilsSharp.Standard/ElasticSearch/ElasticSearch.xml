@@ -41,14 +41,14 @@
             分片数
             </summary>
         </member>
-        <member name="P:ElasticSearch.EsBaseDataMapping`1.EsClient">
-            <summary>
-            当前Es客户端
-            </summary>
-        </member>
         <member name="P:ElasticSearch.EsBaseDataMapping`1.CurrentIndex">
             <summary>
             获取当前索引
+            </summary>
+        </member>
+        <member name="P:ElasticSearch.EsBaseDataMapping`1.EsClient">
+            <summary>
+            当前Es客户端
             </summary>
         </member>
         <member name="M:ElasticSearch.EsBaseDataMapping`1.GetIndex(System.DateTime)">
@@ -58,14 +58,9 @@
             <param name="dateTime"></param>
             <returns></returns>
         </member>
-        <member name="P:ElasticSearch.EsBaseDataMapping`1.IsCreate">
-            <summary>
-            根据条件是否创建索引
-            </summary>
-        </member>
         <member name="M:ElasticSearch.EsBaseDataMapping`1.IndexCreateAndMapping">
             <summary>
-            创建索引
+            创建指定时间索引
             </summary>
         </member>
         <member name="M:ElasticSearch.EsBaseDataMapping`1.EntityMapping(Nest.ElasticClient,System.String)">
@@ -74,11 +69,6 @@
             </summary>
             <param name="client">es客户端</param>
             <param name="index">索引名称</param>
-        </member>
-        <member name="M:ElasticSearch.EsBaseDataMapping`1.IndexCreateEnd">
-            <summary>
-            创建索引之后操作
-            </summary>
         </member>
         <member name="T:ElasticSearch.EsMappingType">
             <summary>

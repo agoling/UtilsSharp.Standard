@@ -9,31 +9,31 @@ namespace ElasticSearch
     /// <summary>
     /// Es链接配置
     /// </summary>
-    public class BaseEsConnectionSettings
+    internal class BaseEsConnectionSettings
     {
         /// <summary>
         /// 连接字符串
         /// </summary>
-        public string EsHttpAddress { get; set; }
+        internal string EsHttpAddress { get; set; }
         /// <summary>
         /// 默认索引
         /// </summary>
-        public string EsDefaultIndex { get; set; }
+        internal string EsDefaultIndex { get; set; }
         /// <summary>
         /// 网络代理
         /// </summary>
-        public string EsNetworkProxy { get; set; }
+        internal string EsNetworkProxy { get; set; }
         /// <summary>
         /// 连接数限制
         /// </summary>
-        public int EsConnectionLimit { get; set; }
+        internal int EsConnectionLimit { get; set; }
 
 
         /// <summary>
         /// 获取Es链接设置
         /// </summary>
         /// <returns></returns>
-        public ConnectionSettings GetSettings()
+        internal ConnectionSettings GetSettings()
         {
             var urls = EsHttpAddress.Split(';').Select(s => new Uri(s));
             //链接池

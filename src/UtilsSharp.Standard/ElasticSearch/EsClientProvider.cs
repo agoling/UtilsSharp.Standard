@@ -16,7 +16,7 @@ namespace ElasticSearch
         /// <summary>
         /// Es配置
         /// </summary>
-        public static BaseEsConnectionSettings BaseEsConnectionSettings;
+        internal static BaseEsConnectionSettings BaseEsConnectionSettings;
 
         /// <summary>
         /// 获取客户端

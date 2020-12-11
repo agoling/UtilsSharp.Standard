@@ -1864,6 +1864,21 @@
             搜索关键字
             </summary>
         </member>
+        <member name="T:UtilsSharp.Standard.BaseSortPage">
+            <summary>
+            基础分页参数(含排序参数)
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.Standard.BaseSortPage.SortField">
+            <summary>
+            排序字段
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.Standard.BaseSortPage.SortType">
+            <summary>
+            排序类型：desc,asc
+            </summary>
+        </member>
         <member name="T:UtilsSharp.Standard.BaseResult">
             <summary>
             返回结果模型
@@ -2257,6 +2272,13 @@
              字符串解压缩
             </summary>
             <param name="str">字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.StringHelper.HideMobilePhone(System.String)">
+            <summary>
+            隐藏手机号(手机号加星星如：136****8568)
+            </summary>
+            <param name="mobilePhone">手机号</param>
             <returns></returns>
         </member>
         <member name="T:UtilsSharp.TimeHelper">

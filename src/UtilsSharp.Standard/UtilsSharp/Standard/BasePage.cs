@@ -23,5 +23,21 @@ namespace UtilsSharp.Standard
         /// 搜索关键字
         /// </summary>
         public string Keyword { set; get; }
+
+    }
+
+    /// <summary>
+    /// 基础分页参数(含排序参数)
+    /// </summary>
+    public class BaseSortPage: BasePage
+    {
+        /// <summary>
+        /// 排序字段
+        /// </summary>
+        public string SortField { get; set; }
+        /// <summary>
+        /// 排序类型：desc,asc
+        /// </summary>
+        public string SortType { get; set; }
     }
 }

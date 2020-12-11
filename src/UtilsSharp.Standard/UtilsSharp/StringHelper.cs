@@ -234,5 +234,18 @@ namespace UtilsSharp
             var decompressString = Encoding.GetEncoding("UTF-8").GetString(decompressAfterByte);
             return decompressString;
         }
+
+        /// <summary>
+        /// 隐藏手机号(手机号加星星如：136****8568)
+        /// </summary>
+        /// <param name="mobilePhone">手机号</param>
+        /// <returns></returns>
+        public static string HideMobilePhone(string mobilePhone)
+        {
+            if (string.IsNullOrEmpty(mobilePhone)||mobilePhone.Length!=11) return mobilePhone;
+            var first = mobilePhone.Substring(0, 3);
+            var third = mobilePhone.Substring(7, 4);
+            return $"{first}****{third}";
+        }
     }
 }

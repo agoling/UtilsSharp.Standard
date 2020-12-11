@@ -4,7 +4,7 @@ using System.Reflection;
 using System.Text;
 using Nest;
 
-namespace ElasticSearch
+namespace ElasticSearch7
 {
     /// <summary>
     /// Es基础实体自动映射
@@ -18,7 +18,7 @@ namespace ElasticSearch
         /// <param name="index">索引名称</param>
         public override void EntityMapping(ElasticClient client, string index)
         {
-            client.Map<T>(m => m.AutoMap(new AllStringToKeywordValuesPropertyVisitor()).AllField(a => a.Enabled(false)).Index(index));
+            client.Map<T>(m =>m.AutoMap(new AllStringToKeywordValuesPropertyVisitor()).Index(index));
         }
     }
 

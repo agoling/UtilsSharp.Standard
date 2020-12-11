@@ -2,7 +2,7 @@
 using Nest;
 using OptionConfig;
 
-namespace ElasticSearch
+namespace ElasticSearch7
 {
     /// <summary>
     /// Es客户端
@@ -70,7 +70,7 @@ namespace ElasticSearch
             }
 
             //验证索引是否存在
-            if (!currClient.IndexExists(index).Exists)
+            if (!currClient.Indices.Exists(index).Exists)
             {
                 IIndexState indexState = new IndexState()
                 {
@@ -83,11 +83,11 @@ namespace ElasticSearch
                 //按别名创建索引
                 if (!string.IsNullOrEmpty(aliasIndex) && !aliasIndex.Equals(index))
                 {
-                    currClient.CreateIndex(index, c => c.InitializeUsing(indexState).Aliases(a => a.Alias(aliasIndex)));
+                    currClient.Indices.Create(index,c => c.InitializeUsing(indexState).Aliases(a => a.Alias(aliasIndex)));
                 }
                 else
                 {
-                    currClient.CreateIndex(index, c => c.InitializeUsing(indexState));
+                    currClient.Indices.Create(index, c => c.InitializeUsing(indexState));
                 }
             }
             mappingHandle?.Invoke(currClient, index);

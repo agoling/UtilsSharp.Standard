@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using Nest;
 
-namespace ElasticSearch
+namespace ElasticSearch7
 {
     /// <summary>
     ///  Es基础数据源
@@ -15,7 +14,7 @@ namespace ElasticSearch
         /// </summary>
         /// <param name="t">参数</param>
         /// <returns></returns>
-        IIndexResponse Save(T t);
+         IndexResponse Save(T t);
 
         /// <summary>
         /// 批量保存
@@ -29,7 +28,7 @@ namespace ElasticSearch
         /// <param name="id">Id</param>
         /// <param name="incrementModifyParams">增量参数：key-字段,value-修改的值</param>
         /// <returns></returns>
-        IUpdateResponse<T> IncrementModify(string id, Dictionary<string, object> incrementModifyParams);
+        UpdateResponse<T> IncrementModify(string id, Dictionary<string, object> incrementModifyParams);
 
         /// <summary>
         /// 获取一条数据

@@ -14,6 +14,14 @@ namespace OptionConfig
         /// </summary>
         public static string EsHttpAddress { get; set; }
         /// <summary>
+        /// 用户名
+        /// </summary>
+        public static string UserName { get; set; }
+        /// <summary>
+        /// 密码
+        /// </summary>
+        public static string Password { get; set; }
+        /// <summary>
         /// 默认索引
         /// </summary>
         public static string EsDefaultIndex { get; set; }

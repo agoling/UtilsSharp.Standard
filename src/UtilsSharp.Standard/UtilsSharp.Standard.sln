@@ -27,7 +27,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MsSql", "MsSql\MsSql.csproj
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ElasticSearch", "ElasticSearch\ElasticSearch.csproj", "{38F0E0C6-C1FB-4C0D-962B-EADF38FD69A2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RabbitMQ", "RabbitMQ\RabbitMQ.csproj", "{43174339-031B-4294-8A66-6E0EF3B59D59}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RabbitMQ", "RabbitMQ\RabbitMQ.csproj", "{43174339-031B-4294-8A66-6E0EF3B59D59}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ElasticSearch7", "ElasticSearch7\ElasticSearch7.csproj", "{D3E88472-4FEB-4D84-BB2F-E17735CEE8DC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -87,6 +89,10 @@ Global
 		{43174339-031B-4294-8A66-6E0EF3B59D59}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{43174339-031B-4294-8A66-6E0EF3B59D59}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{43174339-031B-4294-8A66-6E0EF3B59D59}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D3E88472-4FEB-4D84-BB2F-E17735CEE8DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D3E88472-4FEB-4D84-BB2F-E17735CEE8DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D3E88472-4FEB-4D84-BB2F-E17735CEE8DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D3E88472-4FEB-4D84-BB2F-E17735CEE8DC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

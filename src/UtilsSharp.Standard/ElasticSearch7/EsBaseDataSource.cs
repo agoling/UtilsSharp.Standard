@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Nest;
 
-namespace ElasticSearch
+namespace ElasticSearch7
 {
     /// <summary>
     /// Es基础数据源
@@ -14,7 +14,7 @@ namespace ElasticSearch
         /// </summary>
         /// <param name="t">参数</param>
         /// <returns></returns>
-        public virtual IIndexResponse Save(T t)
+        public virtual IndexResponse Save(T t)
         {
             var r=EsClient.Index(t, i => i.Index(CurrentIndex).Refresh(Elasticsearch.Net.Refresh.True));
             return r;
@@ -28,7 +28,7 @@ namespace ElasticSearch
         {
             if (entitys == null || entitys.Count == 0) return;
             EsClient.IndexMany(entitys, CurrentIndex);
-            EsClient.Refresh(CurrentIndex);
+            EsClient.Indices.Refresh(CurrentIndex);
         }
 
         /// <summary>
@@ -37,10 +37,10 @@ namespace ElasticSearch
         /// <param name="id">Id</param>
         /// <param name="incrementModifyParams">增量参数：key-字段,value-修改的值</param>
         /// <returns></returns>
-        public virtual IUpdateResponse<T> IncrementModify(string id, Dictionary<string, object> incrementModifyParams)
+        public virtual UpdateResponse<T> IncrementModify(string id, Dictionary<string, object> incrementModifyParams)
         {
-            IUpdateResponse<T> r=new UpdateResponse<T>();
-            if (incrementModifyParams == null) return r;
+            var r=new UpdateResponse<T>();
+            if(incrementModifyParams == null) return r;
             var updatePath = new DocumentPath<T>(id);
             r= EsClient.Update<T, object>(updatePath, u => u.Doc(incrementModifyParams).Refresh(Elasticsearch.Net.Refresh.True));
             return r;
@@ -64,13 +64,13 @@ namespace ElasticSearch
         public virtual void Delete(string[] ids)
         {
             var esResult = EsClient.MultiGet(m => m.GetMany<T>(ids).Index(CurrentIndex));
-            if (esResult.Documents.Count <= 0) return;
-            foreach (var esResultDocument in esResult.Documents)
+            if (esResult.Hits.Count <= 0) return;
+            foreach (var esResultHits in esResult.Hits)
             {
-                if (!esResultDocument.Found) continue;
-                EsClient.Delete<T>(esResultDocument.Id, f => f.Index(CurrentIndex));
+                if (!esResultHits.Found) continue;
+                EsClient.Delete<T>(esResultHits.Id, f => f.Index(CurrentIndex));
             }
-            EsClient.Refresh(CurrentIndex);
+            EsClient.Indices.Refresh(CurrentIndex);
         }
         
     }

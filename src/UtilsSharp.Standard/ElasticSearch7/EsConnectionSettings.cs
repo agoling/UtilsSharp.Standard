@@ -4,7 +4,7 @@ using System.Linq;
 using Elasticsearch.Net;
 using Nest;
 
-namespace ElasticSearch
+namespace ElasticSearch7
 {
     /// <summary>
     /// Es链接配置
@@ -22,7 +22,7 @@ namespace ElasticSearch
         /// <summary>
         /// 密码
         /// </summary>
-        internal string Password { get; set; }
+        internal string Password { get;set; }
         /// <summary>
         /// 默认索引
         /// </summary>

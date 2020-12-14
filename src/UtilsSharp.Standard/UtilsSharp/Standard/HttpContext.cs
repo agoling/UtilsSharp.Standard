@@ -10,19 +10,19 @@ namespace UtilsSharp.Standard
     /// </summary>
     public static class HttpContext
     {
-        private static IHttpContextAccessor httpContextAccessor;
+        private static IHttpContextAccessor _httpContextAccessor;
 
         /// <summary>
         /// Current
         /// </summary>
-        public static Microsoft.AspNetCore.Http.HttpContext Current => httpContextAccessor.HttpContext;
+        public static Microsoft.AspNetCore.Http.HttpContext Current => _httpContextAccessor.HttpContext;
 
         /// <summary>
         /// HttpContext
         /// </summary>
         public static void Register(IHttpContextAccessor ahttpContextAccessor)
         {
-            httpContextAccessor = ahttpContextAccessor;
+            _httpContextAccessor = ahttpContextAccessor;
         }
     }
 }

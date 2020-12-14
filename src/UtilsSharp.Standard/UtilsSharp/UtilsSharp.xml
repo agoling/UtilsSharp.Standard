@@ -1293,6 +1293,93 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:UtilsSharp.IpHelper.GetIpInfo(System.String)">
+            <summary>
+            获取Ip详细信息
+            </summary>
+            <param name="ip">ip</param>
+            <returns></returns>
+        </member>
+        <member name="T:UtilsSharp.IpInfo">
+            <summary>
+            Ip信息
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.IpInfo.Status">
+            <summary>
+            状态 success fail
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.IpInfo.Country">
+            <summary>
+            国家
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.IpInfo.CountryCode">
+            <summary>
+            国家码
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.IpInfo.Region">
+            <summary>
+            地区码(省、州、自治区、直辖市)
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.IpInfo.RegionName">
+            <summary>
+            地区名(省、州、自治区、直辖市)
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.IpInfo.City">
+            <summary>
+            城市
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.IpInfo.Zip">
+            <summary>
+            zip
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.IpInfo.Lat">
+            <summary>
+            lat
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.IpInfo.Lon">
+            <summary>
+            lon
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.IpInfo.Timezone">
+            <summary>
+            时区
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.IpInfo.Isp">
+            <summary>
+            Isp
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.IpInfo.Org">
+            <summary>
+            org
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.IpInfo.As">
+            <summary>
+            as
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.IpInfo.Query">
+            <summary>
+            请求数据
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.IpInfo.Message">
+            <summary>
+            错误信息
+            </summary>
+        </member>
         <member name="T:UtilsSharp.MapperHelper`2">
             <summary>
             对象与对象映射

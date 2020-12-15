@@ -2110,6 +2110,71 @@
             参数信息
             </summary>
         </member>
+        <member name="T:UtilsSharp.Standard.BaseStateCode">
+            <summary>
+            基础状态码
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.Standard.BaseStateCode.请求成功">
+            <summary>
+            请求成功
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.Standard.BaseStateCode.业务提示">
+            <summary>
+            业务提示
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.Standard.BaseStateCode.接口异常">
+            <summary>
+            接口异常
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.Standard.BaseStateCode.网络异常">
+            <summary>
+            网络异常
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.Standard.BaseStateCode.未登录">
+            <summary>
+            未登录
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.Standard.BaseStateCode.授权到期">
+            <summary>
+            授权到期
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.Standard.BaseStateCode.异常错误">
+            <summary>
+            异常错误
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.Standard.BaseStateCode.数据找不到">
+            <summary>
+            数据找不到
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.Standard.BaseStateCode.数据验证不通过">
+            <summary>
+            数据验证不通过
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.Standard.BaseStateCode.默认业务性异常">
+            <summary>
+            默认业务性异常
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.Standard.BaseStateCode.数据库异常">
+            <summary>
+            数据库异常
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.Standard.BaseStateCode.系统错误">
+            <summary>
+            系统错误
+            </summary>
+        </member>
         <member name="T:UtilsSharp.Standard.ConfigurationSectionHandler`1">
             <summary>
             通过Section生成配置文件

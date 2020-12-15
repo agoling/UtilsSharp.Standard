@@ -2175,6 +2175,11 @@
             系统错误
             </summary>
         </member>
+        <member name="T:UtilsSharp.Standard.StateCode">
+            <summary>
+            状态码
+            </summary>
+        </member>
         <member name="T:UtilsSharp.Standard.ConfigurationSectionHandler`1">
             <summary>
             通过Section生成配置文件

@@ -7,7 +7,7 @@ namespace UtilsSharp.Standard
     /// <summary>
     /// 基础状态码
     /// </summary>
-    public class BaseStateCode
+    public abstract class BaseStateCode
     {
         /// <summary>
         /// 请求成功
@@ -18,39 +18,39 @@ namespace UtilsSharp.Standard
         /// </summary>
         public static int 业务提示 { get; } = 999;
         /// <summary>
-        /// 接口异常
+        /// 接口异常[2000~2999接口类异常]
         /// </summary>
         public static int 接口异常 { get; } = 2000;
         /// <summary>
-        /// 网络异常
+        /// 网络异常[3000~3999网络类异常]
         /// </summary>
         public static int 网络异常 { get; } = 3000;
         /// <summary>
-        /// 未登录
+        /// 未登录[4000~4999登入授权类异常]
         /// </summary>
         public static int 未登录 { get; } = 4000;
         /// <summary>
-        /// 授权到期
+        /// 授权到期[4000~4999登入授权类异常]
         /// </summary>
         public static int 授权到期 { get; } = 4010;
         /// <summary>
-        /// 异常错误
+        /// TryCatch异常错误[5000~5999TryCatch类异常]
         /// </summary>
-        public static int 异常错误 { get; } = 5000;
+        public static int TryCatch异常错误 { get; } = 5000;
         /// <summary>
-        /// 数据找不到
+        /// 数据找不到[6000~6999数据类异常]
         /// </summary>
         public static int 数据找不到 { get; } = 6000;
         /// <summary>
-        /// 数据验证不通过
+        /// 数据验证不通过[6000~6999数据类异常]
         /// </summary>
         public static int 数据验证不通过 { get; } = 6010;
         /// <summary>
-        /// 默认业务性异常
+        /// 默认业务性异常[7000~7999其他业务类异常]
         /// </summary>
         public static int 默认业务性异常 { get; } = 7000;
         /// <summary>
-        /// 数据库异常
+        /// 数据库异常[8000~8999数据库类异常]
         /// </summary>
         public static int 数据库异常 { get; } = 8000;
         /// <summary>

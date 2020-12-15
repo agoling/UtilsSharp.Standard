@@ -2013,7 +2013,7 @@
             3000|networkError|网络异常
             <para>4000|notLogin|未登录</para>
             4010|authExpire|授权过期
-            <para>5000|exception|异常错误</para>
+            <para>5000|exception|TryCatch异常错误</para>
             6000|dataNotFound|数据找不到
             <para>6010|dataNotValid|数据验证不通过</para>
             7000|businessError|默认业务性异常
@@ -2045,7 +2045,7 @@
             3000|networkError|网络异常
             <para>4000|notLogin|未登录</para>
             4010|authExpire|授权过期
-            <para>5000|exception|异常错误</para>
+            <para>5000|exception|TryCatch异常错误</para>
             6000|dataNotFound|数据找不到
             <para>6010|dataNotValid|数据验证不通过</para>
             7000|businessError|默认业务性异常
@@ -2127,57 +2127,52 @@
         </member>
         <member name="P:UtilsSharp.Standard.BaseStateCode.接口异常">
             <summary>
-            接口异常
+            接口异常[2000~2999接口类异常]
             </summary>
         </member>
         <member name="P:UtilsSharp.Standard.BaseStateCode.网络异常">
             <summary>
-            网络异常
+            网络异常[3000~3999网络类异常]
             </summary>
         </member>
         <member name="P:UtilsSharp.Standard.BaseStateCode.未登录">
             <summary>
-            未登录
+            未登录[4000~4999登入授权类异常]
             </summary>
         </member>
         <member name="P:UtilsSharp.Standard.BaseStateCode.授权到期">
             <summary>
-            授权到期
+            授权到期[4000~4999登入授权类异常]
             </summary>
         </member>
-        <member name="P:UtilsSharp.Standard.BaseStateCode.异常错误">
+        <member name="P:UtilsSharp.Standard.BaseStateCode.TryCatch异常错误">
             <summary>
-            异常错误
+            TryCatch异常错误[5000~5999TryCatch类异常]
             </summary>
         </member>
         <member name="P:UtilsSharp.Standard.BaseStateCode.数据找不到">
             <summary>
-            数据找不到
+            数据找不到[6000~6999数据类异常]
             </summary>
         </member>
         <member name="P:UtilsSharp.Standard.BaseStateCode.数据验证不通过">
             <summary>
-            数据验证不通过
+            数据验证不通过[6000~6999数据类异常]
             </summary>
         </member>
         <member name="P:UtilsSharp.Standard.BaseStateCode.默认业务性异常">
             <summary>
-            默认业务性异常
+            默认业务性异常[7000~7999其他业务类异常]
             </summary>
         </member>
         <member name="P:UtilsSharp.Standard.BaseStateCode.数据库异常">
             <summary>
-            数据库异常
+            数据库异常[8000~8999数据库类异常]
             </summary>
         </member>
         <member name="P:UtilsSharp.Standard.BaseStateCode.系统错误">
             <summary>
             系统错误
-            </summary>
-        </member>
-        <member name="T:UtilsSharp.Standard.StateCode">
-            <summary>
-            状态码
             </summary>
         </member>
         <member name="T:UtilsSharp.Standard.ConfigurationSectionHandler`1">

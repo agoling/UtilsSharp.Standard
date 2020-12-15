@@ -154,7 +154,7 @@
             Es客户端
             </summary>
         </member>
-        <member name="F:ElasticSearch.EsClientProvider._client">
+        <member name="F:ElasticSearch.EsClientProvider.ClientDictionary">
             <summary>
             es客服端
             </summary>
@@ -164,16 +164,18 @@
             Es配置
             </summary>
         </member>
-        <member name="M:ElasticSearch.EsClientProvider.GetClient">
+        <member name="M:ElasticSearch.EsClientProvider.GetClient(System.String)">
             <summary>
             获取客户端
             </summary>
+            <param name="currentIndex">当前索引</param>
             <returns></returns>
         </member>
-        <member name="M:ElasticSearch.EsClientProvider.Init">
+        <member name="M:ElasticSearch.EsClientProvider.Init(System.String)">
             <summary>
             初始化
             </summary>
+            <param name="currentIndex">当前索引</param>
         </member>
         <member name="M:ElasticSearch.EsClientProvider.CreateIndex(ElasticSearch.EsCreateIndexSettings,System.Action{Nest.ElasticClient,System.String})">
             <summary>

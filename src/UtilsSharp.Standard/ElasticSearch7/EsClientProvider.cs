@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using Nest;
 using OptionConfig;
 
@@ -12,7 +13,7 @@ namespace ElasticSearch7
         /// <summary>
         /// es客服端
         /// </summary>
-        private static ElasticClient _client;
+        private static readonly ConcurrentDictionary<string, ElasticClient>  ClientDictionary=new ConcurrentDictionary<string, ElasticClient>();
         /// <summary>
         /// Es配置
         /// </summary>
@@ -21,31 +22,39 @@ namespace ElasticSearch7
         /// <summary>
         /// 获取客户端
         /// </summary>
+        /// <param name="currentIndex">当前索引</param>
         /// <returns></returns>
-        internal static ElasticClient GetClient()
+        internal static ElasticClient GetClient(string currentIndex)
         {
-            if (_client == null) Init();
-            return _client;
+            if (ClientDictionary.ContainsKey(currentIndex))
+            {
+                return ClientDictionary[currentIndex];
+            }
+            var client= Init(currentIndex);
+            ClientDictionary.TryAdd(currentIndex, client);
+            return client;
         }
 
         /// <summary>
         /// 初始化
         /// </summary>
-        public static void Init()
+        /// <param name="currentIndex">当前索引</param>
+        public static ElasticClient Init(string currentIndex)
         {
             try
             {
+                var defaultIndex = !string.IsNullOrEmpty(currentIndex) ? currentIndex : ElasticSearchConfig.EsDefaultIndex;
                 BaseEsConnectionSettings = new BaseEsConnectionSettings
                 {
                     EsHttpAddress = ElasticSearchConfig.EsHttpAddress,
                     UserName = ElasticSearchConfig.UserName,
                     Password = ElasticSearchConfig.Password,
-                    EsDefaultIndex = ElasticSearchConfig.EsDefaultIndex,
+                    EsDefaultIndex = defaultIndex,
                     EsNetworkProxy = ElasticSearchConfig.EsNetworkProxy,
                     EsConnectionLimit = ElasticSearchConfig.EsConnectionLimit
                 };
                 var settings = BaseEsConnectionSettings.GetSettings();
-                _client = new ElasticClient(settings);
+                return new ElasticClient(settings);
             }
             catch (Exception ex)
             {
@@ -63,7 +72,7 @@ namespace ElasticSearch7
             var aliasIndex = esCreateIndexSettings.AliasIndex;
             var numberOfShards = esCreateIndexSettings.NumberOfShards;
             var index = esCreateIndexSettings.Index;
-            var currClient = GetClient();
+            var currClient = GetClient(index);
             if (string.IsNullOrEmpty(aliasIndex))
             {
                 aliasIndex = EsClientProvider.BaseEsConnectionSettings.EsDefaultIndex;

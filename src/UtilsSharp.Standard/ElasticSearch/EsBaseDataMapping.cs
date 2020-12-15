@@ -38,7 +38,7 @@ namespace ElasticSearch
         {
             get
             {
-                var currClient = EsClientProvider.GetClient();
+                var currClient = EsClientProvider.GetClient(CurrentIndex);
                 var exists = currClient.IndexExists(CurrentIndex).Exists;
                 if (!exists) { IndexCreateAndMapping(); }
                 return currClient;

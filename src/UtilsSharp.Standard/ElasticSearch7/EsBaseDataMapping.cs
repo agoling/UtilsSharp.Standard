@@ -12,6 +12,11 @@ namespace ElasticSearch7
     public abstract class EsBaseDataMapping<T> where T : class, new()
     {
         /// <summary>
+        /// 连接设置
+        /// </summary>
+        public virtual ElasticSearchSetting Setting { get; set; }
+
+        /// <summary>
         /// 新索引别名
         /// </summary>
         public virtual string AliasIndex { get; set; } = "";
@@ -38,9 +43,30 @@ namespace ElasticSearch7
         {
             get
             {
-                var currClient = EsClientProvider.GetClient(CurrentIndex);
+                if (Setting == null)
+                {
+                    if (ElasticSearchConfig.ElasticSearchSetting==null||ElasticSearchConfig.ElasticSearchSetting.EsHttpAddress == null)
+                    {
+                        throw new Exception("esHttpAddress cannot be empty");
+                    }
+
+                    Setting = new ElasticSearchSetting()
+                    {
+                        EsHttpAddress = ElasticSearchConfig.ElasticSearchSetting.EsHttpAddress,
+                        UserName = ElasticSearchConfig.ElasticSearchSetting.UserName,
+                        Password = ElasticSearchConfig.ElasticSearchSetting.Password,
+                        EsDefaultIndex = ElasticSearchConfig.ElasticSearchSetting.EsDefaultIndex,
+                        EsNetworkProxy = ElasticSearchConfig.ElasticSearchSetting.EsNetworkProxy,
+                        EsConnectionLimit = ElasticSearchConfig.ElasticSearchSetting.EsConnectionLimit
+                    };
+                }
+                if (!string.IsNullOrEmpty(CurrentIndex))
+                {
+                    Setting.EsDefaultIndex = CurrentIndex;
+                }
+                var currClient = EsClientProvider.GetClient(Setting);
                 var exists = currClient.Indices.Exists(CurrentIndex).Exists;
-                if (!exists) { IndexCreateAndMapping(); }
+                if (!exists) { IndexCreateAndMapping(Setting); }
                 return currClient;
             }
         }
@@ -63,7 +89,7 @@ namespace ElasticSearch7
             switch (EsMappingType)
             {
                 case EsMappingType.Default:
-                    return ElasticSearchConfig.EsDefaultIndex;
+                    return ElasticSearchConfig.ElasticSearchSetting?.EsDefaultIndex;
                 case EsMappingType.New:
                     return AliasIndex;
                 case EsMappingType.Hour:
@@ -75,20 +101,21 @@ namespace ElasticSearch7
                 case EsMappingType.Year:
                     return $"{AliasIndex}_{dateTime:yyyy}";
                 default:
-                    return ElasticSearchConfig.EsDefaultIndex;
+                    return ElasticSearchConfig.ElasticSearchSetting?.EsDefaultIndex;
             }
         }
 
         /// <summary>
         /// 创建指定时间索引
         /// </summary>
-        private void IndexCreateAndMapping()
+        /// <param name="setting">ElasticSearch设置</param>
+        private void IndexCreateAndMapping(ElasticSearchSetting setting)
         {
             var esMappingSettings = new EsCreateIndexSettings()
             {
+                Setting = setting,
                 NumberOfShards = NumberOfShards,
-                AliasIndex = AliasIndex,
-                Index = CurrentIndex
+                AliasIndex = AliasIndex
             };
             EsClientProvider.CreateIndex(esMappingSettings, EntityMapping);
         }

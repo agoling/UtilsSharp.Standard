@@ -5,20 +5,20 @@ using System.Text;
 namespace OptionConfig
 {
     /// <summary>
-    /// OssHelper存储配置文件
+    /// OssHelper存储配置
     /// </summary>
-    public static class OssHelperConfig
+    public static class OssConfig
     {
         /// <summary>
-        /// Oss存储配置文件
+        /// Oss存储设置
         /// </summary>
-        public static OssConfig OssConfig { set; get; }
+        public static OssSetting OssSetting { set; get; }
     }
 
     /// <summary>
-    /// Oss存储配置文件
+    /// Oss存储设置
     /// </summary>
-    public class OssConfig
+    public class OssSetting
     {
         /// <summary>
         /// OssEndpoint 外网

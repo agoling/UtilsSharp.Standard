@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Concurrent;
+using System.Linq;
+using Elasticsearch.Net;
 using Nest;
 using OptionConfig;
 
@@ -13,53 +15,71 @@ namespace ElasticSearch7
         /// <summary>
         /// es客服端
         /// </summary>
-        private static readonly ConcurrentDictionary<string, ElasticClient>  ClientDictionary=new ConcurrentDictionary<string, ElasticClient>();
-        /// <summary>
-        /// Es配置
-        /// </summary>
-        internal static BaseEsConnectionSettings BaseEsConnectionSettings;
+        private static readonly ConcurrentDictionary<string,ConcurrentDictionary<string, ElasticClient>> ClientDictionary = new ConcurrentDictionary<string, ConcurrentDictionary<string, ElasticClient>>();
 
         /// <summary>
         /// 获取客户端
         /// </summary>
-        /// <param name="currentIndex">当前索引</param>
+        /// <param name="setting">Es配置信息</param>
         /// <returns></returns>
-        internal static ElasticClient GetClient(string currentIndex)
+        internal static ElasticClient GetClient(ElasticSearchSetting setting)
         {
-            if (ClientDictionary.ContainsKey(currentIndex))
+            if (!ClientDictionary.ContainsKey(setting.EsHttpAddress))
             {
-                return ClientDictionary[currentIndex];
+                var currentIndexClientDictionary = new ConcurrentDictionary<string, ElasticClient>();
+                ClientDictionary.TryAdd(setting.EsHttpAddress, currentIndexClientDictionary);
             }
-            var client= Init(currentIndex);
-            ClientDictionary.TryAdd(currentIndex, client);
+            if (ClientDictionary[setting.EsHttpAddress].ContainsKey(setting.EsDefaultIndex))
+            {
+                return ClientDictionary[setting.EsHttpAddress][setting.EsDefaultIndex];
+            }
+            var client = Init(setting);
+            ClientDictionary[setting.EsHttpAddress].TryAdd(setting.EsDefaultIndex, client);
             return client;
         }
 
         /// <summary>
         /// 初始化
         /// </summary>
-        /// <param name="currentIndex">当前索引</param>
-        public static ElasticClient Init(string currentIndex)
+        /// <param name="setting">Es配置信息</param>
+        public static ElasticClient Init(ElasticSearchSetting setting)
         {
             try
             {
-                var defaultIndex = !string.IsNullOrEmpty(currentIndex) ? currentIndex : ElasticSearchConfig.EsDefaultIndex;
-                BaseEsConnectionSettings = new BaseEsConnectionSettings
-                {
-                    EsHttpAddress = ElasticSearchConfig.EsHttpAddress,
-                    UserName = ElasticSearchConfig.UserName,
-                    Password = ElasticSearchConfig.Password,
-                    EsDefaultIndex = defaultIndex,
-                    EsNetworkProxy = ElasticSearchConfig.EsNetworkProxy,
-                    EsConnectionLimit = ElasticSearchConfig.EsConnectionLimit
-                };
-                var settings = BaseEsConnectionSettings.GetSettings();
+                var settings = GetSettings(setting);
                 return new ElasticClient(settings);
             }
             catch (Exception ex)
             {
                 throw new Exception($"EsClientProvider.Register:{ex.Message}");
             }
+        }
+
+        /// <summary>
+        /// 获取Es链接设置
+        /// </summary>
+        /// <returns></returns>
+        private static ConnectionSettings GetSettings(ElasticSearchSetting setting)
+        {
+            var urls = setting.EsHttpAddress.Split(';').Select(s => new Uri(s));
+            //链接池
+            var pool = new StaticConnectionPool(urls);
+            var settings = new ConnectionSettings(pool).DefaultIndex(setting.EsDefaultIndex);
+            if (!string.IsNullOrEmpty(setting.UserName) && !string.IsNullOrEmpty(setting.Password))
+            {
+                settings.BasicAuthentication(setting.UserName, setting.Password);
+            }
+            //网络代理
+            if (!string.IsNullOrEmpty(setting.EsNetworkProxy))
+            {
+                settings.Proxy(new Uri(setting.EsNetworkProxy), "", "");
+            }
+            //连接数限制
+            if (setting.EsConnectionLimit > 0)
+            {
+                settings.ConnectionLimit(setting.EsConnectionLimit);
+            }
+            return settings;
         }
 
         /// <summary>
@@ -71,13 +91,12 @@ namespace ElasticSearch7
         {
             var aliasIndex = esCreateIndexSettings.AliasIndex;
             var numberOfShards = esCreateIndexSettings.NumberOfShards;
-            var index = esCreateIndexSettings.Index;
-            var currClient = GetClient(index);
+            var index = esCreateIndexSettings.Setting.EsDefaultIndex;
+            var currClient = GetClient(esCreateIndexSettings.Setting);
             if (string.IsNullOrEmpty(aliasIndex))
             {
-                aliasIndex = EsClientProvider.BaseEsConnectionSettings.EsDefaultIndex;
+                aliasIndex = esCreateIndexSettings.Setting.EsDefaultIndex;
             }
-
             //验证索引是否存在
             if (!currClient.Indices.Exists(index).Exists)
             {

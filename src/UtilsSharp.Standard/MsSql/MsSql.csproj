@@ -24,7 +24,7 @@
     <PackageReference Include="Dapper" Version="2.0.35" />
     <PackageReference Include="Microsoft.CSharp" Version="4.0.1" />
     <PackageReference Include="System.Data.SqlClient" Version="4.8.1" />
-    <PackageReference Include="UtilsSharp.OptionConfig" Version="1.0.5" />
+    <PackageReference Include="UtilsSharp.OptionConfig" Version="1.0.7" />
   </ItemGroup>
 
   <ItemGroup>

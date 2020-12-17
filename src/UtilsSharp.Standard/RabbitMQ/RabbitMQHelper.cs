@@ -17,9 +17,9 @@ namespace RabbitMQ
     /// </summary>
     public class RabbitMqHelper
     {
-        private static  ConnectionFactory _rabbitConnectionFactory;
-        private static  IConnection _rabbitConnection;
-        private static  string _rabbitMqAddress;
+        private static ConnectionFactory _rabbitConnectionFactory;
+        private static IConnection _rabbitConnection;
+        private static string _rabbitMqAddress;
         private static TimeSpan _requestedConnectionTimeout;
         private static TimeSpan _requestedHeartbeat;
         private static bool? _automaticRecoveryEnabled;
@@ -30,19 +30,19 @@ namespace RabbitMQ
         /// </summary>
         public RabbitMqHelper()
         {
-            var rabbitMqHelperConfig = RabbitMqHelperConfig.RabbitMqConfig;
-            if (rabbitMqHelperConfig == null)
+            var rabbitMqConfig = RabbitMqConfig.RabbitMqSetting;
+            if (rabbitMqConfig == null)
             {
                 throw new Exception("rabbitMqConfig cannot be null");
             }
-            if (string.IsNullOrEmpty(rabbitMqHelperConfig.RabbitMqConnection))
+            if (string.IsNullOrEmpty(rabbitMqConfig.RabbitMqConnection))
             {
                 throw new Exception("rabbitMqConnection cannot be null or empty");
             }
-            _rabbitMqAddress = rabbitMqHelperConfig.RabbitMqConnection;
-            _requestedConnectionTimeout = rabbitMqHelperConfig.RequestedConnectionTimeout;
-            _requestedHeartbeat = rabbitMqHelperConfig.RequestedHeartbeat;
-            _automaticRecoveryEnabled = rabbitMqHelperConfig.AutomaticRecoveryEnabled;
+            _rabbitMqAddress = rabbitMqConfig.RabbitMqConnection;
+            _requestedConnectionTimeout = rabbitMqConfig.RequestedConnectionTimeout;
+            _requestedHeartbeat = rabbitMqConfig.RequestedHeartbeat;
+            _automaticRecoveryEnabled = rabbitMqConfig.AutomaticRecoveryEnabled;
             Init();
         }
 

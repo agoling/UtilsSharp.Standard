@@ -11,14 +11,14 @@
     <PackageIcon>UtilsSharp.jpg</PackageIcon>
     <RepositoryUrl>https://github.com/agoling/UtilsSharp.Standard</RepositoryUrl>
     <PackageTags>RabbitMQ帮助类 RabbitMQ公共类 RabbitMQ封装 RabbitMQ类库</PackageTags>
-    <Version>2.0.2</Version>
+    <Version>2.0.3</Version>
     <LangVersion>8.0</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
     <PackageReference Include="RabbitMQ.Client" Version="5.2.0" />
-    <PackageReference Include="UtilsSharp.OptionConfig" Version="1.0.5" />
+    <PackageReference Include="UtilsSharp.OptionConfig" Version="1.0.7" />
   </ItemGroup>
 
   <ItemGroup>

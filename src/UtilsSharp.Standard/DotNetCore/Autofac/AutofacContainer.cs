@@ -13,18 +13,18 @@ namespace DotNetCore.Autofac
     /// </summary>
     public class AutofacContainer
     {
-        internal static ILifetimeScope LifetimeScope;
+        private static ILifetimeScope _lifetimeScope;
 
-        public static ILifetimeScope Current => LifetimeScope;
+        public static ILifetimeScope Current => _lifetimeScope;
 
-        internal static void Register()
+        public static void Register()
         {
             var builder = new ContainerBuilder();
             var enumerables = AssemblyHelper.GetAllAssemblies();
             builder.RegisterAssemblyTypes(enumerables.ToArray()).Where(t => typeof(ISingletonDependency).IsAssignableFrom(t) && typeof(ISingletonDependency) != t).AsImplementedInterfaces().SingleInstance().EnableInterfaceInterceptors();//注册类
             builder.RegisterAssemblyTypes(enumerables.ToArray()).Where(t => typeof(ITransientDependency).IsAssignableFrom(t) && typeof(ITransientDependency) != t).AsImplementedInterfaces().InstancePerDependency().EnableInterfaceInterceptors();//注册类
             builder.RegisterAssemblyTypes(enumerables.ToArray()).Where(t => typeof(IUnitOfWorkDependency).IsAssignableFrom(t) && typeof(IUnitOfWorkDependency) != t).AsImplementedInterfaces().InstancePerLifetimeScope().EnableInterfaceInterceptors();//注册类
-            LifetimeScope = builder.Build();
+            _lifetimeScope = builder.Build();
         }
     }
 }

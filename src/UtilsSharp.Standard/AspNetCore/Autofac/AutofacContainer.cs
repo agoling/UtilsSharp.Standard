@@ -10,13 +10,16 @@ namespace AspNetCore.Autofac
     /// </summary>
     public class AutofacContainer
     {
-        private static ILifetimeScope lifetimeScope;
+        private static ILifetimeScope _lifetimeScope;
 
-        public static ILifetimeScope Current => lifetimeScope;
+        /// <summary>
+        /// Current
+        /// </summary>
+        public static ILifetimeScope Current => _lifetimeScope;
 
         internal static void Register(ILifetimeScope autofacRoot)
         {
-           lifetimeScope = autofacRoot;
+           _lifetimeScope = autofacRoot;
         }
     }
 }

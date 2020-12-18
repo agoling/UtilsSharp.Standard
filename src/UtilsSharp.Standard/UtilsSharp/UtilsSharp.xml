@@ -36,6 +36,31 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="T:UtilsSharp.AssemblyHelper">
+            <summary>
+            程序集帮助类
+            </summary>
+        </member>
+        <member name="M:UtilsSharp.AssemblyHelper.GetClassInterfacePairs(System.String)">
+            <summary>
+            获取类以及类实现的接口键值对
+            </summary>
+            <param name="assemblyName">程序集名称</param>
+            <returns>类以及类实现的接口键值对</returns>
+        </member>
+        <member name="M:UtilsSharp.AssemblyHelper.GetAllAssemblies">
+            <summary>
+            获取所有的程序集(排除所有的系统程序集、Nuget下载包)
+            </summary>
+            <returns>程序集集合</returns>
+        </member>
+        <member name="M:UtilsSharp.AssemblyHelper.GetAssembly(System.String)">
+            <summary>
+            获取指定的程序集
+            </summary>
+            <param name="assemblyName">程序集名称</param>
+            <returns>程序集</returns>
+        </member>
         <member name="T:UtilsSharp.CacheHelper">
             <summary>
             机器缓存

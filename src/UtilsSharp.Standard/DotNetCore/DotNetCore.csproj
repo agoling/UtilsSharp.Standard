@@ -1,0 +1,29 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <PackageId>UtilsSharp.DotNetCore</PackageId>
+    <Authors>Agoling</Authors>
+    <Product>UtilsSharp.DotNetCore</Product>
+    <Description>本项目是.net core3.1扩展类，属于UtilsSharp项目分支，应用于C/S客户端和控制台项目。</Description>
+    <PackageProjectUrl>https://github.com/agoling/UtilsSharp.Standard</PackageProjectUrl>
+    <PackageIcon>UtilsSharp.jpg</PackageIcon>
+    <RepositoryUrl>https://github.com/agoling/UtilsSharp.Standard</RepositoryUrl>
+    <PackageTags>UtilsSharp UtilsSharp.DotNetCore .netcore3.1帮助类  netcore帮助类</PackageTags>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Autofac" Version="6.1.0" />
+    <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="7.1.0" />
+    <PackageReference Include="Autofac.Extras.DynamicProxy" Version="6.0.0" />
+    <PackageReference Include="UtilsSharp" Version="2.3.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\UtilsSharp.jpg">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+  </ItemGroup>
+
+</Project>

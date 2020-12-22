@@ -110,7 +110,7 @@ namespace UtilsSharp
         public static string CutChar(string str, int charLength)
         {
             if (string.IsNullOrEmpty(str) || charLength <= 0) return str;
-            var bytes = Encoding.Unicode.GetBytes(str);
+            var bytes = System.Text.Encoding.Unicode.GetBytes(str);
             var n = 0;  //  表示当前的字节数
             var i = 0;  //  要截取的字节数
             for (; i < bytes.GetLength(0) && n < charLength; i++)
@@ -130,7 +130,7 @@ namespace UtilsSharp
                 }
             }
             //  如果i为奇数时，处理成偶数
-            if (i % 2 != 1) return Encoding.Unicode.GetString(bytes, 0, i);
+            if (i % 2 != 1) return System.Text.Encoding.Unicode.GetString(bytes, 0, i);
 
             if (bytes[i] > 0)
             {
@@ -142,7 +142,7 @@ namespace UtilsSharp
                 //  该UCS2字符是字母或数字，则保留该字符
                 i = i + 1;
             }
-            return Encoding.Unicode.GetString(bytes, 0, i);
+            return System.Text.Encoding.Unicode.GetString(bytes, 0, i);
         }
 
 

@@ -2384,6 +2384,11 @@
             字符串帮助类
             </summary>
         </member>
+        <member name="P:UtilsSharp.StringHelper.Encoding">
+            <summary>
+            EncodingProvider
+            </summary>
+        </member>
         <member name="M:UtilsSharp.StringHelper.TransferenceRegex(System.String)">
             <summary>
             转义正则表达式特殊符号

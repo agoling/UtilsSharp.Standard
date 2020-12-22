@@ -79,6 +79,10 @@
             "System.Runtime.Loader": {
               "target": "Package",
               "version": "[4.3.0, )"
+            },
+            "System.Text.Encoding.CodePages": {
+              "target": "Package",
+              "version": "[5.0.0, )"
             }
           },
           "imports": [

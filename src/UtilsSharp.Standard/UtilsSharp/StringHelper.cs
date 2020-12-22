@@ -14,6 +14,19 @@ namespace UtilsSharp
     public class StringHelper
     {
         /// <summary>
+        /// EncodingProvider
+        /// </summary>
+        public static EncodingProvider Encoding
+        {
+            get
+            {
+                var provider = CodePagesEncodingProvider.Instance;
+                System.Text.Encoding.RegisterProvider(provider);
+                return provider;
+            }
+        }
+
+        /// <summary>
         /// 转义正则表达式特殊符号
         /// </summary>
         /// <param name="str">字符串</param>

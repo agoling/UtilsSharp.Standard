@@ -82,7 +82,7 @@ namespace UtilsSharp
         /// <returns></returns>
         public static int GetCharLength(string str)
         {
-            if (str.Length == 0) return 0;
+            if (string.IsNullOrEmpty(str)) return 0;
             var ascii = new ASCIIEncoding();
             var charLength = 0;
             var bytes = ascii.GetBytes(str);

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
@@ -81,24 +80,24 @@ namespace UtilsSharp
         /// </summary>
         /// <param name="str">字符串</param>
         /// <returns></returns>
-        public static double GetCharLength(string str)
+        public static int GetCharLength(string str)
         {
             if (str.Length == 0) return 0;
             var ascii = new ASCIIEncoding();
-            double strLength = 0;
-            var strBytes = ascii.GetBytes(str);
-            foreach (var item in strBytes)
+            var charLength = 0;
+            var bytes = ascii.GetBytes(str);
+            foreach (var item in bytes)
             {
                 if (item == 63)
                 {
-                    strLength += 1;
+                    charLength += 2;
                 }
                 else
                 {
-                    strLength += 0.5;
+                    charLength += 1;
                 }
             }
-            return Math.Floor(strLength);
+            return charLength;
         }
 
         /// <summary>

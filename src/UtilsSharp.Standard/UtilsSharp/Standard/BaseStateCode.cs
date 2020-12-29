@@ -30,9 +30,9 @@ namespace UtilsSharp.Standard
         /// </summary>
         public static int 未登录 { get; } = 4000;
         /// <summary>
-        /// 授权到期[4000~4999登入授权类异常]
+        /// 授权过期[4000~4999登入授权类异常]
         /// </summary>
-        public static int 授权到期 { get; } = 4010;
+        public static int 授权过期 { get; } = 4010;
         /// <summary>
         /// TryCatch异常错误[5000~5999TryCatch类异常]
         /// </summary>
@@ -46,9 +46,17 @@ namespace UtilsSharp.Standard
         /// </summary>
         public static int 数据验证不通过 { get; } = 6010;
         /// <summary>
-        /// 默认业务性异常[7000~7999其他业务类异常]
+        /// 默认业务性错误[7000~7999其他业务及参数类异常]
         /// </summary>
-        public static int 默认业务性异常 { get; } = 7000;
+        public static int 默认业务性错误 { get; } = 7000;
+        /// <summary>
+        /// 参数不能为空[7000~7999其他业务及参数类异常]
+        /// </summary>
+        public static int 参数不能为空 { get; } = 7010;
+        /// <summary>
+        /// 非法参数[7000~7999其他业务及参数类异常]
+        /// </summary>
+        public static int 非法参数 { get; } = 7020;
         /// <summary>
         /// 数据库异常[8000~8999数据库类异常]
         /// </summary>

@@ -1916,7 +1916,7 @@
         </member>
         <member name="M:UtilsSharp.Standard.BaseMsg.ToMsgException(System.String)">
             <summary>
-            5000|exception|异常错误
+            5000|exception|TryCatch异常错误
             </summary>
             <param name="errorCode">错误码</param>
             <returns></returns>
@@ -1938,6 +1938,20 @@
         <member name="M:UtilsSharp.Standard.BaseMsg.ToMsgBusinessError(System.String)">
             <summary>
             7000|businessError|默认业务性异常
+            </summary>
+            <param name="errorCode">错误码</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.Standard.BaseMsg.ToMsgParameterCannotBeEmpty(System.String)">
+            <summary>
+            7010|parameterCannotBeEmpty|参数不能为空
+            </summary>
+            <param name="errorCode">错误码</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.Standard.BaseMsg.ToMsgInvalidParameter(System.String)">
+            <summary>
+            7020|invalidParameter|非法参数
             </summary>
             <param name="errorCode">错误码</param>
             <returns></returns>
@@ -2041,7 +2055,9 @@
             <para>5000|exception|TryCatch异常错误</para>
             6000|dataNotFound|数据找不到
             <para>6010|dataNotValid|数据验证不通过</para>
-            7000|businessError|默认业务性异常
+            7000|businessError|默认业务性错误
+            <para>7010|parameterCannotBeEmpty|参数不能为空</para>
+            7020|invalidParameter|非法参数
             <para>8000|dbError|数据库异常</para>
             9000|SystemError|系统错误
              </summary>
@@ -2165,9 +2181,9 @@
             未登录[4000~4999登入授权类异常]
             </summary>
         </member>
-        <member name="P:UtilsSharp.Standard.BaseStateCode.授权到期">
+        <member name="P:UtilsSharp.Standard.BaseStateCode.授权过期">
             <summary>
-            授权到期[4000~4999登入授权类异常]
+            授权过期[4000~4999登入授权类异常]
             </summary>
         </member>
         <member name="P:UtilsSharp.Standard.BaseStateCode.TryCatch异常错误">
@@ -2185,9 +2201,19 @@
             数据验证不通过[6000~6999数据类异常]
             </summary>
         </member>
-        <member name="P:UtilsSharp.Standard.BaseStateCode.默认业务性异常">
+        <member name="P:UtilsSharp.Standard.BaseStateCode.默认业务性错误">
             <summary>
-            默认业务性异常[7000~7999其他业务类异常]
+            默认业务性错误[7000~7999其他业务及参数类异常]
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.Standard.BaseStateCode.参数不能为空">
+            <summary>
+            参数不能为空[7000~7999其他业务及参数类异常]
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.Standard.BaseStateCode.非法参数">
+            <summary>
+            非法参数[7000~7999其他业务及参数类异常]
             </summary>
         </member>
         <member name="P:UtilsSharp.Standard.BaseStateCode.数据库异常">

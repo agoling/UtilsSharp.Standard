@@ -61,7 +61,9 @@ namespace UtilsSharp.Standard
         ///<para>5000|exception|TryCatch异常错误</para>
         ///6000|dataNotFound|数据找不到
         ///<para>6010|dataNotValid|数据验证不通过</para>
-        ///7000|businessError|默认业务性异常
+        ///7000|businessError|默认业务性错误
+        ///<para>7010|parameterCannotBeEmpty|参数不能为空</para>
+        ///7020|invalidParameter|非法参数
         ///<para>8000|dbError|数据库异常</para>
         ///9000|SystemError|系统错误
         /// </summary>

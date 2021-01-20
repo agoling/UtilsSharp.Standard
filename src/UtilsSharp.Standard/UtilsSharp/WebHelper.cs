@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
+using System.Linq;
 using System.Net;
-using System.Net.Security;
-using System.Security.Cryptography.X509Certificates;
+using System.Net.Http;
 using System.Text;
 using System.Text.RegularExpressions;
-using System.Web;
 using Newtonsoft.Json;
 using UtilsSharp.Standard;
 
@@ -15,50 +13,172 @@ namespace UtilsSharp
     /// <summary>
     /// 网络工具类
     /// </summary>
-    public sealed class WebHelper
+    public class WebHelper : WebClient
     {
         /// <summary>
-        /// 浏览器ContentType
+        /// Get请求
         /// </summary>
-        public string ContentType { set; get; } = "application/x-www-form-urlencoded";
-        /// <summary>
-        /// 浏览器Accept
-        /// </summary>
-        public string Accept { set; get; } = "";
-        /// <summary>
-        /// 浏览器UserAgent
-        /// </summary>
-        public string UserAgent { set; get; } = "Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1; .NET CLR 2.0.50727; .NET CLR 3.0.04506.648; .NET CLR 3.5.21022)";
-        /// <summary>
-        /// 请求与响应的超时时间默认100秒(单位毫秒)
-        /// </summary>
-        public int Timeout { set; get; } = 100000;
-        /// <summary>
-        /// Header
-        /// </summary>
-        public WebHeaderCollection Header { set; get; }
+        /// <param name="address">请求地址</param>
+        /// <returns></returns>
+        public BaseResult<string> DoGet(string address)
+        {
+            return DoGet<string>(address);
+        }
 
         /// <summary>
-        /// 执行HTTP POST请求
+        /// Get请求
         /// </summary>
-        /// <typeparam name="T">返回类型</typeparam>
-        /// <param name="url">请求地址</param>
-        /// <param name="parameters">参数</param>
-        /// <param name="rspEncoding">响应编码</param>
-        /// <param name="dateTimeFormat">参数时间格式</param>
+        /// <param name="address">请求地址</param>
         /// <returns></returns>
-        public BaseResult<T> DoPost<T>(string url, object parameters, Encoding rspEncoding = null, string dateTimeFormat = "yyyy-MM-dd HH:mm:ss")
+        public BaseResult<T> DoGet<T>(string address) where T : class
         {
-            BaseResult<T> result = new BaseResult<T>();
-            HttpWebRequest httpWebRequest = null;
-            HttpWebResponse httpWebResponse = null;
-            if (rspEncoding == null)
-            {
-                rspEncoding = Encoding.GetEncoding("UTF-8");
-            }
+            return DoGet<T>(address, null);
+        }
+
+        /// <summary>
+        /// Get请求
+        /// </summary>
+        /// <param name="address">请求地址</param>
+        /// <param name="parameters">请求参数</param>
+        /// <returns></returns>
+        public BaseResult<string> DoGet(string address, Dictionary<string, string> parameters)
+        {
+            return DoGet<string>(address,parameters);
+        }
+
+        /// <summary>
+        /// Get请求
+        /// </summary>
+        /// <param name="address">请求地址</param>
+        /// <param name="parameters">请求参数</param>
+        /// <returns></returns>
+        public BaseResult<T> DoGet<T>(string address, Dictionary<string, string> parameters) where T : class
+        {
+            var result = new BaseResult<T>();
             try
             {
-                httpWebRequest = GetWebRequest(url, "POST");
+                var (item1, item2) = BuildUrlParameter(address, parameters);
+                address = item1;
+                if (!string.IsNullOrEmpty(item2))
+                {
+                    address = $"{item1}?{item2}";
+                }
+                var bytes = DownloadData(address);
+                var content = Encoding.GetString(bytes);
+                if (string.IsNullOrEmpty(content))
+                {
+                    return result;
+                }
+                if (typeof(T) == typeof(string))
+                {
+                    result.Result = (T)Convert.ChangeType(content, typeof(T));
+                    return result;
+                }
+                result.Result = JsonConvert.DeserializeObject<T>(content);
+                return result;
+            }
+            catch (Exception ex)
+            {
+                result.SetError(ex.Message, BaseStateCode.TryCatch异常错误);
+                return result;
+            }
+        }
+
+        /// <summary>
+        /// Post请求
+        /// </summary>
+        /// <param name="address">请求地址</param>
+        /// <returns></returns>
+        public BaseResult<string> DoPost(string address)
+        {
+            return DoPost<string>(address);
+        }
+
+        /// <summary>
+        /// Post请求
+        /// </summary>
+        /// <param name="address">请求地址</param>
+        /// <returns></returns>
+        public BaseResult<T> DoPost<T>(string address) where T : class
+        {
+            return DoPost<T>(address, null);
+        }
+
+        /// <summary>
+        /// Post请求
+        /// </summary>
+        /// <param name="address">请求地址</param>
+        /// <param name="parameters">请求参数</param>
+        /// <returns></returns>
+        public BaseResult<string> DoPost(string address, Dictionary<string, string> parameters)
+        {
+            return DoPost<string>(address, parameters);
+        }
+
+        /// <summary>
+        /// Post请求
+        /// </summary>
+        /// <param name="address">请求地址</param>
+        /// <param name="parameters">请求参数</param>
+        /// <returns></returns>
+        public BaseResult<T> DoPost<T>(string address, Dictionary<string, string> parameters) where T : class
+        {
+            var result = new BaseResult<T>();
+            try
+            {
+                var (item1, item2) = BuildUrlParameter(address, parameters);
+                address = item1;
+                var dataBytes = new byte[0];
+                if (!string.IsNullOrEmpty(item2))
+                {
+                    dataBytes = Encoding.GetBytes(item2);
+                }
+                var bytes = UploadData(address, HttpMethod.Post.ToString(), dataBytes);
+                var content = Encoding.GetString(bytes);
+                if (string.IsNullOrEmpty(content))
+                {
+                    return result;
+                }
+                if (typeof(T) == typeof(string))
+                {
+                    result.Result = (T)Convert.ChangeType(content, typeof(T));
+                    return result;
+                }
+                result.Result = JsonConvert.DeserializeObject<T>(content);
+                return result;
+            }
+            catch (Exception ex)
+            {
+                result.SetError(ex.Message, BaseStateCode.TryCatch异常错误);
+                return result;
+            }
+        }
+
+        /// <summary>
+        /// Post请求
+        /// </summary>
+        /// <param name="address">请求地址</param>
+        /// <param name="parameters">请求参数</param>
+        /// <param name="dateTimeFormat">返回的时间格式</param>
+        /// <returns></returns>
+        public BaseResult<string> DoPost(string address, object parameters,string dateTimeFormat = "yyyy-MM-dd HH:mm:ss")
+        {
+            return DoPost<string>(address, parameters, dateTimeFormat);
+        }
+
+        /// <summary>
+        /// Post请求
+        /// </summary>
+        /// <param name="address">请求地址</param>
+        /// <param name="parameters">请求参数</param>
+        /// <param name="dateTimeFormat">返回的时间格式</param>
+        /// <returns></returns>
+        public BaseResult<T> DoPost<T>(string address, object parameters, string dateTimeFormat = "yyyy-MM-dd HH:mm:ss") where T : class
+        {
+            var result = new BaseResult<T>();
+            try
+            {
+                Headers.Add("Content-Type", "application/json;charset=UTF-8");
                 var @params = JsonConvert.SerializeObject(parameters);
                 @params = Regex.Replace(@params, @"\\/Date\((\d+)\)\\/", match =>
                 {
@@ -67,233 +187,82 @@ namespace UtilsSharp
                     dt = dt.ToLocalTime();
                     return dt.ToString(dateTimeFormat);
                 });
-                var reqStreamWriter = new StreamWriter(httpWebRequest.GetRequestStream());
-                reqStreamWriter.Write(@params);
-                reqStreamWriter.Close();
-
-                httpWebResponse = (HttpWebResponse)httpWebRequest.GetResponse();
-                var responseStream = httpWebResponse.GetResponseStream();
-                if (responseStream != null)
+                var dataBytes = new byte[0];
+                if (!string.IsNullOrEmpty(@params))
                 {
-                    var streamReader = new StreamReader(responseStream, rspEncoding);
-                    var html = streamReader.ReadToEnd();
-                    streamReader.Close();
-                    responseStream.Close();
-                    result.Result = JsonConvert.DeserializeObject<T>(html);
+                    dataBytes = Encoding.GetBytes(@params);
+                }
+                var bytes = UploadData(address, HttpMethod.Post.ToString(), dataBytes);
+                var content = Encoding.GetString(bytes);
+                if (string.IsNullOrEmpty(content))
+                {
                     return result;
                 }
-                result.Result = default;
+                if (typeof(T) == typeof(string))
+                {
+                    result.Result = (T)Convert.ChangeType(content, typeof(T));
+                    return result;
+                }
+                result.Result = JsonConvert.DeserializeObject<T>(content);
                 return result;
             }
             catch (Exception ex)
             {
-                result.SetError(ex.Message, 5000);
+                result.SetError(ex.Message, BaseStateCode.TryCatch异常错误);
                 return result;
-            }
-            finally
-            {
-                httpWebRequest?.Abort();
-                httpWebResponse?.Close();
             }
         }
 
         /// <summary>
-        /// 执行HTTP POST请求
+        /// 调整url和参数
         /// </summary>
-        /// <param name="url">请求地址</param>
+        /// <param name="address">url地址</param>
         /// <param name="parameters">参数</param>
         /// <returns></returns>
-        public BaseResult<string> DoPost(string url, IDictionary<string, string> parameters)
+        private Tuple<string, string> BuildUrlParameter(string address, Dictionary<string, string> parameters)
         {
-            return DoPost(url, parameters, null, null, null);
-        }
-
-
-        /// <summary>
-        /// 执行HTTP POST请求
-        /// </summary>
-        /// <param name="url">请求地址</param>
-        /// <param name="parameters">参数</param>
-        /// <param name="cookieContainer">CookieContainer</param>
-        /// <param name="proxy">代理请求信息</param>
-        /// <param name="rspEncoding">响应编码</param>
-        public BaseResult<string> DoPost(string url, IDictionary<string, string> parameters, CookieContainer cookieContainer, WebProxy proxy = null, Encoding rspEncoding = null)
-        {
-            BaseResult<string> result = new BaseResult();
-            HttpWebRequest httpWebRequest = null;
-            HttpWebResponse httpWebResponse = null;
-            if (rspEncoding == null)
+            var url = address;
+            if (parameters == null)
             {
-                rspEncoding = Encoding.GetEncoding("UTF-8");
+                parameters = new Dictionary<string, string>();
             }
-            try
+            if (address.Contains("?"))
             {
-                httpWebRequest = GetWebRequest(url, "POST");
-                //cookie
-                if (cookieContainer != null)
+                var array = address.Split('?');
+                url = array[0];
+                var p = array[1];
+                if (!string.IsNullOrEmpty(p))
                 {
-                    httpWebRequest.CookieContainer = cookieContainer;
-                }
-                //代理请求
-                if (proxy != null)
-                {
-                    httpWebRequest.Proxy = proxy;
-                }
-                //参数不为空
-                if (parameters != null)
-                {
-                    var byteRequest = Encoding.Default.GetBytes(BuildQuery(parameters));
-                    httpWebRequest.ContentLength = byteRequest.Length;
-                    var stream = httpWebRequest.GetRequestStream();
-                    stream.Write(byteRequest, 0, byteRequest.Length);
-                    stream.Close();
-                }
-                httpWebResponse = (HttpWebResponse)httpWebRequest.GetResponse();
-                var responseStream = httpWebResponse.GetResponseStream();
-                if (responseStream != null)
-                {
-                    var streamReader = new StreamReader(responseStream, rspEncoding);
-                    var html = streamReader.ReadToEnd();
-                    streamReader.Close();
-                    responseStream.Close();
-                    result.Result = html;
-                    return result;
-                }
-                result.Result = string.Empty;
-                return result;
-            }
-            catch (Exception ex)
-            {
-                result.SetError(ex.Message, 5000);
-                return result;
-            }
-            finally
-            {
-                httpWebRequest?.Abort();
-                httpWebResponse?.Close();
-            }
-        }
-
-        /// <summary>
-        /// 执行HTTP GET请求
-        /// </summary>
-        /// <param name="url">请求地址</param>
-        /// <param name="parameters">参数</param>
-        /// <returns></returns>
-        public BaseResult<string> DoGet(string url, IDictionary<string, string> parameters)
-        {
-            return DoGet(url, parameters, null, null, null);
-        }
-
-        /// <summary>
-        /// 执行HTTP GET请求
-        /// </summary>
-        /// <param name="url">地址</param>
-        /// <param name="parameters">参数</param>
-        /// <param name="cookieContainer">CookieContainer</param>
-        /// <param name="proxy">代理请求信息</param>
-        /// <param name="rspEncoding">响应编码</param>
-        public BaseResult<string> DoGet(string url, IDictionary<string, string> parameters, CookieContainer cookieContainer, WebProxy proxy = null, Encoding rspEncoding = null)
-        {
-            BaseResult<string> result = new BaseResult();
-            HttpWebRequest httpWebRequest = null;
-            HttpWebResponse httpWebResponse = null;
-            if (rspEncoding == null)
-            {
-                rspEncoding = Encoding.GetEncoding("UTF-8");
-            }
-            try
-            {
-                //参数不为空
-                if (parameters != null)
-                {
-                    if (!string.IsNullOrEmpty(url))
+                    if (p.Contains("&"))
                     {
-                        var urlArray = url.Split('?');
-                        url = $"{urlArray[0]}?{BuildQuery(parameters)}";
+                        var pArray = p.Split('&');
+                        foreach (var item in pArray)
+                        {
+                            if (string.IsNullOrEmpty(item)) continue;
+                            var kvArray = item.Split('=');
+                            var k = kvArray[0];
+                            var v = kvArray[1];
+                            if (!parameters.ContainsKey(k))
+                            {
+                                parameters.Add(k, v);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        var kvArray = p.Split('=');
+                        var k = kvArray[0];
+                        var v = kvArray[1];
+                        if (!parameters.ContainsKey(k))
+                        {
+                            parameters.Add(k, v);
+                        }
                     }
                 }
-                httpWebRequest = GetWebRequest(url, "GET");
-                //cookie
-                if (cookieContainer != null)
-                {
-                    httpWebRequest.CookieContainer = cookieContainer;
-                }
-                //代理请求
-                if (proxy != null)
-                {
-                    httpWebRequest.Proxy = proxy;
-                }
-                httpWebResponse = (HttpWebResponse)httpWebRequest.GetResponse();
-                var responseStream = httpWebResponse.GetResponseStream();
-                if (responseStream != null)
-                {
-                    var streamReader = new StreamReader(responseStream, rspEncoding);
-                    var html = streamReader.ReadToEnd();
-                    streamReader.Close();
-                    responseStream.Close();
-                    result.Result = html;
-                    return result;
-                }
-                result.Result = string.Empty;
-                return result;
             }
-            catch (Exception ex)
-            {
-                result.SetError(ex.Message, 5000);
-                return result;
-            }
-            finally
-            {
-                httpWebRequest?.Abort();
-                httpWebResponse?.Close();
-            }
-        }
-
-        /// <summary>
-        /// 获取WebRequest
-        /// </summary>
-        /// <param name="url">url</param>
-        /// <param name="method">HttpMethod</param>
-        /// <returns></returns>
-        private HttpWebRequest GetWebRequest(string url, string method)
-        {
-            HttpWebRequest httpWebRequest;
-            if (url.Contains("https"))
-            {
-                ServicePointManager.ServerCertificateValidationCallback = CheckValidationResult;
-                httpWebRequest = (HttpWebRequest)WebRequest.CreateDefault(new Uri(url));
-            }
-            else
-            {
-                httpWebRequest = (HttpWebRequest)WebRequest.Create(url);
-            }
-            httpWebRequest.ServicePoint.Expect100Continue = false;
-            httpWebRequest.Method = method;
-            httpWebRequest.KeepAlive = true;
-            httpWebRequest.ContentType = ContentType;
-            httpWebRequest.Referer = url;
-            httpWebRequest.Accept = Accept;
-            httpWebRequest.UserAgent = UserAgent;
-            httpWebRequest.Timeout = Timeout;
-            if (Header != null)
-            {
-                httpWebRequest.Headers = Header;
-            }
-            return httpWebRequest;
-        }
-
-        /// <summary>
-        /// CheckValidationResult
-        /// </summary>
-        /// <param name="sender">sender</param>
-        /// <param name="certificate">certificate</param>
-        /// <param name="chain">chain</param>
-        /// <param name="errors">errors</param>
-        /// <returns></returns>
-        private bool CheckValidationResult(object sender, X509Certificate certificate, X509Chain chain, SslPolicyErrors errors)
-        {   //直接确认，否则打不开
-            return true;
+            var parameterStr = BuildQuery(parameters);
+            var tuple = new Tuple<string, string>(url, parameterStr);
+            return tuple;
         }
 
         /// <summary>
@@ -301,30 +270,32 @@ namespace UtilsSharp
         /// </summary>
         /// <param name="parameters">Key-Value形式请求参数字典</param>
         /// <returns>URL编码后的请求数据</returns>
-        private static string BuildQuery(IDictionary<string, string> parameters)
+        private string BuildQuery(IDictionary<string, string> parameters)
         {
+            if (parameters == null || !parameters.Any())
+            {
+                return "";
+            }
             var postData = new StringBuilder();
             var hasParam = false;
             using var dem = parameters.GetEnumerator();
             while (dem.MoveNext())
             {
-                string name = dem.Current.Key;
-                string value = dem.Current.Value;
+                var name = dem.Current.Key;
+                var value = dem.Current.Value;
                 // 忽略参数名或参数值为空的参数
-                if (!string.IsNullOrEmpty(name) && !string.IsNullOrEmpty(value))
+                if (string.IsNullOrEmpty(name) || string.IsNullOrEmpty(value)) continue;
+                if (hasParam)
                 {
-                    if (hasParam)
-                    {
-                        postData.Append("&");
-                    }
-
-                    postData.Append(name);
-                    postData.Append("=");
-                    postData.Append(HttpUtility.UrlEncode(value, Encoding.UTF8));
-                    hasParam = true;
+                    postData.Append("&");
                 }
+                postData.Append(name);
+                postData.Append("=");
+                postData.Append(System.Web.HttpUtility.UrlEncode(value, Encoding));
+                hasParam = true;
             }
             return postData.ToString();
         }
+
     }
 }

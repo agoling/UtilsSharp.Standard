@@ -68,9 +68,8 @@ namespace UtilsSharp
                 return ipInfo;
             }
             var webHelper=new WebHelper();
-            var r=webHelper.DoGet($"http://ip-api.com/json/{ip}?lang=zh-CN",null);
-            var json = JsonConvert.DeserializeObject<IpInfo>(r.Result);
-            return json;
+            var r=webHelper.DoGet<IpInfo>($"http://ip-api.com/json/{ip}?lang=zh-CN");
+            return r.Result;
         }
     }
 

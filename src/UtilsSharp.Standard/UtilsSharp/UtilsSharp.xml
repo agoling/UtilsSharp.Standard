@@ -699,6 +699,43 @@
             表示实现者是一个工作单元依赖
             </summary>
         </member>
+        <member name="T:UtilsSharp.DictionaryHelper">
+            <summary>
+            字典帮助类
+            </summary>
+        </member>
+        <member name="M:UtilsSharp.DictionaryHelper.ObjToDictionary(System.Object)">
+            <summary>
+            转换对象为字典
+            </summary>
+            <param name="obj">要转换的对象</param>
+            <returns>返回字典</returns>
+        </member>
+        <member name="M:UtilsSharp.DictionaryHelper.ObjToDictionary(System.Object,System.String[],System.String[])">
+            <summary>
+            转换对象为字典
+            </summary>
+            <param name="obj">要转换的对象</param>
+            <param name="members">需要转换的成员</param>
+            <param name="ignoreMembers">忽略转换的成员</param>
+            <returns>返回字典</returns>
+        </member>
+        <member name="M:UtilsSharp.DictionaryHelper.DictionaryToObj``1(System.Collections.Generic.Dictionary{System.String,System.Object})">
+            <summary>
+            转换字典为对象
+            </summary>
+            <param name="dictionary">要转换的字典</param>
+            <returns>返回对象</returns>
+        </member>
+        <member name="M:UtilsSharp.DictionaryHelper.DictionaryToObj``1(System.Collections.Generic.Dictionary{System.String,System.Object},System.String[],System.String[])">
+            <summary>
+            转换字典为对象
+            </summary>
+            <param name="dictionary">要转换的字典</param>
+            <param name="members">需要转换的成员</param>
+            <param name="ignoreMembers">忽略转换的成员</param>
+            <returns>返回对象</returns>
+        </member>
         <member name="T:UtilsSharp.DingTalkRobot">
             <summary>
             钉钉自定义机器人
@@ -2741,6 +2778,22 @@
             网络工具类
             </summary>
         </member>
+        <member name="M:UtilsSharp.WebHelper.DoGet(System.String,System.Object)">
+            <summary>
+            Get请求
+            </summary>
+            <param name="address">请求地址</param>
+            <param name="parameters">请求参数</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.WebHelper.DoGet``1(System.String,System.Object)">
+            <summary>
+            Get请求
+            </summary>
+            <param name="address">请求地址</param>
+            <param name="parameters">请求参数</param>
+            <returns></returns>
+        </member>
         <member name="M:UtilsSharp.WebHelper.DoGet(System.String)">
             <summary>
             Get请求
@@ -2764,6 +2817,14 @@
             <returns></returns>
         </member>
         <member name="M:UtilsSharp.WebHelper.DoGet``1(System.String,System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            Get请求
+            </summary>
+            <param name="address">请求地址</param>
+            <param name="parameters">请求参数</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.WebHelper.GetRequest``1(System.String,System.Collections.Generic.Dictionary{System.String,System.String})">
             <summary>
             Get请求
             </summary>
@@ -2801,6 +2862,14 @@
             <param name="parameters">请求参数</param>
             <returns></returns>
         </member>
+        <member name="M:UtilsSharp.WebHelper.PostRequest``1(System.String,System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            Post请求
+            </summary>
+            <param name="address">请求地址</param>
+            <param name="parameters">请求参数</param>
+            <returns></returns>
+        </member>
         <member name="M:UtilsSharp.WebHelper.DoPost(System.String,System.Object,System.String)">
             <summary>
             Post请求
@@ -2817,6 +2886,22 @@
             <param name="address">请求地址</param>
             <param name="parameters">请求参数</param>
             <param name="dateTimeFormat">返回的时间格式</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.WebHelper.PostRequest``1(System.String,System.Object,System.String)">
+            <summary>
+            Post请求
+            </summary>
+            <param name="address">请求地址</param>
+            <param name="parameters">请求参数</param>
+            <param name="dateTimeFormat">返回的时间格式</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.WebHelper.ObjToDictionary(System.Object)">
+            <summary>
+            对象转字典
+            </summary>
+            <param name="obj">参数</param>
             <returns></returns>
         </member>
         <member name="M:UtilsSharp.WebHelper.BuildUrlParameter(System.String,System.Collections.Generic.Dictionary{System.String,System.String})">

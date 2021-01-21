@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace DotNetCore
 {
@@ -28,7 +26,7 @@ namespace DotNetCore
             ClearAndShow(() =>
             {
                 Console.ForegroundColor = ConsoleColor.Green;
-                msg = $"{msg} {DateTime.Now}";
+                msg = $"{DateTime.Now:yyyy-MM-dd HH:mm:ss} {msg}";
                 Console.WriteLine(msg);
             });
         }
@@ -42,7 +40,7 @@ namespace DotNetCore
             ClearAndShow(() =>
             {
                 Console.ForegroundColor = ConsoleColor.Blue;
-                msg = $"{msg} {DateTime.Now}";
+                msg = $"{DateTime.Now:yyyy-MM-dd HH:mm:ss} {msg}";
                 Console.WriteLine(msg);
             });
         }
@@ -56,7 +54,7 @@ namespace DotNetCore
             ClearAndShow(() =>
             {
                 Console.ForegroundColor = ConsoleColor.Yellow;
-                msg = $"{msg} {DateTime.Now}";
+                msg = $"{DateTime.Now:yyyy-MM-dd HH:mm:ss} {msg}";
                 Console.WriteLine(msg);
             });
         }
@@ -70,7 +68,7 @@ namespace DotNetCore
             ClearAndShow(() =>
             {
                 Console.ForegroundColor = ConsoleColor.Red;
-                msg = $"{msg} {DateTime.Now}";
+                msg = $"{DateTime.Now:yyyy-MM-dd HH:mm:ss} {msg}";
                 Console.WriteLine(msg);
             });
         }
@@ -96,4 +94,5 @@ namespace DotNetCore
             action?.Invoke();
         }
     }
+
 }

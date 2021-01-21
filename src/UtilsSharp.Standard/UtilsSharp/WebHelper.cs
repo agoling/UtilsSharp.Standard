@@ -5,6 +5,7 @@ using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Text.RegularExpressions;
+using Microsoft.AspNetCore.Http.Internal;
 using Newtonsoft.Json;
 using UtilsSharp.Standard;
 
@@ -19,10 +20,24 @@ namespace UtilsSharp
         /// Get请求
         /// </summary>
         /// <param name="address">请求地址</param>
+        /// <param name="parameters">请求参数</param>
         /// <returns></returns>
-        public BaseResult<string> DoGet(string address)
+        public BaseResult<string> DoGet(string address, object parameters)
         {
-            return DoGet<string>(address);
+            var strDic = ObjToDictionary(parameters);
+            return GetRequest<string>(address, strDic);
+        }
+
+        /// <summary>
+        /// Get请求
+        /// </summary>
+        /// <param name="address">请求地址</param>
+        /// <param name="parameters">请求参数</param>
+        /// <returns></returns>
+        public BaseResult<T> DoGet<T>(string address, object parameters) where T : class, new()
+        {
+            var strDic = ObjToDictionary(parameters);
+            return GetRequest<T>(address, strDic);
         }
 
         /// <summary>
@@ -30,9 +45,19 @@ namespace UtilsSharp
         /// </summary>
         /// <param name="address">请求地址</param>
         /// <returns></returns>
-        public BaseResult<T> DoGet<T>(string address) where T : class
+        public BaseResult<string> DoGet(string address)
         {
-            return DoGet<T>(address, null);
+            return GetRequest<string>(address,null);
+        }
+
+        /// <summary>
+        /// Get请求
+        /// </summary>
+        /// <param name="address">请求地址</param>
+        /// <returns></returns>
+        public BaseResult<T> DoGet<T>(string address) where T : class, new()
+        {
+            return GetRequest<T>(address, null);
         }
 
         /// <summary>
@@ -43,7 +68,7 @@ namespace UtilsSharp
         /// <returns></returns>
         public BaseResult<string> DoGet(string address, Dictionary<string, string> parameters)
         {
-            return DoGet<string>(address,parameters);
+            return GetRequest<string>(address,parameters);
         }
 
         /// <summary>
@@ -52,11 +77,27 @@ namespace UtilsSharp
         /// <param name="address">请求地址</param>
         /// <param name="parameters">请求参数</param>
         /// <returns></returns>
-        public BaseResult<T> DoGet<T>(string address, Dictionary<string, string> parameters) where T : class
+        public BaseResult<T> DoGet<T>(string address, Dictionary<string, string> parameters) where T : class,new()
+        {
+            return GetRequest<T>(address, parameters);
+        }
+
+        /// <summary>
+        /// Get请求
+        /// </summary>
+        /// <param name="address">请求地址</param>
+        /// <param name="parameters">请求参数</param>
+        /// <returns></returns>
+        private BaseResult<T> GetRequest<T>(string address, Dictionary<string, string> parameters) where T : class
         {
             var result = new BaseResult<T>();
             try
             {
+                if (string.IsNullOrEmpty(address))
+                {
+                    result.SetError("address不能为空！");
+                    return result;
+                }
                 var (item1, item2) = BuildUrlParameter(address, parameters);
                 address = item1;
                 if (!string.IsNullOrEmpty(item2))
@@ -91,7 +132,7 @@ namespace UtilsSharp
         /// <returns></returns>
         public BaseResult<string> DoPost(string address)
         {
-            return DoPost<string>(address);
+            return PostRequest<string>(address,null);
         }
 
         /// <summary>
@@ -99,9 +140,9 @@ namespace UtilsSharp
         /// </summary>
         /// <param name="address">请求地址</param>
         /// <returns></returns>
-        public BaseResult<T> DoPost<T>(string address) where T : class
+        public BaseResult<T> DoPost<T>(string address) where T : class, new()
         {
-            return DoPost<T>(address, null);
+            return PostRequest<T>(address, null);
         }
 
         /// <summary>
@@ -112,7 +153,7 @@ namespace UtilsSharp
         /// <returns></returns>
         public BaseResult<string> DoPost(string address, Dictionary<string, string> parameters)
         {
-            return DoPost<string>(address, parameters);
+            return PostRequest<string>(address, parameters);
         }
 
         /// <summary>
@@ -121,11 +162,27 @@ namespace UtilsSharp
         /// <param name="address">请求地址</param>
         /// <param name="parameters">请求参数</param>
         /// <returns></returns>
-        public BaseResult<T> DoPost<T>(string address, Dictionary<string, string> parameters) where T : class
+        public BaseResult<T> DoPost<T>(string address, Dictionary<string, string> parameters) where T : class, new()
+        {
+            return PostRequest<T>(address, parameters);
+        }
+
+        /// <summary>
+        /// Post请求
+        /// </summary>
+        /// <param name="address">请求地址</param>
+        /// <param name="parameters">请求参数</param>
+        /// <returns></returns>
+        private BaseResult<T> PostRequest<T>(string address, Dictionary<string, string> parameters) where T : class
         {
             var result = new BaseResult<T>();
             try
             {
+                if (string.IsNullOrEmpty(address))
+                {
+                    result.SetError("address不能为空！");
+                    return result;
+                }
                 var (item1, item2) = BuildUrlParameter(address, parameters);
                 address = item1;
                 var dataBytes = new byte[0];
@@ -163,7 +220,7 @@ namespace UtilsSharp
         /// <returns></returns>
         public BaseResult<string> DoPost(string address, object parameters,string dateTimeFormat = "yyyy-MM-dd HH:mm:ss")
         {
-            return DoPost<string>(address, parameters, dateTimeFormat);
+            return PostRequest<string>(address, parameters, dateTimeFormat);
         }
 
         /// <summary>
@@ -173,11 +230,28 @@ namespace UtilsSharp
         /// <param name="parameters">请求参数</param>
         /// <param name="dateTimeFormat">返回的时间格式</param>
         /// <returns></returns>
-        public BaseResult<T> DoPost<T>(string address, object parameters, string dateTimeFormat = "yyyy-MM-dd HH:mm:ss") where T : class
+        public BaseResult<T> DoPost<T>(string address, object parameters, string dateTimeFormat = "yyyy-MM-dd HH:mm:ss")where T : class, new()
+        {
+            return PostRequest<T>(address, parameters, dateTimeFormat);
+        }
+
+        /// <summary>
+        /// Post请求
+        /// </summary>
+        /// <param name="address">请求地址</param>
+        /// <param name="parameters">请求参数</param>
+        /// <param name="dateTimeFormat">返回的时间格式</param>
+        /// <returns></returns>
+        private BaseResult<T> PostRequest<T>(string address, object parameters, string dateTimeFormat = "yyyy-MM-dd HH:mm:ss") where T : class
         {
             var result = new BaseResult<T>();
             try
             {
+                if (string.IsNullOrEmpty(address))
+                {
+                    result.SetError("address不能为空！");
+                    return result;
+                }
                 Headers.Add("Content-Type", "application/json;charset=UTF-8");
                 var @params = JsonConvert.SerializeObject(parameters);
                 @params = Regex.Replace(@params, @"\\/Date\((\d+)\)\\/", match =>
@@ -211,6 +285,35 @@ namespace UtilsSharp
                 result.SetError(ex.Message, BaseStateCode.TryCatch异常错误);
                 return result;
             }
+        }
+
+        /// <summary>
+        /// 对象转字典
+        /// </summary>
+        /// <param name="obj">参数</param>
+        /// <returns></returns>
+        private static Dictionary<string, string> ObjToDictionary(object obj)
+        {
+            var objDic = DictionaryHelper.ObjToDictionary(obj);
+            var strDic = new Dictionary<string, string>();
+            if (objDic == null) return strDic;
+            foreach (var item in objDic)
+            {
+                if (string.IsNullOrEmpty(item.Key) || item.Value == null) continue;
+                var key = item.Key;
+                object objValue;
+                try
+                {
+                    objValue = Convert.ChangeType(item.Value, typeof(string));
+                }
+                catch (Exception)
+                {
+                    objValue = JsonConvert.SerializeObject(item.Value);
+                }
+                var value = objValue.ToString();
+                strDic.Add(key, value);
+            }
+            return strDic;
         }
 
         /// <summary>

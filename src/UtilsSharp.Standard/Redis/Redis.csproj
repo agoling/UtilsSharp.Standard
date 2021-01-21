@@ -20,7 +20,7 @@
 
   <ItemGroup>
     <PackageReference Include="CSRedisCore" Version="3.6.3" />
-    <PackageReference Include="UtilsSharp.OptionConfig" Version="1.0.1" />
+    <PackageReference Include="UtilsSharp.OptionConfig" Version="1.0.7" />
   </ItemGroup>
 
   <ItemGroup>

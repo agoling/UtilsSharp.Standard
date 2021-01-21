@@ -22,7 +22,7 @@
 
   <ItemGroup>
     <PackageReference Include="NEST" Version="5.6.5" />
-    <PackageReference Include="UtilsSharp.OptionConfig" Version="1.0.6" />
+    <PackageReference Include="UtilsSharp.OptionConfig" Version="1.0.7" />
   </ItemGroup>
 
   <ItemGroup>

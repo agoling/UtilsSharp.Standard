@@ -31,6 +31,11 @@
             Es基础实体
             </summary>
         </member>
+        <member name="P:ElasticSearch.EsBaseDataMapping`1.Setting">
+            <summary>
+            连接设置
+            </summary>
+        </member>
         <member name="P:ElasticSearch.EsBaseDataMapping`1.AliasIndex">
             <summary>
             新索引别名
@@ -63,10 +68,11 @@
             <param name="dateTime"></param>
             <returns></returns>
         </member>
-        <member name="M:ElasticSearch.EsBaseDataMapping`1.IndexCreateAndMapping">
+        <member name="M:ElasticSearch.EsBaseDataMapping`1.IndexCreateAndMapping(OptionConfig.ElasticSearchSetting)">
             <summary>
             创建指定时间索引
             </summary>
+            <param name="setting">ElasticSearch设置</param>
         </member>
         <member name="M:ElasticSearch.EsBaseDataMapping`1.EntityMapping(Nest.ElasticClient,System.String)">
             <summary>
@@ -159,23 +165,24 @@
             es客服端
             </summary>
         </member>
-        <member name="F:ElasticSearch.EsClientProvider.BaseEsConnectionSettings">
-            <summary>
-            Es配置
-            </summary>
-        </member>
-        <member name="M:ElasticSearch.EsClientProvider.GetClient(System.String)">
+        <member name="M:ElasticSearch.EsClientProvider.GetClient(OptionConfig.ElasticSearchSetting)">
             <summary>
             获取客户端
             </summary>
-            <param name="currentIndex">当前索引</param>
+            <param name="setting">Es配置信息</param>
             <returns></returns>
         </member>
-        <member name="M:ElasticSearch.EsClientProvider.Init(System.String)">
+        <member name="M:ElasticSearch.EsClientProvider.Init(OptionConfig.ElasticSearchSetting)">
             <summary>
             初始化
             </summary>
-            <param name="currentIndex">当前索引</param>
+            <param name="setting">Es配置信息</param>
+        </member>
+        <member name="M:ElasticSearch.EsClientProvider.GetSettings(OptionConfig.ElasticSearchSetting)">
+            <summary>
+            获取Es链接设置
+            </summary>
+            <returns></returns>
         </member>
         <member name="M:ElasticSearch.EsClientProvider.CreateIndex(ElasticSearch.EsCreateIndexSettings,System.Action{Nest.ElasticClient,System.String})">
             <summary>
@@ -184,55 +191,14 @@
             <param name="esCreateIndexSettings">创建索引配置</param>
             <param name="mappingHandle">映射处理</param>
         </member>
-        <member name="T:ElasticSearch.BaseEsConnectionSettings">
-            <summary>
-            Es链接配置
-            </summary>
-        </member>
-        <member name="P:ElasticSearch.BaseEsConnectionSettings.EsHttpAddress">
-            <summary>
-            连接字符串
-            </summary>
-        </member>
-        <member name="P:ElasticSearch.BaseEsConnectionSettings.UserName">
-            <summary>
-            用户名
-            </summary>
-        </member>
-        <member name="P:ElasticSearch.BaseEsConnectionSettings.Password">
-            <summary>
-            密码
-            </summary>
-        </member>
-        <member name="P:ElasticSearch.BaseEsConnectionSettings.EsDefaultIndex">
-            <summary>
-            默认索引
-            </summary>
-        </member>
-        <member name="P:ElasticSearch.BaseEsConnectionSettings.EsNetworkProxy">
-            <summary>
-            网络代理
-            </summary>
-        </member>
-        <member name="P:ElasticSearch.BaseEsConnectionSettings.EsConnectionLimit">
-            <summary>
-            连接数限制
-            </summary>
-        </member>
-        <member name="M:ElasticSearch.BaseEsConnectionSettings.GetSettings">
-            <summary>
-            获取Es链接设置
-            </summary>
-            <returns></returns>
-        </member>
         <member name="T:ElasticSearch.EsCreateIndexSettings">
             <summary>
             创建索引参数
             </summary>
         </member>
-        <member name="P:ElasticSearch.EsCreateIndexSettings.Index">
+        <member name="P:ElasticSearch.EsCreateIndexSettings.Setting">
             <summary>
-            当前使用索引
+            ElasticSearch设置
             </summary>
         </member>
         <member name="P:ElasticSearch.EsCreateIndexSettings.AliasIndex">

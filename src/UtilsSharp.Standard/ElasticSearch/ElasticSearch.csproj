@@ -10,7 +10,7 @@
     <PackageProjectUrl>https://github.com/agoling/UtilsSharp.Standard</PackageProjectUrl>
     <RepositoryUrl>https://github.com/agoling/UtilsSharp.Standard</RepositoryUrl>
     <PackageTags>UtilsSharp UtilsSharp.ElasticSearch ElasticSearch帮助类 Es帮助类</PackageTags>
-    <Version>2.0.3</Version>
+    <Version>2.1.0</Version>
     <PackageIcon>UtilsSharp.jpg</PackageIcon>
     <PackageIconUrl />
     <ApplicationIcon>UtilsSharp.ico</ApplicationIcon>

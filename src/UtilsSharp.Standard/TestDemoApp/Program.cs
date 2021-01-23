@@ -2,6 +2,7 @@
 using System.Threading;
 using System.Threading.Tasks;
 using DotNetCore;
+using LoggerHelper;
 
 namespace TestDemoApp
 {
@@ -9,6 +10,11 @@ namespace TestDemoApp
     {
         static void Main(string[] args)
         {
+
+            Logger.Trace("您好","123","canshu","","gongneng","http://www.baidu.com");
+            Logger.Info("您好", "123", "canshu", "", "gongneng", "http://www.baidu.com");
+            Logger.Error("您好",new Exception("wocuole"),"123");
+
             ConsoleLog.Title("我是Title！");
             ConsoleLog.Info("我是Info1！");
             ConsoleLog.Info("我是Info2！");

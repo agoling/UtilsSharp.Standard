@@ -14,3 +14,4 @@ D:\GitHub\Project\UtilsSharp.Standard\src\UtilsSharp.Standard\UtilsSharp\obj\Deb
 D:\GitHub\Project\UtilsSharp.Standard\src\UtilsSharp.Standard\UtilsSharp\obj\Debug\netstandard2.0\UtilsSharp.csproj.CoreCompileInputs.cache
 D:\GitHub\Project\UtilsSharp.Standard\src\UtilsSharp.Standard\UtilsSharp\obj\Debug\netstandard2.0\UtilsSharp.dll
 D:\GitHub\Project\UtilsSharp.Standard\src\UtilsSharp.Standard\UtilsSharp\obj\Debug\netstandard2.0\UtilsSharp.pdb
+D:\GitHub\Project\UtilsSharp.Standard\src\UtilsSharp.Standard\UtilsSharp\obj\Debug\netstandard2.0\UtilsSharp.csprojAssemblyReference.cache

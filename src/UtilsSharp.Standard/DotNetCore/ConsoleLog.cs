@@ -13,36 +13,52 @@ namespace DotNetCore
         private static int _currentMsgCount;
 
         /// <summary>
-        /// 最大消息总数（达到这个数将清屏幕消息）
+        /// 最大消息总数（达到这个数后将清理屏幕消息）
         /// </summary>
         public static int MaxMsgCount { set; get; } = -1;
 
         /// <summary>
-        /// 信息(绿色)
+        /// 标题(灰色)
+        /// </summary>
+        /// <param name="msg">消息</param>
+        public static void Title(string msg)
+        {
+            ClearAndShow((obj) =>
+            {
+                Console.ForegroundColor = ConsoleColor.Gray;
+                obj = $"{DateTime.Now:HH:mm:ss} {obj}";
+                Console.WriteLine("----------------------------------------------------------------------");
+                Console.WriteLine(obj);
+                Console.WriteLine("----------------------------------------------------------------------");
+            },msg);
+        }
+
+        /// <summary>
+        /// 信息(灰色)
         /// </summary>
         /// <param name="msg">消息</param>
         public static void Info(string msg)
         {
-            ClearAndShow(() =>
+            ClearAndShow((obj) =>
             {
-                Console.ForegroundColor = ConsoleColor.Green;
-                msg = $"{DateTime.Now:yyyy-MM-dd HH:mm:ss} {msg}";
-                Console.WriteLine(msg);
-            });
+                Console.ForegroundColor = ConsoleColor.Gray;
+                obj = $"{DateTime.Now:HH:mm:ss} {obj}";
+                Console.WriteLine(obj);
+            },msg);
         }
 
         /// <summary>
-        /// 调试(蓝色)
+        /// 调试(青色)
         /// </summary>
         /// <param name="msg">消息</param>
         public static void Debug(string msg)
         {
-            ClearAndShow(() =>
+            ClearAndShow((obj) =>
             {
-                Console.ForegroundColor = ConsoleColor.Blue;
-                msg = $"{DateTime.Now:yyyy-MM-dd HH:mm:ss} {msg}";
-                Console.WriteLine(msg);
-            });
+                Console.ForegroundColor = ConsoleColor.Cyan;
+                obj = $"{DateTime.Now:HH:mm:ss} {obj}";
+                Console.WriteLine(obj);
+            },msg);
         }
 
         /// <summary>
@@ -51,12 +67,12 @@ namespace DotNetCore
         /// <param name="msg">消息</param>
         public static void Warn(string msg)
         {
-            ClearAndShow(() =>
+            ClearAndShow((obj) =>
             {
                 Console.ForegroundColor = ConsoleColor.Yellow;
-                msg = $"{DateTime.Now:yyyy-MM-dd HH:mm:ss} {msg}";
-                Console.WriteLine(msg);
-            });
+                obj = $"{DateTime.Now:HH:mm:ss} {obj}";
+                Console.WriteLine(obj);
+            },msg);
         }
 
         /// <summary>
@@ -65,19 +81,34 @@ namespace DotNetCore
         /// <param name="msg">消息</param>
         public static void Error(string msg)
         {
-            ClearAndShow(() =>
+            ClearAndShow((obj) =>
             {
                 Console.ForegroundColor = ConsoleColor.Red;
-                msg = $"{DateTime.Now:yyyy-MM-dd HH:mm:ss} {msg}";
-                Console.WriteLine(msg);
-            });
+                obj = $"{DateTime.Now:HH:mm:ss} {obj}";
+                Console.WriteLine(obj);
+            },msg);
+        }
+
+        /// <summary>
+        /// 成功(绿色)
+        /// </summary>
+        /// <param name="msg">消息</param>
+        public static void Success(string msg)
+        {
+            ClearAndShow((obj) =>
+            {
+                Console.ForegroundColor = ConsoleColor.Green;
+                obj = $"{DateTime.Now:HH:mm:ss} {obj}";
+                Console.WriteLine(obj);
+            },msg);
         }
 
         /// <summary>
         /// 清理屏幕
         /// </summary>
         /// <param name="action">日志展示</param>
-        private static void ClearAndShow(Action action)
+        /// <param name="msg">消息</param>
+        private static void ClearAndShow(Action<string> action,string msg)
         {
             if (MaxMsgCount > 0)
             {
@@ -91,7 +122,7 @@ namespace DotNetCore
                     _currentMsgCount += 1;
                 }
             }
-            action?.Invoke();
+            action?.Invoke(msg);
         }
     }
 

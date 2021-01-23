@@ -29,7 +29,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ElasticSearch", "ElasticSea
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RabbitMQ", "RabbitMQ\RabbitMQ.csproj", "{43174339-031B-4294-8A66-6E0EF3B59D59}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ElasticSearch7", "ElasticSearch7\ElasticSearch7.csproj", "{D3E88472-4FEB-4D84-BB2F-E17735CEE8DC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ElasticSearch7", "ElasticSearch7\ElasticSearch7.csproj", "{D3E88472-4FEB-4D84-BB2F-E17735CEE8DC}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotNetCore", "DotNetCore\DotNetCore.csproj", "{4648D2D2-F286-4EED-BD08-F5B3C4A4561C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestDemoApp", "TestDemoApp\TestDemoApp.csproj", "{F017A0E2-2DB1-4CBB-9F07-0E36A9EBFDE7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -93,6 +97,14 @@ Global
 		{D3E88472-4FEB-4D84-BB2F-E17735CEE8DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D3E88472-4FEB-4D84-BB2F-E17735CEE8DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D3E88472-4FEB-4D84-BB2F-E17735CEE8DC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4648D2D2-F286-4EED-BD08-F5B3C4A4561C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4648D2D2-F286-4EED-BD08-F5B3C4A4561C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4648D2D2-F286-4EED-BD08-F5B3C4A4561C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4648D2D2-F286-4EED-BD08-F5B3C4A4561C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F017A0E2-2DB1-4CBB-9F07-0E36A9EBFDE7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F017A0E2-2DB1-4CBB-9F07-0E36A9EBFDE7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F017A0E2-2DB1-4CBB-9F07-0E36A9EBFDE7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F017A0E2-2DB1-4CBB-9F07-0E36A9EBFDE7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

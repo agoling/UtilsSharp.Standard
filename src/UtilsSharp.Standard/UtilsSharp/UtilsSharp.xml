@@ -36,6 +36,31 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="T:UtilsSharp.AssemblyHelper">
+            <summary>
+            程序集帮助类
+            </summary>
+        </member>
+        <member name="M:UtilsSharp.AssemblyHelper.GetClassInterfacePairs(System.String)">
+            <summary>
+            获取类以及类实现的接口键值对
+            </summary>
+            <param name="assemblyName">程序集名称</param>
+            <returns>类以及类实现的接口键值对</returns>
+        </member>
+        <member name="M:UtilsSharp.AssemblyHelper.GetAllAssemblies">
+            <summary>
+            获取所有的程序集(排除所有的系统程序集、Nuget下载包)
+            </summary>
+            <returns>程序集集合</returns>
+        </member>
+        <member name="M:UtilsSharp.AssemblyHelper.GetAssembly(System.String)">
+            <summary>
+            获取指定的程序集
+            </summary>
+            <param name="assemblyName">程序集名称</param>
+            <returns>程序集</returns>
+        </member>
         <member name="T:UtilsSharp.CacheHelper">
             <summary>
             机器缓存
@@ -674,6 +699,43 @@
             表示实现者是一个工作单元依赖
             </summary>
         </member>
+        <member name="T:UtilsSharp.DictionaryHelper">
+            <summary>
+            字典帮助类
+            </summary>
+        </member>
+        <member name="M:UtilsSharp.DictionaryHelper.ObjToDictionary(System.Object)">
+            <summary>
+            转换对象为字典
+            </summary>
+            <param name="obj">要转换的对象</param>
+            <returns>返回字典</returns>
+        </member>
+        <member name="M:UtilsSharp.DictionaryHelper.ObjToDictionary(System.Object,System.String[],System.String[])">
+            <summary>
+            转换对象为字典
+            </summary>
+            <param name="obj">要转换的对象</param>
+            <param name="members">需要转换的成员</param>
+            <param name="ignoreMembers">忽略转换的成员</param>
+            <returns>返回字典</returns>
+        </member>
+        <member name="M:UtilsSharp.DictionaryHelper.DictionaryToObj``1(System.Collections.Generic.Dictionary{System.String,System.Object})">
+            <summary>
+            转换字典为对象
+            </summary>
+            <param name="dictionary">要转换的字典</param>
+            <returns>返回对象</returns>
+        </member>
+        <member name="M:UtilsSharp.DictionaryHelper.DictionaryToObj``1(System.Collections.Generic.Dictionary{System.String,System.Object},System.String[],System.String[])">
+            <summary>
+            转换字典为对象
+            </summary>
+            <param name="dictionary">要转换的字典</param>
+            <param name="members">需要转换的成员</param>
+            <param name="ignoreMembers">忽略转换的成员</param>
+            <returns>返回对象</returns>
+        </member>
         <member name="T:UtilsSharp.DingTalkRobot">
             <summary>
             钉钉自定义机器人
@@ -983,6 +1045,71 @@
             <summary>  
             枚举的描述  
             </summary>  
+        </member>
+        <member name="T:UtilsSharp.Entity.关系运算符">
+            <summary>
+            关系运算符
+            </summary>
+        </member>
+        <member name="F:UtilsSharp.Entity.关系运算符.大于">
+            <summary>
+            大于
+            </summary>
+        </member>
+        <member name="F:UtilsSharp.Entity.关系运算符.大于等于">
+            <summary>
+            大于等于
+            </summary>
+        </member>
+        <member name="F:UtilsSharp.Entity.关系运算符.等于">
+            <summary>
+            等于
+            </summary>
+        </member>
+        <member name="F:UtilsSharp.Entity.关系运算符.不等于">
+            <summary>
+            不等于
+            </summary>
+        </member>
+        <member name="F:UtilsSharp.Entity.关系运算符.小于等于">
+            <summary>
+            小于等于
+            </summary>
+        </member>
+        <member name="F:UtilsSharp.Entity.关系运算符.小于">
+            <summary>
+            小于
+            </summary>
+        </member>
+        <member name="T:UtilsSharp.Entity.算术运算符">
+            <summary>
+            算数运算符
+            </summary>
+        </member>
+        <member name="F:UtilsSharp.Entity.算术运算符.加">
+            <summary>
+            加
+            </summary>
+        </member>
+        <member name="F:UtilsSharp.Entity.算术运算符.减">
+            <summary>
+            减
+            </summary>
+        </member>
+        <member name="F:UtilsSharp.Entity.算术运算符.乘">
+            <summary>
+            乘
+            </summary>
+        </member>
+        <member name="F:UtilsSharp.Entity.算术运算符.除">
+            <summary>
+            除
+            </summary>
+        </member>
+        <member name="F:UtilsSharp.Entity.算术运算符.求余">
+            <summary>
+            求余
+            </summary>
         </member>
         <member name="T:UtilsSharp.EnumExtension">
             <summary>
@@ -1891,7 +2018,7 @@
         </member>
         <member name="M:UtilsSharp.Standard.BaseMsg.ToMsgException(System.String)">
             <summary>
-            5000|exception|异常错误
+            5000|exception|TryCatch异常错误
             </summary>
             <param name="errorCode">错误码</param>
             <returns></returns>
@@ -1913,6 +2040,20 @@
         <member name="M:UtilsSharp.Standard.BaseMsg.ToMsgBusinessError(System.String)">
             <summary>
             7000|businessError|默认业务性异常
+            </summary>
+            <param name="errorCode">错误码</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.Standard.BaseMsg.ToMsgParameterCannotBeEmpty(System.String)">
+            <summary>
+            7010|parameterCannotBeEmpty|参数不能为空
+            </summary>
+            <param name="errorCode">错误码</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.Standard.BaseMsg.ToMsgInvalidParameter(System.String)">
+            <summary>
+            7020|invalidParameter|非法参数
             </summary>
             <param name="errorCode">错误码</param>
             <returns></returns>
@@ -2016,7 +2157,9 @@
             <para>5000|exception|TryCatch异常错误</para>
             6000|dataNotFound|数据找不到
             <para>6010|dataNotValid|数据验证不通过</para>
-            7000|businessError|默认业务性异常
+            7000|businessError|默认业务性错误
+            <para>7010|parameterCannotBeEmpty|参数不能为空</para>
+            7020|invalidParameter|非法参数
             <para>8000|dbError|数据库异常</para>
             9000|SystemError|系统错误
              </summary>
@@ -2140,9 +2283,9 @@
             未登录[4000~4999登入授权类异常]
             </summary>
         </member>
-        <member name="P:UtilsSharp.Standard.BaseStateCode.授权到期">
+        <member name="P:UtilsSharp.Standard.BaseStateCode.授权过期">
             <summary>
-            授权到期[4000~4999登入授权类异常]
+            授权过期[4000~4999登入授权类异常]
             </summary>
         </member>
         <member name="P:UtilsSharp.Standard.BaseStateCode.TryCatch异常错误">
@@ -2160,9 +2303,19 @@
             数据验证不通过[6000~6999数据类异常]
             </summary>
         </member>
-        <member name="P:UtilsSharp.Standard.BaseStateCode.默认业务性异常">
+        <member name="P:UtilsSharp.Standard.BaseStateCode.默认业务性错误">
             <summary>
-            默认业务性异常[7000~7999其他业务类异常]
+            默认业务性错误[7000~7999其他业务及参数类异常]
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.Standard.BaseStateCode.参数不能为空">
+            <summary>
+            参数不能为空[7000~7999其他业务及参数类异常]
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.Standard.BaseStateCode.非法参数">
+            <summary>
+            非法参数[7000~7999其他业务及参数类异常]
             </summary>
         </member>
         <member name="P:UtilsSharp.Standard.BaseStateCode.数据库异常">
@@ -2357,6 +2510,11 @@
         <member name="T:UtilsSharp.StringHelper">
             <summary>
             字符串帮助类
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.StringHelper.Encoding">
+            <summary>
+            EncodingProvider
             </summary>
         </member>
         <member name="M:UtilsSharp.StringHelper.TransferenceRegex(System.String)">
@@ -2620,94 +2778,138 @@
             网络工具类
             </summary>
         </member>
-        <member name="P:UtilsSharp.WebHelper.ContentType">
+        <member name="M:UtilsSharp.WebHelper.DoGet(System.String,System.Object)">
             <summary>
-            浏览器ContentType
+            Get请求
             </summary>
-        </member>
-        <member name="P:UtilsSharp.WebHelper.Accept">
-            <summary>
-            浏览器Accept
-            </summary>
-        </member>
-        <member name="P:UtilsSharp.WebHelper.UserAgent">
-            <summary>
-            浏览器UserAgent
-            </summary>
-        </member>
-        <member name="P:UtilsSharp.WebHelper.Timeout">
-            <summary>
-            请求与响应的超时时间默认100秒(单位毫秒)
-            </summary>
-        </member>
-        <member name="P:UtilsSharp.WebHelper.Header">
-            <summary>
-            Header
-            </summary>
-        </member>
-        <member name="M:UtilsSharp.WebHelper.DoPost``1(System.String,System.Object,System.Text.Encoding,System.String)">
-            <summary>
-            执行HTTP POST请求
-            </summary>
-            <typeparam name="T">返回类型</typeparam>
-            <param name="url">请求地址</param>
-            <param name="parameters">参数</param>
-            <param name="rspEncoding">响应编码</param>
-            <param name="dateTimeFormat">参数时间格式</param>
+            <param name="address">请求地址</param>
+            <param name="parameters">请求参数</param>
             <returns></returns>
         </member>
-        <member name="M:UtilsSharp.WebHelper.DoPost(System.String,System.Collections.Generic.IDictionary{System.String,System.String})">
+        <member name="M:UtilsSharp.WebHelper.DoGet``1(System.String,System.Object)">
             <summary>
-            执行HTTP POST请求
+            Get请求
             </summary>
-            <param name="url">请求地址</param>
-            <param name="parameters">参数</param>
+            <param name="address">请求地址</param>
+            <param name="parameters">请求参数</param>
             <returns></returns>
         </member>
-        <member name="M:UtilsSharp.WebHelper.DoPost(System.String,System.Collections.Generic.IDictionary{System.String,System.String},System.Net.CookieContainer,System.Net.WebProxy,System.Text.Encoding)">
+        <member name="M:UtilsSharp.WebHelper.DoGet(System.String)">
             <summary>
-            执行HTTP POST请求
+            Get请求
             </summary>
-            <param name="url">请求地址</param>
-            <param name="parameters">参数</param>
-            <param name="cookieContainer">CookieContainer</param>
-            <param name="proxy">代理请求信息</param>
-            <param name="rspEncoding">响应编码</param>
-        </member>
-        <member name="M:UtilsSharp.WebHelper.DoGet(System.String,System.Collections.Generic.IDictionary{System.String,System.String})">
-            <summary>
-            执行HTTP GET请求
-            </summary>
-            <param name="url">请求地址</param>
-            <param name="parameters">参数</param>
+            <param name="address">请求地址</param>
             <returns></returns>
         </member>
-        <member name="M:UtilsSharp.WebHelper.DoGet(System.String,System.Collections.Generic.IDictionary{System.String,System.String},System.Net.CookieContainer,System.Net.WebProxy,System.Text.Encoding)">
+        <member name="M:UtilsSharp.WebHelper.DoGet``1(System.String)">
             <summary>
-            执行HTTP GET请求
+            Get请求
             </summary>
-            <param name="url">地址</param>
-            <param name="parameters">参数</param>
-            <param name="cookieContainer">CookieContainer</param>
-            <param name="proxy">代理请求信息</param>
-            <param name="rspEncoding">响应编码</param>
-        </member>
-        <member name="M:UtilsSharp.WebHelper.GetWebRequest(System.String,System.String)">
-            <summary>
-            获取WebRequest
-            </summary>
-            <param name="url">url</param>
-            <param name="method">HttpMethod</param>
+            <param name="address">请求地址</param>
             <returns></returns>
         </member>
-        <member name="M:UtilsSharp.WebHelper.CheckValidationResult(System.Object,System.Security.Cryptography.X509Certificates.X509Certificate,System.Security.Cryptography.X509Certificates.X509Chain,System.Net.Security.SslPolicyErrors)">
+        <member name="M:UtilsSharp.WebHelper.DoGet(System.String,System.Collections.Generic.Dictionary{System.String,System.String})">
             <summary>
-            CheckValidationResult
+            Get请求
             </summary>
-            <param name="sender">sender</param>
-            <param name="certificate">certificate</param>
-            <param name="chain">chain</param>
-            <param name="errors">errors</param>
+            <param name="address">请求地址</param>
+            <param name="parameters">请求参数</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.WebHelper.DoGet``1(System.String,System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            Get请求
+            </summary>
+            <param name="address">请求地址</param>
+            <param name="parameters">请求参数</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.WebHelper.GetRequest``1(System.String,System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            Get请求
+            </summary>
+            <param name="address">请求地址</param>
+            <param name="parameters">请求参数</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.WebHelper.DoPost(System.String)">
+            <summary>
+            Post请求
+            </summary>
+            <param name="address">请求地址</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.WebHelper.DoPost``1(System.String)">
+            <summary>
+            Post请求
+            </summary>
+            <param name="address">请求地址</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.WebHelper.DoPost(System.String,System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            Post请求
+            </summary>
+            <param name="address">请求地址</param>
+            <param name="parameters">请求参数</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.WebHelper.DoPost``1(System.String,System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            Post请求
+            </summary>
+            <param name="address">请求地址</param>
+            <param name="parameters">请求参数</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.WebHelper.PostRequest``1(System.String,System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            Post请求
+            </summary>
+            <param name="address">请求地址</param>
+            <param name="parameters">请求参数</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.WebHelper.DoPost(System.String,System.Object,System.String)">
+            <summary>
+            Post请求
+            </summary>
+            <param name="address">请求地址</param>
+            <param name="parameters">请求参数</param>
+            <param name="dateTimeFormat">返回的时间格式</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.WebHelper.DoPost``1(System.String,System.Object,System.String)">
+            <summary>
+            Post请求
+            </summary>
+            <param name="address">请求地址</param>
+            <param name="parameters">请求参数</param>
+            <param name="dateTimeFormat">返回的时间格式</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.WebHelper.PostRequest``1(System.String,System.Object,System.String)">
+            <summary>
+            Post请求
+            </summary>
+            <param name="address">请求地址</param>
+            <param name="parameters">请求参数</param>
+            <param name="dateTimeFormat">返回的时间格式</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.WebHelper.ObjToDictionary(System.Object)">
+            <summary>
+            对象转字典
+            </summary>
+            <param name="obj">参数</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.WebHelper.BuildUrlParameter(System.String,System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            调整url和参数
+            </summary>
+            <param name="address">url地址</param>
+            <param name="parameters">参数</param>
             <returns></returns>
         </member>
         <member name="M:UtilsSharp.WebHelper.BuildQuery(System.Collections.Generic.IDictionary{System.String,System.String})">

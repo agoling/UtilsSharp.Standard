@@ -50,7 +50,7 @@ namespace UtilsSharp.Standard
         }
 
         /// <summary>
-        /// 5000|exception|异常错误
+        /// 5000|exception|TryCatch异常错误
         /// </summary>
         /// <param name="errorCode">错误码</param>
         /// <returns></returns>
@@ -87,6 +87,26 @@ namespace UtilsSharp.Standard
         public static string ToMsgBusinessError(this string errorCode)
         {
             return $"业务异常，请稍后再试！错误码：{errorCode}";
+        }
+
+        /// <summary>
+        /// 7010|parameterCannotBeEmpty|参数不能为空
+        /// </summary>
+        /// <param name="errorCode">错误码</param>
+        /// <returns></returns>
+        public static string ToMsgParameterCannotBeEmpty(this string errorCode)
+        {
+            return $"参数不能为空！错误码：{errorCode}";
+        }
+
+        /// <summary>
+        /// 7020|invalidParameter|非法参数
+        /// </summary>
+        /// <param name="errorCode">错误码</param>
+        /// <returns></returns>
+        public static string ToMsgInvalidParameter(this string errorCode)
+        {
+            return $"非法参数！错误码：{errorCode}";
         }
 
         /// <summary>

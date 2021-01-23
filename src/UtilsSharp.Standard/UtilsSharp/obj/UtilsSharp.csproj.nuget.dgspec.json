@@ -5,7 +5,7 @@
   },
   "projects": {
     "D:\\GitHub\\Project\\UtilsSharp.Standard\\src\\UtilsSharp.Standard\\UtilsSharp\\UtilsSharp.csproj": {
-      "version": "2.2.9",
+      "version": "2.3.4",
       "restore": {
         "projectUniqueName": "D:\\GitHub\\Project\\UtilsSharp.Standard\\src\\UtilsSharp.Standard\\UtilsSharp\\UtilsSharp.csproj",
         "projectName": "UtilsSharp",
@@ -75,6 +75,14 @@
             "System.Drawing.Common": {
               "target": "Package",
               "version": "[4.7.0, )"
+            },
+            "System.Runtime.Loader": {
+              "target": "Package",
+              "version": "[4.3.0, )"
+            },
+            "System.Text.Encoding.CodePages": {
+              "target": "Package",
+              "version": "[5.0.0, )"
             }
           },
           "imports": [

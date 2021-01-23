@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using OptionConfig;
 
 namespace ElasticSearch
 {
@@ -10,9 +11,9 @@ namespace ElasticSearch
     internal class EsCreateIndexSettings
     {
         /// <summary>
-        /// 当前使用索引
+        /// ElasticSearch设置
         /// </summary>
-        public string Index { set; get; }
+        public ElasticSearchSetting Setting { set; get; }
         /// <summary>
         /// 索引别名
         /// </summary>

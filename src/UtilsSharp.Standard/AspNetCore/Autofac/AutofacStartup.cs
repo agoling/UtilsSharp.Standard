@@ -7,6 +7,7 @@ using Autofac;
 using Autofac.Extras.DynamicProxy;
 using Castle.DynamicProxy;
 using Microsoft.AspNetCore.Http;
+using UtilsSharp;
 using UtilsSharp.Dependency;
 
 namespace AspNetCore.Autofac

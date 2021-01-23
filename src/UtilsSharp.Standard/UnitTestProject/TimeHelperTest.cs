@@ -16,6 +16,10 @@ namespace UnitTestProjectNetCore
         {
             var aa = TimeHelper.TimeStampToDateTime("1592537851689",TimeStampType.毫秒);
 
+            var cc = DateTime.Now.AddDays(1);
+            var expire = TimeHelper.GetTimeSpan(DateTime.Now,cc);
+            var m = expire.TotalSeconds;
+
             var bb = TimeHelper.DateTimeToTimeStamp(DateTime.Now,TimeStampType.毫秒);
 
         }

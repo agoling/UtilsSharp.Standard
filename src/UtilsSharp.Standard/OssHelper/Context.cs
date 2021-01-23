@@ -17,9 +17,9 @@ namespace OssHelper
     public class Context
     {
         /// <summary>
-        /// 配置文件
+        /// 设置文件
         /// </summary>
-        public OssConfig Config;
+        public OssSetting Setting;
 
         /// <summary>
         /// 单例
@@ -46,10 +46,10 @@ namespace OssHelper
         /// <summary>
         /// 构造函数
         /// </summary>
-        /// <param name="ossConfig">配置文件</param>
-        public Context(OssConfig ossConfig)
+        /// <param name="ossSetting">设置文件</param>
+        public Context(OssSetting ossSetting)
         {
-            Config = ossConfig;
+            Setting = ossSetting;
             Init();
         }
 
@@ -58,13 +58,13 @@ namespace OssHelper
         /// </summary>
         private void Init()
         {
-            if (Config==null)
+            if (Setting == null)
             {
-                Config = OssHelperConfig.OssConfig;
+                Setting = OssConfig.OssSetting;
             }
-            if (Config==null)
+            if (Setting == null)
             {
-                throw new  Exception("请先配置OssConfig!");
+                throw new  Exception("请先配置OssSetting!");
             }
         }
 
@@ -75,15 +75,15 @@ namespace OssHelper
         /// <param name="reqOssEndpoint">ossEndpoint(默认访问内网)</param>
         public List<string> GetObjects(string prefix, string reqOssEndpoint = "")
         {
-            if (Config == null)
+            if (Setting == null)
             {
-                throw new Exception("请先配置OssConfig");
+                throw new Exception("请先配置OssSetting");
             }
             if (string.IsNullOrEmpty(reqOssEndpoint))
             {
-                reqOssEndpoint = Config.OssEndpointIn;//默认内网
+                reqOssEndpoint = Setting.OssEndpointIn;//默认内网
             }
-            var client = new OssClient(reqOssEndpoint, Config.OssAccessKeyId, Config.OssAccessKeySecret);
+            var client = new OssClient(reqOssEndpoint, Setting.OssAccessKeyId, Setting.OssAccessKeySecret);
             var keys = new List<string>();
             try
             {
@@ -91,7 +91,7 @@ namespace OssHelper
                 var nextMarker = string.Empty;
                 do
                 {
-                    var listObjectsRequest = new ListObjectsRequest(Config.OssBucketName)
+                    var listObjectsRequest = new ListObjectsRequest(Setting.OssBucketName)
                     {
                         Marker = nextMarker,
                         MaxKeys = 100,
@@ -132,18 +132,18 @@ namespace OssHelper
         /// <returns></returns>
         public bool SaveFile(string ossFilePath, Stream content, string reqOssEndpoint = "")
         {
-            if (Config == null)
+            if (Setting == null)
             {
-                throw new Exception("请先配置OssConfig");
+                throw new Exception("请先配置OssSetting");
             }
             if (string.IsNullOrEmpty(reqOssEndpoint))
             {
-                reqOssEndpoint = Config.OssEndpointIn;//默认内网
+                reqOssEndpoint = Setting.OssEndpointIn;//默认内网
             }
-            var client = new OssClient(reqOssEndpoint, Config.OssAccessKeyId, Config.OssAccessKeySecret);
+            var client = new OssClient(reqOssEndpoint, Setting.OssAccessKeyId, Setting.OssAccessKeySecret);
             try
             {
-                client.PutObject(Config.OssBucketName, ossFilePath, content);
+                client.PutObject(Setting.OssBucketName, ossFilePath, content);
                 return true;
             }
             catch (Exception)
@@ -161,21 +161,21 @@ namespace OssHelper
         /// <returns></returns>
         public bool SaveFileByUrl(string ossFilePath, string url, string reqOssEndpoint = "")
         {
-            if (Config == null)
+            if (Setting == null)
             {
-                throw new Exception("请先配置OssConfig");
+                throw new Exception("请先配置OssSetting");
             }
             if (string.IsNullOrEmpty(reqOssEndpoint))
             {
-                reqOssEndpoint = Config.OssEndpointIn;//默认内网
+                reqOssEndpoint = Setting.OssEndpointIn;//默认内网
             }
-            var client = new OssClient(reqOssEndpoint, Config.OssAccessKeyId, Config.OssAccessKeySecret);
+            var client = new OssClient(reqOssEndpoint, Setting.OssAccessKeyId, Setting.OssAccessKeySecret);
             try
             {
                 var wc = new WebClient();
                 var bytes = wc.DownloadData(url);
                 Stream stream = new MemoryStream(bytes);
-                var r = client.PutObject(Config.OssBucketName, ossFilePath, stream);
+                var r = client.PutObject(Setting.OssBucketName, ossFilePath, stream);
                 return true;
             }
             catch (Exception)
@@ -195,21 +195,21 @@ namespace OssHelper
         /// <returns></returns>
         public bool SaveFileByUrl(string ossFilePath, string url, out byte[] bytes, string reqOssEndpoint = "")
         {
-            if (Config == null)
+            if (Setting == null)
             {
-                throw new Exception("请先配置OssConfig");
+                throw new Exception("请先配置OssSetting");
             }
             if (string.IsNullOrEmpty(reqOssEndpoint))
             {
-                reqOssEndpoint = Config.OssEndpointIn;//默认内网
+                reqOssEndpoint = Setting.OssEndpointIn;//默认内网
             }
-            var client = new OssClient(reqOssEndpoint, Config.OssAccessKeyId, Config.OssAccessKeySecret);
+            var client = new OssClient(reqOssEndpoint, Setting.OssAccessKeyId, Setting.OssAccessKeySecret);
             try
             {
                 var wc = new WebClient();
                 bytes = wc.DownloadData(url);
                 Stream stream = new MemoryStream(bytes);
-                var r = client.PutObject(Config.OssBucketName, ossFilePath, stream);
+                var r = client.PutObject(Setting.OssBucketName, ossFilePath, stream);
                 return true;
             }
             catch (Exception)
@@ -239,15 +239,15 @@ namespace OssHelper
         /// <returns></returns>
         public byte[] GetObject(string ossFilePath, string reqOssEndpoint = "")
         {
-            if (Config == null)
+            if (Setting == null)
             {
-                throw new Exception("请先配置OssConfig");
+                throw new Exception("请先配置OssSetting");
             }
             if (string.IsNullOrEmpty(reqOssEndpoint))
             {
-                reqOssEndpoint = Config.OssEndpointIn;//默认内网
+                reqOssEndpoint = Setting.OssEndpointIn;//默认内网
             }
-            var client = new OssClient(reqOssEndpoint, Config.OssAccessKeyId, Config.OssAccessKeySecret);
+            var client = new OssClient(reqOssEndpoint, Setting.OssAccessKeyId, Setting.OssAccessKeySecret);
             try
             {
                 OssObject file;
@@ -256,11 +256,11 @@ namespace OssHelper
                     var array = ossFilePath.Split('?');
                     ossFilePath = array[0];
                     var process = array[1].ToLower().Replace("x-oss-process=", "");
-                    file = client.GetObject(new GetObjectRequest(Config.OssBucketName, ossFilePath, process));
+                    file = client.GetObject(new GetObjectRequest(Setting.OssBucketName, ossFilePath, process));
                 }
                 else
                 {
-                    file = client.GetObject(Config.OssBucketName, ossFilePath);
+                    file = client.GetObject(Setting.OssBucketName, ossFilePath);
                 }
                 var ms = new MemoryStream();
                 using (var requestStream = file.Content)
@@ -291,18 +291,18 @@ namespace OssHelper
         /// <returns></returns>
         public string DeleteObject(string ossFilePath, string reqOssEndpoint = "")
         {
-            if (Config == null)
+            if (Setting == null)
             {
-                throw new Exception("请先配置OssConfig");
+                throw new Exception("请先配置OssSetting");
             }
             if (string.IsNullOrEmpty(reqOssEndpoint))
             {
-                reqOssEndpoint = Config.OssEndpointIn;//默认内网
+                reqOssEndpoint = Setting.OssEndpointIn;//默认内网
             }
-            var client = new OssClient(reqOssEndpoint, Config.OssAccessKeyId, Config.OssAccessKeySecret);
+            var client = new OssClient(reqOssEndpoint, Setting.OssAccessKeyId, Setting.OssAccessKeySecret);
             try
             {
-                client.DeleteObject(Config.OssBucketName, ossFilePath);
+                client.DeleteObject(Setting.OssBucketName, ossFilePath);
                 return "删除成功";
             }
             catch (Exception ex)
@@ -324,28 +324,28 @@ namespace OssHelper
         /// <returns></returns>
         public Dictionary<string, string> GetSign(string ossCallbackUrl, string ossCallbackHost, out string tips, string reqOssEndpoint = "", string ossDir = "tools/webUpload/", long expireTime = 30)
         {
-            if (Config == null)
+            if (Setting == null)
             {
-                throw new Exception("请先配置OssConfig");
+                throw new Exception("请先配置OssSetting");
             }
             if (string.IsNullOrEmpty(reqOssEndpoint))
             {
-                reqOssEndpoint = Config.OssEndpointIn;//默认内网
+                reqOssEndpoint = Setting.OssEndpointIn;//默认内网
             }
             string host;
-            if (string.IsNullOrEmpty(Config.OssHost))
+            if (string.IsNullOrEmpty(Setting.OssHost))
             {
-                host = Config.OssProtocol + Config.OssBucketName + "." + reqOssEndpoint;
+                host = Setting.OssProtocol + Setting.OssBucketName + "." + reqOssEndpoint;
             }
-            else if (Config.OssHost.Contains("http://") || Config.OssHost.Contains("https://"))
+            else if (Setting.OssHost.Contains("http://") || Setting.OssHost.Contains("https://"))
             {
-                host = Config.OssHost;
+                host = Setting.OssHost;
             }
             else
             {
-                host = Config.OssProtocol + Config.OssHost;
+                host = Setting.OssProtocol + Setting.OssHost;
             }
-            var client = new OssClient(reqOssEndpoint, Config.OssAccessKeyId, Config.OssAccessKeySecret);
+            var client = new OssClient(reqOssEndpoint, Setting.OssAccessKeyId, Setting.OssAccessKeySecret);
             try
             {
                 var expiration = DateTime.Now.AddMilliseconds(expireTime * 1000);
@@ -355,7 +355,7 @@ namespace OssHelper
                 var postPolicy = client.GeneratePostPolicy(expiration, policyConds);
                 var binaryData = Encoding.UTF8.GetBytes(postPolicy);
                 var encodedPolicy = Convert.ToBase64String(binaryData);
-                var hmac = new HMACSHA1(Encoding.UTF8.GetBytes(Config.OssAccessKeySecret));
+                var hmac = new HMACSHA1(Encoding.UTF8.GetBytes(Setting.OssAccessKeySecret));
                 var hashBytes = hmac.ComputeHash(Encoding.UTF8.GetBytes(encodedPolicy));
                 var postSignature = Convert.ToBase64String(hashBytes);
                 var ts = expiration.ToUniversalTime() - new DateTime(1970, 1, 1, 0, 0, 0, 0);
@@ -363,7 +363,7 @@ namespace OssHelper
 
                 var signDic = new Dictionary<string, string>
                 {
-                    {"accessid", Config.OssAccessKeyId},
+                    {"accessid", Setting.OssAccessKeyId},
                     {"host", host},
                     {"policy", encodedPolicy},
                     {"signature", postSignature},

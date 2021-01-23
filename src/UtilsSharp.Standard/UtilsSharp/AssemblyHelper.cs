@@ -6,7 +6,7 @@ using System.Runtime.Loader;
 using System.Text;
 using Microsoft.Extensions.DependencyModel;
 
-namespace AspNetCore
+namespace UtilsSharp
 {
     /// <summary>
     /// 程序集帮助类
@@ -33,7 +33,7 @@ namespace AspNetCore
         }
 
         /// <summary>
-        /// 获取所有的程序集
+        /// 获取所有的程序集(排除所有的系统程序集、Nuget下载包)
         /// </summary>
         /// <returns>程序集集合</returns>
         public static List<Assembly> GetAllAssemblies()
@@ -66,6 +66,5 @@ namespace AspNetCore
         {
             return GetAllAssemblies().FirstOrDefault(assembly => assembly.FullName.Contains(assemblyName));
         }
-
     }
 }

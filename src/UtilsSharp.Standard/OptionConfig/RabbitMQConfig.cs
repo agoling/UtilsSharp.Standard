@@ -5,18 +5,18 @@ namespace OptionConfig
     /// <summary>
     /// RabbitMqHelper配置
     /// </summary>
-    public static class RabbitMqHelperConfig
+    public static class RabbitMqConfig
     {
         /// <summary>
-        /// RabbitMQ配置
+        /// RabbitMQ设置
         /// </summary>
-        public static RabbitMqConfig RabbitMqConfig { set; get; }
+        public static RabbitMqSetting RabbitMqSetting { set; get; }
     }
 
     /// <summary>
-    /// RabbitMQ配置
+    /// RabbitMQ设置
     /// </summary>
-    public class RabbitMqConfig
+    public class RabbitMqSetting
     {
         /// <summary>
         /// RabbitMQConnection

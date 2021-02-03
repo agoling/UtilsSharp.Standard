@@ -42,7 +42,7 @@ namespace ElasticSearch7
         /// 初始化
         /// </summary>
         /// <param name="setting">Es配置信息</param>
-        public static ElasticClient Init(ElasticSearchSetting setting)
+        private static ElasticClient Init(ElasticSearchSetting setting)
         {
             try
             {

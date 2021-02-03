@@ -32,41 +32,59 @@ namespace ElasticSearch
         public virtual int NumberOfShards => 5;
 
         /// <summary>
-        /// 获取当前索引
+        /// 当前索引
         /// </summary>
         public string CurrentIndex => GetIndex(DateTime.Now);
 
         /// <summary>
-        /// 当前Es客户端
+        /// Es客户端
         /// </summary>
-        public ElasticClient EsClient
-        {
-            get
-            {
-                if (Setting == null)
-                {
-                    if (ElasticSearchConfig.ElasticSearchSetting == null || ElasticSearchConfig.ElasticSearchSetting.EsHttpAddress == null)
-                    {
-                        throw new Exception("esHttpAddress cannot be empty");
-                    }
+        public ElasticClient EsClient => EsClientByIndex();
 
-                    Setting = new ElasticSearchSetting()
-                    {
-                        EsHttpAddress = ElasticSearchConfig.ElasticSearchSetting.EsHttpAddress,
-                        UserName = ElasticSearchConfig.ElasticSearchSetting.UserName,
-                        Password = ElasticSearchConfig.ElasticSearchSetting.Password,
-                        EsDefaultIndex = ElasticSearchConfig.ElasticSearchSetting.EsDefaultIndex,
-                        EsNetworkProxy = ElasticSearchConfig.ElasticSearchSetting.EsNetworkProxy,
-                        EsConnectionLimit = ElasticSearchConfig.ElasticSearchSetting.EsConnectionLimit
-                    };
-                }
-                if (!string.IsNullOrEmpty(CurrentIndex))
+        /// <summary>
+        /// Es客户端
+        /// </summary>
+        /// <param name="index">索引名称</param>
+        public ElasticClient EsClientByIndex(string index = "")
+        {
+            if (Setting == null)
+            {
+                if (ElasticSearchConfig.ElasticSearchSetting == null || ElasticSearchConfig.ElasticSearchSetting.EsHttpAddress == null)
                 {
-                    Setting.EsDefaultIndex = CurrentIndex;
+                    throw new Exception("esHttpAddress cannot be empty");
                 }
+
+                Setting = new ElasticSearchSetting()
+                {
+                    EsHttpAddress = ElasticSearchConfig.ElasticSearchSetting.EsHttpAddress,
+                    UserName = ElasticSearchConfig.ElasticSearchSetting.UserName,
+                    Password = ElasticSearchConfig.ElasticSearchSetting.Password,
+                    EsDefaultIndex = ElasticSearchConfig.ElasticSearchSetting.EsDefaultIndex,
+                    EsNetworkProxy = ElasticSearchConfig.ElasticSearchSetting.EsNetworkProxy,
+                    EsConnectionLimit = ElasticSearchConfig.ElasticSearchSetting.EsConnectionLimit
+                };
+            }
+            if (!string.IsNullOrWhiteSpace(index) && index != CurrentIndex)
+            {
+                Setting.EsDefaultIndex = index;
+                var currClient = EsClientProvider.GetClient(Setting);
+                var exists = currClient.IndexExists(index).Exists;
+                if (exists) return currClient;
+                throw new Exception($"Index:{index} does not exist");
+            }
+            else
+            {
+                Setting.EsDefaultIndex = CurrentIndex;
                 var currClient = EsClientProvider.GetClient(Setting);
                 var exists = currClient.IndexExists(CurrentIndex).Exists;
-                if (!exists) { IndexCreateAndMapping(Setting); }
+                if (exists) return currClient;
+                var esMappingSettings = new EsCreateIndexSettings()
+                {
+                    Setting = Setting,
+                    NumberOfShards = NumberOfShards,
+                    AliasIndex = AliasIndex
+                };
+                EsClientProvider.CreateIndex(esMappingSettings, EntityMapping);
                 return currClient;
             }
         }
@@ -74,7 +92,7 @@ namespace ElasticSearch
         /// <summary>
         /// 获取指定时间索引
         /// </summary>
-        /// <param name="dateTime"></param>
+        /// <param name="dateTime">时间</param>
         /// <returns></returns>
         public string GetIndex(DateTime dateTime)
         {
@@ -103,21 +121,6 @@ namespace ElasticSearch
                 default:
                     return ElasticSearchConfig.ElasticSearchSetting?.EsDefaultIndex;
             }
-        }
-
-        /// <summary>
-        /// 创建指定时间索引
-        /// </summary>
-        /// <param name="setting">ElasticSearch设置</param>
-        private void IndexCreateAndMapping(ElasticSearchSetting setting)
-        {
-            var esMappingSettings = new EsCreateIndexSettings()
-            {
-                Setting = setting,
-                NumberOfShards = NumberOfShards,
-                AliasIndex = AliasIndex
-            };
-            EsClientProvider.CreateIndex(esMappingSettings, EntityMapping);
         }
 
         /// <summary>

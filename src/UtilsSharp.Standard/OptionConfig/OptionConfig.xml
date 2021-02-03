@@ -9,22 +9,42 @@
             ElasticSearch配置
             </summary>
         </member>
-        <member name="P:OptionConfig.ElasticSearchConfig.EsHttpAddress">
+        <member name="P:OptionConfig.ElasticSearchConfig.ElasticSearchSetting">
+            <summary>
+            ElasticSearch设置
+            </summary>
+        </member>
+        <member name="T:OptionConfig.ElasticSearchSetting">
+            <summary>
+            ElasticSearch设置
+            </summary>
+        </member>
+        <member name="P:OptionConfig.ElasticSearchSetting.EsHttpAddress">
             <summary>
             连接字符串
             </summary>
         </member>
-        <member name="P:OptionConfig.ElasticSearchConfig.EsDefaultIndex">
+        <member name="P:OptionConfig.ElasticSearchSetting.UserName">
+            <summary>
+            用户名
+            </summary>
+        </member>
+        <member name="P:OptionConfig.ElasticSearchSetting.Password">
+            <summary>
+            密码
+            </summary>
+        </member>
+        <member name="P:OptionConfig.ElasticSearchSetting.EsDefaultIndex">
             <summary>
             默认索引
             </summary>
         </member>
-        <member name="P:OptionConfig.ElasticSearchConfig.EsNetworkProxy">
+        <member name="P:OptionConfig.ElasticSearchSetting.EsNetworkProxy">
             <summary>
             网络代理
             </summary>
         </member>
-        <member name="P:OptionConfig.ElasticSearchConfig.EsConnectionLimit">
+        <member name="P:OptionConfig.ElasticSearchSetting.EsConnectionLimit">
             <summary>
             连接数限制
             </summary>
@@ -49,47 +69,47 @@
             连接字符串
             </summary>
         </member>
-        <member name="T:OptionConfig.OssHelperConfig">
-            <summary>
-            OssHelper存储配置文件
-            </summary>
-        </member>
-        <member name="P:OptionConfig.OssHelperConfig.OssConfig">
-            <summary>
-            Oss存储配置文件
-            </summary>
-        </member>
         <member name="T:OptionConfig.OssConfig">
             <summary>
-            Oss存储配置文件
+            OssHelper存储配置
             </summary>
         </member>
-        <member name="P:OptionConfig.OssConfig.OssEndpoint">
+        <member name="P:OptionConfig.OssConfig.OssSetting">
+            <summary>
+            Oss存储设置
+            </summary>
+        </member>
+        <member name="T:OptionConfig.OssSetting">
+            <summary>
+            Oss存储设置
+            </summary>
+        </member>
+        <member name="P:OptionConfig.OssSetting.OssEndpoint">
             <summary>
             OssEndpoint 外网
             </summary>
         </member>
-        <member name="P:OptionConfig.OssConfig.OssEndpointIn">
+        <member name="P:OptionConfig.OssSetting.OssEndpointIn">
             <summary>
             OssEndpoint 内网
             </summary>
         </member>
-        <member name="P:OptionConfig.OssConfig.OssAccessKeyId">
+        <member name="P:OptionConfig.OssSetting.OssAccessKeyId">
             <summary>
             OssAccessKeyId
             </summary>
         </member>
-        <member name="P:OptionConfig.OssConfig.OssAccessKeySecret">
+        <member name="P:OptionConfig.OssSetting.OssAccessKeySecret">
             <summary>
             OssAccessKeySecret
             </summary>
         </member>
-        <member name="P:OptionConfig.OssConfig.OssBucketName">
+        <member name="P:OptionConfig.OssSetting.OssBucketName">
             <summary>
             OssBucketName
             </summary>
         </member>
-        <member name="P:OptionConfig.OssConfig.OssProtocol">
+        <member name="P:OptionConfig.OssSetting.OssProtocol">
             <summary>
             Oss协议
             http://
@@ -97,67 +117,67 @@
             https://
             </summary>
         </member>
-        <member name="P:OptionConfig.OssConfig.OssHost">
+        <member name="P:OptionConfig.OssSetting.OssHost">
             <summary>
             OssHost
             </summary>
         </member>
-        <member name="P:OptionConfig.OssConfig.OssCallbackUrl">
+        <member name="P:OptionConfig.OssSetting.OssCallbackUrl">
             <summary>
             Oss回调地址
             </summary>
         </member>
-        <member name="P:OptionConfig.OssConfig.OssCallbackHost">
+        <member name="P:OptionConfig.OssSetting.OssCallbackHost">
             <summary>
             Oss回调Host
             </summary>
         </member>
-        <member name="P:OptionConfig.OssConfig.OssCallbackExpireTime">
+        <member name="P:OptionConfig.OssSetting.OssCallbackExpireTime">
             <summary>
             Oss回调过期时间
             </summary>
         </member>
-        <member name="P:OptionConfig.OssConfig.OssRootDir">
+        <member name="P:OptionConfig.OssSetting.OssRootDir">
             <summary>
             Oss文件根目录
             </summary>
         </member>
-        <member name="P:OptionConfig.OssConfig.OssRootTemporaryDir">
+        <member name="P:OptionConfig.OssSetting.OssRootTemporaryDir">
             <summary>
             Oss临时文件根目录（oss可配置文件到期自动删除）
             </summary>
         </member>
-        <member name="T:OptionConfig.RabbitMqHelperConfig">
+        <member name="T:OptionConfig.RabbitMqConfig">
             <summary>
             RabbitMqHelper配置
             </summary>
         </member>
-        <member name="P:OptionConfig.RabbitMqHelperConfig.RabbitMqConfig">
+        <member name="P:OptionConfig.RabbitMqConfig.RabbitMqSetting">
             <summary>
-            RabbitMQ配置
+            RabbitMQ设置
             </summary>
         </member>
-        <member name="T:OptionConfig.RabbitMqConfig">
+        <member name="T:OptionConfig.RabbitMqSetting">
             <summary>
-            RabbitMQ配置
+            RabbitMQ设置
             </summary>
         </member>
-        <member name="P:OptionConfig.RabbitMqConfig.RabbitMqConnection">
+        <member name="P:OptionConfig.RabbitMqSetting.RabbitMqConnection">
             <summary>
             RabbitMQConnection
             </summary>
         </member>
-        <member name="P:OptionConfig.RabbitMqConfig.RequestedConnectionTimeout">
+        <member name="P:OptionConfig.RabbitMqSetting.RequestedConnectionTimeout">
             <summary>
             请求连接超时设置
             </summary>
         </member>
-        <member name="P:OptionConfig.RabbitMqConfig.RequestedHeartbeat">
+        <member name="P:OptionConfig.RabbitMqSetting.RequestedHeartbeat">
              <summary>
             请求心跳设置
              </summary>
         </member>
-        <member name="P:OptionConfig.RabbitMqConfig.AutomaticRecoveryEnabled">
+        <member name="P:OptionConfig.RabbitMqSetting.AutomaticRecoveryEnabled">
             <summary>
             是否自动恢复
             </summary>

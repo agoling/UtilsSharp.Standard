@@ -18,6 +18,7 @@
     <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="7.1.0" />
     <PackageReference Include="Autofac.Extras.DynamicProxy" Version="6.0.0" />
     <PackageReference Include="UtilsSharp" Version="2.3.4" />
+    <PackageReference Include="UtilsSharp.LoggerHelper" Version="1.0.1" />
   </ItemGroup>
 
   <ItemGroup>

@@ -8,21 +8,21 @@ namespace LoggerHelper
     /// <summary>
     /// 日志管理系统
     /// </summary>
-    public class Logger
+    public class LogHelper
     {
         /// <summary>
         /// 追踪
         /// </summary>
         /// <param name="message">日志信息</param>
         /// <param name="logId">日志Id</param>
-        /// <param name="param">入参</param>
+        /// <param name="parameters">入参</param>
         /// <param name="userId">用户Id</param>
         /// <param name="func">功能名称</param>
         /// <param name="requestUrl">请求地址</param>
         /// <returns></returns>
-        public static string Trace(string message, string logId = "", string param = "", string userId = "", string func = "", string requestUrl = "")
+        public static string Trace(string message, string logId = "", string parameters = "", string userId = "", string func = "", string requestUrl = "")
         {
-            return WriteLog(LogLevel.Trace, message, null, logId, requestUrl, param, userId, func);
+            return WriteLog(LogLevel.Trace, message, null, logId, requestUrl, parameters, userId, func);
         }
 
         /// <summary>
@@ -30,14 +30,14 @@ namespace LoggerHelper
         /// </summary>
         /// <param name="message">错误信息</param>
         /// <param name="logId">日志Id</param>
-        /// <param name="param">入参</param>
+        /// <param name="parameters">入参</param>
         /// <param name="userId">阿里Id</param>
         /// <param name="func">功能名称</param>
         /// <param name="requestUrl">请求地址</param>
         /// <returns></returns>
-        public static string Info(string message, string logId = "", string param = "", string userId = "", string func = "", string requestUrl = "")
+        public static string Info(string message, string logId = "", string parameters = "", string userId = "", string func = "", string requestUrl = "")
         {
-            return WriteLog(LogLevel.Info, message, null, logId, requestUrl, param, userId, func);
+            return WriteLog(LogLevel.Info, message, null, logId, requestUrl, parameters, userId, func);
         }
 
         /// <summary>
@@ -45,14 +45,14 @@ namespace LoggerHelper
         /// </summary>
         /// <param name="message">日志信息</param>
         /// <param name="logId">日志Id</param>
-        /// <param name="param">入参</param>
+        /// <param name="parameters">入参</param>
         /// <param name="userId">阿里Id</param>
         /// <param name="func">功能名称</param>
         /// <param name="requestUrl">请求地址</param>
         /// <returns></returns>
-        public static string Debug(string message, string logId = "", string param = "", string userId = "", string func = "", string requestUrl = "")
+        public static string Debug(string message, string logId = "", string parameters = "", string userId = "", string func = "", string requestUrl = "")
         {
-            return WriteLog(LogLevel.Debug, message, null, logId, requestUrl, param, userId, func);
+            return WriteLog(LogLevel.Debug, message, null, logId, requestUrl, parameters, userId, func);
         }
 
         /// <summary>
@@ -60,14 +60,14 @@ namespace LoggerHelper
         /// </summary>
         /// <param name="message">日志信息</param>
         /// <param name="logId">日志Id</param>
-        /// <param name="param">入参</param>
+        /// <param name="parameters">入参</param>
         /// <param name="userId">用户Id</param>
         /// <param name="func">功能名称</param>
         /// <param name="requestUrl">请求地址</param>
         /// <returns></returns>
-        public static string Warn(string message, string logId = "", string param = "", string userId = "", string func = "", string requestUrl = "")
+        public static string Warn(string message, string logId = "", string parameters = "", string userId = "", string func = "", string requestUrl = "")
         {
-            return WriteLog(LogLevel.Warn, message, null, logId, requestUrl, param, userId, func);
+            return WriteLog(LogLevel.Warn, message, null, logId, requestUrl, parameters, userId, func);
         }
 
         /// <summary>
@@ -77,14 +77,14 @@ namespace LoggerHelper
         /// <param name="ex">Exception</param>
         /// <param name="logId">日志Id</param>
         /// <param name="errCode">错误码</param>
-        /// <param name="param">入参</param>
+        /// <param name="parameters">入参</param>
         /// <param name="userId">阿里Id</param>
         /// <param name="func">功能名称</param>
         /// <param name="requestUrl">请求地址</param>
         /// <returns></returns>
-        public static string Error(string message, Exception ex, string logId = "", string errCode = "",string param = "", string userId = "", string func = "", string requestUrl = "")
+        public static string Error(string message, Exception ex, string logId = "", string errCode = "",string parameters = "", string userId = "", string func = "", string requestUrl = "")
         {
-            return WriteLog(LogLevel.Error, message, ex, logId, requestUrl, param, userId, func, errCode);
+            return WriteLog(LogLevel.Error, message, ex, logId, requestUrl, parameters, userId, func, errCode);
         }
 
         /// <summary>
@@ -92,14 +92,14 @@ namespace LoggerHelper
         /// </summary>
         /// <param name="message">日志信息</param>
         /// <param name="logId">日志Id</param>
-        /// <param name="param">入参</param>
+        /// <param name="parameters">入参</param>
         /// <param name="userId">用户Id</param>
         /// <param name="func">功能名称</param>
         /// <param name="requestUrl">请求地址</param>
         /// <returns></returns>
-        public static string Fatal(string message, string logId = "", string param = "", string userId = "", string func = "", string requestUrl = "")
+        public static string Fatal(string message, string logId = "", string parameters = "", string userId = "", string func = "", string requestUrl = "")
         {
-            return WriteLog(LogLevel.Fatal, message, null, logId, requestUrl, param, userId, func);
+            return WriteLog(LogLevel.Fatal, message, null, logId, requestUrl, parameters, userId, func);
         }
 
         /// <summary>
@@ -107,14 +107,14 @@ namespace LoggerHelper
         /// </summary>
         /// <param name="message">日志信息</param>
         /// <param name="logId">日志Id</param>
-        /// <param name="param">入参</param>
+        /// <param name="parameters">入参</param>
         /// <param name="userId">用户Id</param>
         /// <param name="func">功能名称</param>
         /// <param name="requestUrl">请求地址</param>
         /// <returns></returns>
-        public static string Off(string message, string logId = "", string param = "", string userId = "", string func = "", string requestUrl = "")
+        public static string Off(string message, string logId = "", string parameters = "", string userId = "", string func = "", string requestUrl = "")
         {
-            return WriteLog(LogLevel.Off, message, null, logId, requestUrl, param, userId, func);
+            return WriteLog(LogLevel.Off, message, null, logId, requestUrl, parameters, userId, func);
         }
 
         /// <summary>
@@ -125,19 +125,19 @@ namespace LoggerHelper
         /// <param name="ex">Exception</param>
         /// <param name="logId">日志Id</param>
         /// <param name="requestUrl">请求地址</param>
-        /// <param name="param">入参</param>
+        /// <param name="parameters">入参</param>
         /// <param name="userId">用户Id</param>
         /// <param name="func">功能名称</param>
         /// <param name="errCode">错误码</param>
         /// <returns></returns>
-        public static string WriteLog(LogLevel level, string message, Exception ex = null, string logId = "", string requestUrl = "", string param = "", string userId = "", string func = "", string errCode = "")
+        public static string WriteLog(LogLevel level, string message, Exception ex = null, string logId = "", string requestUrl = "", string parameters = "", string userId = "", string func = "", string errCode = "")
         {
-            return WriteLog(new LoggerEntity()
+            return WriteLog(new LogEntity()
             {
                 Level = level,
                 Message = message,
                 LogId = logId,
-                Params = param,
+                Params = parameters,
                 UserId = userId,
                 RequestUrl = requestUrl,
                 Ex = ex,
@@ -151,7 +151,7 @@ namespace LoggerHelper
         /// </summary>
         /// <param name="model">日志模型</param>
         /// <returns></returns>
-        public static string WriteLog(LoggerEntity model)
+        public static string WriteLog(LogEntity model)
         {
             if (string.IsNullOrEmpty(model.LogId))
             {

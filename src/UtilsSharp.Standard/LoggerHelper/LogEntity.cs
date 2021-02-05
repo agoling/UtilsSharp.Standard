@@ -8,7 +8,7 @@ namespace LoggerHelper
     /// <summary>
     /// 日志模型
     /// </summary>
-    public class LoggerEntity
+    public class LogEntity
     {
         /// <summary>
         /// 日志标识
@@ -26,20 +26,14 @@ namespace LoggerHelper
         /// 日志标题信息
         /// </summary>
         public string Message { set; get; }
-
         /// <summary>
         /// 异常
         /// </summary>
         public Exception Ex { get; set; }
-
         /// <summary>
         /// 用户Id
         /// </summary>
         public string UserId { set; get; }
-        /// <summary>
-        /// 备注
-        /// </summary>
-        public string Tag { set; get; }
         /// <summary>
         /// 请求地址
         /// </summary>

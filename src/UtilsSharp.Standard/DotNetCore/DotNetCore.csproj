@@ -10,7 +10,11 @@
     <PackageIcon>UtilsSharp.jpg</PackageIcon>
     <RepositoryUrl>https://github.com/agoling/UtilsSharp.Standard</RepositoryUrl>
     <PackageTags>UtilsSharp UtilsSharp.DotNetCore .netcore3.1帮助类  netcore帮助类</PackageTags>
-    <Version>1.0.4</Version>
+    <Version>1.0.5</Version>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DocumentationFile>D:\GitHub\Project\UtilsSharp.Standard\src\UtilsSharp.Standard\DotNetCore\DotNetCore.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>

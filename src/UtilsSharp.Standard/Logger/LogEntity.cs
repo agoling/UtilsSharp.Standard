@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using NLog;
 
-namespace LoggerHelper
+namespace Logger
 {
     /// <summary>
     /// 日志模型

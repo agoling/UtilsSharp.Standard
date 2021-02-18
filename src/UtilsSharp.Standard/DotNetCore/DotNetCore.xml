@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>DotNetCore</name>
+    </assembly>
+    <members>
+        <member name="T:DotNetCore.Autofac.AutofacContainer">
+            <summary>
+            依赖注入Container
+            </summary>
+        </member>
+    </members>
+</doc>

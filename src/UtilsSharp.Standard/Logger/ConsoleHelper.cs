@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace LoggerHelper
+namespace Logger
 {
     /// <summary>
     /// 控制台日志输出

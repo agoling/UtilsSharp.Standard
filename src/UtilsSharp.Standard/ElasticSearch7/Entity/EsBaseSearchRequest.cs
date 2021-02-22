@@ -21,11 +21,11 @@ namespace ElasticSearch7.Entity
         /// <summary>
         /// From
         /// </summary>
-        internal int From => PageSize * (PageIndex - 1);
+        public int From => PageSize * (PageIndex - 1);
         /// <summary>
         /// Size
         /// </summary>
-        internal int Size => PageSize;
+        public int Size => PageSize;
         /// <summary>
         /// 查询条件
         /// </summary>
@@ -33,15 +33,15 @@ namespace ElasticSearch7.Entity
         /// <summary>
         /// 排序
         /// </summary>
-        public Func<SortDescriptor<T>, IPromise<IList<ISort>>> SortSelector { set; get; }
+        public Func<SortDescriptor<T>, IPromise<IList<ISort>>> SortSelector { set; get; } = s => null;
         /// <summary>
         /// 选取返回的字段
         /// </summary>
-        public Func<SourceFilterDescriptor<T>, ISourceFilter> SourceSelector { set; get; }
+        public Func<SourceFilterDescriptor<T>, ISourceFilter> SourceSelector { set; get; } = s => null;
         /// <summary>
         /// 聚合查询
         /// </summary>
-        public Func<AggregationContainerDescriptor<T>, IAggregationContainer> AggregationsSelector { set; get; }
+        public Func<AggregationContainerDescriptor<T>, IAggregationContainer> AggregationsSelector { set; get; } = s => null;
         /// <summary>
         /// 索引(不传则按别名来查询)
         /// </summary>

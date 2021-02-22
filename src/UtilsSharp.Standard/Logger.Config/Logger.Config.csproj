@@ -11,6 +11,7 @@
     <PackageIcon>UtilsSharp.jpg</PackageIcon>
     <RepositoryUrl>https://github.com/agoling/UtilsSharp.Standard</RepositoryUrl>
     <PackageTags>UtilsSharp UtilsSharp.Logger UtilsSharp.Logger.Config 日志帮助类</PackageTags>
+    <Version>1.0.1</Version>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">

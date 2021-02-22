@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using Nest;
 using OptionConfig;
 
@@ -30,6 +28,16 @@ namespace ElasticSearch7
         /// 分片数
         /// </summary>
         public virtual int NumberOfShards => 5;
+
+        /// <summary>
+        /// 实体映射
+        /// </summary>
+        /// <param name="client">es客户端</param>
+        /// <param name="index">索引名称</param>
+        public virtual void EntityMapping(ElasticClient client, string index)
+        {
+            client.Map<T>(m => m.AutoMap().Index(index));
+        }
 
         /// <summary>
         /// 当前索引
@@ -63,30 +71,73 @@ namespace ElasticSearch7
                     EsConnectionLimit = ElasticSearchConfig.ElasticSearchSetting.EsConnectionLimit
                 };
             }
+            
             if (!string.IsNullOrWhiteSpace(index)&&index!=CurrentIndex)
             {
+                //传参进来的索引
                 Setting.EsDefaultIndex = index;
                 var currClient = EsClientProvider.GetClient(Setting);
-                var exists = currClient.Indices.Exists(index).Exists;
-                if (exists) return currClient;
-                throw new Exception($"Index:{index} does not exist");
+                var exists = currClient.Indices.Exists(Setting.EsDefaultIndex).Exists;
+                if (!exists) throw new Exception($"Index:{Setting.EsDefaultIndex} does not exist");
+                RunEntityMapping(currClient, Setting.EsDefaultIndex);
+                return currClient;
             }
             else
             {
+                //程序创建的索引
                 Setting.EsDefaultIndex = CurrentIndex;
                 var currClient = EsClientProvider.GetClient(Setting);
-                var exists = currClient.Indices.Exists(CurrentIndex).Exists;
-                if (exists) return currClient;
-                var esMappingSettings = new EsCreateIndexSettings()
+                var exists = currClient.Indices.Exists(Setting.EsDefaultIndex).Exists;
+                if (exists)
                 {
-                    Setting = Setting,
-                    NumberOfShards = NumberOfShards,
-                    AliasIndex = AliasIndex
+                    RunEntityMapping(currClient, Setting.EsDefaultIndex);
+                    return currClient;
+                }
+                var aliasIndex = AliasIndex;
+                if (string.IsNullOrEmpty(AliasIndex))
+                {
+                    aliasIndex = Setting.EsDefaultIndex;
+                }
+                IIndexState indexState = new IndexState()
+                {
+                    Settings = new IndexSettings()
+                    {
+                        NumberOfReplicas = 0,
+                        NumberOfShards = NumberOfShards
+                    }
                 };
-                EsClientProvider.CreateIndex(esMappingSettings, EntityMapping);
+                //按别名创建索引
+                if (!string.IsNullOrEmpty(aliasIndex) && !aliasIndex.Equals(Setting.EsDefaultIndex))
+                {
+                    currClient.Indices.Create(Setting.EsDefaultIndex, c => c.InitializeUsing(indexState).Aliases(a => a.Alias(aliasIndex)));
+                }
+                else
+                {
+                    currClient.Indices.Create(Setting.EsDefaultIndex, c => c.InitializeUsing(indexState));
+                }
+                RunEntityMapping(currClient, Setting.EsDefaultIndex,true);
                 return currClient;
             }
         }
+
+        /// <summary>
+        /// 执行实体映射
+        /// </summary>
+        /// <param name="client">es客户端</param>
+        /// <param name="index">索引名称</param>
+        /// <param name="isNew">是否新创建表</param>
+        private void RunEntityMapping(ElasticClient client, string index,bool isNew=false)
+        {
+            if (isNew)
+            {
+                EntityMapping(client, index);
+                return;
+            }
+            if (EsClientProvider.MappingDictionary.ContainsKey(index)) return;
+            EntityMapping(client, index);
+            EsClientProvider.MappingDictionary.TryAdd(index, index);
+        }
+
 
         /// <summary>
         /// 获取指定时间索引
@@ -122,15 +173,6 @@ namespace ElasticSearch7
             }
         }
 
-        /// <summary>
-        /// 实体映射
-        /// </summary>
-        /// <param name="client">es客户端</param>
-        /// <param name="index">索引名称</param>
-        public virtual void EntityMapping(ElasticClient client, string index)
-        {
-            client.Map<T>(m => m.AutoMap().Index(index));
-        }
     }
 
     /// <summary>

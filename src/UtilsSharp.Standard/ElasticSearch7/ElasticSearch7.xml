@@ -101,6 +101,13 @@
             分片数
             </summary>
         </member>
+        <member name="M:ElasticSearch7.EsBaseDataMapping`1.EntityMapping(Nest.ElasticClient,System.String)">
+            <summary>
+            实体映射
+            </summary>
+            <param name="client">es客户端</param>
+            <param name="index">索引名称</param>
+        </member>
         <member name="P:ElasticSearch7.EsBaseDataMapping`1.CurrentIndex">
             <summary>
             当前索引
@@ -117,19 +124,20 @@
             </summary>
             <param name="index">索引名称</param>
         </member>
+        <member name="M:ElasticSearch7.EsBaseDataMapping`1.RunEntityMapping(Nest.ElasticClient,System.String,System.Boolean)">
+            <summary>
+            执行实体映射
+            </summary>
+            <param name="client">es客户端</param>
+            <param name="index">索引名称</param>
+            <param name="isNew">是否新创建表</param>
+        </member>
         <member name="M:ElasticSearch7.EsBaseDataMapping`1.GetIndex(System.DateTime)">
             <summary>
             获取指定时间索引
             </summary>
             <param name="dateTime">时间</param>
             <returns></returns>
-        </member>
-        <member name="M:ElasticSearch7.EsBaseDataMapping`1.EntityMapping(Nest.ElasticClient,System.String)">
-            <summary>
-            实体映射
-            </summary>
-            <param name="client">es客户端</param>
-            <param name="index">索引名称</param>
         </member>
         <member name="T:ElasticSearch7.EsMappingType">
             <summary>
@@ -245,6 +253,11 @@
             es客服端
             </summary>
         </member>
+        <member name="F:ElasticSearch7.EsClientProvider.MappingDictionary">
+            <summary>
+            es表结构映射
+            </summary>
+        </member>
         <member name="M:ElasticSearch7.EsClientProvider.GetClient(OptionConfig.ElasticSearchSetting)">
             <summary>
             获取客户端
@@ -263,13 +276,6 @@
             获取Es链接设置
             </summary>
             <returns></returns>
-        </member>
-        <member name="M:ElasticSearch7.EsClientProvider.CreateIndex(ElasticSearch7.EsCreateIndexSettings,System.Action{Nest.ElasticClient,System.String})">
-            <summary>
-            创建索引
-            </summary>
-            <param name="esCreateIndexSettings">创建索引配置</param>
-            <param name="mappingHandle">映射处理</param>
         </member>
         <member name="T:ElasticSearch7.EsCreateIndexSettings">
             <summary>

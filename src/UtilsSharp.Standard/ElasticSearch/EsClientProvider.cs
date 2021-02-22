@@ -16,6 +16,11 @@ namespace ElasticSearch
         /// es客服端
         /// </summary>
         private static readonly ConcurrentDictionary<string, ConcurrentDictionary<string, ElasticClient>> ClientDictionary = new ConcurrentDictionary<string, ConcurrentDictionary<string, ElasticClient>>();
+        /// <summary>
+        /// es表结构映射
+        /// </summary>
+        internal static readonly ConcurrentDictionary<string, string> MappingDictionary = new ConcurrentDictionary<string, string>();
+
 
         /// <summary>
         /// 获取客户端
@@ -80,47 +85,6 @@ namespace ElasticSearch
                 settings.ConnectionLimit(setting.EsConnectionLimit);
             }
             return settings;
-        }
-
-
-        /// <summary>
-        /// 创建索引
-        /// </summary>
-        /// <param name="esCreateIndexSettings">创建索引配置</param>
-        /// <param name="mappingHandle">映射处理</param>
-        internal static void CreateIndex(EsCreateIndexSettings esCreateIndexSettings, Action<ElasticClient, string> mappingHandle = null)
-        {
-            var aliasIndex = esCreateIndexSettings.AliasIndex;
-            var numberOfShards = esCreateIndexSettings.NumberOfShards;
-            var index = esCreateIndexSettings.Setting.EsDefaultIndex;
-            var currClient = GetClient(esCreateIndexSettings.Setting);
-            if (string.IsNullOrEmpty(aliasIndex))
-            {
-                aliasIndex = esCreateIndexSettings.Setting.EsDefaultIndex;
-            }
-
-            //验证索引是否存在
-            if (!currClient.IndexExists(index).Exists)
-            {
-                IIndexState indexState = new IndexState()
-                {
-                    Settings = new IndexSettings()
-                    {
-                        NumberOfReplicas = 0,
-                        NumberOfShards = numberOfShards
-                    }
-                };
-                //按别名创建索引
-                if (!string.IsNullOrEmpty(aliasIndex) && !aliasIndex.Equals(index))
-                {
-                    currClient.CreateIndex(index, c => c.InitializeUsing(indexState).Aliases(a => a.Alias(aliasIndex)));
-                }
-                else
-                {
-                    currClient.CreateIndex(index, c => c.InitializeUsing(indexState));
-                }
-            }
-            mappingHandle?.Invoke(currClient, index);
         }
     }
 }

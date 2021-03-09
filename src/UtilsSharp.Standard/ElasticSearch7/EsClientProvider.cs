@@ -16,17 +16,13 @@ namespace ElasticSearch7
         /// es客服端
         /// </summary>
         private static readonly ConcurrentDictionary<string,ConcurrentDictionary<string, ElasticClient>> ClientDictionary = new ConcurrentDictionary<string, ConcurrentDictionary<string, ElasticClient>>();
-        /// <summary>
-        /// es表结构映射
-        /// </summary>
-        internal static readonly ConcurrentDictionary<string, string> MappingDictionary = new ConcurrentDictionary<string, string>();
-
+       
         /// <summary>
         /// 获取客户端
         /// </summary>
         /// <param name="setting">Es配置信息</param>
         /// <returns></returns>
-        internal static ElasticClient GetClient(ElasticSearchSetting setting)
+        internal ElasticClient GetClient(ElasticSearchSetting setting)
         {
             if (!ClientDictionary.ContainsKey(setting.EsHttpAddress))
             {

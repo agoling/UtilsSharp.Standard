@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using Nest;
 using OptionConfig;
 
@@ -9,6 +10,21 @@ namespace ElasticSearch7
     /// </summary>
     public abstract class EsBaseDataMapping<T> where T : class, new()
     {
+        /// <summary>
+        /// EsClientProvider
+        /// </summary>
+        private readonly EsClientProvider _esClientProvider = new EsClientProvider();
+
+        /// <summary>
+        /// es表结构映射
+        /// </summary>
+        private readonly ConcurrentDictionary<string, string> _mappingDictionary = new ConcurrentDictionary<string, string>();
+
+        /// <summary>
+        /// 表当前配置
+        /// </summary>
+        private  ElasticSearchSetting CurrSetting { get; set; }
+
         /// <summary>
         /// 连接设置
         /// </summary>
@@ -53,51 +69,70 @@ namespace ElasticSearch7
         /// Es客户端
         /// </summary>
         /// <param name="index">索引名称</param>
-        public ElasticClient EsClientByIndex(string index="")
+        public ElasticClient EsClientByIndex(string index = "")
         {
-            if (Setting == null)
+            if (CurrSetting == null)
             {
-                if (ElasticSearchConfig.ElasticSearchSetting == null || ElasticSearchConfig.ElasticSearchSetting.EsHttpAddress == null)
+                if (Setting == null)
                 {
-                    throw new Exception("esHttpAddress cannot be empty");
+                    if (ElasticSearchConfig.ElasticSearchSetting == null ||
+                        ElasticSearchConfig.ElasticSearchSetting.EsHttpAddress == null)
+                    {
+                        throw new Exception("esHttpAddress cannot be empty");
+                    }
+
+                    CurrSetting = new ElasticSearchSetting()
+                    {
+                        EsHttpAddress = ElasticSearchConfig.ElasticSearchSetting.EsHttpAddress,
+                        UserName = ElasticSearchConfig.ElasticSearchSetting.UserName,
+                        Password = ElasticSearchConfig.ElasticSearchSetting.Password,
+                        EsDefaultIndex = ElasticSearchConfig.ElasticSearchSetting.EsDefaultIndex,
+                        EsNetworkProxy = ElasticSearchConfig.ElasticSearchSetting.EsNetworkProxy,
+                        EsConnectionLimit = ElasticSearchConfig.ElasticSearchSetting.EsConnectionLimit
+                    };
                 }
-                Setting = new ElasticSearchSetting()
+                else
                 {
-                    EsHttpAddress = ElasticSearchConfig.ElasticSearchSetting.EsHttpAddress,
-                    UserName = ElasticSearchConfig.ElasticSearchSetting.UserName,
-                    Password = ElasticSearchConfig.ElasticSearchSetting.Password,
-                    EsDefaultIndex = ElasticSearchConfig.ElasticSearchSetting.EsDefaultIndex,
-                    EsNetworkProxy = ElasticSearchConfig.ElasticSearchSetting.EsNetworkProxy,
-                    EsConnectionLimit = ElasticSearchConfig.ElasticSearchSetting.EsConnectionLimit
-                };
+                    CurrSetting = new ElasticSearchSetting()
+                    {
+                        EsHttpAddress = Setting.EsHttpAddress,
+                        UserName = Setting.UserName,
+                        Password = Setting.Password,
+                        EsDefaultIndex = Setting.EsDefaultIndex,
+                        EsNetworkProxy = Setting.EsNetworkProxy,
+                        EsConnectionLimit = Setting.EsConnectionLimit
+                    };
+                }
             }
-            
-            if (!string.IsNullOrWhiteSpace(index)&&index!=CurrentIndex)
+
+            if (!string.IsNullOrWhiteSpace(index) && index != CurrentIndex)
             {
                 //传参进来的索引
-                Setting.EsDefaultIndex = index;
-                var currClient = EsClientProvider.GetClient(Setting);
-                var exists = currClient.Indices.Exists(Setting.EsDefaultIndex).Exists;
-                if (!exists) throw new Exception($"Index:{Setting.EsDefaultIndex} does not exist");
-                RunEntityMapping(currClient, Setting.EsDefaultIndex);
+                CurrSetting.EsDefaultIndex = index;
+                var currClient = _esClientProvider.GetClient(CurrSetting);
+                var exists = currClient.Indices.Exists(CurrSetting.EsDefaultIndex).Exists;
+                if (!exists) throw new Exception($"Index:{CurrSetting.EsDefaultIndex} does not exist");
+                RunEntityMapping(currClient, CurrSetting.EsDefaultIndex);
                 return currClient;
             }
             else
             {
                 //程序创建的索引
-                Setting.EsDefaultIndex = CurrentIndex;
-                var currClient = EsClientProvider.GetClient(Setting);
-                var exists = currClient.Indices.Exists(Setting.EsDefaultIndex).Exists;
+                CurrSetting.EsDefaultIndex = CurrentIndex;
+                var currClient = _esClientProvider.GetClient(CurrSetting);
+                var exists = currClient.Indices.Exists(CurrSetting.EsDefaultIndex).Exists;
                 if (exists)
                 {
-                    RunEntityMapping(currClient, Setting.EsDefaultIndex);
+                    RunEntityMapping(currClient, CurrSetting.EsDefaultIndex);
                     return currClient;
                 }
+
                 var aliasIndex = AliasIndex;
                 if (string.IsNullOrEmpty(AliasIndex))
                 {
-                    aliasIndex = Setting.EsDefaultIndex;
+                    aliasIndex = CurrSetting.EsDefaultIndex;
                 }
+
                 IIndexState indexState = new IndexState()
                 {
                     Settings = new IndexSettings()
@@ -107,15 +142,17 @@ namespace ElasticSearch7
                     }
                 };
                 //按别名创建索引
-                if (!string.IsNullOrEmpty(aliasIndex) && !aliasIndex.Equals(Setting.EsDefaultIndex))
+                if (!string.IsNullOrEmpty(aliasIndex) && !aliasIndex.Equals(CurrSetting.EsDefaultIndex))
                 {
-                    currClient.Indices.Create(Setting.EsDefaultIndex, c => c.InitializeUsing(indexState).Aliases(a => a.Alias(aliasIndex)));
+                    currClient.Indices.Create(CurrSetting.EsDefaultIndex,
+                        c => c.InitializeUsing(indexState).Aliases(a => a.Alias(aliasIndex)));
                 }
                 else
                 {
-                    currClient.Indices.Create(Setting.EsDefaultIndex, c => c.InitializeUsing(indexState));
+                    currClient.Indices.Create(CurrSetting.EsDefaultIndex, c => c.InitializeUsing(indexState));
                 }
-                RunEntityMapping(currClient, Setting.EsDefaultIndex,true);
+
+                RunEntityMapping(currClient, CurrSetting.EsDefaultIndex, true);
                 return currClient;
             }
         }
@@ -126,16 +163,16 @@ namespace ElasticSearch7
         /// <param name="client">es客户端</param>
         /// <param name="index">索引名称</param>
         /// <param name="isNew">是否新创建表</param>
-        private void RunEntityMapping(ElasticClient client, string index,bool isNew=false)
+        private void RunEntityMapping(ElasticClient client, string index, bool isNew = false)
         {
             if (isNew)
             {
                 EntityMapping(client, index);
                 return;
             }
-            if (EsClientProvider.MappingDictionary.ContainsKey(index)) return;
+            if (_mappingDictionary.ContainsKey(index)) return;
             EntityMapping(client, index);
-            EsClientProvider.MappingDictionary.TryAdd(index, index);
+            _mappingDictionary.TryAdd(index, index);
         }
 
 

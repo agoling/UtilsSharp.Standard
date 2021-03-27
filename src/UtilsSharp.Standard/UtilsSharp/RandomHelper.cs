@@ -41,23 +41,23 @@ namespace UtilsSharp
 
         #endregion
 
-        #region 生成随机字母与数字
+        #region 生成随机数字与字母
 
         /// <summary>
-        /// 生成随机字母与数字
+        /// 生成随机数字与字母
         /// </summary>
         /// <param name="length">生成长度</param>
-        public static string Str(int length)
+        public static string NumberAndLetters(int length)
         {
-            return Str(length, false);
+            return NumberAndLetters(length, false);
         }
 
         /// <summary>
-        /// 生成随机字母与数字
+        /// 生成随机数字与字母
         /// </summary>
         /// <param name="length">生成长度</param>
         /// <param name="sleep">是否要在生成前将当前线程阻止以避免重复</param>
-        public static string Str(int length, bool sleep)
+        public static string NumberAndLetters(int length, bool sleep)
         {
             if (sleep) Thread.Sleep(3);
             char[] pattern = {
@@ -78,23 +78,23 @@ namespace UtilsSharp
 
         #endregion
 
-        #region 生成随机纯字母随机数
+        #region 生成随机字母(只有字母)
 
         /// <summary>
-        /// 生成随机纯字母随机数
+        /// 生成随机字母(只有字母)
         /// </summary>
         /// <param name="length">生成长度</param>
-        public static string StrChar(int length)
+        public static string Letters(int length)
         {
-            return StrChar(length, false);
+            return Letters(length, false);
         }
 
         /// <summary>
-        /// 生成随机纯字母随机数
+        /// 生成随机字母(只有字母)
         /// </summary>
         /// <param name="length">生成长度</param>
         /// <param name="sleep">是否要在生成前将当前线程阻止以避免重复</param>
-        public static string StrChar(int length, bool sleep)
+        public static string Letters(int length, bool sleep)
         {
             if (sleep) Thread.Sleep(3);
             char[] pattern = {

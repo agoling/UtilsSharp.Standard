@@ -9,6 +9,45 @@ namespace UtilsSharp
     /// </summary>
     public class TimeHelper
     {
+        /// <summary>
+        /// 获取开始日期(utc)
+        /// </summary>
+        /// <param name="dateTime">时间</param>
+        /// <returns></returns>
+        public static DateTime GetUtcStartDate(DateTime dateTime)
+        {
+            return GetStartDate(dateTime).ToUniversalTime();
+        }
+
+        /// <summary>
+        /// 获取开始日期
+        /// </summary>
+        /// <param name="dateTime">时间</param>
+        /// <returns></returns>
+        public static DateTime GetStartDate(DateTime dateTime)
+        {
+            return dateTime.Date;
+        }
+
+        /// <summary>
+        /// 获取结束日期(utc)
+        /// </summary>
+        /// <param name="dateTime">时间</param>
+        /// <returns></returns>
+        public static DateTime GetUtcEndDate(DateTime dateTime)
+        {
+            return GetEndDate(dateTime).ToUniversalTime();
+        }
+
+        /// <summary>
+        /// 获取结束日期
+        /// </summary>
+        /// <param name="dateTime">时间</param>
+        /// <returns></returns>
+        public static DateTime GetEndDate(DateTime dateTime)
+        {
+            return dateTime.Date.AddHours(23).AddMinutes(59).AddSeconds(59).AddMilliseconds(999);
+        }
 
         /// <summary>
         /// 时间格式化（小时分钟前面加上0）

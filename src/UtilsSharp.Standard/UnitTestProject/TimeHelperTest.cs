@@ -14,6 +14,15 @@ namespace UnitTestProjectNetCore
         [TestMethod]
         public void SendTextMessage1()
         {
+            var dt = DateTime.Now;
+
+            var i = TimeHelper.GetUtcStartDate(dt);
+            var i1 = TimeHelper.GetUtcEndDate(dt);
+
+            var i3=dt.Date.ToUniversalTime();
+            var i4=dt.Date.AddHours(23).AddMinutes(59).AddSeconds(59).AddMilliseconds(999).ToUniversalTime();
+
+
             var aa = TimeHelper.TimeStampToDateTime("1592537851689",TimeStampType.毫秒);
 
             var cc = DateTime.Now.AddDays(1);

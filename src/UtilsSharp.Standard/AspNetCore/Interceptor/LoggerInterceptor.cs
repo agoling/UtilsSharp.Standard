@@ -1,8 +1,8 @@
 ﻿using Castle.DynamicProxy;
-using LoggerHelper;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using Logger;
 using static UtilsSharp.Standard.BaseMsg;
 
 namespace AspNetCore.Interceptor
@@ -38,11 +38,11 @@ namespace AspNetCore.Interceptor
                 var param = string.Join(",", args);
                 if (setErrorMethod == null)
                 {
-                    Logger.Error($"{methodName} 异常", ex, param: $"{param}", func: $"{methodName}");
+                    LogHelper.Error($"{methodName} 异常", ex, parameters: $"{param}", func: $"{methodName}");
                     invocation.ReturnValue = result;
                     return;
                 }
-                var errorCode = Logger.Error($"{methodName} 异常", ex, param: $"{param}", func: $"{methodName}");
+                var errorCode = LogHelper.Error($"{methodName} 异常", ex, parameters: $"{param}", func: $"{methodName}");
                 setErrorMethod.Invoke(result, new object[] { errorCode.ToMsgException(), 5000 });
                 invocation.ReturnValue = result;
             }

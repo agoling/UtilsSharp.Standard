@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace UtilsSharp
 {
@@ -11,6 +13,36 @@ namespace UtilsSharp
     /// </summary>
     public class DictionaryHelper
     {
+
+        /// <summary>
+        /// 转换对象为字典
+        /// </summary>
+        /// <param name="obj">要转换的对象</param>
+        /// <returns>返回字典</returns>
+        public static Dictionary<string, string> ObjToDictionaryStringValue(object obj)
+        {
+            var objDic = ObjToDictionary(obj);
+            var strDic = new Dictionary<string, string>();
+            if (objDic == null) return strDic;
+            foreach (var item in objDic)
+            {
+                if (string.IsNullOrEmpty(item.Key) || item.Value == null) continue;
+                var key = item.Key;
+                object objValue;
+                try
+                {
+                    objValue = Convert.ChangeType(item.Value, typeof(string));
+                }
+                catch (Exception)
+                {
+                    objValue = JsonConvert.SerializeObject(item.Value);
+                }
+                var value = objValue.ToString();
+                strDic.Add(key, value);
+            }
+            return strDic;
+        }
+
         /// <summary>
         /// 转换对象为字典
         /// </summary>

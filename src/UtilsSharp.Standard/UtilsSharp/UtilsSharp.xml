@@ -704,6 +704,13 @@
             字典帮助类
             </summary>
         </member>
+        <member name="M:UtilsSharp.DictionaryHelper.ObjToDictionaryStringValue(System.Object)">
+            <summary>
+            转换对象为字典
+            </summary>
+            <param name="obj">要转换的对象</param>
+            <returns>返回字典</returns>
+        </member>
         <member name="M:UtilsSharp.DictionaryHelper.ObjToDictionary(System.Object)">
             <summary>
             转换对象为字典
@@ -2692,6 +2699,13 @@
             <param name="type">类型：秒，毫秒</param>
             <returns></returns>
         </member>
+        <member name="M:UtilsSharp.TimeHelper.GetWeekOfYear(System.DateTime)">
+            <summary>
+            获取指定日期，在为一年中为第几周
+            </summary>
+            <param name="dt">指定时间</param>
+            <reutrn>返回第几周</reutrn>
+        </member>
         <member name="T:UtilsSharp.TimeStampType">
             <summary>
             时间戳类型
@@ -2931,13 +2945,6 @@
             <param name="dateTimeFormat">返回的时间格式</param>
             <returns></returns>
         </member>
-        <member name="M:UtilsSharp.WebHelper.ObjToDictionary(System.Object)">
-            <summary>
-            对象转字典
-            </summary>
-            <param name="obj">参数</param>
-            <returns></returns>
-        </member>
         <member name="M:UtilsSharp.WebHelper.BuildUrlParameter(System.String,System.Collections.Generic.Dictionary{System.String,System.String})">
             <summary>
             调整url和参数
@@ -3072,20 +3079,6 @@
             <param name="dateTimeFormat">返回的时间格式</param>
             <returns></returns>
         </member>
-        <member name="M:UtilsSharp.WebHelper.ObjToDictionaryAsync(System.Object)">
-            <summary>
-            对象转字典
-            </summary>
-            <param name="obj">参数</param>
-            <returns></returns>
-        </member>
-        <member name="M:UtilsSharp.WebHelper.BuildUrlParameterAsync(UtilsSharp.BuildUrlParameterRequest)">
-            <summary>
-            调整url和参数
-            </summary>
-            <param name="request">参数</param>
-            <returns></returns>
-        </member>
         <member name="M:UtilsSharp.WebHelper.BuildQueryAsync(System.Collections.Generic.IDictionary{System.String,System.String})">
             <summary>
             组装普通文本请求参数。
@@ -3213,21 +3206,6 @@
             过期时回调委托
             </summary>
             <param name="userdata">用户数据</param>
-        </member>
-        <member name="T:UtilsSharp.BuildUrlParameterRequest">
-            <summary>
-            创建url参数请求
-            </summary>
-        </member>
-        <member name="P:UtilsSharp.BuildUrlParameterRequest.Address">
-            <summary>
-            请求地址
-            </summary>
-        </member>
-        <member name="P:UtilsSharp.BuildUrlParameterRequest.Parameters">
-            <summary>
-            参数
-            </summary>
         </member>
     </members>
 </doc>

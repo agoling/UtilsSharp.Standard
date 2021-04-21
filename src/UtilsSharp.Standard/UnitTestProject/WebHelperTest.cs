@@ -8,13 +8,33 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Newtonsoft.Json;
 using UtilsSharp;
+using UtilsSharp.Standard;
 
 namespace UnitTestProjectNetCore
 {
     [TestClass]
     public class WebHelperAsyncTest
     {
+
+        [TestMethod]
+        public async Task GetCaptchaTest()
+        {
+            await GetCaptcha();
+        }
+        public async Task GetCaptcha()
+        {
+            var webHelper = new WebHelper();
+            var dic = new Dictionary<string, string> { { "sign", "b486a1fa5e024be0a45c096ca5f6cfec" } };
+            var url = $"https://localhost:44393/api/pc/Puppeteer/GetCaptcha1";
+            //webHelper.Headers.Add("content-type", "application/x-www-form-urlencoded");
+            //webHelper.Headers.Add("Content-Type", "application/json;charset=UTF-8");
+
+            var requestResult = await webHelper.DoPostAsync(url, dic);
+            var requestResult1 =  webHelper.DoPost(url,dic);
+        }
+
         [TestMethod]
         public void HttpAsync()
         {

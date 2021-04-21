@@ -1,6 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
+using System.Globalization;
 
 namespace UtilsSharp
 {
@@ -220,6 +219,18 @@ namespace UtilsSharp
                 TimeStampType.毫秒 => (long)(dateTime - startTime).TotalMilliseconds,
                 _ => (long)(dateTime - startTime).TotalSeconds
             };
+        }
+
+        /// <summary>
+        /// 获取指定日期，在为一年中为第几周
+        /// </summary>
+        /// <param name="dt">指定时间</param>
+        /// <reutrn>返回第几周</reutrn>
+        public static int GetWeekOfYear(DateTime dt)
+        {
+            var gc = new GregorianCalendar();
+            var weekOfYear = gc.GetWeekOfYear(dt, CalendarWeekRule.FirstDay, DayOfWeek.Monday);
+            return weekOfYear;
         }
     }
 

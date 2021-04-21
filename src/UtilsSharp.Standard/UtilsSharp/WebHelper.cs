@@ -25,7 +25,7 @@ namespace UtilsSharp
         /// <returns></returns>
         public BaseResult<string> DoGet(string address, object parameters)
         {
-            var strDic = ObjToDictionary(parameters);
+            var strDic = DictionaryHelper.ObjToDictionaryStringValue(parameters);
             return GetRequest<string>(address, strDic);
         }
 
@@ -37,7 +37,7 @@ namespace UtilsSharp
         /// <returns></returns>
         public BaseResult<T> DoGet<T>(string address, object parameters) where T : class, new()
         {
-            var strDic = ObjToDictionary(parameters);
+            var strDic = DictionaryHelper.ObjToDictionaryStringValue(parameters);
             return GetRequest<T>(address, strDic);
         }
 
@@ -99,27 +99,24 @@ namespace UtilsSharp
                     result.SetError("address不能为空！");
                     return result;
                 }
-
                 var (item1, item2) = BuildUrlParameter(address, parameters);
                 address = item1;
-                if (!string.IsNullOrEmpty(item2))
+                var parametersStr = BuildQuery(item2);
+                if (!string.IsNullOrEmpty(parametersStr))
                 {
-                    address = $"{item1}?{item2}";
+                    address = $"{item1}?{parametersStr}";
                 }
-
                 var bytes = DownloadData(address);
                 var content = Encoding.GetString(bytes);
                 if (string.IsNullOrEmpty(content))
                 {
                     return result;
                 }
-
                 if (typeof(T) == typeof(string))
                 {
                     result.Result = (T) Convert.ChangeType(content, typeof(T));
                     return result;
                 }
-
                 result.Result = JsonConvert.DeserializeObject<T>(content);
                 return result;
             }
@@ -127,6 +124,10 @@ namespace UtilsSharp
             {
                 result.SetError(ex.Message, BaseStateCode.TryCatch异常错误);
                 return result;
+            }
+            finally
+            {
+                QueryString.Clear();
             }
         }
 
@@ -188,15 +189,29 @@ namespace UtilsSharp
                     result.SetError("address不能为空！");
                     return result;
                 }
-
+                if (Headers.Count > 0 && Headers["content-type"] != null)
+                {
+                    if (Headers["content-type"].ToLower().Contains("application/json"))
+                    {
+                        return PostRequest<T>(address, parameters, "yyyy-MM-dd HH:mm:ss");
+                    }
+                }
+                else
+                {
+                    Headers.Add("content-type", "application/x-www-form-urlencoded");
+                }
                 var (item1, item2) = BuildUrlParameter(address, parameters);
                 address = item1;
                 var dataBytes = new byte[0];
-                if (!string.IsNullOrEmpty(item2))
+                if (item2 != null && item2.Count > 0)
                 {
-                    dataBytes = Encoding.GetBytes(item2);
+                    foreach (var kv in item2)
+                    {
+                        QueryString.Add(kv.Key, kv.Value);
+                    }
+                    var parametersStr = BuildQuery(item2);
+                    dataBytes = Encoding.GetBytes(parametersStr);
                 }
-
                 var bytes = UploadData(address, HttpMethod.Post.ToString(), dataBytes);
                 var content = Encoding.GetString(bytes);
                 if (string.IsNullOrEmpty(content))
@@ -218,6 +233,10 @@ namespace UtilsSharp
                 result.SetError(ex.Message, BaseStateCode.TryCatch异常错误);
                 return result;
             }
+            finally
+            {
+                QueryString.Clear();
+            }
         }
 
         /// <summary>
@@ -227,8 +246,7 @@ namespace UtilsSharp
         /// <param name="parameters">请求参数</param>
         /// <param name="dateTimeFormat">返回的时间格式</param>
         /// <returns></returns>
-        public BaseResult<string> DoPost(string address, object parameters,
-            string dateTimeFormat = "yyyy-MM-dd HH:mm:ss")
+        public BaseResult<string> DoPost(string address, object parameters,string dateTimeFormat = "yyyy-MM-dd HH:mm:ss")
         {
             return PostRequest<string>(address, parameters, dateTimeFormat);
         }
@@ -240,8 +258,7 @@ namespace UtilsSharp
         /// <param name="parameters">请求参数</param>
         /// <param name="dateTimeFormat">返回的时间格式</param>
         /// <returns></returns>
-        public BaseResult<T> DoPost<T>(string address, object parameters, string dateTimeFormat = "yyyy-MM-dd HH:mm:ss")
-            where T : class, new()
+        public BaseResult<T> DoPost<T>(string address, object parameters, string dateTimeFormat = "yyyy-MM-dd HH:mm:ss")where T : class, new()
         {
             return PostRequest<T>(address, parameters, dateTimeFormat);
         }
@@ -253,8 +270,7 @@ namespace UtilsSharp
         /// <param name="parameters">请求参数</param>
         /// <param name="dateTimeFormat">返回的时间格式</param>
         /// <returns></returns>
-        private BaseResult<T> PostRequest<T>(string address, object parameters,
-            string dateTimeFormat = "yyyy-MM-dd HH:mm:ss") where T : class
+        private BaseResult<T> PostRequest<T>(string address, object parameters,string dateTimeFormat = "yyyy-MM-dd HH:mm:ss") where T : class
         {
             var result = new BaseResult<T>();
             try
@@ -264,7 +280,6 @@ namespace UtilsSharp
                     result.SetError("address不能为空！");
                     return result;
                 }
-
                 Headers.Add("Content-Type", "application/json;charset=UTF-8");
                 var @params = JsonConvert.SerializeObject(parameters);
                 @params = Regex.Replace(@params, @"\\/Date\((\d+)\)\\/", match =>
@@ -301,37 +316,10 @@ namespace UtilsSharp
                 result.SetError(ex.Message, BaseStateCode.TryCatch异常错误);
                 return result;
             }
-        }
-
-        /// <summary>
-        /// 对象转字典
-        /// </summary>
-        /// <param name="obj">参数</param>
-        /// <returns></returns>
-        private static Dictionary<string, string> ObjToDictionary(object obj)
-        {
-            var objDic = DictionaryHelper.ObjToDictionary(obj);
-            var strDic = new Dictionary<string, string>();
-            if (objDic == null) return strDic;
-            foreach (var item in objDic)
+            finally
             {
-                if (string.IsNullOrEmpty(item.Key) || item.Value == null) continue;
-                var key = item.Key;
-                object objValue;
-                try
-                {
-                    objValue = Convert.ChangeType(item.Value, typeof(string));
-                }
-                catch (Exception)
-                {
-                    objValue = JsonConvert.SerializeObject(item.Value);
-                }
-
-                var value = objValue.ToString();
-                strDic.Add(key, value);
+                QueryString.Clear();
             }
-
-            return strDic;
         }
 
         /// <summary>
@@ -340,7 +328,7 @@ namespace UtilsSharp
         /// <param name="address">url地址</param>
         /// <param name="parameters">参数</param>
         /// <returns></returns>
-        private Tuple<string, string> BuildUrlParameter(string address, Dictionary<string, string> parameters)
+        private Tuple<string, Dictionary<string, string>> BuildUrlParameter(string address, Dictionary<string, string> parameters)
         {
             var url = address;
             if (parameters == null)
@@ -382,9 +370,7 @@ namespace UtilsSharp
                     }
                 }
             }
-
-            var parameterStr = BuildQuery(parameters);
-            var tuple = new Tuple<string, string>(url, parameterStr);
+            var tuple = new Tuple<string, Dictionary<string, string>>(url, parameters);
             return tuple;
         }
 
@@ -438,7 +424,7 @@ namespace UtilsSharp
         /// <returns></returns>
         public async Task<BaseResult<string>> DoGetAsync(string address, object parameters)
         {
-            var strDic = await ObjToDictionaryAsync(parameters);
+            var strDic = DictionaryHelper.ObjToDictionaryStringValue(parameters);
             return await GetRequestAsync<string>(address, strDic);
         }
 
@@ -450,7 +436,7 @@ namespace UtilsSharp
         /// <returns></returns>
         public async Task<BaseResult<T>> DoGetAsync<T>(string address, object parameters) where T : class, new()
         {
-            var strDic = await ObjToDictionaryAsync(parameters);
+            var strDic = DictionaryHelper.ObjToDictionaryStringValue(parameters);
             return await GetRequestAsync<T>(address, strDic);
         }
 
@@ -514,19 +500,13 @@ namespace UtilsSharp
                     result.SetError("address不能为空！");
                     return result;
                 }
-
-                var buildUrlParameterRequest = new BuildUrlParameterRequest
-                {
-                    Address = address,
-                    Parameters = parameters
-                };
-                var (item1, item2) = await BuildUrlParameterAsync(buildUrlParameterRequest);
+                var (item1, item2) = BuildUrlParameter(address, parameters);
                 address = item1;
-                if (!string.IsNullOrEmpty(item2))
+                var parametersStr =await BuildQueryAsync(item2);
+                if (!string.IsNullOrEmpty(parametersStr))
                 {
-                    address = $"{item1}?{item2}";
+                    address = $"{item1}?{parametersStr}";
                 }
-
                 var bytes = await DownloadDataTaskAsync(address);
                 var content = Encoding.GetString(bytes);
                 if (string.IsNullOrEmpty(content))
@@ -547,6 +527,10 @@ namespace UtilsSharp
             {
                 result.SetError(ex.Message, BaseStateCode.TryCatch异常错误);
                 return result;
+            }
+            finally
+            {
+                QueryString.Clear();
             }
         }
 
@@ -587,8 +571,7 @@ namespace UtilsSharp
         /// <param name="address">请求地址</param>
         /// <param name="parameters">请求参数</param>
         /// <returns></returns>
-        public async Task<BaseResult<T>> DoPostAsync<T>(string address, Dictionary<string, string> parameters)
-            where T : class, new()
+        public async Task<BaseResult<T>> DoPostAsync<T>(string address, Dictionary<string, string> parameters)where T : class, new()
         {
             return await PostRequestAsync<T>(address, parameters);
         }
@@ -599,8 +582,7 @@ namespace UtilsSharp
         /// <param name="address">请求地址</param>
         /// <param name="parameters">请求参数</param>
         /// <returns></returns>
-        private async Task<BaseResult<T>> PostRequestAsync<T>(string address, Dictionary<string, string> parameters)
-            where T : class
+        private async Task<BaseResult<T>> PostRequestAsync<T>(string address, Dictionary<string, string> parameters)where T : class
         {
             var result = new BaseResult<T>();
             try
@@ -610,19 +592,29 @@ namespace UtilsSharp
                     result.SetError("address不能为空！");
                     return result;
                 }
-
-                var buildUrlParameterRequest = new BuildUrlParameterRequest
+                if (Headers.Count > 0 && Headers["content-type"] != null)
                 {
-                    Address = address, Parameters = parameters
-                };
-                var (item1, item2) = await BuildUrlParameterAsync(buildUrlParameterRequest);
+                    if (Headers["content-type"].ToLower().Contains("application/json"))
+                    {
+                        return await PostRequestAsync<T>(address, parameters, "yyyy-MM-dd HH:mm:ss");
+                    }
+                }
+                else
+                {
+                    Headers.Add("content-type", "application/x-www-form-urlencoded");
+                }
+                var (item1, item2) = BuildUrlParameter(address, parameters);
                 address = item1;
                 var dataBytes = new byte[0];
-                if (!string.IsNullOrEmpty(item2))
+                if (item2 != null && item2.Count > 0)
                 {
-                    dataBytes = Encoding.GetBytes(item2);
+                    foreach (var kv in item2)
+                    {
+                        QueryString.Add(kv.Key, kv.Value);
+                    }
+                    var parametersStr = BuildQuery(item2);
+                    dataBytes = Encoding.GetBytes(parametersStr);
                 }
-
                 var bytes = await UploadDataTaskAsync(address, HttpMethod.Post.ToString(), dataBytes);
                 var content = Encoding.GetString(bytes);
                 if (string.IsNullOrEmpty(content))
@@ -643,6 +635,10 @@ namespace UtilsSharp
             {
                 result.SetError(ex.Message, BaseStateCode.TryCatch异常错误);
                 return result;
+            }
+            finally
+            {
+                QueryString.Clear();
             }
         }
 
@@ -727,93 +723,10 @@ namespace UtilsSharp
                 result.SetError(ex.Message, BaseStateCode.TryCatch异常错误);
                 return result;
             }
-        }
-
-        /// <summary>
-        /// 对象转字典
-        /// </summary>
-        /// <param name="obj">参数</param>
-        /// <returns></returns>
-        private static async Task<Dictionary<string, string>> ObjToDictionaryAsync(object obj)
-        {
-            return await Task.Factory.StartNew(o =>
+            finally
             {
-                var objDic = DictionaryHelper.ObjToDictionary(o);
-                var strDic = new Dictionary<string, string>();
-                if (objDic == null) return strDic;
-                foreach (var item in objDic)
-                {
-                    if (string.IsNullOrEmpty(item.Key) || item.Value == null) continue;
-                    var key = item.Key;
-                    object objValue;
-                    try
-                    {
-                        objValue = Convert.ChangeType(item.Value, typeof(string));
-                    }
-                    catch (Exception)
-                    {
-                        objValue = JsonConvert.SerializeObject(item.Value);
-                    }
-
-                    var value = objValue.ToString();
-                    strDic.Add(key, value);
-                }
-
-                return strDic;
-            }, obj);
-        }
-
-        /// <summary>
-        /// 调整url和参数
-        /// </summary>
-        /// <param name="request">参数</param>
-        /// <returns></returns>
-        private async Task<Tuple<string, string>> BuildUrlParameterAsync(BuildUrlParameterRequest request)
-        {
-            var url = request.Address;
-            if (request.Parameters == null)
-            {
-                request.Parameters = new Dictionary<string, string>();
+                QueryString.Clear();
             }
-
-            if (request.Address.Contains("?"))
-            {
-                var array = request.Address.Split('?');
-                url = array[0];
-                var p = array[1];
-                if (!string.IsNullOrEmpty(p))
-                {
-                    if (p.Contains("&"))
-                    {
-                        var pArray = p.Split('&');
-                        foreach (var item in pArray)
-                        {
-                            if (string.IsNullOrEmpty(item)) continue;
-                            var kvArray = item.Split('=');
-                            var k = kvArray[0];
-                            var v = kvArray[1];
-                            if (!request.Parameters.ContainsKey(k))
-                            {
-                                request.Parameters.Add(k, v);
-                            }
-                        }
-                    }
-                    else
-                    {
-                        var kvArray = p.Split('=');
-                        var k = kvArray[0];
-                        var v = kvArray[1];
-                        if (!request.Parameters.ContainsKey(k))
-                        {
-                            request.Parameters.Add(k, v);
-                        }
-                    }
-                }
-            }
-
-            var parameterStr = await BuildQueryAsync(request.Parameters);
-            var tuple = new Tuple<string, string>(url, parameterStr);
-            return tuple;
         }
 
         /// <summary>
@@ -1087,20 +1000,4 @@ namespace UtilsSharp
     /// </summary>
     /// <param name="userdata">用户数据</param>
     public delegate void TimeoutCaller(object userdata);
-
-    /// <summary>
-    /// 创建url参数请求
-    /// </summary>
-    internal class BuildUrlParameterRequest
-    {
-        /// <summary>
-        /// 请求地址
-        /// </summary>
-        public string Address { set; get; }
-
-        /// <summary>
-        /// 参数
-        /// </summary>
-        public Dictionary<string, string> Parameters { set; get; }
-    }
 }

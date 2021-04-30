@@ -127,7 +127,7 @@ namespace ElasticSearch7
         /// </summary>
         /// <param name="request">参数</param>
         /// <returns></returns>
-        public virtual ISearchResponse<T> SearchQuery(EsBaseSearchRequest<T> request)
+        public virtual ISearchResponse<T> SearchQuery(EsSearchQueryRequest<T> request)
         {
             if (request == null)
             {
@@ -159,6 +159,66 @@ namespace ElasticSearch7
                     .Index(execIndex)
                     .TrackTotalHits(true));
             return esResult;
+        }
+
+        /// <summary>
+        /// 搜索查询(scroll)
+        /// </summary>
+        /// <param name="request">参数</param>
+        /// <returns></returns>
+        public virtual ISearchResponse<T> SearchScroll(EsSearchScrollRequest<T> request)
+        {
+            if (request == null)
+            {
+                throw new Exception("Parameter cannot be empty");
+            }
+            if (string.IsNullOrEmpty(request.ScrollTime))
+            {
+                request.ScrollTime = "1m";
+            }
+            if (request.PageSize == default)
+            {
+                request.PageSize = 10;
+            }
+            if (request.MustQuerys == null)
+            {
+                request.MustQuerys = new List<Func<QueryContainerDescriptor<T>, QueryContainer>>();
+            }
+            var execIndex = !string.IsNullOrEmpty(request.Index) ? request.Index : AliasIndex;
+            var esClient = !string.IsNullOrEmpty(request.Index) ? EsClientByIndex(request.Index) : EsClient;
+            ISearchResponse<T> esResult;
+            if (string.IsNullOrEmpty(request.ScrollId))
+            {
+                esResult = esClient.Search<T>(s =>
+                    s.Query(q =>
+                            q.Bool(b =>
+                                b.Filter(request.MustQuerys)))
+                        .Size(request.Size)
+                        .Scroll(request.ScrollTime)
+                        .Sort(request.SortSelector)
+                        .Source(request.SourceSelector)
+                        .Aggregations(request.AggregationsSelector)
+                        .Index(execIndex)
+                        .TrackTotalHits(true));
+            }
+            else
+            {
+                esResult = esClient.Scroll<T>(request.ScrollTime, request.ScrollId);
+            }
+            return esResult;
+        }
+
+        /// <summary>
+        /// 清除游标
+        /// </summary>
+        /// <param name="scrollIds">游标id集合</param>
+        /// <param name="index">索引</param>
+        /// <returns></returns>
+        public virtual ClearScrollResponse ClearScroll(string[] scrollIds,string index = "")
+        {
+            var esClient = !string.IsNullOrEmpty(index) ? EsClientByIndex(index) : EsClient;
+            var r=esClient.ClearScroll(c => c.ScrollId(scrollIds));
+            return r;
         }
 
     }

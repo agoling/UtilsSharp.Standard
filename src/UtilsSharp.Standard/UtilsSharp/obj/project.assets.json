@@ -4330,7 +4330,6 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "D:\\Release": {},
         "http://develop.zhangxiaobao.net/NuGet/nuget/": {},
         "https://api.nuget.org/v3/index.json": {}
       },

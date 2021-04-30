@@ -11,17 +11,9 @@ namespace ElasticSearch7.Entity
     public class EsBaseSearchRequest<T> where T : class, new()
     {
         /// <summary>
-        /// 页码
-        /// </summary>
-        public int PageIndex { set; get; } = 1;
-        /// <summary>
         /// 每页大小
         /// </summary>
         public int PageSize { set; get; } = 10;
-        /// <summary>
-        /// From
-        /// </summary>
-        public int From => PageSize * (PageIndex - 1);
         /// <summary>
         /// Size
         /// </summary>
@@ -33,15 +25,15 @@ namespace ElasticSearch7.Entity
         /// <summary>
         /// 排序
         /// </summary>
-        public Func<SortDescriptor<T>, IPromise<IList<ISort>>> SortSelector { set; get; } = s => null;
+        public Func<SortDescriptor<T>, IPromise<IList<ISort>>> SortSelector { set; get; } = s => s;
         /// <summary>
         /// 选取返回的字段
         /// </summary>
-        public Func<SourceFilterDescriptor<T>, ISourceFilter> SourceSelector { set; get; } = s => null;
+        public Func<SourceFilterDescriptor<T>, ISourceFilter> SourceSelector { set; get; } = s => s;
         /// <summary>
         /// 聚合查询
         /// </summary>
-        public Func<AggregationContainerDescriptor<T>, IAggregationContainer> AggregationsSelector { set; get; } = s => null;
+        public Func<AggregationContainerDescriptor<T>, IAggregationContainer> AggregationsSelector { set; get; } = s => s;
         /// <summary>
         /// 索引(不传则按别名来查询)
         /// </summary>

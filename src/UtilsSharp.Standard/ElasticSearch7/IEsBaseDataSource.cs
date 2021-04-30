@@ -68,10 +68,25 @@ namespace ElasticSearch7
         BulkResponse Delete(List<T> entitys, string index = "");
 
         /// <summary>
-        /// 搜索
+        /// 搜索查询
         /// </summary>
         /// <param name="request">参数</param>
         /// <returns></returns>
-        ISearchResponse<T> SearchQuery(EsBaseSearchRequest<T> request);
+        ISearchResponse<T> SearchQuery(EsSearchQueryRequest<T> request);
+
+        /// <summary>
+        /// 搜索查询(scroll)
+        /// </summary>
+        /// <param name="request">参数</param>
+        /// <returns></returns>
+        ISearchResponse<T> SearchScroll(EsSearchScrollRequest<T> request);
+
+        /// <summary>
+        /// 清除游标
+        /// </summary>
+        /// <param name="scrollIds">游标id集合</param>
+        /// <param name="index">索引</param>
+        /// <returns></returns>
+        ClearScrollResponse ClearScroll(string[] scrollIds, string index = "");
     }
 }

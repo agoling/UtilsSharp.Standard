@@ -66,6 +66,11 @@
             依赖注入Container
             </summary>
         </member>
+        <member name="P:AspNetCore.Autofac.AutofacContainer.Current">
+            <summary>
+            Current
+            </summary>
+        </member>
         <member name="T:AspNetCore.Autofac.AutofacStartup">
             <summary>
             依赖注入抽象类
@@ -93,6 +98,16 @@
         <member name="T:AspNetCore.Interceptor.LoggerInterceptor">
             <summary>
             日志拦截器
+            </summary>
+        </member>
+        <member name="T:AspNetCore.MVC.BaseAreaController">
+            <summary>
+            基础区域控制器
+            </summary>
+        </member>
+        <member name="T:AspNetCore.MVC.BaseController">
+            <summary>
+            基础控制器
             </summary>
         </member>
         <member name="T:AspNetCore.Swagger.AddRequiredHeaderParameter">

@@ -9,19 +9,9 @@
             Es基础查询参数
             </summary>
         </member>
-        <member name="P:ElasticSearch.Entity.EsBaseSearchRequest`1.PageIndex">
-            <summary>
-            页码
-            </summary>
-        </member>
         <member name="P:ElasticSearch.Entity.EsBaseSearchRequest`1.PageSize">
             <summary>
             每页大小
-            </summary>
-        </member>
-        <member name="P:ElasticSearch.Entity.EsBaseSearchRequest`1.From">
-            <summary>
-            From
             </summary>
         </member>
         <member name="P:ElasticSearch.Entity.EsBaseSearchRequest`1.Size">
@@ -52,6 +42,37 @@
         <member name="P:ElasticSearch.Entity.EsBaseSearchRequest`1.Index">
             <summary>
             索引(不传则按别名来查询)
+            </summary>
+        </member>
+        <member name="T:ElasticSearch.Entity.EsSearchQueryRequest`1">
+            <summary>
+            Es搜索查询参数
+            </summary>
+        </member>
+        <member name="P:ElasticSearch.Entity.EsSearchQueryRequest`1.PageIndex">
+            <summary>
+            页码
+            </summary>
+        </member>
+        <member name="P:ElasticSearch.Entity.EsSearchQueryRequest`1.From">
+            <summary>
+            From
+            </summary>
+        </member>
+        <member name="T:ElasticSearch.Entity.EsSearchScrollRequest`1">
+            <summary>
+            Es搜索查询参数(scroll)
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="P:ElasticSearch.Entity.EsSearchScrollRequest`1.ScrollTime">
+            <summary>
+            游标存活时间
+            </summary>
+        </member>
+        <member name="P:ElasticSearch.Entity.EsSearchScrollRequest`1.ScrollId">
+            <summary>
+            游标Id
             </summary>
         </member>
         <member name="T:ElasticSearch.EsBaseDataAutoMapping`1">
@@ -251,11 +272,26 @@
             <param name="index">索引</param>
             <returns></returns>
         </member>
-        <member name="M:ElasticSearch.EsBaseDataSource`1.SearchQuery(ElasticSearch.Entity.EsBaseSearchRequest{`0})">
+        <member name="M:ElasticSearch.EsBaseDataSource`1.SearchQuery(ElasticSearch.Entity.EsSearchQueryRequest{`0})">
             <summary>
             搜索查询
             </summary>
             <param name="request">参数</param>
+            <returns></returns>
+        </member>
+        <member name="M:ElasticSearch.EsBaseDataSource`1.SearchScroll(ElasticSearch.Entity.EsSearchScrollRequest{`0})">
+            <summary>
+            搜索查询(scroll)
+            </summary>
+            <param name="request">参数</param>
+            <returns></returns>
+        </member>
+        <member name="M:ElasticSearch.EsBaseDataSource`1.ClearScroll(System.String[],System.String)">
+            <summary>
+            清除游标
+            </summary>
+            <param name="scrollIds">游标id集合</param>
+            <param name="index">索引</param>
             <returns></returns>
         </member>
         <member name="T:ElasticSearch.EsClientProvider">
@@ -369,11 +405,26 @@
             <param name="index">索引</param>
             <returns></returns>
         </member>
-        <member name="M:ElasticSearch.IEsBaseDataSource`1.SearchQuery(ElasticSearch.Entity.EsBaseSearchRequest{`0})">
+        <member name="M:ElasticSearch.IEsBaseDataSource`1.SearchQuery(ElasticSearch.Entity.EsSearchQueryRequest{`0})">
             <summary>
             搜索查询
             </summary>
             <param name="request">参数</param>
+            <returns></returns>
+        </member>
+        <member name="M:ElasticSearch.IEsBaseDataSource`1.SearchScroll(ElasticSearch.Entity.EsSearchScrollRequest{`0})">
+            <summary>
+            搜索查询(scroll)
+            </summary>
+            <param name="request">参数</param>
+            <returns></returns>
+        </member>
+        <member name="M:ElasticSearch.IEsBaseDataSource`1.ClearScroll(System.String[],System.String)">
+            <summary>
+            清除游标
+            </summary>
+            <param name="scrollIds">游标id集合</param>
+            <param name="index">索引</param>
             <returns></returns>
         </member>
     </members>

@@ -35,16 +35,27 @@ namespace UtilsSharp
         public static string GetConnectionString(string key)
         {
             return config.GetConnectionString(key);
-        } 
+        }
 
         /// <summary>
         /// 获取相应节点
         /// </summary>
-        /// <param name="key">key</param>
+        /// <param name="key">key:子节点冒号隔开,如aa:bb</param>
         /// <returns></returns>
         public static IConfigurationSection GetSection(string key)
         {
             return config.GetSection(key);
+        }
+
+        /// <summary>
+        /// 获取相应节点
+        /// </summary>
+        /// <param name="key">key:子节点冒号隔开,如aa:bb</param>
+        /// <returns></returns>
+        public static T GetSection<T>(string key)
+        {
+            var section= config.GetSection(key);
+            return section.Get<T>();
         }
 
         /// <summary>

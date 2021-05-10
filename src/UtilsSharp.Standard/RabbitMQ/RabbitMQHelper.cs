@@ -117,6 +117,17 @@ namespace RabbitMQ
         }
 
         /// <summary>
+        /// 删除交换机
+        /// </summary>
+        /// <param name="exchangeName">交换机名称</param>
+        /// <param name="ifUnused">是否要不在使用中</param>
+        public void ExchangeDelete(string exchangeName,bool ifUnused)
+        {
+            using var channel = GetChannel();
+            channel.ExchangeDelete(exchangeName, ifUnused);
+        }
+
+        /// <summary>
         /// 申明队列
         /// </summary>
         /// <param name="queueName">队列名称</param>
@@ -130,11 +141,21 @@ namespace RabbitMQ
         /// <summary>
         /// 删除队列
         /// </summary>
-        /// <param name="queueName"></param>
+        /// <param name="queueName">队列名称</param>
         public void QueueDelete(string queueName)
         {
             using var channel = GetChannel();
             channel.QueueDelete(queue: queueName);
+        }
+
+        /// <summary>
+        /// 清空队列数据
+        /// </summary>
+        /// <param name="queueName">队列名称</param>
+        public void QueuePurge(string queueName)
+        {
+            using var channel = GetChannel();
+            channel.QueuePurge(queueName);
         }
 
         /// <summary>
@@ -147,6 +168,18 @@ namespace RabbitMQ
         {
             using var channel = GetChannel();
             channel.QueueBind(queueName, exchangeName, routingKey, null);
+        }
+
+        /// <summary>
+        /// 队列解绑
+        /// </summary>
+        /// <param name="queueName">队列名称</param>
+        /// <param name="exchangeName">交换机名称</param>
+        /// <param name="routingKey">路由key</param>
+        public void QueueUnbind(string queueName, string exchangeName, string routingKey)
+        {
+            using var channel = GetChannel();
+            channel.QueueUnbind(queueName, exchangeName, routingKey, null);
         }
 
         /// <summary>

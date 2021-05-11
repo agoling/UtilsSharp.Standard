@@ -5,16 +5,16 @@ using System.IO;
 namespace UtilsSharp
 {
     /// <summary>
-    /// Appsettings帮助类
+    /// 配置文件帮助类
     /// </summary>
     public static class AppsettingsHelper
     {
-        private static IConfiguration config;
+        private static readonly IConfiguration Config;
         static AppsettingsHelper()
         {
             var builder = new ConfigurationBuilder();//创建config的builder
             builder.SetBasePath(Directory.GetCurrentDirectory()).AddJsonFile("appsettings.json");//设置配置文件所在的路径加载配置文件信息
-            config = builder.Build();
+            Config = builder.Build();
         }
 
         /// <summary>
@@ -24,7 +24,7 @@ namespace UtilsSharp
         /// <returns></returns>
         public static string GetValue(string key)
         {
-            return config[key];
+            return Config[key];
         }
 
         /// <summary>
@@ -34,7 +34,7 @@ namespace UtilsSharp
         /// <returns></returns>
         public static string GetConnectionString(string key)
         {
-            return config.GetConnectionString(key);
+            return Config.GetConnectionString(key);
         }
 
         /// <summary>
@@ -44,7 +44,7 @@ namespace UtilsSharp
         /// <returns></returns>
         public static IConfigurationSection GetSection(string key)
         {
-            return config.GetSection(key);
+            return Config.GetSection(key);
         }
 
         /// <summary>
@@ -54,7 +54,7 @@ namespace UtilsSharp
         /// <returns></returns>
         public static T GetSection<T>(string key)
         {
-            var section= config.GetSection(key);
+            var section= Config.GetSection(key);
             return section.Get<T>();
         }
 
@@ -64,7 +64,7 @@ namespace UtilsSharp
         /// <returns></returns>
         public static IEnumerable<IConfigurationSection> GetChildren()
         {
-            return config.GetChildren();
+            return Config.GetChildren();
         }
     }
 }

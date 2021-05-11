@@ -8,11 +8,12 @@ namespace AspNetCore
     /// <summary>
     /// AspNetCoreExtensions 配置文件
     /// </summary>
-    internal class AspNetCoreExtensionsConfig
+    public class AspNetCoreExtensionsConfig
     {
         /// <summary>
         /// SwaggerDocOptions
         /// </summary>
-        internal static SwaggerDocOptions SwaggerDocOptions { set; get; }
+        public static SwaggerDocOptions SwaggerDocOptions { set; get; }
+
     }
 }

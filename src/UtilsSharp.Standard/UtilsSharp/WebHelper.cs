@@ -112,11 +112,6 @@ namespace UtilsSharp
                 {
                     return result;
                 }
-                if (typeof(T) == typeof(string))
-                {
-                    result.Result = (T) Convert.ChangeType(content, typeof(T));
-                    return result;
-                }
                 result.Result = JsonConvert.DeserializeObject<T>(content);
                 return result;
             }
@@ -218,13 +213,6 @@ namespace UtilsSharp
                 {
                     return result;
                 }
-
-                if (typeof(T) == typeof(string))
-                {
-                    result.Result = (T) Convert.ChangeType(content, typeof(T));
-                    return result;
-                }
-
                 result.Result = JsonConvert.DeserializeObject<T>(content);
                 return result;
             }
@@ -301,13 +289,6 @@ namespace UtilsSharp
                 {
                     return result;
                 }
-
-                if (typeof(T) == typeof(string))
-                {
-                    result.Result = (T) Convert.ChangeType(content, typeof(T));
-                    return result;
-                }
-
                 result.Result = JsonConvert.DeserializeObject<T>(content);
                 return result;
             }
@@ -513,13 +494,6 @@ namespace UtilsSharp
                 {
                     return result;
                 }
-
-                if (typeof(T) == typeof(string))
-                {
-                    result.Result = (T) Convert.ChangeType(content, typeof(T));
-                    return result;
-                }
-
                 result.Result = JsonConvert.DeserializeObject<T>(content);
                 return result;
             }
@@ -621,13 +595,6 @@ namespace UtilsSharp
                 {
                     return result;
                 }
-
-                if (typeof(T) == typeof(string))
-                {
-                    result.Result = (T) Convert.ChangeType(content, typeof(T));
-                    return result;
-                }
-
                 result.Result = JsonConvert.DeserializeObject<T>(content);
                 return result;
             }
@@ -708,13 +675,6 @@ namespace UtilsSharp
                 {
                     return result;
                 }
-
-                if (typeof(T) == typeof(string))
-                {
-                    result.Result = (T) Convert.ChangeType(content, typeof(T));
-                    return result;
-                }
-
                 result.Result = JsonConvert.DeserializeObject<T>(content);
                 return result;
             }

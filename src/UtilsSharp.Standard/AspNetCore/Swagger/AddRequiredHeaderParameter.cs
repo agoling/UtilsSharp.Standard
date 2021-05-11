@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Microsoft.OpenApi.Any;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
@@ -16,9 +15,9 @@ namespace AspNetCore.Swagger
             if (operation.Parameters == null)
                 operation.Parameters = new List<OpenApiParameter>();
 
-            var swaggerDocOptions = AspNetCoreExtensionsConfig.SwaggerDocOptions;
-            if (swaggerDocOptions.HeaderParameters == null || swaggerDocOptions.HeaderParameters.Count <= 0) return;
-            foreach (var item in swaggerDocOptions.HeaderParameters)
+            if(AspNetCoreExtensionsConfig.SwaggerDocOptions==null) return;
+            if (AspNetCoreExtensionsConfig.SwaggerDocOptions.HeaderParameters == null || AspNetCoreExtensionsConfig.SwaggerDocOptions.HeaderParameters.Count <= 0) return;
+            foreach (var item in AspNetCoreExtensionsConfig.SwaggerDocOptions.HeaderParameters)
             {
                 var param = new OpenApiParameter
                 {

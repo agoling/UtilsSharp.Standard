@@ -12,6 +12,9 @@ namespace AspNetCore.Interceptor
     /// </summary>
     public class LoggerInterceptor : IInterceptor
     {
+        /// <summary>
+        /// Aop拦截
+        /// </summary>
         public void Intercept(IInvocation invocation)
         {
             try

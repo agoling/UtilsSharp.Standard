@@ -6,7 +6,7 @@
     <members>
         <member name="T:UtilsSharp.AppsettingsHelper">
             <summary>
-            Appsettings帮助类
+            配置文件帮助类
             </summary>
         </member>
         <member name="M:UtilsSharp.AppsettingsHelper.GetValue(System.String)">
@@ -27,7 +27,14 @@
             <summary>
             获取相应节点
             </summary>
-            <param name="key">key</param>
+            <param name="key">key:子节点冒号隔开,如aa:bb</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.AppsettingsHelper.GetSection``1(System.String)">
+            <summary>
+            获取相应节点
+            </summary>
+            <param name="key">key:子节点冒号隔开,如aa:bb</param>
             <returns></returns>
         </member>
         <member name="M:UtilsSharp.AppsettingsHelper.GetChildren">

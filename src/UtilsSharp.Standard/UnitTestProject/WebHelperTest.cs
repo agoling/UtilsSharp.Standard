@@ -35,6 +35,21 @@ namespace UnitTestProjectNetCore
             var requestResult1 =  webHelper.DoPost(url,dic);
         }
 
+
+        [TestMethod]
+        public void Http1Async()
+        {
+            using (var webHelper = new WebHelper())
+            {
+                var json= "{\"TaskId\":\"f140d4535e4a41468b9c9923115130aa\",\"CustomerId\":\"b2b-1624786331\",\"BusId\":null,\"Name\":\"快哦批量违禁词检测2021-05-11 14:53:32\",\"Tag\":\"快哦批量违禁词检测\",\"State\":0,\"IsSuccess\":false,\"Progress\":0,\"Message\":\"\",\"Parameter\":\"{\\\"PlanNo\\\":\\\"f140d4535e4a41468b9c9923115130aa\\\",\\\"Classify\\\":null,\\\"OfferIds\\\":[644120245956],\\\"DraftBoxIds\\\":null,\\\"Status\\\":2,\\\"PageIndex\\\":1,\\\"PageSize\\\":20,\\\"IndustryCategorys\\\":[\\\"通用\\\"],\\\"AppKey\\\":\\\"2721863\\\",\\\"AliId\\\":\\\"b2b-1624786331\\\",\\\"SourcePlatform\\\":1,\\\"KuaiOId\\\":12}\",\"Result\":null,\"CreateTime\":\"2021-05-11T14:53:32.5630457+08:00\",\"BeginTime\":\"0001-01-01T00:00:00\",\"CompleteTime\":\"0001-01-01T00:00:00\",\"DeleteTime\":\"0001-01-01T00:00:00\",\"LogInfo\":null,\"ClientId\":null}";
+                object obj = JsonConvert.DeserializeObject<object>(json);
+                var r = webHelper.DoPost($"http://192.168.0.17:8012/test/task/api/task/IssuedTask", obj);
+                var aa= r.Result;
+            }
+
+        }
+
+
         [TestMethod]
         public void HttpAsync()
         {

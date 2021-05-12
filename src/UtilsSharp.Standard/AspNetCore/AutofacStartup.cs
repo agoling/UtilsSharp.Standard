@@ -8,9 +8,9 @@ using UtilsSharp.Dependency;
 namespace AspNetCore
 {
     /// <summary>
-    /// AspNetCoreStartup
+    /// AutofacStartup
     /// </summary>
-    public abstract class AspNetCoreStartup
+    public abstract class AutofacStartup
     {
         /// <summary>
         /// 依赖注入映射

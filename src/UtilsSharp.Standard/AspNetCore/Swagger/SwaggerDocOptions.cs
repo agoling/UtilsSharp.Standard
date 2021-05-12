@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Castle.Components.DictionaryAdapter;
 using Microsoft.OpenApi.Models;
 
 namespace AspNetCore.Swagger
@@ -15,19 +16,29 @@ namespace AspNetCore.Swagger
         public bool Enable { set; get; } = true;
 
         /// <summary>
-        /// Name
+        /// 项目名称
         /// </summary>
-        public string Name { set; get; } = "v1";
+        public string ProjectName { set; get; }
 
         /// <summary>
-        /// OpenApiInfo
+        /// 项目描述
         /// </summary>
-        public OpenApiInfo OpenApiInfo { set; get; } = new OpenApiInfo {Title = "My API", Version = "v1"};
+        public string ProjectDescription { set; get; }
+
+        /// <summary>
+        /// 项目版本号
+        /// </summary>
+        public string ProjectVersion { set; get; }
 
         /// <summary>
         /// Header默认值
         /// </summary>
         public List<HeaderParameter> HeaderParameters { set; get; }=new List<HeaderParameter>();
+
+        /// <summary>
+        /// swagger分组
+        /// </summary>
+        public List<SwaggerGroup> Groups { set; get; }=new EditableList<SwaggerGroup>();
     }
 
 
@@ -48,5 +59,16 @@ namespace AspNetCore.Swagger
         /// Header描述
         /// </summary>
         public string Description { set; get; }
+    }
+
+    /// <summary>
+    /// swagger分组
+    /// </summary>
+    public class SwaggerGroup: OpenApiInfo
+    {
+        /// <summary>
+        /// 分组名称
+        /// </summary>
+        public string GroupName { set; get; }
     }
 }

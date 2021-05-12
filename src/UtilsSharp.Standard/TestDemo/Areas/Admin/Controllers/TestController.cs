@@ -4,11 +4,13 @@ using System.Linq;
 using System.Threading.Tasks;
 using AspNetCore.MVC;
 using Microsoft.AspNetCore.Mvc;
+using TestDemo.Areas.Admin.Models;
 
-namespace TestDemo.Controllers
+namespace TestDemo.Areas.Admin.Controllers
 {
-    [ApiExplorerSettings(GroupName = "test")]
-    public class TestController : BaseController
+    [ApiExplorerSettings(GroupName = "admin")]
+    [Area("admin")]
+    public class TestController : BaseAreaController
     {
         /// <summary>
         /// IEnumerable
@@ -36,10 +38,11 @@ namespace TestDemo.Controllers
         /// <summary>
         /// Post
         /// </summary>
-        /// <param name="value">value</param>
+        /// <param name="TestRequest">request</param>
         [HttpPost]
-        public void Post([FromBody]string value)
+        public string Post(TestRequest request)
         {
+            return request.UserName + request.Password;
         }
 
         /// <summary>
@@ -48,7 +51,7 @@ namespace TestDemo.Controllers
         /// <param name="id">id</param>
         /// <param name="value">value</param>
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
+        public void Put(int id, [FromBody] string value)
         {
         }
 

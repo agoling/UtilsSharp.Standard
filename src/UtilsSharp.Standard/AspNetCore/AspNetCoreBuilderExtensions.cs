@@ -16,9 +16,8 @@ namespace AspNetCore
         /// 注册AspNetCore扩展
         /// </summary>
         /// <param name="app">IApplicationBuilder</param>
-        /// <param name="lifetime">IHostApplicationLifetime</param>
         /// <returns></returns>
-        public static IApplicationBuilder UseAspNetCoreExtensions(this IApplicationBuilder app, IHostApplicationLifetime lifetime)
+        public static IApplicationBuilder UseAspNetCoreExtensions(this IApplicationBuilder app)
         {
             //注册依赖注入
             app.UseAutofacExtensions();

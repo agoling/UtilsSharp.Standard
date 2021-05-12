@@ -4,6 +4,53 @@
         <name>TestDemo</name>
     </assembly>
     <members>
+        <member name="M:TestDemo.Areas.Admin.Controllers.TestController.Get">
+            <summary>
+            IEnumerable
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:TestDemo.Areas.Admin.Controllers.TestController.Get(System.Int32)">
+            <summary>
+            Get
+            </summary>
+            <param name="id">id</param>
+            <returns></returns>
+        </member>
+        <member name="M:TestDemo.Areas.Admin.Controllers.TestController.Post(TestDemo.Areas.Admin.Models.TestRequest)">
+            <summary>
+            Post
+            </summary>
+            <param name="TestRequest">request</param>
+        </member>
+        <member name="M:TestDemo.Areas.Admin.Controllers.TestController.Put(System.Int32,System.String)">
+            <summary>
+            Put
+            </summary>
+            <param name="id">id</param>
+            <param name="value">value</param>
+        </member>
+        <member name="M:TestDemo.Areas.Admin.Controllers.TestController.Delete(System.Int32)">
+            <summary>
+            Delete
+            </summary>
+            <param name="id">id</param>
+        </member>
+        <member name="T:TestDemo.Areas.Admin.Models.TestRequest">
+            <summary>
+            测试参数
+            </summary>
+        </member>
+        <member name="P:TestDemo.Areas.Admin.Models.TestRequest.UserName">
+            <summary>
+            用户名
+            </summary>
+        </member>
+        <member name="P:TestDemo.Areas.Admin.Models.TestRequest.Password">
+            <summary>
+            密码
+            </summary>
+        </member>
         <member name="M:TestDemo.Controllers.TestController.Get">
             <summary>
             IEnumerable

@@ -1,7 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.OpenApi.Models;
 using UtilsSharp;
 
 namespace AspNetCore.Swagger
@@ -11,7 +14,6 @@ namespace AspNetCore.Swagger
     /// </summary>
     public static class SwaggerExtensions
     {
-
         /// <summary>
         /// 注册swagger
         /// </summary>
@@ -26,13 +28,44 @@ namespace AspNetCore.Swagger
             try
             {
                 if (!AspNetCoreExtensionsConfig.SwaggerDocOptions.Enable) return app;
-                // Enable middleware to serve generated Swagger as a JSON endpoint.
+                //启用中间件服务生成Swagger作为JSON终结点
                 app.UseSwagger();
-                // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.),
-                // specifying the Swagger JSON endpoint.
-                app.UseSwaggerUI(c =>
+                //启用中间件服务对swagger-ui，指定Swagger JSON终结点
+                app.UseSwaggerUI(suoption =>
                 {
-                    c.SwaggerEndpoint($"/swagger/{AspNetCoreExtensionsConfig.SwaggerDocOptions.Name}/swagger.json", $"{AspNetCoreExtensionsConfig.SwaggerDocOptions.OpenApiInfo.Title} {AspNetCoreExtensionsConfig.SwaggerDocOptions.OpenApiInfo.Version}");
+                    var g = new SwaggerGroup
+                    {
+                        GroupName = "api_default", Title = "My API", Description = "接口默认文档", Version = "v1.0"
+                    };
+                    if (!string.IsNullOrEmpty(AspNetCoreExtensionsConfig.SwaggerDocOptions.ProjectName))
+                    {
+                        g.Title = AspNetCoreExtensionsConfig.SwaggerDocOptions.ProjectName;
+                    }
+                    if (!string.IsNullOrEmpty(AspNetCoreExtensionsConfig.SwaggerDocOptions.ProjectDescription))
+                    {
+                        g.Description = AspNetCoreExtensionsConfig.SwaggerDocOptions.ProjectDescription;
+                    }
+                    if (!string.IsNullOrEmpty(AspNetCoreExtensionsConfig.SwaggerDocOptions.ProjectVersion))
+                    {
+                        g.Version = AspNetCoreExtensionsConfig.SwaggerDocOptions.ProjectVersion;
+                    }
+                    var groups = new List<SwaggerGroup> {g};
+                    if (AspNetCoreExtensionsConfig.SwaggerDocOptions.Groups!= null&& AspNetCoreExtensionsConfig.SwaggerDocOptions.Groups.Count>0)
+                    {
+                        AspNetCoreExtensionsConfig.SwaggerDocOptions.Groups.ForEach((item) =>
+                        {
+                            if(string.IsNullOrEmpty(item.GroupName)) return;
+                            if(groups.Any(t=>t.GroupName==item.GroupName)) return;
+                            groups.Add(item);
+                        });
+                    }
+                    AspNetCoreExtensionsConfig.SwaggerDocOptions.Groups=new List<SwaggerGroup>();
+                    AspNetCoreExtensionsConfig.SwaggerDocOptions.Groups.AddRange(groups);
+                    suoption.RoutePrefix = string.Empty;
+                    AspNetCoreExtensionsConfig.SwaggerDocOptions.Groups.ForEach(group =>
+                    {
+                        suoption.SwaggerEndpoint($"/swagger/{group.GroupName}/swagger.json", $"{group.Title} {group.Version}");
+                    });
                 });
                 return app;
             }
@@ -62,16 +95,16 @@ namespace AspNetCore.Swagger
                     services.AddSwaggerGen(c =>
                     {
                         c.CustomSchemaIds(i => i.FullName);
-                        c.SwaggerDoc(AspNetCoreExtensionsConfig.SwaggerDocOptions.Name, AspNetCoreExtensionsConfig.SwaggerDocOptions.OpenApiInfo);
-                        var enumerable = AssemblyHelper.GetAllAssemblies();
-                        foreach (var item in enumerable)
+                        #region Swagger接口模块分组配置
+                        AspNetCoreExtensionsConfig.SwaggerDocOptions.Groups.ForEach(group =>
                         {
-                            var xmlName = $"{item.GetName().Name}.xml";
-                            var xmlPath = item.ManifestModule.FullyQualifiedName.Replace(item.ManifestModule.Name, xmlName);
-                            if (File.Exists(xmlPath))
-                            {
-                                c.IncludeXmlComments(xmlPath, true); //添加控制器层注释（true表示显示控制器注释）
-                            }
+                            c.SwaggerDoc(group.GroupName, new OpenApiInfo { Title = group.Title, Description = group.Description, Version = group.Version });
+                        });
+                        #endregion
+                        var enumerable = AssemblyHelper.GetAllAssemblies();
+                        foreach (var xmlPath in from item in enumerable let xmlName = $"{item.GetName().Name}.xml" select item.ManifestModule.FullyQualifiedName.Replace(item.ManifestModule.Name, xmlName) into xmlPath where File.Exists(xmlPath) select xmlPath)
+                        {
+                            c.IncludeXmlComments(xmlPath, true); //添加控制器层注释（true表示显示控制器注释）
                         }
                         if (AspNetCoreExtensionsConfig.SwaggerDocOptions.HeaderParameters != null && AspNetCoreExtensionsConfig.SwaggerDocOptions.HeaderParameters.Count > 0)
                         {

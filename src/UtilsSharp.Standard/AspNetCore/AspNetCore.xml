@@ -9,12 +9,11 @@
             AspNetCoreBuilderExtensions
             </summary>
         </member>
-        <member name="M:AspNetCore.AspNetCoreBuilderExtensions.UseAspNetCoreExtensions(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.Extensions.Hosting.IHostApplicationLifetime)">
+        <member name="M:AspNetCore.AspNetCoreBuilderExtensions.UseAspNetCoreExtensions(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
             <summary>
             注册AspNetCore扩展
             </summary>
             <param name="app">IApplicationBuilder</param>
-            <param name="lifetime">IHostApplicationLifetime</param>
             <returns></returns>
         </member>
         <member name="T:AspNetCore.AspNetCoreExtensions">
@@ -39,24 +38,24 @@
             SwaggerDocOptions
             </summary>
         </member>
-        <member name="T:AspNetCore.AspNetCoreStartup">
+        <member name="T:AspNetCore.AutofacStartup">
             <summary>
-            AspNetCoreStartup
+            AutofacStartup
             </summary>
         </member>
-        <member name="M:AspNetCore.AspNetCoreStartup.ConfigureContainer(Autofac.ContainerBuilder)">
+        <member name="M:AspNetCore.AutofacStartup.ConfigureContainer(Autofac.ContainerBuilder)">
             <summary>
             依赖注入映射
             </summary>
             <param name="builder">ContainerBuilder</param>
         </member>
-        <member name="M:AspNetCore.AspNetCoreStartup.Init(Autofac.ContainerBuilder)">
+        <member name="M:AspNetCore.AutofacStartup.Init(Autofac.ContainerBuilder)">
             <summary>
             依赖注入初始化 [Intercept(typeof(LoggerInterceptor))]
             </summary>
             <param name="builder">ContainerBuilder</param>
         </member>
-        <member name="M:AspNetCore.AspNetCoreStartup.Init``1(Autofac.ContainerBuilder)">
+        <member name="M:AspNetCore.AutofacStartup.Init``1(Autofac.ContainerBuilder)">
             <summary>
             依赖注入初始化
             </summary>
@@ -105,14 +104,20 @@
             基础控制器
             </summary>
         </member>
-        <member name="T:AspNetCore.MVC.ConsulController">
+        <member name="T:AspNetCore.MVC.IpController">
             <summary>
-            Consul控制器
+            Ip控制器
             </summary>
         </member>
-        <member name="M:AspNetCore.MVC.ConsulController.Health">
+        <member name="M:AspNetCore.MVC.IpController.Client">
             <summary>
-            健康检测
+            客户端
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:AspNetCore.MVC.IpController.Server">
+            <summary>
+            服务器
             </summary>
             <returns></returns>
         </member>
@@ -131,19 +136,29 @@
             生产环境可禁用Swagger
             </summary>
         </member>
-        <member name="P:AspNetCore.Swagger.SwaggerDocOptions.Name">
+        <member name="P:AspNetCore.Swagger.SwaggerDocOptions.ProjectName">
             <summary>
-            Name
+            项目名称
             </summary>
         </member>
-        <member name="P:AspNetCore.Swagger.SwaggerDocOptions.OpenApiInfo">
+        <member name="P:AspNetCore.Swagger.SwaggerDocOptions.ProjectDescription">
             <summary>
-            OpenApiInfo
+            项目描述
+            </summary>
+        </member>
+        <member name="P:AspNetCore.Swagger.SwaggerDocOptions.ProjectVersion">
+            <summary>
+            项目版本号
             </summary>
         </member>
         <member name="P:AspNetCore.Swagger.SwaggerDocOptions.HeaderParameters">
             <summary>
             Header默认值
+            </summary>
+        </member>
+        <member name="P:AspNetCore.Swagger.SwaggerDocOptions.Groups">
+            <summary>
+            swagger分组
             </summary>
         </member>
         <member name="T:AspNetCore.Swagger.HeaderParameter">
@@ -164,6 +179,16 @@
         <member name="P:AspNetCore.Swagger.HeaderParameter.Description">
             <summary>
             Header描述
+            </summary>
+        </member>
+        <member name="T:AspNetCore.Swagger.SwaggerGroup">
+            <summary>
+            swagger分组
+            </summary>
+        </member>
+        <member name="P:AspNetCore.Swagger.SwaggerGroup.GroupName">
+            <summary>
+            分组名称
             </summary>
         </member>
         <member name="T:AspNetCore.Swagger.SwaggerExtensions">

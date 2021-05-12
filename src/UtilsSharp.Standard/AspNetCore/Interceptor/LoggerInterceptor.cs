@@ -26,8 +26,8 @@ namespace AspNetCore.Interceptor
                 var returnType = invocation.Method.ReturnType;
                 var setErrorMethod = returnType.GetMethod("SetError", new Type[] { typeof(string), typeof(int) });
                 var result = Activator.CreateInstance(returnType, true);
-                string methodName = invocation.InvocationTarget.ToString() + "." + invocation.Method.Name;
-                List<string> args = new List<string>();
+                var methodName = invocation.InvocationTarget + "." + invocation.Method.Name;
+                var args = new List<string>();
                 if (invocation.Arguments != null && invocation.Arguments.Length > 0)
                 {
                     foreach (object item in invocation.Arguments)
@@ -41,7 +41,7 @@ namespace AspNetCore.Interceptor
                 var param = string.Join(",", args);
                 if (setErrorMethod == null)
                 {
-                    LogHelper.Error($"{methodName} 异常", ex, parameters: $"{param}", func: $"{methodName}");
+                    LogHelper.Error($"执行：{methodName} 异常", ex, parameters: $"{param}", func: $"{methodName}");
                     invocation.ReturnValue = result;
                     return;
                 }

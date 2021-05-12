@@ -1,12 +1,9 @@
-using System;
-using System.Collections.Generic;
 using AspNetCore;
 using AspNetCore.Interceptor;
 using AspNetCore.Swagger;
 using Autofac;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using UtilsSharp;
@@ -20,7 +17,7 @@ namespace TestDemo
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            AspNetCoreExtensionsConfig.SwaggerDocOptions = AppsettingsHelper.GetSection("SwaggerDocOptions").Get<SwaggerDocOptions>();
+            AspNetCoreExtensionsConfig.SwaggerDocOptions = AppsettingsHelper.GetSection<SwaggerDocOptions>("SwaggerDocOptions");
             services.AddAspNetCoreExtensions();
         }
 

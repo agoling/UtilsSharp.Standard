@@ -13,16 +13,11 @@ namespace UtilsSharp
     public class StringHelper
     {
         /// <summary>
-        /// EncodingProvider
+        /// 注册后使可以支持.Net平台上不支持的编码
         /// </summary>
-        public static EncodingProvider Encoding
+        public static void EncodingRegister()
         {
-            get
-            {
-                var provider = CodePagesEncodingProvider.Instance;
-                System.Text.Encoding.RegisterProvider(provider);
-                return provider;
-            }
+            Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
         }
 
         /// <summary>
@@ -198,11 +193,16 @@ namespace UtilsSharp
         /// 压缩字符串
         /// </summary>
         /// <param name="str">字符串</param>
+        /// <param name="encoding">编码</param>
         /// <returns></returns>
-        public static string Compress(string str)
+        public static string Compress(string str,Encoding encoding=null)
         {
             if (string.IsNullOrEmpty(str)) return str;
-            var compressBeforeByte = Encoding.GetEncoding("UTF-8").GetBytes(str);
+            if (encoding==null)
+            {
+                encoding=Encoding.UTF8;
+            }
+            var compressBeforeByte = encoding.GetBytes(str);
             var ms = new MemoryStream();
             var zip = new GZipStream(ms, CompressionMode.Compress, true);
             zip.Write(compressBeforeByte, 0, compressBeforeByte.Length);
@@ -219,10 +219,15 @@ namespace UtilsSharp
         ///  字符串解压缩
         /// </summary>
         /// <param name="str">字符串</param>
+        /// <param name="encoding">编码</param>
         /// <returns></returns>
-        public static string DeCompress(string str)
+        public static string DeCompress(string str, Encoding encoding = null)
         {
             if (string.IsNullOrEmpty(str)) return str;
+            if (encoding == null)
+            {
+                encoding = Encoding.UTF8;
+            }
             var decompressBeforeByte = Convert.FromBase64String(str);
             var ms = new MemoryStream(decompressBeforeByte);
             var zip = new GZipStream(ms, CompressionMode.Decompress, true);
@@ -243,7 +248,7 @@ namespace UtilsSharp
             decompressAfterByte = msReader.ToArray();
             msReader.Close();
 
-            var decompressString = Encoding.GetEncoding("UTF-8").GetString(decompressAfterByte);
+            var decompressString = encoding.GetString(decompressAfterByte);
             return decompressString;
         }
 

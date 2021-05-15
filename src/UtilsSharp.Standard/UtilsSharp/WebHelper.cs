@@ -112,6 +112,11 @@ namespace UtilsSharp
                 {
                     return result;
                 }
+                if (typeof(T) == typeof(string))
+                {
+                    result.Result = (T)Convert.ChangeType(content, typeof(T));
+                    return result;
+                }
                 result.Result = JsonConvert.DeserializeObject<T>(content);
                 return result;
             }
@@ -213,6 +218,13 @@ namespace UtilsSharp
                 {
                     return result;
                 }
+
+                if (typeof(T) == typeof(string))
+                {
+                    result.Result = (T)Convert.ChangeType(content, typeof(T));
+                    return result;
+                }
+
                 result.Result = JsonConvert.DeserializeObject<T>(content);
                 return result;
             }
@@ -234,7 +246,7 @@ namespace UtilsSharp
         /// <param name="parameters">请求参数</param>
         /// <param name="dateTimeFormat">返回的时间格式</param>
         /// <returns></returns>
-        public BaseResult<string> DoPost(string address, object parameters,string dateTimeFormat = "yyyy-MM-dd HH:mm:ss")
+        public BaseResult<string> DoPost(string address, object parameters, string dateTimeFormat = "yyyy-MM-dd HH:mm:ss")
         {
             return PostRequest<string>(address, parameters, dateTimeFormat);
         }
@@ -246,7 +258,7 @@ namespace UtilsSharp
         /// <param name="parameters">请求参数</param>
         /// <param name="dateTimeFormat">返回的时间格式</param>
         /// <returns></returns>
-        public BaseResult<T> DoPost<T>(string address, object parameters, string dateTimeFormat = "yyyy-MM-dd HH:mm:ss")where T : class, new()
+        public BaseResult<T> DoPost<T>(string address, object parameters, string dateTimeFormat = "yyyy-MM-dd HH:mm:ss") where T : class, new()
         {
             return PostRequest<T>(address, parameters, dateTimeFormat);
         }
@@ -258,7 +270,7 @@ namespace UtilsSharp
         /// <param name="parameters">请求参数</param>
         /// <param name="dateTimeFormat">返回的时间格式</param>
         /// <returns></returns>
-        private BaseResult<T> PostRequest<T>(string address, object parameters,string dateTimeFormat = "yyyy-MM-dd HH:mm:ss") where T : class
+        private BaseResult<T> PostRequest<T>(string address, object parameters, string dateTimeFormat = "yyyy-MM-dd HH:mm:ss") where T : class
         {
             var result = new BaseResult<T>();
             try
@@ -289,6 +301,13 @@ namespace UtilsSharp
                 {
                     return result;
                 }
+
+                if (typeof(T) == typeof(string))
+                {
+                    result.Result = (T)Convert.ChangeType(content, typeof(T));
+                    return result;
+                }
+
                 result.Result = JsonConvert.DeserializeObject<T>(content);
                 return result;
             }
@@ -483,7 +502,7 @@ namespace UtilsSharp
                 }
                 var (item1, item2) = BuildUrlParameter(address, parameters);
                 address = item1;
-                var parametersStr =await BuildQueryAsync(item2);
+                var parametersStr = await BuildQueryAsync(item2);
                 if (!string.IsNullOrEmpty(parametersStr))
                 {
                     address = $"{item1}?{parametersStr}";
@@ -494,6 +513,13 @@ namespace UtilsSharp
                 {
                     return result;
                 }
+
+                if (typeof(T) == typeof(string))
+                {
+                    result.Result = (T)Convert.ChangeType(content, typeof(T));
+                    return result;
+                }
+
                 result.Result = JsonConvert.DeserializeObject<T>(content);
                 return result;
             }
@@ -545,7 +571,7 @@ namespace UtilsSharp
         /// <param name="address">请求地址</param>
         /// <param name="parameters">请求参数</param>
         /// <returns></returns>
-        public async Task<BaseResult<T>> DoPostAsync<T>(string address, Dictionary<string, string> parameters)where T : class, new()
+        public async Task<BaseResult<T>> DoPostAsync<T>(string address, Dictionary<string, string> parameters) where T : class, new()
         {
             return await PostRequestAsync<T>(address, parameters);
         }
@@ -556,7 +582,7 @@ namespace UtilsSharp
         /// <param name="address">请求地址</param>
         /// <param name="parameters">请求参数</param>
         /// <returns></returns>
-        private async Task<BaseResult<T>> PostRequestAsync<T>(string address, Dictionary<string, string> parameters)where T : class
+        private async Task<BaseResult<T>> PostRequestAsync<T>(string address, Dictionary<string, string> parameters) where T : class
         {
             var result = new BaseResult<T>();
             try
@@ -595,6 +621,13 @@ namespace UtilsSharp
                 {
                     return result;
                 }
+
+                if (typeof(T) == typeof(string))
+                {
+                    result.Result = (T)Convert.ChangeType(content, typeof(T));
+                    return result;
+                }
+
                 result.Result = JsonConvert.DeserializeObject<T>(content);
                 return result;
             }
@@ -675,6 +708,13 @@ namespace UtilsSharp
                 {
                     return result;
                 }
+
+                if (typeof(T) == typeof(string))
+                {
+                    result.Result = (T)Convert.ChangeType(content, typeof(T));
+                    return result;
+                }
+
                 result.Result = JsonConvert.DeserializeObject<T>(content);
                 return result;
             }
@@ -698,7 +738,7 @@ namespace UtilsSharp
         {
             return await Task.Factory.StartNew(o =>
             {
-                var obj = (IDictionary<string, string>) o;
+                var obj = (IDictionary<string, string>)o;
                 if (obj == null || !obj.Any())
                 {
                     return "";
@@ -801,9 +841,9 @@ namespace UtilsSharp
         {
             if (_timer == null)
             {
-                _timer = new Calculagraph(this) {Timeout = Timeout};
+                _timer = new Calculagraph(this) { Timeout = Timeout };
                 _timer.TimeOver += _timer_TimeOver;
-                DownloadProgressChanged +=WebHelper_DownloadProgressChanged;
+                DownloadProgressChanged += WebHelper_DownloadProgressChanged;
             }
 
             DownloadFileAsync(address, fileName, userToken);
@@ -907,7 +947,7 @@ namespace UtilsSharp
         {
             Reset();
             cnHasStarted = true;
-            var th = new Thread(WaitCall) {IsBackground = true};
+            var th = new Thread(WaitCall) { IsBackground = true };
             th.Start();
         }
 

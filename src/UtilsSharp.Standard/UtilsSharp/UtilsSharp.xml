@@ -2526,9 +2526,9 @@
             字符串帮助类
             </summary>
         </member>
-        <member name="P:UtilsSharp.StringHelper.Encoding">
+        <member name="M:UtilsSharp.StringHelper.EncodingRegister">
             <summary>
-            EncodingProvider
+            注册后使可以支持.Net平台上不支持的编码
             </summary>
         </member>
         <member name="M:UtilsSharp.StringHelper.TransferenceRegex(System.String)">
@@ -2584,18 +2584,20 @@
             <param name="str"></param>
             <returns></returns>
         </member>
-        <member name="M:UtilsSharp.StringHelper.Compress(System.String)">
+        <member name="M:UtilsSharp.StringHelper.Compress(System.String,System.Text.Encoding)">
             <summary>
             压缩字符串
             </summary>
             <param name="str">字符串</param>
+            <param name="encoding">编码</param>
             <returns></returns>
         </member>
-        <member name="M:UtilsSharp.StringHelper.DeCompress(System.String)">
+        <member name="M:UtilsSharp.StringHelper.DeCompress(System.String,System.Text.Encoding)">
             <summary>
              字符串解压缩
             </summary>
             <param name="str">字符串</param>
+            <param name="encoding">编码</param>
             <returns></returns>
         </member>
         <member name="M:UtilsSharp.StringHelper.HideMobilePhone(System.String)">

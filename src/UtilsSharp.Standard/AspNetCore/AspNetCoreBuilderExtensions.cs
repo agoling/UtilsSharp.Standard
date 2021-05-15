@@ -3,7 +3,7 @@ using AspNetCore.Swagger;
 using Autofac;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Hosting;
+using UtilsSharp;
 
 namespace AspNetCore
 {
@@ -26,6 +26,8 @@ namespace AspNetCore
             UtilsSharp.Standard.HttpContext.Register(httpContextAccessor);
             //注册swagger
             app.UseSwaggerExtensions();
+            //注册后使可以支持.Net平台上不支持的编码
+            StringHelper.EncodingRegister();
             return app;
         }
     }

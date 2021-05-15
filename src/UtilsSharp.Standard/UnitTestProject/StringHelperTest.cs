@@ -12,9 +12,10 @@ namespace UnitTestProjectNetCore
         [TestMethod]
         public void GetCharLengthTest()
         {
+            StringHelper.EncodingRegister();
             var txt = "追忆那些年的绝代名士 精装民国男士人物传记徐志摩梁启超胡适书H";
-
-            var aa = StringHelper.GetCharLength(txt);
+            var aa = StringHelper.Compress(txt);
+            var bb = StringHelper.GetCharLength(txt);
            
         }
     }

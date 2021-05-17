@@ -26,17 +26,17 @@
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>
-    <None Include="contentFiles\**">
+    <None Include="ContentFiles\**">
       <Pack>true</Pack>
       <PackageCopyToOutput>true</PackageCopyToOutput>
-      <PackagePath>contentFiles\any\any\</PackagePath>
+      <PackagePath>ContentFiles\any\any\</PackagePath>
     </None>
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="UtilsSharp.Logger" Version="1.0.0" />
   </ItemGroup>
   <ItemGroup>
-    <None Update="contentFiles\NLog.config">
+    <None Update="ContentFiles\NLog.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>

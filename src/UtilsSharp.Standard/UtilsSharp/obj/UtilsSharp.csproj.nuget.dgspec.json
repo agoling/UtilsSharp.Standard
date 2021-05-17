@@ -25,6 +25,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "D:\\GitHub\\Project\\UtilsSharp.Standard\\src\\UtilsSharp.Standard\\AspNetCore\\bin\\Release": {},
           "http://develop.zhangxiaobao.net/NuGet/nuget/": {},
           "https://api.nuget.org/v3/index.json": {}
         },

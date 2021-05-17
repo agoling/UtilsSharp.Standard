@@ -1521,6 +1521,25 @@
             错误信息
             </summary>
         </member>
+        <member name="T:UtilsSharp.JsonXmlHelper">
+            <summary>
+            JsonXml帮助类
+            </summary>
+        </member>
+        <member name="M:UtilsSharp.JsonXmlHelper.JsonToXml(System.String)">
+            <summary>
+            json转xml
+            </summary>
+            <param name="json">json字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.JsonXmlHelper.XmlToJson(System.String)">
+            <summary>
+            xml转json
+            </summary>
+            <param name="xml">xml字符串</param>
+            <returns></returns>
+        </member>
         <member name="T:UtilsSharp.MapperHelper`2">
             <summary>
             对象与对象映射

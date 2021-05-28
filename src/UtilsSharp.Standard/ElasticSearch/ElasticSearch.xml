@@ -102,16 +102,6 @@
             Es基础实体
             </summary>
         </member>
-        <member name="F:ElasticSearch.EsBaseDataMapping`1._esClientProvider">
-            <summary>
-            EsClientProvider
-            </summary>
-        </member>
-        <member name="F:ElasticSearch.EsBaseDataMapping`1._mappingDictionary">
-            <summary>
-            es表结构映射
-            </summary>
-        </member>
         <member name="P:ElasticSearch.EsBaseDataMapping`1.CurrSetting">
             <summary>
             表当前配置
@@ -153,6 +143,13 @@
             <summary>
             Es客户端
             </summary>
+        </member>
+        <member name="M:ElasticSearch.EsBaseDataMapping`1.GetClient(OptionConfig.ElasticSearchSetting)">
+            <summary>
+            获取客户端
+            </summary>
+            <param name="setting">Es配置信息</param>
+            <returns></returns>
         </member>
         <member name="M:ElasticSearch.EsBaseDataMapping`1.EsClientByIndex(System.String)">
             <summary>
@@ -304,12 +301,10 @@
             es客服端
             </summary>
         </member>
-        <member name="M:ElasticSearch.EsClientProvider.GetClient(OptionConfig.ElasticSearchSetting)">
+        <member name="F:ElasticSearch.EsClientProvider.MappingDictionary">
             <summary>
-            获取客户端
+            es表结构映射
             </summary>
-            <param name="setting">Es配置信息</param>
-            <returns></returns>
         </member>
         <member name="M:ElasticSearch.EsClientProvider.Init(OptionConfig.ElasticSearchSetting)">
             <summary>

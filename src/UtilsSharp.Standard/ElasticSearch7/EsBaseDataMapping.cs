@@ -11,16 +11,6 @@ namespace ElasticSearch7
     public abstract class EsBaseDataMapping<T> where T : class, new()
     {
         /// <summary>
-        /// EsClientProvider
-        /// </summary>
-        private readonly EsClientProvider _esClientProvider = new EsClientProvider();
-
-        /// <summary>
-        /// es表结构映射
-        /// </summary>
-        private readonly ConcurrentDictionary<string, string> _mappingDictionary = new ConcurrentDictionary<string, string>();
-
-        /// <summary>
         /// 表当前配置
         /// </summary>
         private  ElasticSearchSetting CurrSetting { get; set; }
@@ -66,6 +56,27 @@ namespace ElasticSearch7
         public ElasticClient EsClient => EsClientByIndex();
 
         /// <summary>
+        /// 获取客户端
+        /// </summary>
+        /// <param name="setting">Es配置信息</param>
+        /// <returns></returns>
+        internal ElasticClient GetClient(ElasticSearchSetting setting)
+        {
+            if (!EsClientProvider.ClientDictionary.ContainsKey(setting.EsHttpAddress))
+            {
+                var currentIndexClientDictionary = new ConcurrentDictionary<string, ElasticClient>();
+                EsClientProvider.ClientDictionary.TryAdd(setting.EsHttpAddress, currentIndexClientDictionary);
+            }
+            if (EsClientProvider.ClientDictionary[setting.EsHttpAddress].ContainsKey(setting.EsDefaultIndex))
+            {
+                return EsClientProvider.ClientDictionary[setting.EsHttpAddress][setting.EsDefaultIndex];
+            }
+            var client = EsClientProvider.Init(setting);
+            EsClientProvider.ClientDictionary[setting.EsHttpAddress].TryAdd(setting.EsDefaultIndex, client);
+            return client;
+        }
+
+        /// <summary>
         /// Es客户端
         /// </summary>
         /// <param name="index">索引名称</param>
@@ -109,7 +120,7 @@ namespace ElasticSearch7
             {
                 //传参进来的索引
                 CurrSetting.EsDefaultIndex = index;
-                var currClient = _esClientProvider.GetClient(CurrSetting);
+                var currClient = GetClient(CurrSetting);
                 var exists = currClient.Indices.Exists(CurrSetting.EsDefaultIndex).Exists;
                 if (!exists) throw new Exception($"Index:{CurrSetting.EsDefaultIndex} does not exist");
                 RunEntityMapping(currClient, CurrSetting.EsDefaultIndex);
@@ -119,7 +130,7 @@ namespace ElasticSearch7
             {
                 //程序创建的索引
                 CurrSetting.EsDefaultIndex = CurrentIndex;
-                var currClient = _esClientProvider.GetClient(CurrSetting);
+                var currClient =GetClient(CurrSetting);
                 var exists = currClient.Indices.Exists(CurrSetting.EsDefaultIndex).Exists;
                 if (exists)
                 {
@@ -170,9 +181,9 @@ namespace ElasticSearch7
                 EntityMapping(client, index);
                 return;
             }
-            if (_mappingDictionary.ContainsKey(index)) return;
+            if (EsClientProvider.MappingDictionary.ContainsKey(index)) return;
             EntityMapping(client, index);
-            _mappingDictionary.TryAdd(index, index);
+            EsClientProvider.MappingDictionary.TryAdd(index, index);
         }
 
 

@@ -10,39 +10,23 @@ namespace ElasticSearch
     /// <summary>
     /// Es客户端
     /// </summary>
-    public class EsClientProvider
+    public static class EsClientProvider
     {
         /// <summary>
         /// es客服端
         /// </summary>
-        private static readonly ConcurrentDictionary<string, ConcurrentDictionary<string, ElasticClient>> ClientDictionary = new ConcurrentDictionary<string, ConcurrentDictionary<string, ElasticClient>>();
+        internal static readonly ConcurrentDictionary<string, ConcurrentDictionary<string, ElasticClient>> ClientDictionary = new ConcurrentDictionary<string, ConcurrentDictionary<string, ElasticClient>>();
 
         /// <summary>
-        /// 获取客户端
+        /// es表结构映射
         /// </summary>
-        /// <param name="setting">Es配置信息</param>
-        /// <returns></returns>
-        internal ElasticClient GetClient(ElasticSearchSetting setting)
-        {
-            if (!ClientDictionary.ContainsKey(setting.EsHttpAddress))
-            {
-                var currentIndexClientDictionary = new ConcurrentDictionary<string, ElasticClient>();
-                ClientDictionary.TryAdd(setting.EsHttpAddress, currentIndexClientDictionary);
-            }
-            if (ClientDictionary[setting.EsHttpAddress].ContainsKey(setting.EsDefaultIndex))
-            {
-                return ClientDictionary[setting.EsHttpAddress][setting.EsDefaultIndex];
-            }
-            var client = Init(setting);
-            ClientDictionary[setting.EsHttpAddress].TryAdd(setting.EsDefaultIndex, client);
-            return client;
-        }
+        internal static readonly ConcurrentDictionary<string, string> MappingDictionary = new ConcurrentDictionary<string, string>();
 
         /// <summary>
         /// 初始化
         /// </summary>
         /// <param name="setting">Es配置信息</param>
-        private static ElasticClient Init(ElasticSearchSetting setting)
+        internal static ElasticClient Init(ElasticSearchSetting setting)
         {
             try
             {

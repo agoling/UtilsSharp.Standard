@@ -121,6 +121,12 @@ namespace ElasticSearch
                 //传参进来的索引
                 CurrSetting.EsDefaultIndex = index;
                 var currClient = GetClient(CurrSetting);
+                //索引是否已映射
+                if (EsClientProvider.MappingDictionary.ContainsKey(CurrSetting.EsDefaultIndex))
+                {
+                    return currClient;
+                }
+                //判断索引是否存在
                 var exists = currClient.IndexExists(CurrSetting.EsDefaultIndex).Exists;
                 if (!exists) throw new Exception($"Index:{CurrSetting.EsDefaultIndex} does not exist");
                 RunEntityMapping(currClient, CurrSetting.EsDefaultIndex);
@@ -131,13 +137,20 @@ namespace ElasticSearch
                 //程序创建的索引
                 CurrSetting.EsDefaultIndex = CurrentIndex;
                 var currClient = GetClient(CurrSetting);
+                //索引是否已映射
+                if (EsClientProvider.MappingDictionary.ContainsKey(CurrSetting.EsDefaultIndex))
+                {
+                    return currClient;
+                }
+                //判断索引是否存在
                 var exists = currClient.IndexExists(CurrSetting.EsDefaultIndex).Exists;
+                //索引存在
                 if (exists)
                 {
                     RunEntityMapping(currClient, CurrSetting.EsDefaultIndex);
                     return currClient;
                 }
-
+                //索引不存在
                 var aliasIndex = AliasIndex;
                 if (string.IsNullOrEmpty(AliasIndex))
                 {
@@ -160,24 +173,19 @@ namespace ElasticSearch
                 {
                     currClient.CreateIndex(CurrSetting.EsDefaultIndex, c => c.InitializeUsing(indexState));
                 }
-                RunEntityMapping(currClient, CurrSetting.EsDefaultIndex, true);
+                RunEntityMapping(currClient, CurrSetting.EsDefaultIndex);
                 return currClient;
             }
         }
+
 
         /// <summary>
         /// 执行实体映射
         /// </summary>
         /// <param name="client">es客户端</param>
         /// <param name="index">索引名称</param>
-        /// <param name="isNew">是否新创建表</param>
-        private void RunEntityMapping(ElasticClient client, string index, bool isNew = false)
+        private void RunEntityMapping(ElasticClient client, string index)
         {
-            if (isNew)
-            {
-                EntityMapping(client, index);
-                return;
-            }
             if (EsClientProvider.MappingDictionary.ContainsKey(index)) return;
             EntityMapping(client, index);
             EsClientProvider.MappingDictionary.TryAdd(index, index);

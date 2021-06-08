@@ -157,13 +157,12 @@
             </summary>
             <param name="index">索引名称</param>
         </member>
-        <member name="M:ElasticSearch.EsBaseDataMapping`1.RunEntityMapping(Nest.ElasticClient,System.String,System.Boolean)">
+        <member name="M:ElasticSearch.EsBaseDataMapping`1.RunEntityMapping(Nest.ElasticClient,System.String)">
             <summary>
             执行实体映射
             </summary>
             <param name="client">es客户端</param>
             <param name="index">索引名称</param>
-            <param name="isNew">是否新创建表</param>
         </member>
         <member name="M:ElasticSearch.EsBaseDataMapping`1.GetIndex(System.DateTime)">
             <summary>

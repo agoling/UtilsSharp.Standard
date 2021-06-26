@@ -9,7 +9,7 @@ namespace ElasticSearch7
     /// <summary>
     /// Es基础实体自动映射
     /// </summary>
-    public abstract class EsBaseDataAutoMapping<T> : EsBaseDataMapping<T> where T : class, new()
+    public abstract class EsBaseDataAutoMapping<T> : EsBaseDataMapping where T : class, new()
     {
         /// <summary>
         /// 实体映射
@@ -18,7 +18,7 @@ namespace ElasticSearch7
         /// <param name="index">索引名称</param>
         public override void EntityMapping(ElasticClient client, string index)
         {
-            client.Map<T>(m =>m.AutoMap(new AllStringToKeywordValuesPropertyVisitor()).Index(index));
+            client.Map<T>(m => m.AutoMap(new AllStringToKeywordValuesPropertyVisitor()).Index(index));
         }
     }
 

@@ -14,26 +14,29 @@ namespace ElasticSearch7
         /// 单条保存
         /// </summary>
         /// <param name="t">参数</param>
+        /// <param name="refresh">是否刷新索引</param>
         /// <param name="index">索引</param>
         /// <returns></returns>
-        IndexResponse Save(T t, string index = "");
+        IndexResponse Save(T t, bool refresh = true, string index = "");
 
         /// <summary>
         /// 批量保存
         /// </summary>
         /// <param name="entitys">参数</param>
+        /// <param name="refresh">是否刷新索引</param>
         /// <param name="index">索引</param>
         /// <returns></returns>
-        BulkResponse Save(List<T> entitys, string index = "");
+        BulkResponse Save(List<T> entitys, bool refresh = true, string index = "");
 
         /// <summary>
         /// 增量更新
         /// </summary>
         /// <param name="id">Id</param>
         /// <param name="incrementModifyParams">增量参数：key-字段,value-修改的值</param>
+        /// <param name="refresh">是否刷新索引</param>
         /// <param name="index">索引</param>
         /// <returns></returns>
-        UpdateResponse<T> IncrementModify(string id, Dictionary<string, object> incrementModifyParams, string index = "");
+        UpdateResponse<T> IncrementModify(string id, Dictionary<string, object> incrementModifyParams, bool refresh = true, string index = "");
 
         /// <summary>
         /// 获取一条数据
@@ -55,17 +58,19 @@ namespace ElasticSearch7
         /// 批量删除
         /// </summary>
         /// <param name="ids">Id集合</param>
+        /// <param name="refresh">是否刷新索引</param>
         /// <param name="index">索引</param>
         /// <returns></returns>
-        BulkResponse Delete(string[] ids, string index = "");
+        BulkResponse Delete(string[] ids, bool refresh = true, string index = "");
 
         /// <summary>
         /// 批量删除
         /// </summary>
         /// <param name="entitys">参数</param>
+        /// <param name="refresh">是否刷新索引</param>
         /// <param name="index">索引</param>
         /// <returns></returns>
-        BulkResponse Delete(List<T> entitys, string index = "");
+        BulkResponse Delete(List<T> entitys, bool refresh = true, string index = "");
 
         /// <summary>
         /// 搜索查询

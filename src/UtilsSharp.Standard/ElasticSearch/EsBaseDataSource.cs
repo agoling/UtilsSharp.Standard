@@ -15,29 +15,33 @@ namespace ElasticSearch
         /// 单条保存
         /// </summary>
         /// <param name="t">参数</param>
+        /// <param name="refresh">是否刷新索引</param>
         /// <param name="index">索引</param>
         /// <returns></returns>
-        public virtual IIndexResponse Save(T t, string index = "")
+        public virtual IIndexResponse Save(T t, bool refresh = true, string index = "")
         {
             var execIndex = !string.IsNullOrEmpty(index) ? index : CurrentIndex;
             var esClient = !string.IsNullOrEmpty(index) ? EsClientByIndex(index) : EsClient;
-            var r = esClient.Index(t, i => i.Index(execIndex).Refresh(Elasticsearch.Net.Refresh.True));
-            return r;
+            return refresh ? esClient.Index(t, i => i.Index(execIndex).Refresh(Elasticsearch.Net.Refresh.True)) : esClient.Index(t, i => i.Index(execIndex).Refresh(Elasticsearch.Net.Refresh.False));
         }
 
         /// <summary>
         /// 批量保存
         /// </summary>
         /// <param name="entitys">参数</param>
+        /// <param name="refresh">是否刷新索引</param>
         /// <param name="index">索引</param>
         /// <returns></returns>
-        public virtual IBulkResponse Save(List<T> entitys, string index = "")
+        public virtual IBulkResponse Save(List<T> entitys, bool refresh = true, string index = "")
         {
             if (entitys == null || entitys.Count == 0) return new BulkResponse();
             var execIndex = !string.IsNullOrEmpty(index) ? index : CurrentIndex;
             var esClient = !string.IsNullOrEmpty(index) ? EsClientByIndex(index) : EsClient;
             var r = esClient.IndexMany(entitys, execIndex);
-            esClient.Refresh(execIndex);
+            if (refresh)
+            {
+                esClient.Refresh(execIndex);
+            }
             return r;
         }
 
@@ -46,17 +50,17 @@ namespace ElasticSearch
         /// </summary>
         /// <param name="id">Id</param>
         /// <param name="incrementModifyParams">增量参数：key-字段,value-修改的值</param>
+        /// <param name="refresh">是否刷新索引</param>
         /// <param name="index">索引</param>
         /// <returns></returns>
-        public virtual IUpdateResponse<T> IncrementModify(string id, Dictionary<string, object> incrementModifyParams, string index = "")
+        public virtual IUpdateResponse<T> IncrementModify(string id, Dictionary<string, object> incrementModifyParams, bool refresh = true, string index = "")
         {
             IUpdateResponse<T> r = new UpdateResponse<T>();
             if (incrementModifyParams == null) return r;
             var execIndex = !string.IsNullOrEmpty(index) ? index : CurrentIndex;
             var updatePath = new DocumentPath<T>(id);
             var esClient = !string.IsNullOrEmpty(index) ? EsClientByIndex(index) : EsClient;
-            r = esClient.Update<T, object>(updatePath, u => u.Doc(incrementModifyParams).Index(execIndex).Refresh(Elasticsearch.Net.Refresh.True));
-            return r;
+            return refresh ? esClient.Update<T, object>(updatePath, u => u.Doc(incrementModifyParams).Index(execIndex).Refresh(Elasticsearch.Net.Refresh.True)) : esClient.Update<T, object>(updatePath, u => u.Doc(incrementModifyParams).Index(execIndex).Refresh(Elasticsearch.Net.Refresh.False));
         }
 
 
@@ -95,14 +99,18 @@ namespace ElasticSearch
         /// 批量删除
         /// </summary>
         /// <param name="ids">Id集合</param>
+        /// <param name="refresh">是否刷新索引</param>
         /// <param name="index">索引</param>
         /// <returns></returns>
-        public virtual IBulkResponse Delete(string[] ids, string index = "")
+        public virtual IBulkResponse Delete(string[] ids, bool refresh = true, string index = "")
         {
             var execIndex = !string.IsNullOrEmpty(index) ? index : CurrentIndex;
             var esClient = !string.IsNullOrEmpty(index) ? EsClientByIndex(index) : EsClient;
             var r = esClient.Bulk(m => m.DeleteMany<T>(ids).Index(execIndex));
-            esClient.Refresh(execIndex);
+            if (refresh)
+            {
+                esClient.Refresh(execIndex);
+            }
             return r;
         }
 
@@ -110,15 +118,19 @@ namespace ElasticSearch
         /// 批量删除
         /// </summary>
         /// <param name="entitys">参数</param>
+        /// <param name="refresh">是否刷新索引</param>
         /// <param name="index">索引</param>
         /// <returns></returns>
-        public virtual IBulkResponse Delete(List<T> entitys, string index = "")
+        public virtual IBulkResponse Delete(List<T> entitys, bool refresh = true, string index = "")
         {
             if (entitys == null || entitys.Count == 0) return new BulkResponse();
             var execIndex = !string.IsNullOrEmpty(index) ? index : CurrentIndex;
             var esClient = !string.IsNullOrEmpty(index) ? EsClientByIndex(index) : EsClient;
             var r = esClient.DeleteMany(entitys, execIndex);
-            esClient.Refresh(execIndex);
+            if (refresh)
+            {
+                esClient.Refresh(execIndex);
+            }
             return r;
         }
 

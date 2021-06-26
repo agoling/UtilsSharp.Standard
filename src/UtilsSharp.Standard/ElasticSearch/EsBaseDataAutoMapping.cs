@@ -9,7 +9,7 @@ namespace ElasticSearch
     /// <summary>
     /// Es基础实体自动映射
     /// </summary>
-    public abstract class EsBaseDataAutoMapping<T> : EsBaseDataMapping<T> where T : class, new()
+    public abstract class EsBaseDataAutoMapping<T> : EsBaseDataMapping where T : class, new()
     {
         /// <summary>
         /// 实体映射

@@ -14,26 +14,29 @@ namespace ElasticSearch
         /// 单条保存
         /// </summary>
         /// <param name="t">参数</param>
+        /// <param name="refresh">是否刷新索引</param>
         /// <param name="index">索引</param>
         /// <returns></returns>
-        IIndexResponse Save(T t, string index = "");
+        IIndexResponse Save(T t, bool refresh = true, string index = "");
 
         /// <summary>
         /// 批量保存
         /// </summary>
         /// <param name="entitys">参数</param>
+        /// <param name="refresh">是否刷新索引</param>
         /// <param name="index">索引</param>
         /// <returns></returns>
-        IBulkResponse Save(List<T> entitys, string index = "");
+        IBulkResponse Save(List<T> entitys, bool refresh = true, string index = "");
 
         /// <summary>
         /// 增量更新
         /// </summary>
         /// <param name="id">Id</param>
         /// <param name="incrementModifyParams">增量参数：key-字段,value-修改的值</param>
+        /// <param name="refresh">是否刷新索引</param>
         /// <param name="index">索引</param>
         /// <returns></returns>
-        IUpdateResponse<T> IncrementModify(string id, Dictionary<string, object> incrementModifyParams, string index = "");
+        IUpdateResponse<T> IncrementModify(string id, Dictionary<string, object> incrementModifyParams, bool refresh = true, string index = "");
 
         /// <summary>
         /// 获取一条数据
@@ -55,17 +58,19 @@ namespace ElasticSearch
         /// 批量删除
         /// </summary>
         /// <param name="ids">Id集合</param>
+        /// <param name="refresh">是否刷新索引</param>
         /// <param name="index">索引</param>
         /// <returns></returns>
-        IBulkResponse Delete(string[] ids, string index = "");
+        IBulkResponse Delete(string[] ids, bool refresh = true, string index = "");
 
         /// <summary>
         /// 批量删除
         /// </summary>
         /// <param name="entitys">参数</param>
+        /// <param name="refresh">是否刷新索引</param>
         /// <param name="index">索引</param>
         /// <returns></returns>
-        IBulkResponse Delete(List<T> entitys, string index = "");
+        IBulkResponse Delete(List<T> entitys, bool refresh = true, string index = "");
 
         /// <summary>
         /// 搜索查询

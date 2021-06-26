@@ -8,8 +8,22 @@ namespace ElasticSearch
     /// <summary>
     /// Es基础实体
     /// </summary>
-    public abstract class EsBaseDataMapping<T> where T : class, new()
+    public abstract class EsBaseDataMapping
     {
+
+        /// <summary>
+        /// 构造函数
+        /// </summary>
+        protected EsBaseDataMapping()
+        {
+            EsClientByIndex();
+        }
+
+        /// <summary>
+        /// 锁
+        /// </summary>
+        private static readonly object EsBaseDataMappingLock = new object();
+
         /// <summary>
         /// 表当前配置
         /// </summary>
@@ -40,10 +54,7 @@ namespace ElasticSearch
         /// </summary>
         /// <param name="client">es客户端</param>
         /// <param name="index">索引名称</param>
-        public virtual void EntityMapping(ElasticClient client, string index)
-        {
-            client.Map<T>(m => m.AutoMap().AllField(a => a.Enabled(false)).Index(index));
-        }
+        public abstract void EntityMapping(ElasticClient client, string index);
 
         /// <summary>
         /// 当前索引
@@ -186,9 +197,12 @@ namespace ElasticSearch
         /// <param name="index">索引名称</param>
         private void RunEntityMapping(ElasticClient client, string index)
         {
-            if (EsClientProvider.MappingDictionary.ContainsKey(index)) return;
-            EntityMapping(client, index);
-            EsClientProvider.MappingDictionary.TryAdd(index, index);
+            lock (EsBaseDataMappingLock)
+            {
+                if (EsClientProvider.MappingDictionary.ContainsKey(index)) return;
+                EntityMapping(client, index);
+                EsClientProvider.MappingDictionary.TryAdd(index, index);
+            }
         }
 
 

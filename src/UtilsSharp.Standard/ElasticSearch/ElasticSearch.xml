@@ -97,74 +97,84 @@
             访客模式
             </summary>
         </member>
-        <member name="T:ElasticSearch.EsBaseDataMapping`1">
+        <member name="T:ElasticSearch.EsBaseDataMapping">
             <summary>
             Es基础实体
             </summary>
         </member>
-        <member name="P:ElasticSearch.EsBaseDataMapping`1.CurrSetting">
+        <member name="M:ElasticSearch.EsBaseDataMapping.#ctor">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="F:ElasticSearch.EsBaseDataMapping.EsBaseDataMappingLock">
+            <summary>
+            锁
+            </summary>
+        </member>
+        <member name="P:ElasticSearch.EsBaseDataMapping.CurrSetting">
             <summary>
             表当前配置
             </summary>
         </member>
-        <member name="P:ElasticSearch.EsBaseDataMapping`1.Setting">
+        <member name="P:ElasticSearch.EsBaseDataMapping.Setting">
             <summary>
             连接设置
             </summary>
         </member>
-        <member name="P:ElasticSearch.EsBaseDataMapping`1.AliasIndex">
+        <member name="P:ElasticSearch.EsBaseDataMapping.AliasIndex">
             <summary>
             新索引别名
             </summary>
         </member>
-        <member name="P:ElasticSearch.EsBaseDataMapping`1.EsMappingType">
+        <member name="P:ElasticSearch.EsBaseDataMapping.EsMappingType">
             <summary>
             映射并创建索引类型
             </summary>
         </member>
-        <member name="P:ElasticSearch.EsBaseDataMapping`1.NumberOfShards">
+        <member name="P:ElasticSearch.EsBaseDataMapping.NumberOfShards">
             <summary>
             分片数
             </summary>
         </member>
-        <member name="M:ElasticSearch.EsBaseDataMapping`1.EntityMapping(Nest.ElasticClient,System.String)">
+        <member name="M:ElasticSearch.EsBaseDataMapping.EntityMapping(Nest.ElasticClient,System.String)">
             <summary>
             实体映射
             </summary>
             <param name="client">es客户端</param>
             <param name="index">索引名称</param>
         </member>
-        <member name="P:ElasticSearch.EsBaseDataMapping`1.CurrentIndex">
+        <member name="P:ElasticSearch.EsBaseDataMapping.CurrentIndex">
             <summary>
             当前索引
             </summary>
         </member>
-        <member name="P:ElasticSearch.EsBaseDataMapping`1.EsClient">
+        <member name="P:ElasticSearch.EsBaseDataMapping.EsClient">
             <summary>
             Es客户端
             </summary>
         </member>
-        <member name="M:ElasticSearch.EsBaseDataMapping`1.GetClient(OptionConfig.ElasticSearchSetting)">
+        <member name="M:ElasticSearch.EsBaseDataMapping.GetClient(OptionConfig.ElasticSearchSetting)">
             <summary>
             获取客户端
             </summary>
             <param name="setting">Es配置信息</param>
             <returns></returns>
         </member>
-        <member name="M:ElasticSearch.EsBaseDataMapping`1.EsClientByIndex(System.String)">
+        <member name="M:ElasticSearch.EsBaseDataMapping.EsClientByIndex(System.String)">
             <summary>
             Es客户端
             </summary>
             <param name="index">索引名称</param>
         </member>
-        <member name="M:ElasticSearch.EsBaseDataMapping`1.RunEntityMapping(Nest.ElasticClient,System.String)">
+        <member name="M:ElasticSearch.EsBaseDataMapping.RunEntityMapping(Nest.ElasticClient,System.String)">
             <summary>
             执行实体映射
             </summary>
             <param name="client">es客户端</param>
             <param name="index">索引名称</param>
         </member>
-        <member name="M:ElasticSearch.EsBaseDataMapping`1.GetIndex(System.DateTime)">
+        <member name="M:ElasticSearch.EsBaseDataMapping.GetIndex(System.DateTime)">
             <summary>
             获取指定时间索引
             </summary>
@@ -211,28 +221,31 @@
             Es基础数据源
             </summary>
         </member>
-        <member name="M:ElasticSearch.EsBaseDataSource`1.Save(`0,System.String)">
+        <member name="M:ElasticSearch.EsBaseDataSource`1.Save(`0,System.Boolean,System.String)">
             <summary>
             单条保存
             </summary>
             <param name="t">参数</param>
+            <param name="refresh">是否刷新索引</param>
             <param name="index">索引</param>
             <returns></returns>
         </member>
-        <member name="M:ElasticSearch.EsBaseDataSource`1.Save(System.Collections.Generic.List{`0},System.String)">
+        <member name="M:ElasticSearch.EsBaseDataSource`1.Save(System.Collections.Generic.List{`0},System.Boolean,System.String)">
             <summary>
             批量保存
             </summary>
             <param name="entitys">参数</param>
+            <param name="refresh">是否刷新索引</param>
             <param name="index">索引</param>
             <returns></returns>
         </member>
-        <member name="M:ElasticSearch.EsBaseDataSource`1.IncrementModify(System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.String)">
+        <member name="M:ElasticSearch.EsBaseDataSource`1.IncrementModify(System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.Boolean,System.String)">
             <summary>
             增量更新
             </summary>
             <param name="id">Id</param>
             <param name="incrementModifyParams">增量参数：key-字段,value-修改的值</param>
+            <param name="refresh">是否刷新索引</param>
             <param name="index">索引</param>
             <returns></returns>
         </member>
@@ -252,19 +265,21 @@
             <param name="index">索引</param>
             <returns></returns>
         </member>
-        <member name="M:ElasticSearch.EsBaseDataSource`1.Delete(System.String[],System.String)">
+        <member name="M:ElasticSearch.EsBaseDataSource`1.Delete(System.String[],System.Boolean,System.String)">
             <summary>
             批量删除
             </summary>
             <param name="ids">Id集合</param>
+            <param name="refresh">是否刷新索引</param>
             <param name="index">索引</param>
             <returns></returns>
         </member>
-        <member name="M:ElasticSearch.EsBaseDataSource`1.Delete(System.Collections.Generic.List{`0},System.String)">
+        <member name="M:ElasticSearch.EsBaseDataSource`1.Delete(System.Collections.Generic.List{`0},System.Boolean,System.String)">
             <summary>
             批量删除
             </summary>
             <param name="entitys">参数</param>
+            <param name="refresh">是否刷新索引</param>
             <param name="index">索引</param>
             <returns></returns>
         </member>
@@ -342,28 +357,31 @@
              Es基础数据源
             </summary>
         </member>
-        <member name="M:ElasticSearch.IEsBaseDataSource`1.Save(`0,System.String)">
+        <member name="M:ElasticSearch.IEsBaseDataSource`1.Save(`0,System.Boolean,System.String)">
             <summary>
             单条保存
             </summary>
             <param name="t">参数</param>
+            <param name="refresh">是否刷新索引</param>
             <param name="index">索引</param>
             <returns></returns>
         </member>
-        <member name="M:ElasticSearch.IEsBaseDataSource`1.Save(System.Collections.Generic.List{`0},System.String)">
+        <member name="M:ElasticSearch.IEsBaseDataSource`1.Save(System.Collections.Generic.List{`0},System.Boolean,System.String)">
             <summary>
             批量保存
             </summary>
             <param name="entitys">参数</param>
+            <param name="refresh">是否刷新索引</param>
             <param name="index">索引</param>
             <returns></returns>
         </member>
-        <member name="M:ElasticSearch.IEsBaseDataSource`1.IncrementModify(System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.String)">
+        <member name="M:ElasticSearch.IEsBaseDataSource`1.IncrementModify(System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.Boolean,System.String)">
             <summary>
             增量更新
             </summary>
             <param name="id">Id</param>
             <param name="incrementModifyParams">增量参数：key-字段,value-修改的值</param>
+            <param name="refresh">是否刷新索引</param>
             <param name="index">索引</param>
             <returns></returns>
         </member>
@@ -383,19 +401,21 @@
             <param name="index">索引</param>
             <returns></returns>
         </member>
-        <member name="M:ElasticSearch.IEsBaseDataSource`1.Delete(System.String[],System.String)">
+        <member name="M:ElasticSearch.IEsBaseDataSource`1.Delete(System.String[],System.Boolean,System.String)">
             <summary>
             批量删除
             </summary>
             <param name="ids">Id集合</param>
+            <param name="refresh">是否刷新索引</param>
             <param name="index">索引</param>
             <returns></returns>
         </member>
-        <member name="M:ElasticSearch.IEsBaseDataSource`1.Delete(System.Collections.Generic.List{`0},System.String)">
+        <member name="M:ElasticSearch.IEsBaseDataSource`1.Delete(System.Collections.Generic.List{`0},System.Boolean,System.String)">
             <summary>
             批量删除
             </summary>
             <param name="entitys">参数</param>
+            <param name="refresh">是否刷新索引</param>
             <param name="index">索引</param>
             <returns></returns>
         </member>

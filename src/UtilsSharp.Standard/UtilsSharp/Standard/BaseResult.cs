@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace UtilsSharp.Standard
 {
@@ -22,27 +21,91 @@ namespace UtilsSharp.Standard
         /// 返回对象结果
         /// </summary>
         public T Result { get; set; }
-    }
 
-    /// <summary>
-    /// 返回结果模型
-    /// </summary>
-    /// <typeparam name="T">自定义结果模型</typeparam>
-    public class BaseEntityResult<T> : BaseInfoResult where T : new()
-    {
+
         /// <summary>
-        /// 返回对象结果
+        /// 执行成功
         /// </summary>
-        public T Result { get; set; } = new T();
+        /// <param name="msg">成功提示信息</param>
+        public void SetOk(string msg)
+        {
+            SetOkResult(default, msg);
+        }
+
+        /// <summary>
+        /// 执行成功并返回结果
+        /// </summary>
+        /// <param name="result">返回对象结果</param>
+        public void SetOkResult(T result)
+        {
+            SetOkResult(result, "");
+        }
+
+        /// <summary>
+        /// 执行成功并返回结果
+        /// </summary>
+        /// <param name="result">返回对象结果</param>
+        /// <param name="msg">成功提示信息</param>
+        public void SetOkResult(T result, string msg)
+        {
+            if (!string.IsNullOrEmpty(msg))
+            {
+                Msg = msg;
+            }
+            if (!EqualityComparer<T>.Default.Equals(result, default))
+            {
+                Result = result;
+            }
+            Code = 200;
+        }
     }
 
     /// <summary>
     /// 返回分页结果模型
     /// </summary>
     /// <typeparam name="T">自定义结果模型</typeparam>
-    public class BasePagedResult<T> : BaseEntityResult<BasePagedInfoResult<T>>
+    public class BasePagedResult<T> : BaseInfoResult
     {
+        /// <summary>
+        /// 返回对象结果
+        /// </summary>
+        public BasePagedInfoResult<T> Result { get; set; } = new BasePagedInfoResult<T>();
 
+        /// <summary>
+        /// 执行成功
+        /// </summary>
+        /// <param name="msg">成功提示信息</param>
+        public void SetOk(string msg)
+        {
+            SetOkResult(null, msg);
+        }
+
+        /// <summary>
+        /// 执行成功并返回结果
+        /// </summary>
+        /// <param name="result">返回对象结果</param>
+        public void SetOkResult(BasePagedInfoResult<T> result)
+        {
+            SetOkResult(result, "");
+        }
+
+        /// <summary>
+        /// 执行成功并返回结果
+        /// </summary>
+        /// <param name="result">返回对象结果</param>
+        /// <param name="msg">成功提示信息</param>
+        public void SetOkResult(BasePagedInfoResult<T> result, string msg)
+        {
+            if (!string.IsNullOrEmpty(msg))
+            {
+                Msg = msg;
+            }
+            if (result != null)
+            {
+                Result = result;
+            }
+            Code = 200;
+        }
     }
 
     /// <summary>
@@ -88,6 +151,15 @@ namespace UtilsSharp.Standard
         /// 设置错误提示
         /// </summary>
         /// <param name="msg">提示信息</param>
+        public void SetError(string msg)
+        {
+            SetError(msg, 999);
+        }
+
+        /// <summary>
+        /// 设置错误提示
+        /// </summary>
+        /// <param name="msg">提示信息</param>
         /// <param name="code">
         /// 返回码|标识|说明
         ///<para>200|success|请求成功</para>
@@ -107,15 +179,6 @@ namespace UtilsSharp.Standard
         {
             Msg = msg;
             Code = code;
-        }
-
-        /// <summary>
-        /// 设置错误提示
-        /// </summary>
-        /// <param name="msg">提示信息</param>
-        public void SetError(string msg)
-        {
-            SetError(msg, 999);
         }
     }
 

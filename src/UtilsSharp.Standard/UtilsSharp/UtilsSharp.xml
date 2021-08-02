@@ -2156,22 +2156,54 @@
             返回对象结果
             </summary>
         </member>
-        <member name="T:UtilsSharp.Standard.BaseEntityResult`1">
+        <member name="M:UtilsSharp.Standard.BaseResult`1.SetOk(System.String)">
             <summary>
-            返回结果模型
+            执行成功
             </summary>
-            <typeparam name="T">自定义结果模型</typeparam>
+            <param name="msg">成功提示信息</param>
         </member>
-        <member name="P:UtilsSharp.Standard.BaseEntityResult`1.Result">
+        <member name="M:UtilsSharp.Standard.BaseResult`1.SetOkResult(`0)">
             <summary>
-            返回对象结果
+            执行成功并返回结果
             </summary>
+            <param name="result">返回对象结果</param>
+        </member>
+        <member name="M:UtilsSharp.Standard.BaseResult`1.SetOkResult(`0,System.String)">
+            <summary>
+            执行成功并返回结果
+            </summary>
+            <param name="result">返回对象结果</param>
+            <param name="msg">成功提示信息</param>
         </member>
         <member name="T:UtilsSharp.Standard.BasePagedResult`1">
             <summary>
             返回分页结果模型
             </summary>
             <typeparam name="T">自定义结果模型</typeparam>
+        </member>
+        <member name="P:UtilsSharp.Standard.BasePagedResult`1.Result">
+            <summary>
+            返回对象结果
+            </summary>
+        </member>
+        <member name="M:UtilsSharp.Standard.BasePagedResult`1.SetOk(System.String)">
+            <summary>
+            执行成功
+            </summary>
+            <param name="msg">成功提示信息</param>
+        </member>
+        <member name="M:UtilsSharp.Standard.BasePagedResult`1.SetOkResult(UtilsSharp.Standard.BasePagedInfoResult{`0})">
+            <summary>
+            执行成功并返回结果
+            </summary>
+            <param name="result">返回对象结果</param>
+        </member>
+        <member name="M:UtilsSharp.Standard.BasePagedResult`1.SetOkResult(UtilsSharp.Standard.BasePagedInfoResult{`0},System.String)">
+            <summary>
+            执行成功并返回结果
+            </summary>
+            <param name="result">返回对象结果</param>
+            <param name="msg">成功提示信息</param>
         </member>
         <member name="T:UtilsSharp.Standard.BaseInfoResult">
             <summary>
@@ -2208,6 +2240,12 @@
             </summary>
             <param name="result">基础结果信息</param>
         </member>
+        <member name="M:UtilsSharp.Standard.BaseInfoResult.SetError(System.String)">
+            <summary>
+            设置错误提示
+            </summary>
+            <param name="msg">提示信息</param>
+        </member>
         <member name="M:UtilsSharp.Standard.BaseInfoResult.SetError(System.String,System.Int32)">
              <summary>
              设置错误提示
@@ -2228,12 +2266,6 @@
             <para>8000|dbError|数据库异常</para>
             9000|SystemError|系统错误
              </param>
-        </member>
-        <member name="M:UtilsSharp.Standard.BaseInfoResult.SetError(System.String)">
-            <summary>
-            设置错误提示
-            </summary>
-            <param name="msg">提示信息</param>
         </member>
         <member name="T:UtilsSharp.Standard.BasePagedInfoResult`1">
             <summary>
@@ -3234,6 +3266,35 @@
             过期时回调委托
             </summary>
             <param name="userdata">用户数据</param>
+        </member>
+        <member name="T:UtilsSharp.WinCmdHelper">
+            <summary>
+            windows命令帮助类
+            </summary>
+        </member>
+        <member name="M:UtilsSharp.WinCmdHelper.RunCommand(System.String,System.Boolean,System.Boolean)">
+            <summary>
+            执行Dos命令
+            </summary>
+            <param name="cmd">Dos命令及参数</param>
+            <param name="isShowCmdWindow">是否显示cmd窗口</param>
+            <param name="isCloseCmdProcess">执行完毕后是否关闭cmd进程</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.WinCmdHelper.IsProcessExists(System.String,System.String)">
+            <summary>
+            判断指定的进程是否在运行中
+            </summary>
+            <param name="processName">要判断的进程名称，不包括扩展名exe</param>
+            <param name="processFileName">进程文件的完整路径</param>
+            <returns>存在返回true，否则返回false</returns>
+        </member>
+        <member name="M:UtilsSharp.WinCmdHelper.KillProcess(System.String,System.String)">
+            <summary>
+            结束指定的windows进程，如果进程存在
+            </summary>
+            <param name="processName">进程名称，不包含扩展名</param>
+            <param name="processFileName">进程文件完整路径，如果为空则删除所有进程名为processName参数值的进程</param>
         </member>
     </members>
 </doc>

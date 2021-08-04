@@ -414,7 +414,7 @@ namespace UtilsSharp
     /// <summary>
     /// 网络工具类(异步)
     /// </summary>
-    public partial class WebHelper : WebClient
+    public partial class WebHelper
     {
         /// <summary>
         /// Get请求
@@ -772,7 +772,7 @@ namespace UtilsSharp
     /// <summary>
     /// 网络工具类(兼容超时)
     /// </summary>
-    public partial class WebHelper : WebClient
+    public partial class WebHelper
     {
         /// <summary>
         /// CookieContainer
@@ -870,6 +870,98 @@ namespace UtilsSharp
         }
 
 
+    }
+
+    /// <summary>
+    /// 网络工具类(处理返回实体)
+    /// </summary>
+    public static class WebHelperHandleResult
+    {
+        /// <summary>
+        /// 处理返回实体
+        /// </summary>
+        /// <typeparam name="T">T</typeparam>
+        /// <param name="response">返回实体</param>
+        /// <returns></returns>
+        public static BaseResult<T> HandleResult<T>(this BaseResult<BaseResult<T>> response)
+        {
+            var result = new BaseResult<T>();
+            if (response == null) return result;
+            if (response.Code != 200)
+            {
+                result.Code = response.Code;
+                result.Msg = response.Msg;
+                return result;
+            }
+            result = response.Result;
+            return result;
+        }
+
+        /// <summary>
+        /// 处理返回实体
+        /// </summary>
+        /// <typeparam name="T">T</typeparam>
+        /// <param name="response">返回实体</param>
+        /// <returns></returns>
+        public static BasePagedResult<T> HandleResult<T>(this BaseResult<BasePagedResult<T>> response)
+        {
+            var result = new BasePagedResult<T>();
+            if (response == null) return result;
+            if (response.Code != 200)
+            {
+                result.Code = response.Code;
+                result.Msg = response.Msg;
+                return result;
+            }
+            result = response.Result;
+            return result;
+        }
+
+        /// <summary>
+        /// 处理返回实体(异步)
+        /// </summary>
+        /// <typeparam name="T">T</typeparam>
+        /// <param name="response">返回实体</param>
+        /// <returns></returns>
+        public static async Task<BaseResult<T>> HandleResultAsync<T>(this Task<BaseResult<BaseResult<T>>> response)
+        {
+            return await Task.Run(() =>
+            {
+                var result = new BaseResult<T>();
+                if (response == null) return result;
+                if (response.Result.Code != 200)
+                {
+                    result.Code = response.Result.Code;
+                    result.Msg = response.Result.Msg;
+                    return result;
+                }
+                result = response.Result.Result;
+                return result;
+            });
+        }
+
+        /// <summary>
+        /// 处理返回实体(异步)
+        /// </summary>
+        /// <typeparam name="T">T</typeparam>
+        /// <param name="response">返回实体</param>
+        /// <returns></returns>
+        public static async Task<BasePagedResult<T>> HandleResultAsync<T>(this Task<BaseResult<BasePagedResult<T>>> response)
+        {
+            return await Task.Run(() =>
+            {
+                var result = new BasePagedResult<T>();
+                if (response == null) return result;
+                if (response.Result.Code != 200)
+                {
+                    result.Code = response.Result.Code;
+                    result.Msg = response.Result.Msg;
+                    return result;
+                }
+                result = response.Result.Result;
+                return result;
+            });
+        }
     }
 
     /// <summary>

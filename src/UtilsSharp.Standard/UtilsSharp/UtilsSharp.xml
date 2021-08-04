@@ -1240,7 +1240,7 @@
             <summary>
             bytes到图片
             </summary>
-            <param name="fileName">图片路径</param>
+            <param name="path">图片路径</param>
             <param name="bytes">bytes</param>
             <returns></returns>
         </member>
@@ -3187,6 +3187,43 @@
             计时器过期
             </summary>
             <param name="userdata"></param>
+        </member>
+        <member name="T:UtilsSharp.WebHelperHandleResult">
+            <summary>
+            网络工具类(处理返回实体)
+            </summary>
+        </member>
+        <member name="M:UtilsSharp.WebHelperHandleResult.HandleResult``1(UtilsSharp.Standard.BaseResult{UtilsSharp.Standard.BaseResult{``0}})">
+            <summary>
+            处理返回实体
+            </summary>
+            <typeparam name="T">T</typeparam>
+            <param name="response">返回实体</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.WebHelperHandleResult.HandleResult``1(UtilsSharp.Standard.BaseResult{UtilsSharp.Standard.BasePagedResult{``0}})">
+            <summary>
+            处理返回实体
+            </summary>
+            <typeparam name="T">T</typeparam>
+            <param name="response">返回实体</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.WebHelperHandleResult.HandleResultAsync``1(System.Threading.Tasks.Task{UtilsSharp.Standard.BaseResult{UtilsSharp.Standard.BaseResult{``0}}})">
+            <summary>
+            处理返回实体(异步)
+            </summary>
+            <typeparam name="T">T</typeparam>
+            <param name="response">返回实体</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.WebHelperHandleResult.HandleResultAsync``1(System.Threading.Tasks.Task{UtilsSharp.Standard.BaseResult{UtilsSharp.Standard.BasePagedResult{``0}}})">
+            <summary>
+            处理返回实体(异步)
+            </summary>
+            <typeparam name="T">T</typeparam>
+            <param name="response">返回实体</param>
+            <returns></returns>
         </member>
         <member name="T:UtilsSharp.Calculagraph">
             <summary>

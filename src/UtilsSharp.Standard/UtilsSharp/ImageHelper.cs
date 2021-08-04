@@ -110,34 +110,35 @@ namespace UtilsSharp
         /// <summary>
         /// bytes到图片
         /// </summary>
-        /// <param name="fileName">图片路径</param>
+        /// <param name="path">图片路径</param>
         /// <param name="bytes">bytes</param>
         /// <returns></returns>
-        public static string CreateImageFromBytes(string fileName, byte[] bytes)
+        public static string CreateImageFromBytes(string path, byte[] bytes)
         {
-            string file = fileName;
+            string fileName =Guid.NewGuid().ToString("N");
             Image image = BytesToImage(bytes);
             ImageFormat format = image.RawFormat;
             if (format.Equals(ImageFormat.Jpeg))
             {
-                file += ".jpeg";
+                fileName += ".jpeg";
             }
             else if (format.Equals(ImageFormat.Png))
             {
-                file += ".png";
+                fileName += ".png";
             }
             else if (format.Equals(ImageFormat.Bmp))
             {
-                file += ".bmp";
+                fileName += ".bmp";
             }
             else if (format.Equals(ImageFormat.Gif))
             {
-                file += ".gif";
+                fileName += ".gif";
             }
             else if (format.Equals(ImageFormat.Icon))
             {
-                file += ".icon";
+                fileName += ".icon";
             }
+            var file =DirectoryHelper.ConvertToDirectory(path).TrimEnd('\\')+"\\"+ fileName;
             var info = new FileInfo(file);
             if (info.Directory != null) Directory.CreateDirectory(info.Directory.FullName);
             File.WriteAllBytes(file, bytes);

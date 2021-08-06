@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using DotNetCore;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using UtilsSharp;
 
-namespace UnitTestProjectNetCore
+namespace UnitTestProjectNet.Core
 {
     [TestClass]
     public class IpHelperTest

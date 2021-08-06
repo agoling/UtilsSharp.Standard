@@ -5,7 +5,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using UtilsSharp;
 using UtilsSharp.Standard;
 
-namespace UnitTestProjectNetCore
+namespace UnitTestProjectNet.Core
 {
     [TestClass]
     public class BaseResultTest

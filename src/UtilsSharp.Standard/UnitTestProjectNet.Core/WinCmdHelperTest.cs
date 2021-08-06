@@ -4,7 +4,7 @@ using System.Text;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using UtilsSharp;
 
-namespace UnitTestProjectNetCore
+namespace UnitTestProjectNet.Core
 {
     [TestClass]
     public class WinCmdHelperTest

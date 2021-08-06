@@ -7,7 +7,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json;
 using UtilsSharp;
 
-namespace UnitTestProjectNetCore
+namespace UnitTestProjectNet.Core
 {
     [TestClass]
     public class WebHelperAsyncTest

@@ -25,8 +25,11 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "D:\\GitHub\\Project\\UtilsSharp.Standard\\src\\UtilsSharp.Standard\\RabbitMQ\\bin\\Debug\\": {},
+          "D:\\GitHub\\Project\\UtilsSharp.Standard\\src\\UtilsSharp.Standard\\UtilsSharp\\bin\\Debug": {},
           "http://develop.zhangxiaobao.net/NuGet/nuget/": {},
-          "https://api.nuget.org/v3/index.json": {}
+          "https://api.nuget.org/v3/index.json": {},
+          "https://nuget.cdn.azure.cn/v3/index.json": {}
         },
         "frameworks": {
           "netstandard2.0": {

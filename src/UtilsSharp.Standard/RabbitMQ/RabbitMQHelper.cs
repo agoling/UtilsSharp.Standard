@@ -1,385 +1,202 @@
-﻿using Newtonsoft.Json;
-using OptionConfig;
-using RabbitMQ.Client;
-using RabbitMQ.Client.Events;
-using System;
+﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
+using RabbitMQ.Client;
 
 namespace RabbitMQ
 {
+    /// <summary>
+    /// RabbitMqHelper
+    /// </summary>
+    public abstract class RabbitMqHelper : RabbitMqHelper<RabbitMqHelper> { }
 
     /// <summary>
-    /// RabbitMQ帮助类
+    /// RabbitMq帮助类
     /// </summary>
-    public class RabbitMqHelper
+    public abstract class RabbitMqHelper<TMark>
     {
-        private static ConnectionFactory _rabbitConnectionFactory;
-        private static IConnection _rabbitConnection;
-        private static string _rabbitMqAddress;
-        private static TimeSpan _requestedConnectionTimeout;
-        private static TimeSpan _requestedHeartbeat;
-        private static bool? _automaticRecoveryEnabled;
-
+        private static ConcurrentDictionary<string, Tuple<string, string, string>> _cdic=new ConcurrentDictionary<string, Tuple<string, string, string>>();
+        private static RabbitMqClient _instance;
 
         /// <summary>
-        /// 构造函数
+        /// RabbitMqClient 静态实例，使用前请初始化
+        /// RabbitMqHelper.Initialization(new RabbitMqClient())
         /// </summary>
-        public RabbitMqHelper()
+        public static RabbitMqClient Instance
         {
-            var rabbitMqConfig = RabbitMqConfig.RabbitMqSetting;
-            if (rabbitMqConfig == null)
+            get
             {
-                throw new Exception("rabbitMqConfig cannot be null");
+                if (_instance == null) throw new Exception("使用前请初始化 RabbitMqHelper.Initialization(new RabbitMqClient());");
+                return _instance;
             }
-            if (string.IsNullOrEmpty(rabbitMqConfig.RabbitMqConnection))
-            {
-                throw new Exception("rabbitMqConnection cannot be null or empty");
-            }
-            _rabbitMqAddress = rabbitMqConfig.RabbitMqConnection;
-            _requestedConnectionTimeout = rabbitMqConfig.RequestedConnectionTimeout;
-            _requestedHeartbeat = rabbitMqConfig.RequestedHeartbeat;
-            _automaticRecoveryEnabled = rabbitMqConfig.AutomaticRecoveryEnabled;
-            Init();
         }
 
         /// <summary>
-        /// 初始化
+        /// 初始化RabbitMqClient静态访问类
+        /// RabbitMqHelper.Initialization(new RabbitMqClient())
         /// </summary>
-        private static void Init()
+        /// <param name="rabbitMqClient"></param>
+        public static void Initialization(RabbitMqClient rabbitMqClient)
         {
-            _rabbitConnectionFactory = new ConnectionFactory() { Uri = new Uri(_rabbitMqAddress) };
-            
-            if (_requestedConnectionTimeout != default)
-            {
-                _rabbitConnectionFactory.RequestedConnectionTimeout = _requestedConnectionTimeout.Milliseconds;
-            }
-            if (_requestedHeartbeat != default)
-            {
-                _rabbitConnectionFactory.RequestedHeartbeat =(ushort)_requestedHeartbeat.Seconds;
-            }
-            if (_automaticRecoveryEnabled != null)
-            {
-                _rabbitConnectionFactory.AutomaticRecoveryEnabled = _automaticRecoveryEnabled.Value;
-            }
-            _rabbitConnection = _rabbitConnectionFactory.CreateConnection();
-
+            _instance = rabbitMqClient;
         }
 
         /// <summary>
-        /// 获取Channel
+        /// 生产者（发送消息）
         /// </summary>
-        /// <returns></returns>
-        public static IModel GetChannel()
+        /// <typeparam name="T">消息类型</typeparam>
+        /// <param name="businessName">业务名称</param>
+        /// <param name="content">消息内容</param>
+        public static void Send<T>(string businessName, T content) where T : class
         {
-            if (!_rabbitConnection.IsOpen)
-            {
-                Init();
-            }
-            return _rabbitConnection.CreateModel();
-        }
-
-
-        /// <summary>
-        /// 获取消费者数量
-        /// </summary>
-        /// <param name="queueName">队列名称</param>
-        /// <returns></returns>
-        public uint GetConsumerCount(string queueName)
-        {
-            using var channel = GetChannel();
-            return channel.ConsumerCount(queueName);
+            var t = BindBusiness(businessName);
+            Instance.Send(t.Item1, t.Item2, content);
         }
 
         /// <summary>
-        /// 获取消息数量
+        /// 生产者（发送消息）
         /// </summary>
-        /// <param name="queueName">队列名称</param>
-        /// <returns></returns>
-        public uint GetMessageCount(string queueName)
+        /// <typeparam name="T">消息类型</typeparam>
+        /// <param name="businessName">业务名称</param>
+        /// <param name="contents">消息内容集合</param>
+        public static void Send<T>(string businessName, List<T> contents) where T : class
         {
-            using var channel = GetChannel();
-            return channel.MessageCount(queueName);
+            var t = BindBusiness(businessName);
+            Instance.Send(t.Item1, t.Item2, contents);
         }
 
         /// <summary>
-        /// 申明交换机
+        /// 生产者（发送消息）
         /// </summary>
-        /// <param name="exchangeName">交换机名称</param>
-        /// <param name="exchangeType">交换机类型</param>
-        public void ExchangeDeclare(string exchangeName, string exchangeType = ExchangeType.Direct)
+        /// <typeparam name="T">消息类型</typeparam>
+        /// <param name="businessName">业务名称</param>
+        /// <param name="content">消息内容集合</param>
+        /// <param name="expiration">过期时间（秒）</param>
+        public static void Send<T>(string businessName, T content, int expiration) where T : class
         {
-            using var channel = GetChannel();
-            channel.ExchangeDeclare(exchangeName, exchangeType, true, false, null);
+            var t = BindBusiness(businessName);
+            Instance.Send(t.Item1, t.Item2, content, expiration);
         }
 
         /// <summary>
-        /// 删除交换机
+        /// 生产者（发送消息）
         /// </summary>
-        /// <param name="exchangeName">交换机名称</param>
-        /// <param name="ifUnused">是否要不在使用中</param>
-        public void ExchangeDelete(string exchangeName,bool ifUnused)
+        /// <typeparam name="T">消息类型</typeparam>
+        /// <param name="businessName">业务名称</param>
+        /// <param name="contents">消息内容集合</param>
+        /// <param name="expiration">过期时间（秒）</param>
+        public static void Send<T>(string businessName, List<T> contents, int expiration) where T : class
         {
-            using var channel = GetChannel();
-            channel.ExchangeDelete(exchangeName, ifUnused);
+            var t = BindBusiness(businessName);
+            Instance.Send(t.Item1, t.Item2, contents, expiration);
         }
 
         /// <summary>
-        /// 申明队列
+        /// 消费者（消费消息）
         /// </summary>
-        /// <param name="queueName">队列名称</param>
-        /// <param name="arguments">参数</param>
-        public void QueueDeclare(string queueName, IDictionary<string, object> arguments=null)
+        /// <param name="businessName">业务名称</param>
+        /// <param name="callback">消费回调方法</param>
+        /// <param name="exchangeType">交换机类型，默认：ExchangeType.Direct</param>
+        /// <param name="errorCallback">错误回调方法</param>
+        public static void Received(string businessName, Action<string> callback, string exchangeType = "direct", Action<string> errorCallback = null)
         {
-            using var channel = GetChannel();
-            channel.QueueDeclare(queueName, true, false, false, arguments);
+            var t = BindBusiness(businessName);
+            Instance.Received(t.Item1, t.Item2, t.Item3, callback, exchangeType, errorCallback);
         }
 
         /// <summary>
-        /// 删除队列
+        /// 批量消费者（消费消息）
         /// </summary>
-        /// <param name="queueName">队列名称</param>
-        public void QueueDelete(string queueName)
+        /// <param name="businessName">业务名称</param>
+        /// <param name="callback">消费回调方法</param>
+        /// <param name="batchCount">每次批量接收条数</param>
+        /// <param name="errorCallback">错误回调方法</param>
+        public static void BatchReceived(string businessName, Action<List<string>> callback, int batchCount = 50, Action<string> errorCallback = null)
         {
-            using var channel = GetChannel();
-            channel.QueueDelete(queue: queueName);
+            var t = BindBusiness(businessName);
+            Instance.BatchReceived(t.Item3, callback, batchCount, errorCallback);
         }
 
         /// <summary>
         /// 清空队列数据
         /// </summary>
-        /// <param name="queueName">队列名称</param>
-        public void QueuePurge(string queueName)
+        /// <param name="businessName">业务名称</param>
+        public static void QueuePurge(string businessName)
         {
-            using var channel = GetChannel();
-            channel.QueuePurge(queueName);
-        }
-
-        /// <summary>
-        /// 队列绑定
-        /// </summary>
-        /// <param name="queueName">队列名称</param>
-        /// <param name="exchangeName">交换机名称</param>
-        /// <param name="routingKey">路由key</param>
-        public void QueueBind(string queueName,string exchangeName, string routingKey)
-        {
-            using var channel = GetChannel();
-            channel.QueueBind(queueName, exchangeName, routingKey, null);
-        }
-
-        /// <summary>
-        /// 队列解绑
-        /// </summary>
-        /// <param name="queueName">队列名称</param>
-        /// <param name="exchangeName">交换机名称</param>
-        /// <param name="routingKey">路由key</param>
-        public void QueueUnbind(string queueName, string exchangeName, string routingKey)
-        {
-            using var channel = GetChannel();
-            channel.QueueUnbind(queueName, exchangeName, routingKey, null);
-        }
-
-        /// <summary>
-        /// 发送消息
-        /// </summary>
-        /// <param name="exchangeName">交换机名称</param>
-        /// <param name="routingKey">路由key</param>
-        /// <param name="content">消息内容</param>
-        public void Send<T>(string exchangeName, string routingKey,T content) where T : class
-        {
-            if (content == null) return;
-            var message = content.GetType().Name != "String" ? JsonConvert.SerializeObject(content) : content.ToString();
-            using var channel = GetChannel();
-            var properties = channel.CreateBasicProperties();
-            properties.Persistent = true;
-            properties.DeliveryMode = 2;
-            byte[] body = Encoding.UTF8.GetBytes(message);
-            //开始发送
-            channel.BasicPublish(exchangeName, routingKey, properties, body);
-        }
-
-        /// <summary>
-        /// 发送消息
-        /// </summary>
-        /// <param name="exchangeName">交换机名称</param>
-        /// <param name="routingKey">路由key</param>
-        /// <param name="contents">消息内容集合</param>
-        public void Send<T>(string exchangeName, string routingKey, List<T> contents) where T : class
-        {
-            if (contents == null|| contents.Count ==0) return;
-            var type = contents.First().GetType().Name;
-            using var channel = GetChannel();
-            var properties = channel.CreateBasicProperties();
-            properties.Persistent = true;//是否持久化
-            properties.DeliveryMode = 2;
-            foreach (var content in contents)
-            {
-                var message = type != "String" ? JsonConvert.SerializeObject(content) : content.ToString();
-                byte[] body = Encoding.UTF8.GetBytes(message);
-                //开始发送
-                channel.BasicPublish(exchangeName, routingKey, properties, body);
-            }
-        }
-
-        /// <summary>
-        /// 发送消息
-        /// </summary>
-        /// <param name="exchangeName">交换机名称</param>
-        /// <param name="routingKey">路由key</param>
-        /// <param name="content">消息内容</param>
-        /// <param name="expiration">过期时间（秒）</param>
-        public void Send<T>(string exchangeName, string routingKey, T content, int expiration) where T : class
-        {
-            if (content == null) return;
-            expiration = expiration * 1000;
-            var message = content.GetType().Name != "String" ? JsonConvert.SerializeObject(content) : content.ToString();
-            using var channel = GetChannel();
-            var properties = channel.CreateBasicProperties();
-            properties.Expiration = expiration.ToString();
-            byte[] body = Encoding.UTF8.GetBytes(message);
-            //开始发送
-            channel.BasicPublish(exchangeName, routingKey, properties, body);
-        }
-
-        /// <summary>
-        /// 发送消息
-        /// </summary>
-        /// <param name="exchangeName">交换机名称</param>
-        /// <param name="routingKey">路由key</param>
-        /// <param name="contents">消息内容集合</param>
-        /// <param name="expiration">过期时间（秒）</param>
-        public void Send<T>(string exchangeName, string routingKey, List<T> contents, int expiration) where T : class
-        {
-            if (contents == null || contents.Count == 0) return;
-            expiration = expiration * 1000;
-            var type = contents.First().GetType().Name;
-            using var channel = GetChannel();
-            var properties = channel.CreateBasicProperties();
-            properties.Expiration = expiration.ToString();
-            foreach (var content in contents)
-            {
-                var message = type != "String" ? JsonConvert.SerializeObject(content) : content.ToString();
-                byte[] body = Encoding.UTF8.GetBytes(message);
-                //开始发送
-                channel.BasicPublish(exchangeName, routingKey, properties, body);
-            }
-        }
-
-        /// <summary>
-        /// 消费者接收消息
-        /// </summary>
-        /// <param name="exchangeName">交换机名称</param>
-        /// <param name="routingKey">路由key</param>
-        /// <param name="queueName">队列名称</param>
-        /// <param name="callback">回调函数</param>
-        /// <param name="exchangeType">交换机类型，默认：ExchangeType.Direct</param>
-        /// <param name="errorCallback">错误回调函数</param>
-        public void Received(string exchangeName, string routingKey, string queueName, Action<string> callback, string exchangeType = ExchangeType.Direct, Action errorCallback = null)
-        {
-            Task.Run(() =>
-            {
-                using var channel = GetChannel();
-                channel.BasicQos(prefetchSize: 0, prefetchCount: 1, global: false);
-                EventingBasicConsumer consumer = new EventingBasicConsumer(channel);
-                consumer.Received += (model, ea) =>
-                {
-                    var message = Encoding.UTF8.GetString(ea.Body);
-                    try
-                    {
-                        callback.Invoke(message);
-                        channel.BasicAck(deliveryTag: ea.DeliveryTag, multiple: false);
-                    }
-                    catch (Exception ex)
-                    {
-                        channel.BasicAck(deliveryTag: ea.DeliveryTag, multiple: false);
-                        errorCallback?.Invoke();
-                    }
-                };
-                channel.BasicConsume(queueName, autoAck: false, consumer: consumer);
-            });
-        }
-
-        /// <summary>
-        /// 消费者批量接收消息
-        /// </summary>
-        /// <param name="queueName">队列名称</param>
-        /// <param name="callback">回调函数</param>
-        /// <param name="batchCount">每次批量接收条数</param>
-        /// <param name="errorCallback">错误回调函数</param>
-        public void BatchReceived(string queueName, Action<List<string>> callback, int batchCount = 50, Action errorCallback = null)
-        {
-            Task.Run(() =>
-            {
-                var rabbitMessage = new List<MessageAskModel>();
-                while (true)
-                {
-                    try
-                    {
-                        var data = GetMessage(queueName);
-                        if (data == null)
-                        {
-                            BatchReceivedHandle(callback, rabbitMessage);
-                            rabbitMessage = new List<MessageAskModel>();
-                            Thread.Sleep(100);
-                            continue;
-                        }
-                        rabbitMessage.Add(data);
-                        if (rabbitMessage.Count < batchCount) continue;
-                        BatchReceivedHandle(callback, rabbitMessage);
-                        rabbitMessage = new List<MessageAskModel>();
-                    }
-                    catch (Exception ex)
-                    {
-                        BatchReceivedHandle(callback, rabbitMessage);
-                        rabbitMessage = new List<MessageAskModel>();
-                    }
-                }
-            });
+            var t = BindBusiness(businessName);
+            Instance.QueuePurge(t.Item3);
         }
 
         /// <summary>
         /// 获取消息
         /// </summary>
-        /// <param name="queueName">队列名称</param>
+        /// <param name="businessName">业务名称</param>
         /// <param name="autoAck">是否消息自动确认</param>
+        /// <param name="beforeAckAction">手动确认消息前回调方法(自动确认消息该回调无效)</param>
         /// <returns></returns>
-        private MessageAskModel GetMessage(string queueName, bool autoAck = true)
+        public static MessageAskModel GetMessage(string businessName, bool autoAck = true, Action<IModel, MessageAskModel> beforeAckAction = null)
         {
-            using var channel = GetChannel();
-            if (channel.MessageCount(queueName) == 0) return null;
-            var baseResult = channel.BasicGet(queueName, autoAck);
-            if (baseResult == null) return null;
-            var message = new MessageAskModel()
-            {
-                DeliveryTag = baseResult.DeliveryTag,
-                Message = Encoding.UTF8.GetString(baseResult.Body)
-            };
-            return message;
+            var t = BindBusiness(businessName);
+            var r=Instance.GetMessage(t.Item3, autoAck, beforeAckAction);
+            return r;
         }
 
         /// <summary>
-        /// 消费者批量接收消息处理
+        /// 绑定交换机名、路由名、队列名
         /// </summary>
-        /// <param name="callback">回调函数</param>
-        /// <param name="rabbitMessage">批量消息</param>
-        private void BatchReceivedHandle(Action<List<string>> callback, List<MessageAskModel> rabbitMessage)
+        /// <param name="businessName">RabbitMq业务名称</param>
+        /// <param name="update">是否更新</param>
+        /// <returns></returns>
+        public static Tuple<string, string, string> BindBusiness(string businessName, bool update = false)
         {
-            if (rabbitMessage != null && rabbitMessage.Count > 0)
+            businessName = string.IsNullOrEmpty(businessName) ? "DefaultBusiness" : businessName.Trim('.');
+            if (_cdic == null)
             {
-                try
-                {
-                    callback.Invoke(rabbitMessage.Select(p => p.Message).ToList());
-                    rabbitMessage = new List<MessageAskModel>();
-                }
-                catch (Exception e)
-                {
-
-                }
+                _cdic = new ConcurrentDictionary<string, Tuple<string, string, string>>();
             }
+            if (_cdic.ContainsKey(businessName) && !update)
+            {
+                return _cdic[businessName];
+            }
+            var exchangeName = $"{businessName}.Exchange";
+            var routingKey = $"{businessName}.RoutingKey";
+            var queueName = $"{businessName}.Queue";
+            //申明交换机
+            Instance.ExchangeDeclare(exchangeName);
+            //申明队列
+            Instance.QueueDeclare(queueName);
+            //绑定
+            Instance.QueueBind(queueName, exchangeName, routingKey);
+            var tuple = new Tuple<string, string, string>(exchangeName, routingKey, queueName);
+            _cdic.TryAdd(businessName, tuple);
+            return tuple;
+        }
+
+        /// <summary>
+        /// 解绑交换机名、路由名、队列名
+        /// </summary>
+        /// <param name="businessName">RabbitMq业务名称</param>
+        /// <returns></returns>
+        public static void UnBindBusiness(string businessName)
+        {
+            businessName = string.IsNullOrEmpty(businessName) ? "DefaultBusiness" : businessName.Trim('.');
+            if (_cdic == null)
+            {
+                _cdic = new ConcurrentDictionary<string, Tuple<string, string, string>>();
+            }
+            if (_cdic.ContainsKey(businessName))
+            {
+                _cdic.TryRemove(businessName, out var cdic);
+            }
+            var exchangeName = $"{businessName}.Exchange";
+            var routingKey = $"{businessName}.RoutingKey";
+            var queueName = $"{businessName}.Queue";
+            //解除绑定
+            Instance.QueueUnbind(queueName, exchangeName, routingKey);
+            //删除队列
+            Instance.QueueDelete(queueName);
+            //删除交换机
+            Instance.ExchangeDelete(exchangeName,true);
         }
     }
-
 }

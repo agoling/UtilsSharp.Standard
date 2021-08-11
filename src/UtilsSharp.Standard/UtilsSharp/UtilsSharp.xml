@@ -70,7 +70,7 @@
         </member>
         <member name="T:UtilsSharp.CacheHelper">
             <summary>
-            机器缓存
+            服务器缓存帮助类
             </summary>
         </member>
         <member name="F:UtilsSharp.CacheHelper.MemoryCache">
@@ -80,7 +80,7 @@
         </member>
         <member name="M:UtilsSharp.CacheHelper.GetCacheTypeName">
             <summary>
-            获取当前缓存实例类型名字
+            获取当前缓存类型
             </summary>
             <returns></returns>
         </member>

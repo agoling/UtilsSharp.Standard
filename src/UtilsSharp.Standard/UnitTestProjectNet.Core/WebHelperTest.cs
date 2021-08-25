@@ -2,10 +2,13 @@
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Net;
+using System.Text;
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json;
 using UtilsSharp;
+using UtilsSharp.Standard;
 
 namespace UnitTestProjectNet.Core
 {
@@ -20,14 +23,16 @@ namespace UnitTestProjectNet.Core
         }
         public async Task GetCaptcha()
         {
-            var webHelper = new WebHelper();
-            var dic = new Dictionary<string, string> { { "sign", "b486a1fa5e024be0a45c096ca5f6cfec" } };
-            var url = $"https://localhost:44393/api/pc/Puppeteer/GetCaptcha1";
-            //webHelper.Headers.Add("content-type", "application/x-www-form-urlencoded");
-            //webHelper.Headers.Add("Content-Type", "application/json;charset=UTF-8");
-
-            var requestResult = await webHelper.DoPostAsync(url, dic);
-            var requestResult1 =  webHelper.DoPost(url,dic);
+            using (var webHelper = new WebHelper())
+            {
+                var dic = new Dictionary<string, string> { { "sign", "b486a1fa5e024be0a45c096ca5f6cfec" } };
+                var url = $"https://www.baidu.com/api/xxxxxx";
+                webHelper.Headers.Add("Content-Type", "application/json;charset=UTF-8");
+                webHelper.Proxy=new WebProxy("127.0.0.1:98"){Credentials = new NetworkCredential("username","password")};//代理请求
+                webHelper.Encoding = Encoding.UTF8;
+                webHelper.Timeout = 10;//请求超时时间 单位秒
+                var requestResult = webHelper.DoPost<BaseResult<string>>(url, dic).HandleResult();
+            }
         }
 
 

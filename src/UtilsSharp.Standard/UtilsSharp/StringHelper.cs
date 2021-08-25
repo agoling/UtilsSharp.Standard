@@ -13,7 +13,7 @@ namespace UtilsSharp
     public class StringHelper
     {
         /// <summary>
-        /// 注册后使可以支持.Net平台上不支持的编码
+        ///需要全局注册下本方法，可以支持.Net平台上不支持的编码，如GB2312
         /// </summary>
         public static void EncodingRegister()
         {
@@ -39,7 +39,7 @@ namespace UtilsSharp
         }
 
         /// <summary>
-        /// HTML转行成TEXT
+        /// 过滤Html符号
         /// </summary>
         /// <param name="htmlStr">html字符串</param>
         /// <returns></returns>
@@ -71,7 +71,7 @@ namespace UtilsSharp
         }
 
         /// <summary>
-        /// 得到字符串长度
+        /// 获取字符串长度
         /// </summary>
         /// <param name="str">字符串</param>
         /// <returns></returns>
@@ -177,7 +177,7 @@ namespace UtilsSharp
         /// <summary>
         /// 反转字符串
         /// </summary>
-        /// <param name="str"></param>
+        /// <param name="str">字符串</param>
         /// <returns></returns>
         public static string Reverse(string str)
         {

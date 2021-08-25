@@ -56,7 +56,7 @@ namespace UtilsSharp
         }
 
         /// <summary>
-        /// DES解密方法
+        /// DES解密
         /// </summary>
         /// <param name="str">解密字符串</param>
         /// <param name="secretKey">密文</param>
@@ -116,7 +116,7 @@ namespace UtilsSharp
         }
         #endregion
 
-        #region ===SHA为不可逆加密方式===
+        #region ===SHA不可逆加密===
         /// <summary>
         /// SHA1加密
         /// </summary>
@@ -183,7 +183,7 @@ namespace UtilsSharp
         }
 
         /// <summary>
-        /// Base64加密
+        /// Base64加密(指定字符编码)
         /// </summary>
         /// <param name="str">需要加密的字符串</param>
         /// <param name="encode">字符编码</param>
@@ -205,7 +205,7 @@ namespace UtilsSharp
         }
 
         /// <summary>
-        /// Base64解密
+        /// Base64解密(指定字符编码)
         /// </summary>
         /// <param name="str">需要解密的字符串</param>
         /// <param name="encode">字符的编码</param>
@@ -219,7 +219,7 @@ namespace UtilsSharp
 
         #region ===AES加密解密===
         /// <summary>
-        ///  AES 加密
+        ///  AES加密
         /// </summary>
         /// <param name="str">明文（待加密）</param>
         /// <param name="secretKey">密文</param>
@@ -240,7 +240,7 @@ namespace UtilsSharp
         }
 
         /// <summary>
-        ///  AES 解密
+        ///  AES解密
         /// </summary>
         /// <param name="str">明文（待解密）</param>
         /// <param name="secretKey">密文</param>

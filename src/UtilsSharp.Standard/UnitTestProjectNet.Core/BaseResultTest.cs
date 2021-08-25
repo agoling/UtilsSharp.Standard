@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Newtonsoft.Json;
 using UtilsSharp;
 using UtilsSharp.Standard;
 
@@ -10,47 +11,94 @@ namespace UnitTestProjectNet.Core
     [TestClass]
     public class BaseResultTest
     {
+        /// <summary>
+        /// 登入
+        /// </summary>
+        /// <param name="request">登入参数</param>
+        /// <returns></returns>
         [TestMethod]
-        public void BaseResultTestDemo()
+        public BaseResult<LoginResponse> Login(LoginRequest request)
         {
-           BaseResult<UserInfo> result0 = new BaseResult<UserInfo>();
-           result0.SetOkResult(null,"执行成功");
-
-            BaseResult<UserInfo> result1=new BaseResult<UserInfo>();
-           var userInfo1 = new UserInfo {UserName = "123", UserPsw = "123"};
-           result1.SetOkResult(userInfo1);
-
-           BaseResult<UserInfo> result2 = new BaseResult<UserInfo>();
-           result2.Result = new UserInfo { UserName = "456", UserPsw = "456" };
-           result2.SetOkResult(null,"执行成功");
-
-           BaseResult<UserInfo> result20 = new BaseResult<UserInfo>();
-           result20.Result = new UserInfo { UserName = "4567", UserPsw = "4567" };
-           result20.SetOkResult(result20.Result, "执行成功");
-
-           BaseResult<string> result3 = new BaseResult<string>();
-           result3.SetOkResult("", "执行成功");
-
-           BaseResult<string> result4 = new BaseResult<string>();
-           result4.SetOkResult("执行成功");
-
-           BaseResult<string> result5 = new BaseResult<string>();
-           result5.SetOk("执行成功");
+            var result = new BaseResult<LoginResponse>();
+            try
+            {
+                if (string.IsNullOrEmpty(request.UserName))
+                {
+                    result.SetError("用户名不能为空", BaseStateCode.参数不能为空);
+                    return result;
+                }
+                if (string.IsNullOrEmpty(request.UserPsw))
+                {
+                    result.SetError("密码不能为空", BaseStateCode.参数不能为空);
+                    return result;
+                }
+                /*…这边省略登入业务代码…*/
+                var response = new LoginResponse {UserName = request.UserName, Token = Guid.NewGuid().ToString("N")};
+                result.SetOkResult(response,"登入成功");
+                return result;
+            }
+            catch (Exception ex)
+            {
+                var errorCode = Guid.NewGuid().ToString("N");
+                //这边用errorCode作为日志主键，把错误信息写入到日志
+                var errorMessage = errorCode.ToMsgException();
+                result.SetError(errorMessage, BaseStateCode.TryCatch异常错误);
+                return result;
+            }
         }
 
+
+        /// <summary>
+        /// 分页搜索
+        /// </summary>
+        /// <param name="request">登入参数</param>
+        /// <returns></returns>
         [TestMethod]
-        public void BasePagedResultTestDemo()
+        public BasePagedResult<LoginResponse> Search(BaseSortPage request)
         {
-            BasePagedResult<UserInfo> result0=new BasePagedResult<UserInfo>();
-            result0.SetOk("请求成功");
-
-            BasePagedResult<UserInfo> result1 = new BasePagedResult<UserInfo>();
-            result1.SetOkResult(new BasePagedInfoResult<UserInfo>(),"请求成功");
-
+            var result = new BasePagedResult<LoginResponse>();
+            try
+            {
+                var response = new BasePagedInfoResult<LoginResponse>()
+                {
+                    PageIndex = request.PageIndex,
+                    PageSize = request.PageSize
+                };
+                if (string.IsNullOrEmpty(request.Keyword))
+                {
+                    result.SetError("搜索关键词不能为空！",6010);
+                    return result;
+                }
+                /*…这边省略查寻业务代码…*/
+                /*…以下模拟从数据库获取数据…*/
+                response.List = new List<LoginResponse>
+                {
+                    new LoginResponse() {Token = Guid.NewGuid().ToString(), UserName = "xxx1"},
+                    new LoginResponse() {Token = Guid.NewGuid().ToString(), UserName = "xxx2"},
+                    new LoginResponse() {Token = Guid.NewGuid().ToString(), UserName = "xxx3"}
+                };
+                response.PageIndex = request.PageIndex;
+                response.PageSize = request.PageSize;
+                response.TotalCount = 100;
+                response.Params = request;
+                result.SetOkResult(response);
+                return result;
+            }
+            catch (Exception ex)
+            {
+                var errorCode = Guid.NewGuid().ToString("N");
+                //这边用errorCode作为日志主键，把错误信息写入到日志
+                var errorMessage = errorCode.ToMsgException();
+                result.SetError(errorMessage, BaseStateCode.TryCatch异常错误);
+                return result;
+            }
         }
     }
 
-    public class UserInfo
+    /// <summary>
+    /// 会员登录请求参数
+    /// </summary>
+    public class LoginRequest
     {
         /// <summary>
         /// 用户名
@@ -60,5 +108,22 @@ namespace UnitTestProjectNet.Core
         /// 密码
         /// </summary>
         public string UserPsw { set; get; }
+
+    }
+
+    /// <summary>
+    /// 会员登录返回参数
+    /// </summary>
+    public class LoginResponse
+    {
+        /// <summary>
+        /// 访问口令
+        /// </summary>
+        public string Token { set; get; }
+
+        /// <summary>
+        /// 用户名
+        /// </summary>
+        public string UserName { set; get; }
     }
 }

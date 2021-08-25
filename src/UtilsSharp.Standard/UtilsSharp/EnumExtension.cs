@@ -13,7 +13,7 @@ namespace UtilsSharp
     public static class EnumExtension
     {
         /// <summary>
-        /// 字符串转换为枚举
+        /// 字符串值转换为枚举值
         /// </summary>
         /// <typeparam name="T">枚举</typeparam>
         /// <param name="value">枚举值不区分(字符串)</param>
@@ -24,7 +24,7 @@ namespace UtilsSharp
         }
 
         /// <summary>
-        /// 数值转换为枚举
+        /// 数字值转换为枚举值
         /// </summary>
         /// <typeparam name="T">枚举</typeparam>
         /// <param name="value">枚举值(数值)</param>

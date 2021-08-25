@@ -13,7 +13,7 @@ using UtilsSharp.Standard;
 namespace UtilsSharp
 {
     /// <summary>
-    /// 网络工具类
+    /// 网络请求工具帮助类
     /// </summary>
     public partial class WebHelper : WebClient
     {
@@ -412,7 +412,7 @@ namespace UtilsSharp
     }
 
     /// <summary>
-    /// 网络工具类(异步)
+    /// 网络请求工具帮助类(异步)
     /// </summary>
     public partial class WebHelper
     {
@@ -770,7 +770,7 @@ namespace UtilsSharp
     }
 
     /// <summary>
-    /// 网络工具类(兼容超时)
+    /// 网络请求工具帮助类(兼容超时)
     /// </summary>
     public partial class WebHelper
     {
@@ -873,7 +873,7 @@ namespace UtilsSharp
     }
 
     /// <summary>
-    /// 网络工具类(处理返回实体)
+    /// 网络请求工具帮助类(处理返回实体)
     /// </summary>
     public static class WebHelperHandleResult
     {

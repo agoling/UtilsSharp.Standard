@@ -101,7 +101,7 @@ namespace UtilsSharp
         #region 结束指定的windows进程
 
         /// <summary>
-        /// 结束指定的windows进程，如果进程存在
+        /// 结束指定的windows进程如果进程存在
         /// </summary>
         /// <param name="processName">进程名称，不包含扩展名</param>
         /// <param name="processFileName">进程文件完整路径，如果为空则删除所有进程名为processName参数值的进程</param>

@@ -9,7 +9,7 @@ namespace UtilsSharp
     public class TimeHelper
     {
         /// <summary>
-        /// 获取开始日期(utc)
+        /// 获取开始日期(UTC)
         /// </summary>
         /// <param name="dateTime">时间</param>
         /// <returns></returns>
@@ -29,7 +29,7 @@ namespace UtilsSharp
         }
 
         /// <summary>
-        /// 获取结束日期(utc)
+        /// 获取结束日期(UTC)
         /// </summary>
         /// <param name="dateTime">时间</param>
         /// <returns></returns>
@@ -49,7 +49,7 @@ namespace UtilsSharp
         }
 
         /// <summary>
-        /// 时间格式化（小时分钟前面加上0）
+        /// 时间格式化(小时分钟前面加上0)
         /// </summary>
         /// <param name="intStr">小时、分钟</param>
         /// <returns>"00"</returns>
@@ -68,7 +68,7 @@ namespace UtilsSharp
 
 
         /// <summary>
-        /// 时间格式化（小时分钟去掉前面的0）
+        /// 时间格式化(小时分钟去掉前面的0)
         /// </summary>
         /// <param name="intStr">小时、分钟</param>
         /// <returns>0</returns>
@@ -99,16 +99,21 @@ namespace UtilsSharp
         }
 
         /// <summary>
-        /// 返回时间差
+        /// 获取时间差字符串
         /// </summary>
-        /// <param name="time1">起始日期</param>
-        /// <param name="time2">结束日期</param>
+        /// <param name="time1">起始时间</param>
+        /// <param name="time2">结束时间</param>
         /// <returns></returns>
         public static string GetDateDiff(DateTime time1, DateTime time2)
         {
             string dateDiff = null;
             try
             {
+                if (time1 > time2)
+                {
+                    throw new Exception("起始时间不能大于结束时间");
+                }
+
                 TimeSpan ts = time2 - time1;
                 if (ts.Days >= 1)
                 {
@@ -122,7 +127,14 @@ namespace UtilsSharp
                     }
                     else
                     {
-                        dateDiff = ts.Minutes + "分钟前";
+                        if (ts.Minutes > 1)
+                        {
+                            dateDiff = ts.Minutes + "分钟前";
+                        }
+                        else
+                        {
+                            dateDiff = ts.Seconds + "秒前";
+                        }
                     }
                 }
             }

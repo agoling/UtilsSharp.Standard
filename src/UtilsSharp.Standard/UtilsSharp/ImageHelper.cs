@@ -108,7 +108,7 @@ namespace UtilsSharp
         }
 
         /// <summary>
-        /// bytes到图片
+        /// bytes生成并保存图片
         /// </summary>
         /// <param name="path">图片路径</param>
         /// <param name="bytes">bytes</param>
@@ -188,13 +188,7 @@ namespace UtilsSharp
             }
             image.RemovePropertyItem(274);
         }
-    }
 
-    /// <summary>
-    /// 图片处理类
-    /// </summary>
-    public class ImageManager
-    {
         #region 缩略图
 
         /// <summary>
@@ -306,7 +300,7 @@ namespace UtilsSharp
 
         #region 图片水印
         /// <summary>
-        /// 图片水印处理方法
+        /// 图片水印处理
         /// </summary>
         /// <param name="path">需要加载水印的图片路径（绝对路径）</param>
         /// <param name="waterpath">水印图片（绝对路径）</param>
@@ -402,7 +396,7 @@ namespace UtilsSharp
 
         #region 文字水印
         /// <summary>
-        /// 文字水印处理方法
+        /// 文字水印处理
         /// </summary>
         /// <param name="path">图片路径（绝对路径）</param>
         /// <param name="size">字体大小</param>
@@ -513,7 +507,7 @@ namespace UtilsSharp
         /// <param name="width">原始图片的长度</param>
         /// <param name="height">原始图片的高度</param>
         /// <param name="val">增加或减少的光暗值</param>
-        public Bitmap LdPic(Bitmap mybm, int width, int height, int val)
+        public static Bitmap LdPic(Bitmap mybm, int width, int height, int val)
         {
             Bitmap bm = new Bitmap(width, height);//初始化一个记录经过处理后的图片对象
             int x, y;//x、y是循环次数，后面三个是记录红绿蓝三个值的
@@ -539,7 +533,7 @@ namespace UtilsSharp
         /// <param name="mybm">原始图片</param>
         /// <param name="width">原始图片的长度</param>
         /// <param name="height">原始图片的高度</param>
-        public Bitmap RePic(Bitmap mybm, int width, int height)
+        public static Bitmap RePic(Bitmap mybm, int width, int height)
         {
             Bitmap bm = new Bitmap(width, height);//初始化一个记录处理后的图片的对象
             int x;
@@ -566,7 +560,7 @@ namespace UtilsSharp
         /// <param name="oldBitmap">原始图片</param>
         /// <param name="width">原始图片的长度</param>
         /// <param name="height">原始图片的高度</param>
-        public Bitmap Fd(Bitmap oldBitmap, int width, int height)
+        public static Bitmap Fd(Bitmap oldBitmap, int width, int height)
         {
             Bitmap newBitmap = new Bitmap(width, height);
             for (int x = 0; x < width - 1; x++)
@@ -624,7 +618,7 @@ namespace UtilsSharp
         /// <param name="mybm">原始图片</param>
         /// <param name="width">原始图片的长度</param>
         /// <param name="height">原始图片的高度</param>
-        public Bitmap FilPic(Bitmap mybm, int width, int height)
+        public static Bitmap FilPic(Bitmap mybm, int width, int height)
         {
             Bitmap bm = new Bitmap(width, height);//初始化一个记录滤色效果的图片对象
             int x;
@@ -648,7 +642,7 @@ namespace UtilsSharp
         /// <param name="mybm">原始图片</param>
         /// <param name="width">原始图片的长度</param>
         /// <param name="height">原始图片的高度</param>
-        public Bitmap RevPicLr(Bitmap mybm, int width, int height)
+        public static Bitmap RevPicLr(Bitmap mybm, int width, int height)
         {
             Bitmap bm = new Bitmap(width, height);
             int y; //x,y是循环次数,z是用来记录像素点的x坐标的变化的
@@ -673,7 +667,7 @@ namespace UtilsSharp
         /// <param name="mybm">原始图片</param>
         /// <param name="width">原始图片的长度</param>
         /// <param name="height">原始图片的高度</param>
-        public Bitmap RevPicUd(Bitmap mybm, int width, int height)
+        public static Bitmap RevPicUd(Bitmap mybm, int width, int height)
         {
             Bitmap bm = new Bitmap(width, height);
             int x;
@@ -693,11 +687,11 @@ namespace UtilsSharp
 
         #region 压缩图片
         /// <summary>
-        /// 压缩到指定尺寸
+        /// 压缩图片到指定尺寸
         /// </summary>
         /// <param name="oldfile">原文件</param>
         /// <param name="newfile">新文件</param>
-        public bool Compress(string oldfile, string newfile)
+        public static bool Compress(string oldfile, string newfile)
         {
             try
             {
@@ -733,9 +727,9 @@ namespace UtilsSharp
         /// <summary>
         /// 图片灰度化
         /// </summary>
-        /// <param name="c"></param>
+        /// <param name="c">颜色</param>
         /// <returns></returns>
-        public Color Gray(Color c)
+        public static Color Gray(Color c)
         {
             int rgb = Convert.ToInt32(((0.3 * c.R) + (0.59 * c.G)) + (0.11 * c.B));
             return Color.FromArgb(rgb, rgb, rgb);
@@ -750,7 +744,7 @@ namespace UtilsSharp
         /// <param name="mybm">要进行处理的图片</param>
         /// <param name="width">图片的长度</param>
         /// <param name="height">图片的高度</param>
-        public Bitmap BwPic(Bitmap mybm, int width, int height)
+        public static Bitmap BwPic(Bitmap mybm, int width, int height)
         {
             Bitmap bm = new Bitmap(width, height);
             int x; //x,y是循环次数，result是记录处理后的像素值
@@ -775,7 +769,7 @@ namespace UtilsSharp
         /// </summary>
         /// <param name="pPath">图片路径</param>
         /// <param name="pSavedPath">保存路径</param>
-        public void GetFrames(string pPath, string pSavedPath)
+        public static void GetFrames(string pPath, string pSavedPath)
         {
             Image gif = Image.FromFile(pPath);
             FrameDimension fd = new FrameDimension(gif.FrameDimensionsList[0]);
@@ -788,5 +782,4 @@ namespace UtilsSharp
         }
         #endregion
     }
-
 }

@@ -85,6 +85,7 @@ namespace UtilsSharp
         /// <summary>
         /// 绘制验证码
         /// </summary>
+        /// <param name="rule">绘制规则</param>
         public void CreateImage(VerificationCodeRule rule)
         {
             _text = RandomHelper.Number(rule.LetterCount);

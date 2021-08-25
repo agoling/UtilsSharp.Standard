@@ -36,7 +36,7 @@ namespace UtilsSharp
         /// 获取所有的程序集(排除所有的系统程序集、Nuget下载包)
         /// </summary>
         /// <returns>程序集集合</returns>
-        public static List<Assembly> GetAllAssemblies()
+        public static List<Assembly> GetAssemblies()
         {
             var list = new List<Assembly>();
             var deps = DependencyContext.Default;
@@ -57,8 +57,35 @@ namespace UtilsSharp
             return list;
         }
 
+
         /// <summary>
-        /// 获取指定的程序集
+        /// 获取所有的程序集(含所有系统程序集、Nuget下载包)
+        /// </summary>
+        /// <returns>程序集集合</returns>
+        public static List<Assembly> GetAllAssemblies()
+        {
+            var list = new List<Assembly>();
+            var deps = DependencyContext.Default;
+            //排除所有的系统程序集、Nuget下载包
+            var libs = deps.CompileLibraries;
+            foreach (var lib in libs)
+            {
+                try
+                {
+                    var assembly = AssemblyLoadContext.Default.LoadFromAssemblyName(new AssemblyName(lib.Name));
+                    list.Add(assembly);
+                }
+                catch (Exception)
+                {
+                    // ignored
+                }
+            }
+            return list;
+        }
+
+
+        /// <summary>
+        /// 获取指定的程序集(模糊匹配)
         /// </summary>
         /// <param name="assemblyName">程序集名称</param>
         /// <returns>程序集</returns>

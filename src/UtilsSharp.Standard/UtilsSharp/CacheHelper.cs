@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Security.Cryptography;
-using System.Text;
 using Microsoft.Extensions.Caching.Memory;
 using Newtonsoft.Json;
 using UtilsSharp.Standard.Interface;
@@ -9,7 +6,7 @@ using UtilsSharp.Standard.Interface;
 namespace UtilsSharp
 {
     /// <summary>
-    /// 机器缓存
+    /// 服务器缓存帮助类
     /// </summary>
     public class CacheHelper:ICacheManager
     {
@@ -19,12 +16,12 @@ namespace UtilsSharp
         private static readonly IMemoryCache MemoryCache = new MemoryCache(new MemoryCacheOptions());
 
         /// <summary>
-        /// 获取当前缓存实例类型名字
+        /// 获取当前缓存类型
         /// </summary>
         /// <returns></returns>
         public string GetCacheTypeName()
         {
-            return "cache";
+            return "MemoryCache";
         }
 
         /// <summary>

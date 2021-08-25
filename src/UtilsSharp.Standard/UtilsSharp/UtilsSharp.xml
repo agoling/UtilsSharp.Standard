@@ -25,21 +25,21 @@
         </member>
         <member name="M:UtilsSharp.AppsettingsHelper.GetSection(System.String)">
             <summary>
-            获取相应节点
+            根据key获取对应节点的配置值
             </summary>
             <param name="key">key:子节点冒号隔开,如aa:bb</param>
             <returns></returns>
         </member>
         <member name="M:UtilsSharp.AppsettingsHelper.GetSection``1(System.String)">
             <summary>
-            获取相应节点
+            根据key获取对应节点的配置值
             </summary>
             <param name="key">key:子节点冒号隔开,如aa:bb</param>
             <returns></returns>
         </member>
         <member name="M:UtilsSharp.AppsettingsHelper.GetChildren">
             <summary>
-            获取所有节点
+            获取所有配置子节点
             </summary>
             <returns></returns>
         </member>
@@ -55,22 +55,28 @@
             <param name="assemblyName">程序集名称</param>
             <returns>类以及类实现的接口键值对</returns>
         </member>
-        <member name="M:UtilsSharp.AssemblyHelper.GetAllAssemblies">
+        <member name="M:UtilsSharp.AssemblyHelper.GetAssemblies">
             <summary>
             获取所有的程序集(排除所有的系统程序集、Nuget下载包)
             </summary>
             <returns>程序集集合</returns>
         </member>
+        <member name="M:UtilsSharp.AssemblyHelper.GetAllAssemblies">
+            <summary>
+            获取所有的程序集(含所有系统程序集、Nuget下载包)
+            </summary>
+            <returns>程序集集合</returns>
+        </member>
         <member name="M:UtilsSharp.AssemblyHelper.GetAssembly(System.String)">
             <summary>
-            获取指定的程序集
+            获取指定的程序集(模糊匹配)
             </summary>
             <param name="assemblyName">程序集名称</param>
             <returns>程序集</returns>
         </member>
         <member name="T:UtilsSharp.CacheHelper">
             <summary>
-            机器缓存
+            服务器缓存帮助类
             </summary>
         </member>
         <member name="F:UtilsSharp.CacheHelper.MemoryCache">
@@ -80,7 +86,7 @@
         </member>
         <member name="M:UtilsSharp.CacheHelper.GetCacheTypeName">
             <summary>
-            获取当前缓存实例类型名字
+            获取当前缓存类型
             </summary>
             <returns></returns>
         </member>
@@ -187,7 +193,7 @@
         </member>
         <member name="T:UtilsSharp.ChinaDate">
             <summary>
-            公历转农历
+            公历农历相关类
             </summary>
         </member>
         <member name="M:UtilsSharp.ChinaDate.lYearDays(System.Int32)">
@@ -239,6 +245,9 @@
             <summary>
             传回公历y年m月的总天数
             </summary>
+            <param name="y">年</param>
+            <param name="m">月</param>
+            <returns></returns>
         </member>
         <member name="M:UtilsSharp.ChinaDate.GetMondayDateByDate(System.DateTime)">
             <summary>
@@ -247,10 +256,12 @@
             <param name="dt">输入日期</param>
             <returns>周一的日期</returns>
         </member>
-        <member name="M:UtilsSharp.ChinaDate.getChinaDate(System.DateTime)">
+        <member name="M:UtilsSharp.ChinaDate.GetChinaDate(System.DateTime)">
             <summary>
-            获取农历
+            根据时间获取农历信息
             </summary>
+            <param name="dt">时间</param>
+            <returns></returns>
         </member>
         <member name="T:UtilsSharp.ChineseCalendar">
             <summary>
@@ -508,7 +519,7 @@
         </member>
         <member name="M:UtilsSharp.ChinesePinyinHelper.GetPinyinInitials(System.String)">
             <summary>
-            取汉字拼音的首字母
+            获取汉字拼音的首字母
             </summary>
             <param name="chineseStr">汉字字符串</param>
             <returns></returns>
@@ -525,7 +536,7 @@
         </member>
         <member name="M:UtilsSharp.ChinesePinyinHelper.GetPinyin(System.String)">
             <summary>
-            取汉字拼音
+            获取汉字拼音
             </summary>
             <param name="chineseStr">汉字字符串</param>
             <returns></returns>
@@ -553,7 +564,7 @@
         </member>
         <member name="M:UtilsSharp.CryptoHelper.ToDesDecrypt(System.String,System.String,System.String)">
             <summary>
-            DES解密方法
+            DES解密
             </summary>
             <param name="str">解密字符串</param>
             <param name="secretKey">密文</param>
@@ -613,7 +624,7 @@
         </member>
         <member name="M:UtilsSharp.CryptoHelper.ToBase64Encrypt(System.String,System.Text.Encoding)">
             <summary>
-            Base64加密
+            Base64加密(指定字符编码)
             </summary>
             <param name="str">需要加密的字符串</param>
             <param name="encode">字符编码</param>
@@ -628,7 +639,7 @@
         </member>
         <member name="M:UtilsSharp.CryptoHelper.ToBase64Decrypt(System.String,System.Text.Encoding)">
             <summary>
-            Base64解密
+            Base64解密(指定字符编码)
             </summary>
             <param name="str">需要解密的字符串</param>
             <param name="encode">字符的编码</param>
@@ -636,7 +647,7 @@
         </member>
         <member name="M:UtilsSharp.CryptoHelper.ToAesEncrypt(System.String,System.String)">
             <summary>
-             AES 加密
+             AES加密
             </summary>
             <param name="str">明文（待加密）</param>
             <param name="secretKey">密文</param>
@@ -644,7 +655,7 @@
         </member>
         <member name="M:UtilsSharp.CryptoHelper.ToAesDecrypt(System.String,System.String)">
             <summary>
-             AES 解密
+             AES解密
             </summary>
             <param name="str">明文（待解密）</param>
             <param name="secretKey">密文</param>
@@ -1132,7 +1143,7 @@
         </member>
         <member name="M:UtilsSharp.EnumExtension.ToEnum``1(System.String)">
             <summary>
-            字符串转换为枚举
+            字符串值转换为枚举值
             </summary>
             <typeparam name="T">枚举</typeparam>
             <param name="value">枚举值不区分(字符串)</param>
@@ -1140,7 +1151,7 @@
         </member>
         <member name="M:UtilsSharp.EnumExtension.ToEnum``1(System.Int32)">
             <summary>
-            数值转换为枚举
+            数字值转换为枚举值
             </summary>
             <typeparam name="T">枚举</typeparam>
             <param name="value">枚举值(数值)</param>
@@ -1175,14 +1186,14 @@
         </member>
         <member name="M:UtilsSharp.FileHelper.ReadFileToBytes(System.String)">
             <summary>
-            读文件到byte[]
+            读取文件到byte[]
             </summary>
             <param name="fileName">硬盘文件路径</param>
             <returns></returns>
         </member>
         <member name="M:UtilsSharp.FileHelper.ReadFileToStream(System.String)">
             <summary>
-            读文件到Stream
+            读取文件到stream
             </summary>
             <param name="fileName">硬盘文件路径</param>
             <returns></returns>
@@ -1238,7 +1249,7 @@
         </member>
         <member name="M:UtilsSharp.ImageHelper.CreateImageFromBytes(System.String,System.Byte[])">
             <summary>
-            bytes到图片
+            bytes生成并保存图片
             </summary>
             <param name="path">图片路径</param>
             <param name="bytes">bytes</param>
@@ -1256,37 +1267,32 @@
             <param name="image">图片对象</param>
             <returns></returns>
         </member>
-        <member name="T:UtilsSharp.ImageManager">
-            <summary>
-            图片处理类
-            </summary>
-        </member>
-        <member name="T:UtilsSharp.ImageManager.MakeThumbnailMode">
+        <member name="T:UtilsSharp.ImageHelper.MakeThumbnailMode">
             <summary>
             生成缩略图的方式
             </summary>
         </member>
-        <member name="F:UtilsSharp.ImageManager.MakeThumbnailMode.指定高宽缩放可能变形">
+        <member name="F:UtilsSharp.ImageHelper.MakeThumbnailMode.指定高宽缩放可能变形">
             <summary>
             指定高宽缩放可能变形
             </summary>
         </member>
-        <member name="F:UtilsSharp.ImageManager.MakeThumbnailMode.指定宽然后高按比例">
+        <member name="F:UtilsSharp.ImageHelper.MakeThumbnailMode.指定宽然后高按比例">
             <summary>
             指定宽然后高按比例
             </summary>
         </member>
-        <member name="F:UtilsSharp.ImageManager.MakeThumbnailMode.指定高然后宽按比例">
+        <member name="F:UtilsSharp.ImageHelper.MakeThumbnailMode.指定高然后宽按比例">
             <summary>
             指定高然后宽按比例
             </summary>
         </member>
-        <member name="F:UtilsSharp.ImageManager.MakeThumbnailMode.指定高宽裁减不变形">
+        <member name="F:UtilsSharp.ImageHelper.MakeThumbnailMode.指定高宽裁减不变形">
             <summary>
             指定高宽裁减不变形
             </summary>
         </member>
-        <member name="M:UtilsSharp.ImageManager.MakeThumbnail(System.String,System.String,System.Int32,System.Int32,UtilsSharp.ImageManager.MakeThumbnailMode)">
+        <member name="M:UtilsSharp.ImageHelper.MakeThumbnail(System.String,System.String,System.Int32,System.Int32,UtilsSharp.ImageHelper.MakeThumbnailMode)">
             <summary>
             生成缩略图
             </summary>
@@ -1296,15 +1302,15 @@
             <param name="height">缩略图高度</param>
             <param name="mode">生成缩略图的方式</param>    
         </member>
-        <member name="M:UtilsSharp.ImageManager.ImageWatermark(System.String,System.String,System.String)">
+        <member name="M:UtilsSharp.ImageHelper.ImageWatermark(System.String,System.String,System.String)">
             <summary>
-            图片水印处理方法
+            图片水印处理
             </summary>
             <param name="path">需要加载水印的图片路径（绝对路径）</param>
             <param name="waterpath">水印图片（绝对路径）</param>
             <param name="location">水印位置（传送正确的代码）</param>
         </member>
-        <member name="M:UtilsSharp.ImageManager.GetLocation(System.String,System.Drawing.Image,System.Drawing.Image)">
+        <member name="M:UtilsSharp.ImageHelper.GetLocation(System.String,System.Drawing.Image,System.Drawing.Image)">
             <summary>
             图片水印位置处理方法
             </summary>
@@ -1312,9 +1318,9 @@
             <param name="img">需要添加水印的图片</param>
             <param name="waterimg">水印图片</param>
         </member>
-        <member name="M:UtilsSharp.ImageManager.LetterWatermark(System.String,System.Int32,System.String,System.Drawing.Color,System.String)">
+        <member name="M:UtilsSharp.ImageHelper.LetterWatermark(System.String,System.Int32,System.String,System.Drawing.Color,System.String)">
             <summary>
-            文字水印处理方法
+            文字水印处理
             </summary>
             <param name="path">图片路径（绝对路径）</param>
             <param name="size">字体大小</param>
@@ -1322,7 +1328,7 @@
             <param name="color">颜色</param>
             <param name="location">水印位置</param>
         </member>
-        <member name="M:UtilsSharp.ImageManager.GetLocation(System.String,System.Drawing.Image,System.Int32,System.Int32)">
+        <member name="M:UtilsSharp.ImageHelper.GetLocation(System.String,System.Drawing.Image,System.Int32,System.Int32)">
             <summary>
             文字水印位置的方法
             </summary>
@@ -1331,7 +1337,7 @@
             <param name="width">宽(当水印类型为文字时,传过来的就是字体的大小)</param>
             <param name="height">高(当水印类型为文字时,传过来的就是字符的长度)</param>
         </member>
-        <member name="M:UtilsSharp.ImageManager.LdPic(System.Drawing.Bitmap,System.Int32,System.Int32,System.Int32)">
+        <member name="M:UtilsSharp.ImageHelper.LdPic(System.Drawing.Bitmap,System.Int32,System.Int32,System.Int32)">
             <summary>
             调整光暗
             </summary>
@@ -1340,7 +1346,7 @@
             <param name="height">原始图片的高度</param>
             <param name="val">增加或减少的光暗值</param>
         </member>
-        <member name="M:UtilsSharp.ImageManager.RePic(System.Drawing.Bitmap,System.Int32,System.Int32)">
+        <member name="M:UtilsSharp.ImageHelper.RePic(System.Drawing.Bitmap,System.Int32,System.Int32)">
             <summary>
             反色处理
             </summary>
@@ -1348,7 +1354,7 @@
             <param name="width">原始图片的长度</param>
             <param name="height">原始图片的高度</param>
         </member>
-        <member name="M:UtilsSharp.ImageManager.Fd(System.Drawing.Bitmap,System.Int32,System.Int32)">
+        <member name="M:UtilsSharp.ImageHelper.Fd(System.Drawing.Bitmap,System.Int32,System.Int32)">
             <summary>
             浮雕处理
             </summary>
@@ -1356,7 +1362,7 @@
             <param name="width">原始图片的长度</param>
             <param name="height">原始图片的高度</param>
         </member>
-        <member name="M:UtilsSharp.ImageManager.ResizeImage(System.Drawing.Bitmap,System.Int32,System.Int32)">
+        <member name="M:UtilsSharp.ImageHelper.ResizeImage(System.Drawing.Bitmap,System.Int32,System.Int32)">
             <summary>
             拉伸图片
             </summary>
@@ -1364,7 +1370,7 @@
             <param name="newW">新的宽度</param>
             <param name="newH">新的高度</param>
         </member>
-        <member name="M:UtilsSharp.ImageManager.FilPic(System.Drawing.Bitmap,System.Int32,System.Int32)">
+        <member name="M:UtilsSharp.ImageHelper.FilPic(System.Drawing.Bitmap,System.Int32,System.Int32)">
             <summary>
             滤色处理
             </summary>
@@ -1372,7 +1378,7 @@
             <param name="width">原始图片的长度</param>
             <param name="height">原始图片的高度</param>
         </member>
-        <member name="M:UtilsSharp.ImageManager.RevPicLr(System.Drawing.Bitmap,System.Int32,System.Int32)">
+        <member name="M:UtilsSharp.ImageHelper.RevPicLr(System.Drawing.Bitmap,System.Int32,System.Int32)">
             <summary>
             左右翻转
             </summary>
@@ -1380,7 +1386,7 @@
             <param name="width">原始图片的长度</param>
             <param name="height">原始图片的高度</param>
         </member>
-        <member name="M:UtilsSharp.ImageManager.RevPicUd(System.Drawing.Bitmap,System.Int32,System.Int32)">
+        <member name="M:UtilsSharp.ImageHelper.RevPicUd(System.Drawing.Bitmap,System.Int32,System.Int32)">
             <summary>
             上下翻转
             </summary>
@@ -1388,21 +1394,21 @@
             <param name="width">原始图片的长度</param>
             <param name="height">原始图片的高度</param>
         </member>
-        <member name="M:UtilsSharp.ImageManager.Compress(System.String,System.String)">
+        <member name="M:UtilsSharp.ImageHelper.Compress(System.String,System.String)">
             <summary>
-            压缩到指定尺寸
+            压缩图片到指定尺寸
             </summary>
             <param name="oldfile">原文件</param>
             <param name="newfile">新文件</param>
         </member>
-        <member name="M:UtilsSharp.ImageManager.Gray(System.Drawing.Color)">
+        <member name="M:UtilsSharp.ImageHelper.Gray(System.Drawing.Color)">
             <summary>
             图片灰度化
             </summary>
-            <param name="c"></param>
+            <param name="c">颜色</param>
             <returns></returns>
         </member>
-        <member name="M:UtilsSharp.ImageManager.BwPic(System.Drawing.Bitmap,System.Int32,System.Int32)">
+        <member name="M:UtilsSharp.ImageHelper.BwPic(System.Drawing.Bitmap,System.Int32,System.Int32)">
             <summary>
             转换为黑白图片
             </summary>
@@ -1410,7 +1416,7 @@
             <param name="width">图片的长度</param>
             <param name="height">图片的高度</param>
         </member>
-        <member name="M:UtilsSharp.ImageManager.GetFrames(System.String,System.String)">
+        <member name="M:UtilsSharp.ImageHelper.GetFrames(System.String,System.String)">
             <summary>
             获取图片中的各帧
             </summary>
@@ -1608,7 +1614,7 @@
         </member>
         <member name="T:UtilsSharp.RandomHelper">
             <summary>
-            随机数帮助类
+            随机相关帮助类
             </summary>
         </member>
         <member name="M:UtilsSharp.RandomHelper.Number(System.Int32)">
@@ -1668,11 +1674,11 @@
         </member>
         <member name="M:UtilsSharp.RandomHelper.Time(System.DateTime,System.DateTime)">
             <summary>
-            得到随机日期
+            生成随机时间
             </summary>
-            <param name="time1">起始日期</param>
-            <param name="time2">结束日期</param>
-            <returns>间隔日期之间的 随机日期</returns>
+            <param name="time1">起始时间</param>
+            <param name="time2">结束时间</param>
+            <returns>间隔时间之间的 随机时间</returns>
         </member>
         <member name="T:UtilsSharp.RegexHelper">
             <summary>
@@ -2578,9 +2584,9 @@
             </summary>
         </member>
         <member name="M:UtilsSharp.StringHelper.EncodingRegister">
-            <summary>
-            注册后使可以支持.Net平台上不支持的编码
-            </summary>
+             <summary>
+            需要全局注册下本方法，可以支持.Net平台上不支持的编码，如GB2312
+             </summary>
         </member>
         <member name="M:UtilsSharp.StringHelper.TransferenceRegex(System.String)">
             <summary>
@@ -2591,14 +2597,14 @@
         </member>
         <member name="M:UtilsSharp.StringHelper.HtmlToTxt(System.String)">
             <summary>
-            HTML转行成TEXT
+            过滤Html符号
             </summary>
             <param name="htmlStr">html字符串</param>
             <returns></returns>
         </member>
         <member name="M:UtilsSharp.StringHelper.GetCharLength(System.String)">
             <summary>
-            得到字符串长度
+            获取字符串长度
             </summary>
             <param name="str">字符串</param>
             <returns></returns>
@@ -2632,7 +2638,7 @@
             <summary>
             反转字符串
             </summary>
-            <param name="str"></param>
+            <param name="str">字符串</param>
             <returns></returns>
         </member>
         <member name="M:UtilsSharp.StringHelper.Compress(System.String,System.Text.Encoding)">
@@ -2665,7 +2671,7 @@
         </member>
         <member name="M:UtilsSharp.TimeHelper.GetUtcStartDate(System.DateTime)">
             <summary>
-            获取开始日期(utc)
+            获取开始日期(UTC)
             </summary>
             <param name="dateTime">时间</param>
             <returns></returns>
@@ -2679,7 +2685,7 @@
         </member>
         <member name="M:UtilsSharp.TimeHelper.GetUtcEndDate(System.DateTime)">
             <summary>
-            获取结束日期(utc)
+            获取结束日期(UTC)
             </summary>
             <param name="dateTime">时间</param>
             <returns></returns>
@@ -2693,14 +2699,14 @@
         </member>
         <member name="M:UtilsSharp.TimeHelper.TimeWithZero(System.String)">
             <summary>
-            时间格式化（小时分钟前面加上0）
+            时间格式化(小时分钟前面加上0)
             </summary>
             <param name="intStr">小时、分钟</param>
             <returns>"00"</returns>
         </member>
         <member name="M:UtilsSharp.TimeHelper.TimeTrimZero(System.String)">
             <summary>
-            时间格式化（小时分钟去掉前面的0）
+            时间格式化(小时分钟去掉前面的0)
             </summary>
             <param name="intStr">小时、分钟</param>
             <returns>0</returns>
@@ -2715,10 +2721,10 @@
         </member>
         <member name="M:UtilsSharp.TimeHelper.GetDateDiff(System.DateTime,System.DateTime)">
             <summary>
-            返回时间差
+            获取时间差字符串
             </summary>
-            <param name="time1">起始日期</param>
-            <param name="time2">结束日期</param>
+            <param name="time1">起始时间</param>
+            <param name="time2">结束时间</param>
             <returns></returns>
         </member>
         <member name="M:UtilsSharp.TimeHelper.GetTimeSpan(System.DateTime,System.DateTime)">
@@ -2840,6 +2846,7 @@
             <summary>
             绘制验证码
             </summary>
+            <param name="rule">绘制规则</param>
         </member>
         <member name="M:UtilsSharp.VerificationCodeHelper.GetRandomColor">
             <summary>
@@ -2877,13 +2884,13 @@
         </member>
         <member name="T:UtilsSharp.WebHelper">
             <summary>
-            网络工具类
+            网络请求工具帮助类
             </summary>
             <summary>
-            网络工具类(异步)
+            网络请求工具帮助类(异步)
             </summary>
             <summary>
-            网络工具类(兼容超时)
+            网络请求工具帮助类(兼容超时)
             </summary>
         </member>
         <member name="M:UtilsSharp.WebHelper.DoGet(System.String,System.Object)">
@@ -3190,7 +3197,7 @@
         </member>
         <member name="T:UtilsSharp.WebHelperHandleResult">
             <summary>
-            网络工具类(处理返回实体)
+            网络请求工具帮助类(处理返回实体)
             </summary>
         </member>
         <member name="M:UtilsSharp.WebHelperHandleResult.HandleResult``1(UtilsSharp.Standard.BaseResult{UtilsSharp.Standard.BaseResult{``0}})">
@@ -3328,7 +3335,7 @@
         </member>
         <member name="M:UtilsSharp.WinCmdHelper.KillProcess(System.String,System.String)">
             <summary>
-            结束指定的windows进程，如果进程存在
+            结束指定的windows进程如果进程存在
             </summary>
             <param name="processName">进程名称，不包含扩展名</param>
             <param name="processFileName">进程文件完整路径，如果为空则删除所有进程名为processName参数值的进程</param>

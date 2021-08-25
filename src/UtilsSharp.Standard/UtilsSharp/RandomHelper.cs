@@ -6,7 +6,7 @@ using static System.Int32;
 namespace UtilsSharp
 {
     /// <summary>
-    /// 随机数帮助类
+    /// 随机相关帮助类
     /// </summary>
     public class RandomHelper
     {
@@ -179,14 +179,14 @@ namespace UtilsSharp
 
         #endregion
 
-        #region 随机时间
+        #region 生成随机时间
 
         /// <summary>
-        /// 得到随机日期
+        /// 生成随机时间
         /// </summary>
-        /// <param name="time1">起始日期</param>
-        /// <param name="time2">结束日期</param>
-        /// <returns>间隔日期之间的 随机日期</returns>
+        /// <param name="time1">起始时间</param>
+        /// <param name="time2">结束时间</param>
+        /// <returns>间隔时间之间的 随机时间</returns>
         public static DateTime Time(DateTime time1, DateTime time2)
         {
             Random random = new Random();
@@ -196,7 +196,7 @@ namespace UtilsSharp
 
             // 获取两个时间相隔的秒数
             double dTotalSeconds = ts.TotalSeconds;
-            int iTotalSeconds = 0;
+            int iTotalSeconds;
 
             if (dTotalSeconds > MaxValue)
             {

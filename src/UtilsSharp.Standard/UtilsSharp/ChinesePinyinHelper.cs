@@ -12,7 +12,7 @@ namespace UtilsSharp
     public class ChinesePinyinHelper
     {
         /// <summary>
-        /// 取汉字拼音的首字母
+        /// 获取汉字拼音的首字母
         /// </summary>
         /// <param name="chineseStr">汉字字符串</param>
         /// <returns></returns>
@@ -218,7 +218,7 @@ namespace UtilsSharp
            };
 
         /// <summary>
-        /// 取汉字拼音
+        /// 获取汉字拼音
         /// </summary>
         /// <param name="chineseStr">汉字字符串</param>
         /// <returns></returns>

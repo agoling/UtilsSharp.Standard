@@ -11,7 +11,7 @@ namespace UtilsSharp
     public class FileHelper
     {
         /// <summary>
-        /// 读文件到byte[]
+        /// 读取文件到byte[]
         /// </summary>
         /// <param name="fileName">硬盘文件路径</param>
         /// <returns></returns>
@@ -39,7 +39,7 @@ namespace UtilsSharp
         }
 
         /// <summary>
-        /// 读文件到Stream
+        /// 读取文件到stream
         /// </summary>
         /// <param name="fileName">硬盘文件路径</param>
         /// <returns></returns>

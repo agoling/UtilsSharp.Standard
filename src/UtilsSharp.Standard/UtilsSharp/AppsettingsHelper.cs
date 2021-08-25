@@ -38,7 +38,7 @@ namespace UtilsSharp
         }
 
         /// <summary>
-        /// 获取相应节点
+        /// 根据key获取对应节点的配置值
         /// </summary>
         /// <param name="key">key:子节点冒号隔开,如aa:bb</param>
         /// <returns></returns>
@@ -48,7 +48,7 @@ namespace UtilsSharp
         }
 
         /// <summary>
-        /// 获取相应节点
+        /// 根据key获取对应节点的配置值
         /// </summary>
         /// <param name="key">key:子节点冒号隔开,如aa:bb</param>
         /// <returns></returns>
@@ -59,7 +59,7 @@ namespace UtilsSharp
         }
 
         /// <summary>
-        /// 获取所有节点
+        /// 获取所有配置子节点
         /// </summary>
         /// <returns></returns>
         public static IEnumerable<IConfigurationSection> GetChildren()

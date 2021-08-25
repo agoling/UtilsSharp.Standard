@@ -52,7 +52,7 @@ namespace UtilsSharp
     }
 
     /// <summary>
-    /// 公历转农历
+    /// 公历农历相关类
     /// </summary>
     public class ChinaDate
     {
@@ -489,6 +489,9 @@ namespace UtilsSharp
         /// <summary>
         /// 传回公历y年m月的总天数
         /// </summary>
+        /// <param name="y">年</param>
+        /// <param name="m">月</param>
+        /// <returns></returns>
         public static int GetDaysByMonth(int y, int m)
         {
             int[] days = new int[] { 31, DateTime.IsLeapYear(y) ? 29 : 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
@@ -517,9 +520,11 @@ namespace UtilsSharp
         }
 
         /// <summary>
-        /// 获取农历
+        /// 根据时间获取农历信息
         /// </summary>
-        public static CNDate getChinaDate(DateTime dt)
+        /// <param name="dt">时间</param>
+        /// <returns></returns>
+        public static CNDate GetChinaDate(DateTime dt)
         {
             CNDate cd = new CNDate();
             int year = dt.Year;

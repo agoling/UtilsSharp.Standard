@@ -74,7 +74,7 @@ public class LoginResponse
 }
 ```
 
-#### 二、接口返回格式：BaseResut&lt;T&gt;
+#### 二、请求接口返回格式：BaseResut&lt;T&gt;
 
 ##### 1、请求方法例子：
 
@@ -128,7 +128,7 @@ public BaseResult<LoginResponse> Login(LoginRequest request)
 }
 ```
 
-#### 三、列表接口基础出入参,入参：BasePage，出参：BasePagedResult&lt;T&gt;
+#### 三、请求列表接口基础出入参,入参：BasePage，有排序的入参：BaseSortPage，出参：BasePagedResult&lt;T&gt;
 
 ##### 1、分页请求的基础参数
 
@@ -163,7 +163,7 @@ public BasePagedResult<LoginResponse> Search(BaseSortPage request)
           result.SetError("搜索关键词不能为空！",BaseStateCode.参数不能为空);
           return result;
       }
-          /*…这边省略查寻业务代码…*/
+          /*…这边省略查询业务代码…*/
           /*…以下模拟从数据库获取数据…*/
       response.List = new List<LoginResponse>
       {
@@ -244,7 +244,5 @@ public BasePagedResult<LoginResponse> Search(BaseSortPage request)
 | 7000   | businessError | 默认业务性异常 |
 | 8000   | dbError       | 数据库异常     |
 | 9000   | SystemError   | 系统错误       |
-
-
 
 **详细使用说明文档**：https://agoling.github.io/UtilsSharpDoc/#/

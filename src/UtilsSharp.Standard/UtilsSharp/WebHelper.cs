@@ -815,26 +815,6 @@ namespace UtilsSharp
         }
 
         /// <summary>
-        /// GetWebResponse
-        /// </summary>
-        /// <param name="request"></param>
-        /// <returns></returns>
-        protected override WebResponse GetWebResponse(WebRequest request)
-        {
-            WebResponse response = base.GetWebResponse(request);
-            String setCookieHeader = response.Headers[HttpResponseHeader.SetCookie];
-
-            //do something if needed to parse out the cookie.
-            if (setCookieHeader != null)
-            {
-                Cookie cookie = new Cookie(); //create cookie
-                this.CookieContainer.Add(cookie);
-            }
-
-            return response;
-        }
-
-        /// <summary>
         /// 带过期计时的下载
         /// </summary>
         public void DownloadFileAsyncWithTimeout(Uri address, string fileName, object userToken)

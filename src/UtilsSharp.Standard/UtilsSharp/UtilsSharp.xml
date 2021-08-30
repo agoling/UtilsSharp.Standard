@@ -3170,13 +3170,6 @@
             <param name="address"></param>
             <returns></returns>
         </member>
-        <member name="M:UtilsSharp.WebHelper.GetWebResponse(System.Net.WebRequest)">
-            <summary>
-            GetWebResponse
-            </summary>
-            <param name="request"></param>
-            <returns></returns>
-        </member>
         <member name="M:UtilsSharp.WebHelper.DownloadFileAsyncWithTimeout(System.Uri,System.String,System.Object)">
             <summary>
             带过期计时的下载

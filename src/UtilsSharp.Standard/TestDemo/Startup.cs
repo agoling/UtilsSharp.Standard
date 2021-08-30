@@ -2,10 +2,12 @@ using AspNetCore;
 using AspNetCore.Interceptor;
 using AspNetCore.Swagger;
 using Autofac;
+using Autofac.Extras.DynamicProxy;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using TestDemo.Service;
 using UtilsSharp;
 
 namespace TestDemo
@@ -40,7 +42,11 @@ namespace TestDemo
         /// <param name="builder">builder</param>
         public override void ConfigureContainer(ContainerBuilder builder)
         {
+            
             Init<LoggerInterceptor>(builder);
+
+            builder.RegisterType<WxPayService>().Named<IPayService>(typeof(WxPayService).Name);
+            builder.RegisterType<AliPayService>().Named<IPayService>(typeof(AliPayService).Name);
         }
     }
 }

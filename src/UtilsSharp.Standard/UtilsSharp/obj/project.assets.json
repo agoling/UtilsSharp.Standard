@@ -4330,6 +4330,7 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "D:\\GitHub\\Project\\UtilsSharp.Standard\\src\\UtilsSharp.Standard\\AspNetCore\\bin\\Debug": {},
         "D:\\GitHub\\Project\\UtilsSharp.Standard\\src\\UtilsSharp.Standard\\RabbitMQ\\bin\\Debug\\": {},
         "D:\\GitHub\\Project\\UtilsSharp.Standard\\src\\UtilsSharp.Standard\\UtilsSharp\\bin\\Debug": {},
         "http://develop.zhangxiaobao.net/NuGet/nuget/": {},

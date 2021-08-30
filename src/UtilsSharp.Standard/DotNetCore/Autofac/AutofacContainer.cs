@@ -26,5 +26,16 @@ namespace DotNetCore.Autofac
             builder.RegisterAssemblyTypes(enumerables.ToArray()).Where(t => typeof(IUnitOfWorkDependency).IsAssignableFrom(t) && typeof(IUnitOfWorkDependency) != t).AsImplementedInterfaces().InstancePerLifetimeScope().EnableInterfaceInterceptors();//注册类
             _lifetimeScope = builder.Build();
         }
+
+        public static void Register(Action<ContainerBuilder> action)
+        {
+            var builder = new ContainerBuilder();
+            var enumerables = AssemblyHelper.GetAllAssemblies();
+            builder.RegisterAssemblyTypes(enumerables.ToArray()).Where(t => typeof(ISingletonDependency).IsAssignableFrom(t) && typeof(ISingletonDependency) != t).AsImplementedInterfaces().SingleInstance().EnableInterfaceInterceptors();//注册类
+            builder.RegisterAssemblyTypes(enumerables.ToArray()).Where(t => typeof(ITransientDependency).IsAssignableFrom(t) && typeof(ITransientDependency) != t).AsImplementedInterfaces().InstancePerDependency().EnableInterfaceInterceptors();//注册类
+            builder.RegisterAssemblyTypes(enumerables.ToArray()).Where(t => typeof(IUnitOfWorkDependency).IsAssignableFrom(t) && typeof(IUnitOfWorkDependency) != t).AsImplementedInterfaces().InstancePerLifetimeScope().EnableInterfaceInterceptors();//注册类
+            action(builder);
+            _lifetimeScope = builder.Build();
+        }
     }
 }

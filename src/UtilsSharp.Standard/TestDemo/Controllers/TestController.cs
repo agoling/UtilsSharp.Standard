@@ -2,14 +2,35 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AspNetCore.Autofac;
 using AspNetCore.MVC;
+using Autofac;
 using Microsoft.AspNetCore.Mvc;
+using TestDemo.Service;
 
 namespace TestDemo.Controllers
 {
     [ApiExplorerSettings(GroupName = "test")]
     public class TestController : BaseController
     {
+        private readonly IPayService _wxPayService;
+        private readonly IPayService _aliPayService;
+        private IComponentContext _componentContext;
+        public TestController(IComponentContext componentContext)
+        {
+            _componentContext = componentContext;
+            //解释组件
+            _wxPayService = componentContext.ResolveNamed<IPayService>(typeof(WxPayService).Name);
+            _aliPayService = componentContext.ResolveNamed<IPayService>(typeof(AliPayService).Name);
+
+            //_wxPayService =AutofacContainer.Current.ResolveNamed<IPayService>(typeof(WxPayService).Name);
+            //_aliPayService = AutofacContainer.Current.ResolveNamed<IPayService>(typeof(AliPayService).Name);
+
+            //_wxPayService = AutofacContainer.Current.Resolve<IPayService>();
+            //_aliPayService = AutofacContainer.Current.Resolve<IPayService>();
+        }
+
+
         /// <summary>
         /// IEnumerable
         /// </summary>
@@ -18,7 +39,7 @@ namespace TestDemo.Controllers
         public string Get()
         {
             var token = UtilsSharp.Standard.HttpContext.Current.Request.Headers["token"];
-            return "value";
+            return $"{_wxPayService.PayType()}和{_aliPayService.PayType()}";
         }
 
         /// <summary>

@@ -83,6 +83,39 @@
             </summary>
             <param name="id">id</param>
         </member>
+        <member name="T:TestDemo.Service.AliPayService">
+            <summary>
+            支付宝支付
+            </summary>
+        </member>
+        <member name="M:TestDemo.Service.AliPayService.PayType">
+            <summary>
+            支付类型
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:TestDemo.Service.IPayService">
+            <summary>
+            支付接口
+            </summary>
+        </member>
+        <member name="M:TestDemo.Service.IPayService.PayType">
+            <summary>
+            支付类型
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:TestDemo.Service.WxPayService">
+            <summary>
+            微信支付
+            </summary>
+        </member>
+        <member name="M:TestDemo.Service.WxPayService.PayType">
+            <summary>
+            支付类型
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:TestDemo.Startup.ConfigureContainer(Autofac.ContainerBuilder)">
             <summary>
             依赖注入映射

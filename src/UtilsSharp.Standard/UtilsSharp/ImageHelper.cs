@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
@@ -18,7 +19,6 @@ namespace UtilsSharp
         /// </summary>
         /// <param name="bitmap">bitmap</param>
         /// <param name="imageFormat">图像格式</param>
-        /// <returns></returns>
         public static byte[] BitmapToBytes(Bitmap bitmap, ImageFormat imageFormat)
         {
             using (MemoryStream stream = new MemoryStream())
@@ -35,7 +35,6 @@ namespace UtilsSharp
         /// 图片转bytes
         /// </summary>
         /// <param name="image">图片</param>
-        /// <returns></returns>
         public static byte[] ImageToBytes(Image image)
         {
             ImageFormat format = image.RawFormat;
@@ -99,7 +98,6 @@ namespace UtilsSharp
         /// bytes转Image
         /// </summary>
         /// <param name="bytes">bytes</param>
-        /// <returns></returns>
         public static Image BytesToImage(byte[] bytes)
         {
             MemoryStream ms = new MemoryStream(bytes);
@@ -112,7 +110,6 @@ namespace UtilsSharp
         /// </summary>
         /// <param name="path">图片路径</param>
         /// <param name="bytes">bytes</param>
-        /// <returns></returns>
         public static string CreateImageFromBytes(string path, byte[] bytes)
         {
             string fileName =Guid.NewGuid().ToString("N");
@@ -187,6 +184,36 @@ namespace UtilsSharp
                     break;
             }
             image.RemovePropertyItem(274);
+        }
+
+        /// <summary>
+        /// 图片地址转图片
+        /// 图片数目若与实际下载链接数目不符说明下载失败
+        /// 自动过滤下载失败的图片
+        /// </summary>
+        /// <param name="imgUrls">图片地址集合</param>
+        public static List<Image> UrlToImage(List<string> imgUrls)
+        {
+            return imgUrls.Select(UrlToImage).Where(image => image != null).ToList();
+        }
+
+        /// <summary>
+        /// 图片地址转图片
+        /// 返回null说明下载失败
+        /// </summary>
+        /// <param name="imgUrl">图片地址</param>
+        public static Image UrlToImage(string imgUrl)
+        {
+            try
+            {
+                var webHelper = new WebHelper();
+                var bytes = webHelper.DownloadData(new Uri(imgUrl));
+                return ImageHelper.BytesToImage(bytes);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
         }
 
         #region 缩略图
@@ -714,6 +741,33 @@ namespace UtilsSharp
                 img.Dispose();
                 if (jpegIci != null) outBmp.Save(newfile, ImageFormat.Jpeg);
                 outBmp.Dispose();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// 图片无损高质量压缩
+        /// </summary>
+        /// <param name="bitmap">要压缩的图片对象</param>
+        /// <param name="quality">压缩质量:数字越小压缩率越高1-100</param>
+        /// <param name="newfile">压缩完的图片文件地址</param>
+        public static bool Compress(Image bitmap, int quality, string newfile)
+        {
+            try
+            {
+                var myEncoderParameters = new EncoderParameters(1);
+                var myEncoderParameter = new EncoderParameter(Encoder.Quality, quality);
+                myEncoderParameters.Param[0] = myEncoderParameter;
+                var codecs = ImageCodecInfo.GetImageEncoders();
+                var myImageCodecInfo = codecs.First(codec => codec.FormatID == ImageFormat.Jpeg.Guid);
+                var ext = myImageCodecInfo.FilenameExtension.Split(';')[0];
+                ext = Path.GetExtension(ext).ToLower();
+                var saveName = Path.ChangeExtension(newfile, ext);
+                bitmap.Save(saveName, myImageCodecInfo, myEncoderParameters);
                 return true;
             }
             catch

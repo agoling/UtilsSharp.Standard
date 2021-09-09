@@ -22,6 +22,13 @@ namespace UtilsSharp.Standard
         /// </summary>
         public T Result { get; set; }
 
+        /// <summary>
+        /// 执行成功
+        /// </summary>
+        public void SetOk()
+        {
+            SetOkResult(default, "");
+        }
 
         /// <summary>
         /// 执行成功

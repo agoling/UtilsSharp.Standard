@@ -264,5 +264,37 @@ namespace UtilsSharp
             var third = mobilePhone.Substring(7, 4);
             return $"{first}****{third}";
         }
+
+        /// <summary>
+        /// Stream转String
+        /// </summary>
+        /// <param name="stream">stream对象</param>
+        /// <param name="encoding">编码</param>
+        /// <returns></returns>
+        public static string StreamToString(Stream stream, Encoding encoding = null)
+        {
+            if (encoding == null)
+            {
+                encoding = Encoding.UTF8;
+            }
+            using StreamReader reader = new StreamReader(stream, encoding);
+            return reader.ReadToEnd();
+        }
+
+        /// <summary>
+        /// String转Stream
+        /// </summary>
+        /// <param name="str">字符串</param>
+        /// <param name="encoding">编码</param>
+        /// <returns></returns>
+        public static Stream StringToStream(string str, Encoding encoding = null)
+        {
+            if (encoding == null)
+            {
+                encoding = Encoding.UTF8;
+            }
+            var byteArray = encoding.GetBytes(str);
+            return new MemoryStream(byteArray);
+        }
     }
 }

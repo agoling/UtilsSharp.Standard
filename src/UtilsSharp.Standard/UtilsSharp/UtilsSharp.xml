@@ -722,21 +722,38 @@
             字典帮助类
             </summary>
         </member>
-        <member name="M:UtilsSharp.DictionaryHelper.ObjToDictionaryStringValue(System.Object)">
+        <member name="M:UtilsSharp.DictionaryHelper.GetValue(System.Collections.Generic.Dictionary{System.String,System.String},System.String)">
+            <summary>
+            获取字典值
+            </summary>
+            <param name="dic">字典</param>
+            <param name="key">字典Key</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.DictionaryHelper.GetValue``1(System.Collections.Generic.Dictionary{System.String,System.Object},System.String)">
+            <summary>
+            获取字典值
+            </summary>
+            <typeparam name="T">类型</typeparam>
+            <param name="dic">字典</param>
+            <param name="key">字典Key</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.DictionaryHelper.ToDictionaryStringValue(System.Object)">
             <summary>
             转换对象为字典
             </summary>
             <param name="obj">要转换的对象</param>
             <returns>返回字典</returns>
         </member>
-        <member name="M:UtilsSharp.DictionaryHelper.ObjToDictionary(System.Object)">
+        <member name="M:UtilsSharp.DictionaryHelper.ToDictionary(System.Object)">
             <summary>
             转换对象为字典
             </summary>
             <param name="obj">要转换的对象</param>
             <returns>返回字典</returns>
         </member>
-        <member name="M:UtilsSharp.DictionaryHelper.ObjToDictionary(System.Object,System.String[],System.String[])">
+        <member name="M:UtilsSharp.DictionaryHelper.ToDictionary(System.Object,System.String[],System.String[])">
             <summary>
             转换对象为字典
             </summary>
@@ -745,14 +762,14 @@
             <param name="ignoreMembers">忽略转换的成员</param>
             <returns>返回字典</returns>
         </member>
-        <member name="M:UtilsSharp.DictionaryHelper.DictionaryToObj``1(System.Collections.Generic.Dictionary{System.String,System.Object})">
+        <member name="M:UtilsSharp.DictionaryHelper.ToEntity``1(System.Collections.Generic.Dictionary{System.String,System.Object})">
             <summary>
             转换字典为对象
             </summary>
             <param name="dictionary">要转换的字典</param>
             <returns>返回对象</returns>
         </member>
-        <member name="M:UtilsSharp.DictionaryHelper.DictionaryToObj``1(System.Collections.Generic.Dictionary{System.String,System.Object},System.String[],System.String[])">
+        <member name="M:UtilsSharp.DictionaryHelper.ToEntity``1(System.Collections.Generic.Dictionary{System.String,System.Object},System.String[],System.String[])">
             <summary>
             转换字典为对象
             </summary>
@@ -2181,6 +2198,11 @@
             返回对象结果
             </summary>
         </member>
+        <member name="M:UtilsSharp.Standard.BaseResult`1.SetOk">
+            <summary>
+            执行成功
+            </summary>
+        </member>
         <member name="M:UtilsSharp.Standard.BaseResult`1.SetOk(System.String)">
             <summary>
             执行成功
@@ -2681,6 +2703,22 @@
             隐藏手机号(手机号加星星如：136****8568)
             </summary>
             <param name="mobilePhone">手机号</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.StringHelper.StreamToString(System.IO.Stream,System.Text.Encoding)">
+            <summary>
+            Stream转String
+            </summary>
+            <param name="stream">stream对象</param>
+            <param name="encoding">编码</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.StringHelper.StringToStream(System.String,System.Text.Encoding)">
+            <summary>
+            String转Stream
+            </summary>
+            <param name="str">字符串</param>
+            <param name="encoding">编码</param>
             <returns></returns>
         </member>
         <member name="T:UtilsSharp.TimeHelper">

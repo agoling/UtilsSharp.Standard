@@ -25,7 +25,7 @@ namespace UtilsSharp
         /// <returns></returns>
         public BaseResult<string> DoGet(string address, object parameters)
         {
-            var strDic = DictionaryHelper.ObjToDictionaryStringValue(parameters);
+            var strDic = parameters.ToDictionaryStringValue();
             return GetRequest<string>(address, strDic);
         }
 
@@ -37,7 +37,7 @@ namespace UtilsSharp
         /// <returns></returns>
         public BaseResult<T> DoGet<T>(string address, object parameters) where T : class, new()
         {
-            var strDic = DictionaryHelper.ObjToDictionaryStringValue(parameters);
+            var strDic = parameters.ToDictionaryStringValue();
             return GetRequest<T>(address, strDic);
         }
 
@@ -424,7 +424,7 @@ namespace UtilsSharp
         /// <returns></returns>
         public async Task<BaseResult<string>> DoGetAsync(string address, object parameters)
         {
-            var strDic = DictionaryHelper.ObjToDictionaryStringValue(parameters);
+            var strDic = parameters.ToDictionaryStringValue();
             return await GetRequestAsync<string>(address, strDic);
         }
 
@@ -436,7 +436,7 @@ namespace UtilsSharp
         /// <returns></returns>
         public async Task<BaseResult<T>> DoGetAsync<T>(string address, object parameters) where T : class, new()
         {
-            var strDic = DictionaryHelper.ObjToDictionaryStringValue(parameters);
+            var strDic = parameters.ToDictionaryStringValue();
             return await GetRequestAsync<T>(address, strDic);
         }
 

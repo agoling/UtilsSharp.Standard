@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 using Newtonsoft.Json;
 
 namespace UtilsSharp
@@ -11,17 +9,58 @@ namespace UtilsSharp
     /// <summary>
     /// 字典帮助类
     /// </summary>
-    public class DictionaryHelper
+    public static class DictionaryHelper
     {
+
+        /// <summary>
+        /// 获取字典值
+        /// </summary>
+        /// <param name="dic">字典</param>
+        /// <param name="key">字典Key</param>
+        /// <returns></returns>
+        public static string GetValue(this Dictionary<string, string> dic, string key)
+        {
+            var result = string.Empty;
+            if (string.IsNullOrEmpty(key))
+            {
+                return result;
+            }
+            if (dic.ContainsKey(key))
+            {
+                result = dic[key];
+            }
+            return result;
+        }
+
+        /// <summary>
+        /// 获取字典值
+        /// </summary>
+        /// <typeparam name="T">类型</typeparam>
+        /// <param name="dic">字典</param>
+        /// <param name="key">字典Key</param>
+        /// <returns></returns>
+        public static T GetValue<T>(this Dictionary<string, object> dic, string key)
+        {
+            var result = default(T);
+            if (string.IsNullOrEmpty(key))
+            {
+                return result;
+            }
+            if (dic.ContainsKey(key))
+            {
+                result = (T)dic[key];
+            }
+            return result;
+        }
 
         /// <summary>
         /// 转换对象为字典
         /// </summary>
         /// <param name="obj">要转换的对象</param>
         /// <returns>返回字典</returns>
-        public static Dictionary<string, string> ObjToDictionaryStringValue(object obj)
+        public static Dictionary<string, string> ToDictionaryStringValue(this object obj)
         {
-            var objDic = ObjToDictionary(obj);
+            var objDic = obj.ToDictionary();
             var strDic = new Dictionary<string, string>();
             if (objDic == null) return strDic;
             foreach (var item in objDic)
@@ -48,9 +87,9 @@ namespace UtilsSharp
         /// </summary>
         /// <param name="obj">要转换的对象</param>
         /// <returns>返回字典</returns>
-        public static Dictionary<string, object> ObjToDictionary(object obj)
+        public static Dictionary<string, object> ToDictionary(this object obj)
         {
-            return ObjToDictionary(obj, null, null);
+            return ToDictionary(obj, null, null);
         }
 
         /// <summary>
@@ -60,7 +99,7 @@ namespace UtilsSharp
         /// <param name="members">需要转换的成员</param>
         /// <param name="ignoreMembers">忽略转换的成员</param>
         /// <returns>返回字典</returns>
-        public static Dictionary<string, object> ObjToDictionary(object obj, string[] members, string[] ignoreMembers)
+        public static Dictionary<string, object> ToDictionary(this object obj, string[] members, string[] ignoreMembers)
         {
             if (obj == null) return null;
             // 创建目标字典
@@ -132,9 +171,9 @@ namespace UtilsSharp
         /// </summary>
         /// <param name="dictionary">要转换的字典</param>
         /// <returns>返回对象</returns>
-        public static T DictionaryToObj<T>(Dictionary<string, object> dictionary) where T : class, new()
+        public static T ToEntity<T>(this Dictionary<string, object> dictionary) where T : class, new()
         {
-            return DictionaryToObj<T>(dictionary, null,null);
+            return ToEntity<T>(dictionary, null,null);
         }
 
         /// <summary>
@@ -144,7 +183,7 @@ namespace UtilsSharp
         /// <param name="members">需要转换的成员</param>
         /// <param name="ignoreMembers">忽略转换的成员</param>
         /// <returns>返回对象</returns>
-        public static T DictionaryToObj<T>(Dictionary<string, object> dictionary, string[] members, string[] ignoreMembers)where T:class,new()
+        public static T ToEntity<T>(this Dictionary<string, object> dictionary, string[] members, string[] ignoreMembers)where T:class,new()
         {
             if (dictionary == null) return null;
             //创建对象获取类型

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading;
 
 namespace Logger
 {
@@ -9,6 +10,24 @@ namespace Logger
     /// </summary>
     public class ConsoleHelper
     {
+
+        private static readonly AutoResetEvent BlockingEvent = new AutoResetEvent(false);
+
+        /// <summary>
+        /// 阻塞控制台程序
+        /// 退出程序请执行指令:Ctrl+C或者Ctrl+Break
+        /// </summary>
+        public static void Blocking()
+        {
+            Console.CancelKeyPress += (s, a) =>
+            {
+                Warn($"执行指令：{a.SpecialKey},程序已退出！");
+                BlockingEvent.Set();
+                Environment.Exit(0);
+            };
+            BlockingEvent.WaitOne();
+        }
+
         /// <summary>
         /// 当前消息总数
         /// </summary>

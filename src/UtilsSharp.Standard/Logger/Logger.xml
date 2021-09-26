@@ -9,6 +9,12 @@
             控制台日志输出
             </summary>
         </member>
+        <member name="M:Logger.ConsoleHelper.Blocking">
+            <summary>
+            阻塞控制台程序
+            退出程序请执行指令:Ctrl+C或者Ctrl+Break
+            </summary>
+        </member>
         <member name="F:Logger.ConsoleHelper._currentMsgCount">
             <summary>
             当前消息总数
@@ -309,6 +315,60 @@
             </summary>
             <param name="model">日志模型</param>
             <returns></returns>
+        </member>
+        <member name="T:Logger.TraceHelper">
+            <summary>
+            追踪帮助类
+            </summary>
+        </member>
+        <member name="M:Logger.TraceHelper.#ctor(System.Boolean)">
+            <summary>
+            追踪帮助类
+            </summary>
+            <param name="isOpenTrace"></param>
+        </member>
+        <member name="M:Logger.TraceHelper.Add(System.String,System.String,System.String)">
+            <summary>
+            添加追踪日志
+            </summary>
+            <param name="key">键</param>
+            <param name="msg">消息</param>
+            <param name="timeFormat">时间格式</param>
+        </member>
+        <member name="M:Logger.TraceHelper.Remove(System.String)">
+            <summary>
+            获取追踪日志
+            </summary>
+            <param name="key">键</param>
+            <returns></returns>
+        </member>
+        <member name="M:Logger.TraceHelper.Get(System.String)">
+            <summary>
+            获取追踪日志
+            </summary>
+            <param name="key">键</param>
+            <returns></returns>
+        </member>
+        <member name="M:Logger.TraceHelper.Dispose">
+            <summary>
+            实现IDisposable中的Dispose方法
+            </summary>
+        </member>
+        <member name="M:Logger.TraceHelper.Close">
+            <summary>
+            不必要的方法，只是为了符合其他语言的规范
+            </summary>
+        </member>
+        <member name="M:Logger.TraceHelper.Finalize">
+            <summary>
+            必须的，防止程序员忘记显示调用Dispose方法(隐式清理)
+            </summary>
+        </member>
+        <member name="M:Logger.TraceHelper.Dispose(System.Boolean)">
+            <summary>
+            非密封类修饰用protected virtual，提醒子类必须实现自己的清理方法时注意到父类的清理工作
+            </summary>
+            <param name="isDisposing">是否销毁</param>
         </member>
     </members>
 </doc>

@@ -11,7 +11,7 @@
     <PackageIcon>UtilsSharp.jpg</PackageIcon>
     <RepositoryUrl>https://github.com/agoling/UtilsSharp.Standard</RepositoryUrl>
     <PackageTags>UtilsSharp UtilsSharp.Logger UtilsSharp.Logger.Config 日志帮助类</PackageTags>
-    <Version>1.0.2</Version>
+    <Version>1.1.0</Version>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
@@ -26,17 +26,18 @@
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>
-    <None Include="ContentFiles\**">
+    <None Include="contentFiles\**">
       <Pack>true</Pack>
       <PackageCopyToOutput>true</PackageCopyToOutput>
-      <PackagePath>ContentFiles\any\any\</PackagePath>
+      <PackagePath>contentFiles\any\any\</PackagePath>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="UtilsSharp.Logger" Version="1.0.1" />
+    <PackageReference Include="UtilsSharp.Logger" Version="1.1.0" />
   </ItemGroup>
   <ItemGroup>
-    <None Update="ContentFiles\NLog.config">
+    <None Update="contentFiles\NLog.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>

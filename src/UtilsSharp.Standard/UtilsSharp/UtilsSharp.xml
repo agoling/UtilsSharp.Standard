@@ -661,6 +661,24 @@
             <param name="secretKey">密文</param>
             <returns></returns>
         </member>
+        <member name="M:UtilsSharp.CryptoHelper.ToHmacSha1Encrypt(System.String,System.String,System.Text.Encoding)">
+             <summary>
+             HmacSha1加密
+             </summary>
+             <param name="str">要加密的原串</param>
+            <param name="key">私钥</param>
+             <param name="encode"></param>
+             <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.CryptoHelper.ToBase64HmacSha1Encrypt(System.String,System.String,System.Text.Encoding)">
+             <summary>
+             HmacSha1加密(Base64方式)
+             </summary>
+             <param name="str">要加密的原串</param>
+            <param name="key">私钥</param>
+             <param name="encode"></param>
+             <returns></returns>
+        </member>
         <member name="T:UtilsSharp.DataTableHelper">
             <summary>
             DataTable帮助类

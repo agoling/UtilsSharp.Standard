@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
+using System.Runtime.Serialization.Json;
+using NLog;
 
 namespace Logger
 {
@@ -10,15 +13,25 @@ namespace Logger
     public class TraceHelper : IDisposable
     {
         private Hashtable _ht = new Hashtable();
+        /// <summary>
+        /// 是否开启追踪
+        /// </summary>
         private bool IsOpenTrace { get; }
+        /// <summary>
+        /// 是否带序号
+        /// </summary>
+        private bool IsWithNumber { get; }
         private bool _isDisposed;
+
         /// <summary>
         /// 追踪帮助类
         /// </summary>
-        /// <param name="isOpenTrace"></param>
-        public TraceHelper(bool isOpenTrace)
+        /// <param name="isOpenTrace">是否开启追踪</param>
+        /// <param name="isWithNumber">是否带序号</param>
+        public TraceHelper(bool isOpenTrace,bool isWithNumber=false)
         {
             IsOpenTrace = isOpenTrace;
+            IsWithNumber = isWithNumber;
         }
 
         /// <summary>
@@ -27,19 +40,29 @@ namespace Logger
         /// <param name="key">键</param>
         /// <param name="msg">消息</param>
         /// <param name="timeFormat">时间格式</param>
-        public void Add(string key, string msg, string timeFormat = "HH:mm:ss,fff")
+        public void Add(string key, string msg,string timeFormat = "HH:mm:ss,fff")
         {
             try
             {
                 if (!IsOpenTrace) return;
-                var info = $"【{DateTime.Now.ToString(timeFormat)}】{msg}";
                 if (_ht.ContainsKey(key))
                 {
                     var hs = (HashSet<string>)_ht[key];
+                    var info = $"【{DateTime.Now.ToString(timeFormat)}】{msg}";
+                    if (IsWithNumber)
+                    {
+                        var index = hs.Count + 1;
+                        info = $"【{DateTime.Now.ToString(timeFormat)}-{index}】{msg}";
+                    }
                     hs.Add(info);
                 }
                 else
                 {
+                    var info = $"【{DateTime.Now.ToString(timeFormat)}】{msg}";
+                    if (IsWithNumber)
+                    {
+                        info = $"【{DateTime.Now.ToString(timeFormat)}-{1}】{msg}";
+                    }
                     var hs = new HashSet<string> { info };
                     _ht.Add(key, hs);
                 }
@@ -81,7 +104,14 @@ namespace Logger
             try
             {
                 if (!IsOpenTrace) return "";
-                return _ht.ContainsKey(key) ? string.Join("\n", (HashSet<string>)_ht[key]) : "";
+                if (!_ht.ContainsKey(key)) return "";
+                var formatter = new DataContractJsonSerializer(typeof(HashSet<string>));
+                using (var stream = new MemoryStream())
+                {
+                    formatter.WriteObject(stream, _ht[key]);
+                    var result = System.Text.Encoding.UTF8.GetString(stream.ToArray());
+                    return result;
+                }
             }
             catch
             {

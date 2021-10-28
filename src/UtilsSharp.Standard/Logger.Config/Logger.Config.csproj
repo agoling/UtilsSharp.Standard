@@ -11,7 +11,7 @@
     <PackageIcon>UtilsSharp.jpg</PackageIcon>
     <RepositoryUrl>https://github.com/agoling/UtilsSharp.Standard</RepositoryUrl>
     <PackageTags>UtilsSharp UtilsSharp.Logger UtilsSharp.Logger.Config 日志帮助类</PackageTags>
-    <Version>1.1.0</Version>
+    <Version>1.1.1</Version>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
@@ -33,7 +33,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="UtilsSharp.Logger" Version="1.1.0" />
+    <PackageReference Include="UtilsSharp.Logger" Version="1.1.1" />
   </ItemGroup>
   <ItemGroup>
     <None Update="contentFiles\NLog.config">

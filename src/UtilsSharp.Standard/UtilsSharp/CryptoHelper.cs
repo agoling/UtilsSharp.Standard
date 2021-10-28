@@ -261,5 +261,50 @@ namespace UtilsSharp
         }
         #endregion
 
+        #region ===HmacSha1加密===
+
+        /// <summary>
+        /// HmacSha1加密
+        /// </summary>
+        /// <param name="str">要加密的原串</param>
+        ///<param name="key">私钥</param>
+        /// <param name="encode"></param>
+        /// <returns></returns>
+        public static string ToHmacSha1Encrypt(this string str, string key, Encoding encode)
+        {
+            encode ??= Encoding.UTF8;
+            var hmacSha1 = new HMACSHA1();
+            hmacSha1.Key = encode.GetBytes(key);
+            var dataBuffer = encode.GetBytes(str);
+            var hashBytes = hmacSha1.ComputeHash(dataBuffer);
+            var enText = new StringBuilder();
+            foreach (byte iByte in hashBytes)
+            {
+                enText.AppendFormat("{0:x2}", iByte);
+            }
+            return enText.ToString();
+        }
+
+        /// <summary>
+        /// HmacSha1加密(Base64方式)
+        /// </summary>
+        /// <param name="str">要加密的原串</param>
+        ///<param name="key">私钥</param>
+        /// <param name="encode"></param>
+        /// <returns></returns>
+        public static string ToBase64HmacSha1Encrypt(this string str, string key, Encoding encode)
+        {
+            encode ??= Encoding.UTF8;
+            var hmacSha1 = new HMACSHA1();
+            hmacSha1.Key = encode.GetBytes(key);
+
+            var dataBuffer = encode.GetBytes(str);
+            var hashBytes = hmacSha1.ComputeHash(dataBuffer);
+
+            return Convert.ToBase64String(hashBytes);
+        }
+
+        #endregion
+
     }
 }

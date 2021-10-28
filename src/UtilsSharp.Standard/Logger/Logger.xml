@@ -321,11 +321,22 @@
             追踪帮助类
             </summary>
         </member>
-        <member name="M:Logger.TraceHelper.#ctor(System.Boolean)">
+        <member name="P:Logger.TraceHelper.IsOpenTrace">
+            <summary>
+            是否开启追踪
+            </summary>
+        </member>
+        <member name="P:Logger.TraceHelper.IsWithNumber">
+            <summary>
+            是否带序号
+            </summary>
+        </member>
+        <member name="M:Logger.TraceHelper.#ctor(System.Boolean,System.Boolean)">
             <summary>
             追踪帮助类
             </summary>
-            <param name="isOpenTrace"></param>
+            <param name="isOpenTrace">是否开启追踪</param>
+            <param name="isWithNumber">是否带序号</param>
         </member>
         <member name="M:Logger.TraceHelper.Add(System.String,System.String,System.String)">
             <summary>

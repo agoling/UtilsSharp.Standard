@@ -148,11 +148,9 @@ namespace UnitTestProjectNet.Core
             request.M = m;
             request.dt = DateTime.Now;
 
-            var dic = DictionaryHelper.ObjToDictionary(null, null,null);
 
             JsonRequest j=new JsonRequest();
-            JsonRequest obj = DictionaryHelper.DictionaryToObj<JsonRequest>(dic, null, null);
-            
+
             var r= httpHelper.DoGet("http://localhost:15892/home/json?name=123&age=456", request);
         }
 

@@ -21,6 +21,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyProductAttribute("UtilsSharp")]
 [assembly: System.Reflection.AssemblyTitleAttribute("UtilsSharp")]
 [assembly: System.Reflection.AssemblyVersionAttribute("2.4.5.0")]
+[assembly: System.Reflection.AssemblyMetadataAttribute("RepositoryUrl", "https://github.com/agoling/UtilsSharp.Standard")]
 
 // 由 MSBuild WriteCodeFragment 类生成。
 

@@ -54,6 +54,21 @@ namespace UtilsSharp
         }
 
         /// <summary>
+        /// 字典转Dynamic
+        /// </summary>
+        /// <param name="dic">字典</param>
+        /// <returns></returns>
+        public static dynamic ToDynamic(this Dictionary<string, object> dic)
+        {
+            dynamic result = new System.Dynamic.ExpandoObject();
+            foreach (var item in dic)
+            {
+                (result as ICollection<KeyValuePair<string, object>>).Add(new KeyValuePair<string, object>(item.Key, item.Value));
+            }
+            return result;
+        }
+
+        /// <summary>
         /// 转换对象为字典
         /// </summary>
         /// <param name="obj">要转换的对象</param>

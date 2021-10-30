@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -23,73 +24,111 @@ namespace UtilsSharp
         /// <param name="address">请求地址</param>
         /// <param name="parameters">请求参数</param>
         /// <returns></returns>
-        public BaseResult<string> DoGet(string address, object parameters)
+        public BaseResult<string> DoGet(string address, Dictionary<string, object> parameters = null)
         {
-            var strDic = parameters.ToDictionaryStringValue();
-            return GetRequest<string>(address, strDic);
+            return Request<Dictionary<string, object>, string>(HttpMethod.Get, address, parameters);
         }
 
         /// <summary>
         /// Get请求
+        /// </summary>
+        /// <typeparam name="T">出参类型</typeparam>
+        /// <param name="address">请求地址</param>
+        /// <param name="parameters">请求参数</param>
+        /// <returns></returns>
+        public BaseResult<T> DoGet<T>(string address, Dictionary<string, object> parameters = null) where T : class
+        {
+            return Request<Dictionary<string, object>, T>(HttpMethod.Get, address, parameters);
+        }
+
+        /// <summary>
+        /// Get请求
+        /// </summary>
+        /// <typeparam name="TP">入参类型</typeparam>
+        /// <param name="address">请求地址</param>
+        /// <param name="parameters">请求参数</param>
+        /// <param name="dateTimeFormat">入参的时间格式</param>
+        /// <returns></returns>
+        public BaseResult<string> DoGet<TP>(string address, TP parameters, string dateTimeFormat = "yyyy-MM-dd HH:mm:ss") where TP : class, new()
+        {
+            return Request<TP, string>(HttpMethod.Get, address, parameters, dateTimeFormat);
+        }
+
+        /// <summary>
+        /// Get请求
+        /// </summary>
+        /// <typeparam name="TP">入参类型</typeparam>
+        /// <typeparam name="T">出参类型</typeparam>
+        /// <param name="address">请求地址</param>
+        /// <param name="parameters">请求参数</param>
+        /// <param name="dateTimeFormat">入参的时间格式</param>
+        /// <returns></returns>
+        public BaseResult<T> DoGet<TP, T>(string address, TP parameters, string dateTimeFormat = "yyyy-MM-dd HH:mm:ss") where T : class where TP : class, new()
+        {
+            return Request<TP, T>(HttpMethod.Get, address, parameters, dateTimeFormat);
+        }
+
+        /// <summary>
+        /// Post请求
         /// </summary>
         /// <param name="address">请求地址</param>
         /// <param name="parameters">请求参数</param>
         /// <returns></returns>
-        public BaseResult<T> DoGet<T>(string address, object parameters) where T : class, new()
+        public BaseResult<string> DoPost(string address, Dictionary<string, object> parameters = null)
         {
-            var strDic = parameters.ToDictionaryStringValue();
-            return GetRequest<T>(address, strDic);
+            return Request<Dictionary<string, object>, string>(HttpMethod.Post, address, parameters);
         }
 
         /// <summary>
-        /// Get请求
+        /// Post请求
         /// </summary>
-        /// <param name="address">请求地址</param>
-        /// <returns></returns>
-        public BaseResult<string> DoGet(string address)
-        {
-            return GetRequest<string>(address, null);
-        }
-
-        /// <summary>
-        /// Get请求
-        /// </summary>
-        /// <param name="address">请求地址</param>
-        /// <returns></returns>
-        public BaseResult<T> DoGet<T>(string address) where T : class, new()
-        {
-            return GetRequest<T>(address, null);
-        }
-
-        /// <summary>
-        /// Get请求
-        /// </summary>
+        /// <typeparam name="T">出参类型</typeparam>
         /// <param name="address">请求地址</param>
         /// <param name="parameters">请求参数</param>
         /// <returns></returns>
-        public BaseResult<string> DoGet(string address, Dictionary<string, string> parameters)
+        public BaseResult<T> DoPost<T>(string address, Dictionary<string, object> parameters = null) where T : class
         {
-            return GetRequest<string>(address, parameters);
+            return Request<Dictionary<string, object>, T>(HttpMethod.Post, address, parameters);
         }
 
         /// <summary>
-        /// Get请求
+        /// Post请求
         /// </summary>
+        /// <typeparam name="TP">入参类型</typeparam>
         /// <param name="address">请求地址</param>
         /// <param name="parameters">请求参数</param>
+        /// <param name="dateTimeFormat">入参的时间格式</param>
         /// <returns></returns>
-        public BaseResult<T> DoGet<T>(string address, Dictionary<string, string> parameters) where T : class, new()
+        public BaseResult<string> DoPost<TP>(string address, TP parameters, string dateTimeFormat = "yyyy-MM-dd HH:mm:ss") where TP : class, new()
         {
-            return GetRequest<T>(address, parameters);
+            return Request<TP, string>(HttpMethod.Post, address, parameters, dateTimeFormat);
         }
 
         /// <summary>
-        /// Get请求
+        /// Post请求
         /// </summary>
+        /// <typeparam name="TP">入参类型</typeparam>
+        /// <typeparam name="T">出参类型</typeparam>
         /// <param name="address">请求地址</param>
         /// <param name="parameters">请求参数</param>
+        /// <param name="dateTimeFormat">入参的时间格式</param>
         /// <returns></returns>
-        private BaseResult<T> GetRequest<T>(string address, Dictionary<string, string> parameters) where T : class
+        public BaseResult<T> DoPost<TP, T>(string address, TP parameters, string dateTimeFormat = "yyyy-MM-dd HH:mm:ss") where T : class where TP : class, new()
+        {
+            return Request<TP, T>(HttpMethod.Post, address, parameters, dateTimeFormat);
+        }
+
+        /// <summary>
+        /// Post请求
+        /// </summary>
+        /// <typeparam name="TP">入参类型</typeparam>
+        /// <typeparam name="T">出参类型</typeparam>
+        /// <param name="method">表示请求的http方法，大写， 如POST、GET、PUT</param>
+        /// <param name="address">请求地址</param>
+        /// <param name="parameters">请求参数</param>
+        /// <param name="dateTimeFormat">入参的时间格式</param>
+        /// <returns></returns>
+        public BaseResult<T> Request<TP, T>(HttpMethod method, string address, TP parameters, string dateTimeFormat = "yyyy-MM-dd HH:mm:ss") where T : class where TP : class, new()
         {
             var result = new BaseResult<T>();
             try
@@ -99,188 +138,14 @@ namespace UtilsSharp
                     result.SetError("address不能为空！");
                     return result;
                 }
-                var (item1, item2) = BuildUrlParameter(address, parameters);
-                address = item1;
-                var parametersStr = BuildQuery(item2);
-                if (!string.IsNullOrEmpty(parametersStr))
+                var contentType = Headers["Content-Type"]?.ToLower();
+                if (contentType == null)
                 {
-                    address = $"{item1}?{parametersStr}";
-                }
-                var bytes = DownloadData(address);
-                var content = Encoding.GetString(bytes);
-                if (string.IsNullOrEmpty(content))
-                {
-                    return result;
-                }
-                if (typeof(T) == typeof(string))
-                {
-                    result.Result = (T)Convert.ChangeType(content, typeof(T));
-                    return result;
-                }
-                result.Result = JsonConvert.DeserializeObject<T>(content);
-                return result;
-            }
-            catch (Exception ex)
-            {
-                result.SetError(ex.Message, BaseStateCode.TryCatch异常错误);
-                return result;
-            }
-            finally
-            {
-                QueryString.Clear();
-            }
-        }
-
-        /// <summary>
-        /// Post请求
-        /// </summary>
-        /// <param name="address">请求地址</param>
-        /// <returns></returns>
-        public BaseResult<string> DoPost(string address)
-        {
-            return PostRequest<string>(address, null);
-        }
-
-        /// <summary>
-        /// Post请求
-        /// </summary>
-        /// <param name="address">请求地址</param>
-        /// <returns></returns>
-        public BaseResult<T> DoPost<T>(string address) where T : class, new()
-        {
-            return PostRequest<T>(address, null);
-        }
-
-        /// <summary>
-        /// Post请求
-        /// </summary>
-        /// <param name="address">请求地址</param>
-        /// <param name="parameters">请求参数</param>
-        /// <returns></returns>
-        public BaseResult<string> DoPost(string address, Dictionary<string, string> parameters)
-        {
-            return PostRequest<string>(address, parameters);
-        }
-
-        /// <summary>
-        /// Post请求
-        /// </summary>
-        /// <param name="address">请求地址</param>
-        /// <param name="parameters">请求参数</param>
-        /// <returns></returns>
-        public BaseResult<T> DoPost<T>(string address, Dictionary<string, string> parameters) where T : class, new()
-        {
-            return PostRequest<T>(address, parameters);
-        }
-
-        /// <summary>
-        /// Post请求
-        /// </summary>
-        /// <param name="address">请求地址</param>
-        /// <param name="parameters">请求参数</param>
-        /// <returns></returns>
-        private BaseResult<T> PostRequest<T>(string address, Dictionary<string, string> parameters) where T : class
-        {
-            var result = new BaseResult<T>();
-            try
-            {
-                if (string.IsNullOrEmpty(address))
-                {
-                    result.SetError("address不能为空！");
-                    return result;
-                }
-                if (Headers.Count > 0 && Headers["content-type"] != null)
-                {
-                    if (Headers["content-type"].ToLower().Contains("application/json"))
-                    {
-                        return PostRequest<T>(address, parameters, "yyyy-MM-dd HH:mm:ss");
-                    }
-                }
-                else
-                {
-                    Headers.Add("content-type", "application/x-www-form-urlencoded");
-                }
-                var (item1, item2) = BuildUrlParameter(address, parameters);
-                address = item1;
-                var dataBytes = new byte[0];
-                if (item2 != null && item2.Count > 0)
-                {
-                    foreach (var kv in item2)
-                    {
-                        QueryString.Add(kv.Key, kv.Value);
-                    }
-                    var parametersStr = BuildQuery(item2);
-                    dataBytes = Encoding.GetBytes(parametersStr);
-                }
-                var bytes = UploadData(address, HttpMethod.Post.ToString(), dataBytes);
-                var content = Encoding.GetString(bytes);
-                if (string.IsNullOrEmpty(content))
-                {
-                    return result;
+                    Headers.Add("Content-Type", "application/json");
+                    contentType = Headers["Content-Type"].ToLower();
                 }
 
-                if (typeof(T) == typeof(string))
-                {
-                    result.Result = (T)Convert.ChangeType(content, typeof(T));
-                    return result;
-                }
-
-                result.Result = JsonConvert.DeserializeObject<T>(content);
-                return result;
-            }
-            catch (Exception ex)
-            {
-                result.SetError(ex.Message, BaseStateCode.TryCatch异常错误);
-                return result;
-            }
-            finally
-            {
-                QueryString.Clear();
-            }
-        }
-
-        /// <summary>
-        /// Post请求
-        /// </summary>
-        /// <param name="address">请求地址</param>
-        /// <param name="parameters">请求参数</param>
-        /// <param name="dateTimeFormat">返回的时间格式</param>
-        /// <returns></returns>
-        public BaseResult<string> DoPost(string address, object parameters, string dateTimeFormat = "yyyy-MM-dd HH:mm:ss")
-        {
-            return PostRequest<string>(address, parameters, dateTimeFormat);
-        }
-
-        /// <summary>
-        /// Post请求
-        /// </summary>
-        /// <param name="address">请求地址</param>
-        /// <param name="parameters">请求参数</param>
-        /// <param name="dateTimeFormat">返回的时间格式</param>
-        /// <returns></returns>
-        public BaseResult<T> DoPost<T>(string address, object parameters, string dateTimeFormat = "yyyy-MM-dd HH:mm:ss") where T : class, new()
-        {
-            return PostRequest<T>(address, parameters, dateTimeFormat);
-        }
-
-        /// <summary>
-        /// Post请求
-        /// </summary>
-        /// <param name="address">请求地址</param>
-        /// <param name="parameters">请求参数</param>
-        /// <param name="dateTimeFormat">返回的时间格式</param>
-        /// <returns></returns>
-        private BaseResult<T> PostRequest<T>(string address, object parameters, string dateTimeFormat = "yyyy-MM-dd HH:mm:ss") where T : class
-        {
-            var result = new BaseResult<T>();
-            try
-            {
-                if (string.IsNullOrEmpty(address))
-                {
-                    result.SetError("address不能为空！");
-                    return result;
-                }
-                Headers.Add("Content-Type", "application/json;charset=UTF-8");
+                byte[] bytes;
                 var @params = JsonConvert.SerializeObject(parameters);
                 @params = Regex.Replace(@params, @"\\/Date\((\d+)\)\\/", match =>
                 {
@@ -289,30 +154,64 @@ namespace UtilsSharp
                     dt = dt.ToLocalTime();
                     return dt.ToString(dateTimeFormat);
                 });
-                var dataBytes = new byte[0];
-                if (!string.IsNullOrEmpty(@params))
-                {
-                    dataBytes = Encoding.GetBytes(@params);
-                }
 
-                var bytes = UploadData(address, HttpMethod.Post.ToString(), dataBytes);
+                if (method == HttpMethod.Get)
+                {
+                    var dicParameters = JsonConvert.DeserializeObject<Dictionary<string, string>>(@params);
+                    var (item1, item2) = BuildUrlParameter(address, dicParameters);
+                    address = item1;
+                    var parametersStr = BuildQuery(item2);
+                    if (!string.IsNullOrEmpty(parametersStr))
+                    {
+                        address = $"{item1}?{parametersStr}";
+                    }
+                    bytes = DownloadData(address);
+                }
+                else if (contentType.Contains("application/json"))
+                {
+                    var dataBytes = Encoding.GetBytes(@params);
+                    bytes = UploadData(address, HttpMethod.Post.ToString(), dataBytes);
+                }
+                else
+                {
+                    var dicParameters = JsonConvert.DeserializeObject<Dictionary<string, string>>(@params);
+                    var parametersStr = BuildQuery(dicParameters);
+                    var dataBytes = Encoding.GetBytes(parametersStr);
+                    bytes = UploadData(address, HttpMethod.Post.ToString(), dataBytes);
+                }
                 var content = Encoding.GetString(bytes);
                 if (string.IsNullOrEmpty(content))
                 {
                     return result;
                 }
-
                 if (typeof(T) == typeof(string))
                 {
                     result.Result = (T)Convert.ChangeType(content, typeof(T));
                     return result;
                 }
-
                 result.Result = JsonConvert.DeserializeObject<T>(content);
                 return result;
             }
             catch (Exception ex)
             {
+                if (ex.GetType().Name == "WebException")
+                {
+                    var we = (WebException)ex;
+                    using var hr = (HttpWebResponse)we.Response;
+                    if (hr != null)
+                    {
+                        var statusCode = (int)hr.StatusCode;
+                        var sb = new StringBuilder();
+                        var responseStream = hr.GetResponseStream();
+                        if (responseStream != null)
+                        {
+                            var sr = new StreamReader(responseStream, Encoding.UTF8);
+                            sb.Append(sr.ReadToEnd());
+                            result.SetError($"{sb}", statusCode);
+                            return result;
+                        }
+                    }
+                }
                 result.SetError(ex.Message, BaseStateCode.TryCatch异常错误);
                 return result;
             }
@@ -328,14 +227,10 @@ namespace UtilsSharp
         /// <param name="address">url地址</param>
         /// <param name="parameters">参数</param>
         /// <returns></returns>
-        private Tuple<string, Dictionary<string, string>> BuildUrlParameter(string address, Dictionary<string, string> parameters)
+        private static Tuple<string, Dictionary<string, string>> BuildUrlParameter(string address, Dictionary<string, string> parameters)
         {
             var url = address;
-            if (parameters == null)
-            {
-                parameters = new Dictionary<string, string>();
-            }
-
+            parameters ??= new Dictionary<string, string>();
             if (address.Contains("?"))
             {
                 var array = address.Split('?');
@@ -379,7 +274,7 @@ namespace UtilsSharp
         /// </summary>
         /// <param name="parameters">Key-Value形式请求参数字典</param>
         /// <returns>URL编码后的请求数据</returns>
-        private string BuildQuery(IDictionary<string, string> parameters)
+        private static string BuildQuery(IDictionary<string, string> parameters)
         {
             if (parameters == null || !parameters.Any())
             {
@@ -402,13 +297,12 @@ namespace UtilsSharp
 
                 postData.Append(name);
                 postData.Append("=");
-                postData.Append(System.Web.HttpUtility.UrlEncode(value, Encoding));
+                postData.Append(value);
                 hasParam = true;
             }
 
             return postData.ToString();
         }
-
     }
 
     /// <summary>
@@ -422,75 +316,111 @@ namespace UtilsSharp
         /// <param name="address">请求地址</param>
         /// <param name="parameters">请求参数</param>
         /// <returns></returns>
-        public async Task<BaseResult<string>> DoGetAsync(string address, object parameters)
+        public async Task<BaseResult<string>> DoGetAsync(string address, Dictionary<string, object> parameters = null)
         {
-            var strDic = parameters.ToDictionaryStringValue();
-            return await GetRequestAsync<string>(address, strDic);
+            return await RequestAsync<Dictionary<string, object>, string>(HttpMethod.Get, address, parameters);
         }
 
         /// <summary>
         /// Get请求
+        /// </summary>
+        /// <typeparam name="T">出参类型</typeparam>
+        /// <param name="address">请求地址</param>
+        /// <param name="parameters">请求参数</param>
+        /// <returns></returns>
+        public async Task<BaseResult<T>> DoGetAsync<T>(string address, Dictionary<string, object> parameters = null) where T : class
+        {
+            return await RequestAsync<Dictionary<string, object>, T>(HttpMethod.Get, address, parameters);
+        }
+
+        /// <summary>
+        /// Get请求
+        /// </summary>
+        /// <typeparam name="TP">入参类型</typeparam>
+        /// <param name="address">请求地址</param>
+        /// <param name="parameters">请求参数</param>
+        /// <param name="dateTimeFormat">入参的时间格式</param>
+        /// <returns></returns>
+        public async Task<BaseResult<string>> DoGetAsync<TP>(string address, TP parameters, string dateTimeFormat = "yyyy-MM-dd HH:mm:ss") where TP : class, new()
+        {
+            return await RequestAsync<TP, string>(HttpMethod.Get, address, parameters, dateTimeFormat);
+        }
+
+        /// <summary>
+        /// Get请求
+        /// </summary>
+        /// <typeparam name="TP">入参类型</typeparam>
+        /// <typeparam name="T">出参类型</typeparam>
+        /// <param name="address">请求地址</param>
+        /// <param name="parameters">请求参数</param>
+        /// <param name="dateTimeFormat">入参的时间格式</param>
+        /// <returns></returns>
+        public async Task<BaseResult<T>> DoGetAsync<TP, T>(string address, TP parameters, string dateTimeFormat = "yyyy-MM-dd HH:mm:ss") where T : class where TP : class, new()
+        {
+            return await RequestAsync<TP, T>(HttpMethod.Get, address, parameters, dateTimeFormat);
+        }
+
+        /// <summary>
+        /// Post请求
         /// </summary>
         /// <param name="address">请求地址</param>
         /// <param name="parameters">请求参数</param>
         /// <returns></returns>
-        public async Task<BaseResult<T>> DoGetAsync<T>(string address, object parameters) where T : class, new()
+        public async Task<BaseResult<string>> DoPostAsync(string address, Dictionary<string, object> parameters = null)
         {
-            var strDic = parameters.ToDictionaryStringValue();
-            return await GetRequestAsync<T>(address, strDic);
+            return await RequestAsync<Dictionary<string, object>, string>(HttpMethod.Post, address, parameters);
         }
 
         /// <summary>
-        /// Get请求
+        /// Post请求
         /// </summary>
-        /// <param name="address">请求地址</param>
-        /// <returns></returns>
-        public async Task<BaseResult<string>> DoGetAsync(string address)
-        {
-            return await GetRequestAsync<string>(address, null);
-        }
-
-        /// <summary>
-        /// Get请求
-        /// </summary>
-        /// <param name="address">请求地址</param>
-        /// <returns></returns>
-        public async Task<BaseResult<T>> DoGetAsync<T>(string address) where T : class, new()
-        {
-            return await GetRequestAsync<T>(address, null);
-        }
-
-        /// <summary>
-        /// Get请求
-        /// </summary>
+        /// <typeparam name="T">出参类型</typeparam>
         /// <param name="address">请求地址</param>
         /// <param name="parameters">请求参数</param>
         /// <returns></returns>
-        public async Task<BaseResult<string>> DoGetAsync(string address, Dictionary<string, string> parameters)
+        public async Task<BaseResult<T>> DoPostAsync<T>(string address, Dictionary<string, object> parameters = null) where T : class
         {
-            return await GetRequestAsync<string>(address, parameters);
+            return await RequestAsync<Dictionary<string, object>, T>(HttpMethod.Post, address, parameters);
         }
 
         /// <summary>
-        /// Get请求
+        /// Post请求
         /// </summary>
+        /// <typeparam name="TP">入参类型</typeparam>
         /// <param name="address">请求地址</param>
         /// <param name="parameters">请求参数</param>
+        /// <param name="dateTimeFormat">入参的时间格式</param>
         /// <returns></returns>
-        public async Task<BaseResult<T>> DoGetAsync<T>(string address, Dictionary<string, string> parameters)
-            where T : class, new()
+        public async Task<BaseResult<string>> DoPostAsync<TP>(string address, TP parameters, string dateTimeFormat = "yyyy-MM-dd HH:mm:ss") where TP : class, new()
         {
-            return await GetRequestAsync<T>(address, parameters);
+            return await RequestAsync<TP, string>(HttpMethod.Post, address, parameters, dateTimeFormat);
         }
 
         /// <summary>
-        /// Get请求
+        /// Post请求
         /// </summary>
+        /// <typeparam name="TP">入参类型</typeparam>
+        /// <typeparam name="T">出参类型</typeparam>
         /// <param name="address">请求地址</param>
         /// <param name="parameters">请求参数</param>
+        /// <param name="dateTimeFormat">入参的时间格式</param>
         /// <returns></returns>
-        private async Task<BaseResult<T>> GetRequestAsync<T>(string address, Dictionary<string, string> parameters)
-            where T : class
+        public async Task<BaseResult<T>> DoPostAsync<TP, T>(string address, TP parameters, string dateTimeFormat = "yyyy-MM-dd HH:mm:ss") where T : class where TP : class, new()
+        {
+            return await RequestAsync<TP, T>(HttpMethod.Post, address, parameters, dateTimeFormat);
+        }
+
+        /// <summary>
+        /// Request请求
+        /// </summary>
+        /// <typeparam name="TP">入参类型</typeparam>
+        /// <typeparam name="T">出参类型</typeparam>
+        /// <param name="method">表示请求的http方法，大写， 如POST、GET、PUT</param>
+        /// <param name="address">请求地址</param>
+        /// <param name="parameters">请求参数</param>
+        /// <param name="dateTimeFormat">入参的时间格式</param>
+        /// <returns></returns>
+        public async Task<BaseResult<T>> RequestAsync<TP, T>(HttpMethod method, string address, TP parameters, string dateTimeFormat = "yyyy-MM-dd HH:mm:ss") where T : class where TP : class, new()
         {
             var result = new BaseResult<T>();
             try
@@ -500,194 +430,14 @@ namespace UtilsSharp
                     result.SetError("address不能为空！");
                     return result;
                 }
-                var (item1, item2) = BuildUrlParameter(address, parameters);
-                address = item1;
-                var parametersStr = await BuildQueryAsync(item2);
-                if (!string.IsNullOrEmpty(parametersStr))
+                var contentType = Headers["Content-Type"]?.ToLower();
+                if (contentType == null)
                 {
-                    address = $"{item1}?{parametersStr}";
-                }
-                var bytes = await DownloadDataTaskAsync(address);
-                var content = Encoding.GetString(bytes);
-                if (string.IsNullOrEmpty(content))
-                {
-                    return result;
+                    Headers.Add("Content-Type", "application/json");
+                    contentType = Headers["Content-Type"].ToLower();
                 }
 
-                if (typeof(T) == typeof(string))
-                {
-                    result.Result = (T)Convert.ChangeType(content, typeof(T));
-                    return result;
-                }
-
-                result.Result = JsonConvert.DeserializeObject<T>(content);
-                return result;
-            }
-            catch (Exception ex)
-            {
-                result.SetError(ex.Message, BaseStateCode.TryCatch异常错误);
-                return result;
-            }
-            finally
-            {
-                QueryString.Clear();
-            }
-        }
-
-        /// <summary>
-        /// Post请求
-        /// </summary>
-        /// <param name="address">请求地址</param>
-        /// <returns></returns>
-        public async Task<BaseResult<string>> DoPostAsync(string address)
-        {
-            return await PostRequestAsync<string>(address, null);
-        }
-
-        /// <summary>
-        /// Post请求
-        /// </summary>
-        /// <param name="address">请求地址</param>
-        /// <returns></returns>
-        public async Task<BaseResult<T>> DoPostAsync<T>(string address) where T : class, new()
-        {
-            return await PostRequestAsync<T>(address, null);
-        }
-
-        /// <summary>
-        /// Post请求
-        /// </summary>
-        /// <param name="address">请求地址</param>
-        /// <param name="parameters">请求参数</param>
-        /// <returns></returns>
-        public async Task<BaseResult<string>> DoPostAsync(string address, Dictionary<string, string> parameters)
-        {
-            return await PostRequestAsync<string>(address, parameters);
-        }
-
-        /// <summary>
-        /// Post请求
-        /// </summary>
-        /// <param name="address">请求地址</param>
-        /// <param name="parameters">请求参数</param>
-        /// <returns></returns>
-        public async Task<BaseResult<T>> DoPostAsync<T>(string address, Dictionary<string, string> parameters) where T : class, new()
-        {
-            return await PostRequestAsync<T>(address, parameters);
-        }
-
-        /// <summary>
-        /// Post请求
-        /// </summary>
-        /// <param name="address">请求地址</param>
-        /// <param name="parameters">请求参数</param>
-        /// <returns></returns>
-        private async Task<BaseResult<T>> PostRequestAsync<T>(string address, Dictionary<string, string> parameters) where T : class
-        {
-            var result = new BaseResult<T>();
-            try
-            {
-                if (string.IsNullOrEmpty(address))
-                {
-                    result.SetError("address不能为空！");
-                    return result;
-                }
-                if (Headers.Count > 0 && Headers["content-type"] != null)
-                {
-                    if (Headers["content-type"].ToLower().Contains("application/json"))
-                    {
-                        return await PostRequestAsync<T>(address, parameters, "yyyy-MM-dd HH:mm:ss");
-                    }
-                }
-                else
-                {
-                    Headers.Add("content-type", "application/x-www-form-urlencoded");
-                }
-                var (item1, item2) = BuildUrlParameter(address, parameters);
-                address = item1;
-                var dataBytes = new byte[0];
-                if (item2 != null && item2.Count > 0)
-                {
-                    foreach (var kv in item2)
-                    {
-                        QueryString.Add(kv.Key, kv.Value);
-                    }
-                    var parametersStr = BuildQuery(item2);
-                    dataBytes = Encoding.GetBytes(parametersStr);
-                }
-                var bytes = await UploadDataTaskAsync(address, HttpMethod.Post.ToString(), dataBytes);
-                var content = Encoding.GetString(bytes);
-                if (string.IsNullOrEmpty(content))
-                {
-                    return result;
-                }
-
-                if (typeof(T) == typeof(string))
-                {
-                    result.Result = (T)Convert.ChangeType(content, typeof(T));
-                    return result;
-                }
-
-                result.Result = JsonConvert.DeserializeObject<T>(content);
-                return result;
-            }
-            catch (Exception ex)
-            {
-                result.SetError(ex.Message, BaseStateCode.TryCatch异常错误);
-                return result;
-            }
-            finally
-            {
-                QueryString.Clear();
-            }
-        }
-
-        /// <summary>
-        /// Post请求
-        /// </summary>
-        /// <param name="address">请求地址</param>
-        /// <param name="parameters">请求参数</param>
-        /// <param name="dateTimeFormat">返回的时间格式</param>
-        /// <returns></returns>
-        public async Task<BaseResult<string>> DoPostAsync(string address, object parameters,
-            string dateTimeFormat = "yyyy-MM-dd HH:mm:ss")
-        {
-            return await PostRequestAsync<string>(address, parameters, dateTimeFormat);
-        }
-
-        /// <summary>
-        /// Post请求
-        /// </summary>
-        /// <param name="address">请求地址</param>
-        /// <param name="parameters">请求参数</param>
-        /// <param name="dateTimeFormat">返回的时间格式</param>
-        /// <returns></returns>
-        public async Task<BaseResult<T>> DoPostAsync<T>(string address, object parameters,
-            string dateTimeFormat = "yyyy-MM-dd HH:mm:ss") where T : class, new()
-        {
-            return await PostRequestAsync<T>(address, parameters, dateTimeFormat);
-        }
-
-        /// <summary>
-        /// Post请求
-        /// </summary>
-        /// <param name="address">请求地址</param>
-        /// <param name="parameters">请求参数</param>
-        /// <param name="dateTimeFormat">返回的时间格式</param>
-        /// <returns></returns>
-        private async Task<BaseResult<T>> PostRequestAsync<T>(string address, object parameters,
-            string dateTimeFormat = "yyyy-MM-dd HH:mm:ss") where T : class
-        {
-            var result = new BaseResult<T>();
-            try
-            {
-                if (string.IsNullOrEmpty(address))
-                {
-                    result.SetError("address不能为空！");
-                    return result;
-                }
-
-                Headers.Add("Content-Type", "application/json;charset=UTF-8");
+                byte[] bytes;
                 var @params = JsonConvert.SerializeObject(parameters);
                 @params = Regex.Replace(@params, @"\\/Date\((\d+)\)\\/", match =>
                 {
@@ -696,30 +446,64 @@ namespace UtilsSharp
                     dt = dt.ToLocalTime();
                     return dt.ToString(dateTimeFormat);
                 });
-                var dataBytes = new byte[0];
-                if (!string.IsNullOrEmpty(@params))
-                {
-                    dataBytes = Encoding.GetBytes(@params);
-                }
 
-                var bytes = await UploadDataTaskAsync(address, HttpMethod.Post.ToString(), dataBytes);
+                if (method == HttpMethod.Get)
+                {
+                    var dicParameters = JsonConvert.DeserializeObject<Dictionary<string, string>>(@params);
+                    var (item1, item2) = BuildUrlParameter(address, dicParameters);
+                    address = item1;
+                    var parametersStr = BuildQuery(item2);
+                    if (!string.IsNullOrEmpty(parametersStr))
+                    {
+                        address = $"{item1}?{parametersStr}";
+                    }
+                    bytes = await DownloadDataTaskAsync(address);
+                }
+                else if (contentType.Contains("application/json"))
+                {
+                    var dataBytes = Encoding.GetBytes(@params);
+                    bytes = await UploadDataTaskAsync(address, HttpMethod.Post.ToString(), dataBytes);
+                }
+                else
+                {
+                    var dicParameters = JsonConvert.DeserializeObject<Dictionary<string, string>>(@params);
+                    var parametersStr = BuildQuery(dicParameters);
+                    var dataBytes = Encoding.GetBytes(parametersStr);
+                    bytes = await UploadDataTaskAsync(address, HttpMethod.Post.ToString(), dataBytes);
+                }
                 var content = Encoding.GetString(bytes);
                 if (string.IsNullOrEmpty(content))
                 {
                     return result;
                 }
-
                 if (typeof(T) == typeof(string))
                 {
                     result.Result = (T)Convert.ChangeType(content, typeof(T));
                     return result;
                 }
-
                 result.Result = JsonConvert.DeserializeObject<T>(content);
                 return result;
             }
             catch (Exception ex)
             {
+                if (ex.GetType().Name == "WebException")
+                {
+                    var we = (WebException)ex;
+                    using var hr = (HttpWebResponse)we.Response;
+                    if (hr != null)
+                    {
+                        var statusCode = (int)hr.StatusCode;
+                        var sb = new StringBuilder();
+                        var responseStream = hr.GetResponseStream();
+                        if (responseStream != null)
+                        {
+                            var sr = new StreamReader(responseStream, Encoding.UTF8);
+                            sb.Append(await sr.ReadToEndAsync());
+                            result.SetError($"{sb}", statusCode);
+                            return result;
+                        }
+                    }
+                }
                 result.SetError(ex.Message, BaseStateCode.TryCatch异常错误);
                 return result;
             }
@@ -727,45 +511,6 @@ namespace UtilsSharp
             {
                 QueryString.Clear();
             }
-        }
-
-        /// <summary>
-        /// 组装普通文本请求参数。
-        /// </summary>
-        /// <param name="parameters">Key-Value形式请求参数字典</param>
-        /// <returns>URL编码后的请求数据</returns>
-        private async Task<string> BuildQueryAsync(IDictionary<string, string> parameters)
-        {
-            return await Task.Factory.StartNew(o =>
-            {
-                var obj = (IDictionary<string, string>)o;
-                if (obj == null || !obj.Any())
-                {
-                    return "";
-                }
-
-                var postData = new StringBuilder();
-                var hasParam = false;
-                using var dem = obj.GetEnumerator();
-                while (dem.MoveNext())
-                {
-                    var name = dem.Current.Key;
-                    var value = dem.Current.Value;
-                    // 忽略参数名或参数值为空的参数
-                    if (string.IsNullOrEmpty(name) || string.IsNullOrEmpty(value)) continue;
-                    if (hasParam)
-                    {
-                        postData.Append("&");
-                    }
-
-                    postData.Append(name);
-                    postData.Append("=");
-                    postData.Append(System.Web.HttpUtility.UrlEncode(value, Encoding));
-                    hasParam = true;
-                }
-
-                return postData.ToString();
-            }, parameters);
         }
     }
 
@@ -778,7 +523,7 @@ namespace UtilsSharp
         /// CookieContainer
         /// </summary>
         public CookieContainer CookieContainer { get; set; }
-        private Calculagraph _timer;
+        private TimeCalculator _timer;
         private int _timeOut = 10;
 
         /// <summary>
@@ -802,16 +547,13 @@ namespace UtilsSharp
         /// <returns></returns>
         protected override WebRequest GetWebRequest(Uri address)
         {
-            WebRequest request = base.GetWebRequest(address);
-            if (request is HttpWebRequest)
-            {
-                (request as HttpWebRequest).CookieContainer = CookieContainer;
-            }
-            HttpWebRequest httpRequest = (HttpWebRequest)request;
-            httpRequest.AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate;
-            httpRequest.Timeout = 1000 * Timeout;
-            httpRequest.ReadWriteTimeout = 1000 * Timeout;
-            return httpRequest;
+            var request = (HttpWebRequest)base.GetWebRequest(address);
+            if (request == null) return null;
+            request.CookieContainer = CookieContainer;
+            request.AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate;
+            request.Timeout = 1000 * Timeout;
+            request.ReadWriteTimeout = 1000 * Timeout;
+            return request;
         }
 
         /// <summary>
@@ -821,7 +563,7 @@ namespace UtilsSharp
         {
             if (_timer == null)
             {
-                _timer = new Calculagraph(this) { Timeout = Timeout };
+                _timer = new TimeCalculator(this) { Timeout = Timeout };
                 _timer.TimeOver += _timer_TimeOver;
                 DownloadProgressChanged += WebHelper_DownloadProgressChanged;
             }
@@ -843,13 +585,11 @@ namespace UtilsSharp
         /// <summary>
         /// 计时器过期
         /// </summary>
-        /// <param name="userdata"></param>
-        private void _timer_TimeOver(object userdata)
+        /// <param name="userData"></param>
+        private void _timer_TimeOver(object userData)
         {
             CancelAsync(); //取消下载
         }
-
-
     }
 
     /// <summary>
@@ -947,7 +687,7 @@ namespace UtilsSharp
     /// <summary>
     ///  创建计时器监视响应情况，过期则取消下载
     /// </summary>
-    public class Calculagraph
+    public class TimeCalculator
     {
         /// <summary>
         /// 时间到事件
@@ -967,28 +707,28 @@ namespace UtilsSharp
         /// <summary>
         /// 是否开始
         /// </summary>
-        public bool cnHasStarted;
+        public bool CnHasStarted;
 
         /// <summary>
         /// 用户数据
         /// </summary>
-        public readonly object cnUserdata;
+        public readonly object CnUserData;
 
         /// <summary>
         /// 计时器构造方法
         /// </summary>
-        /// <param name="userdata">计时结束时回调的用户数据</param>
-        public Calculagraph(object userdata)
+        /// <param name="userData">计时结束时回调的用户数据</param>
+        public TimeCalculator(object userData)
         {
             TimeOver += OnTimeOver;
-            cnUserdata = userdata;
+            CnUserData = userData;
         }
 
         /// <summary>
         /// 超时退出
         /// </summary>
-        /// <param name="userdata"></param>
-        public virtual void OnTimeOver(object userdata)
+        /// <param name="userData"></param>
+        public virtual void OnTimeOver(object userData)
         {
             Stop();
         }
@@ -1010,7 +750,7 @@ namespace UtilsSharp
         /// <summary>
         /// 是否已经开始计时
         /// </summary>
-        public bool HasStarted => cnHasStarted;
+        public bool HasStarted => CnHasStarted;
 
         /// <summary>
         /// 开始计时
@@ -1018,7 +758,7 @@ namespace UtilsSharp
         public void Start()
         {
             Reset();
-            cnHasStarted = true;
+            CnHasStarted = true;
             var th = new Thread(WaitCall) { IsBackground = true };
             th.Start();
         }
@@ -1036,7 +776,7 @@ namespace UtilsSharp
         /// </summary>
         public void Stop()
         {
-            cnHasStarted = false;
+            CnHasStarted = false;
         }
 
         /// <summary>
@@ -1053,12 +793,12 @@ namespace UtilsSharp
             try
             {
                 //循环检测是否过期
-                while (cnHasStarted && !CheckTimeout())
+                while (CnHasStarted && !CheckTimeout())
                 {
                     Thread.Sleep(1000);
                 }
 
-                TimeOver?.Invoke(cnUserdata);
+                TimeOver?.Invoke(CnUserData);
             }
             catch (Exception)
             {
@@ -1070,6 +810,6 @@ namespace UtilsSharp
     /// <summary>
     /// 过期时回调委托
     /// </summary>
-    /// <param name="userdata">用户数据</param>
-    public delegate void TimeoutCaller(object userdata);
+    /// <param name="userData">用户数据</param>
+    public delegate void TimeoutCaller(object userData);
 }

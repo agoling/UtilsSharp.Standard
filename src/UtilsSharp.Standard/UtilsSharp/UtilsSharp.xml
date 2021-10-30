@@ -757,6 +757,13 @@
             <param name="key">字典Key</param>
             <returns></returns>
         </member>
+        <member name="M:UtilsSharp.DictionaryHelper.ToDynamic(System.Collections.Generic.Dictionary{System.String,System.Object})">
+            <summary>
+            字典转Dynamic
+            </summary>
+            <param name="dic">字典</param>
+            <returns></returns>
+        </member>
         <member name="M:UtilsSharp.DictionaryHelper.ToDictionaryStringValue(System.Object)">
             <summary>
             转换对象为字典
@@ -2968,7 +2975,7 @@
             网络请求工具帮助类(兼容超时)
             </summary>
         </member>
-        <member name="M:UtilsSharp.WebHelper.DoGet(System.String,System.Object)">
+        <member name="M:UtilsSharp.WebHelper.DoGet(System.String,System.Collections.Generic.Dictionary{System.String,System.Object})">
             <summary>
             Get请求
             </summary>
@@ -2976,67 +2983,37 @@
             <param name="parameters">请求参数</param>
             <returns></returns>
         </member>
-        <member name="M:UtilsSharp.WebHelper.DoGet``1(System.String,System.Object)">
+        <member name="M:UtilsSharp.WebHelper.DoGet``1(System.String,System.Collections.Generic.Dictionary{System.String,System.Object})">
             <summary>
             Get请求
             </summary>
+            <typeparam name="T">出参类型</typeparam>
             <param name="address">请求地址</param>
             <param name="parameters">请求参数</param>
             <returns></returns>
         </member>
-        <member name="M:UtilsSharp.WebHelper.DoGet(System.String)">
+        <member name="M:UtilsSharp.WebHelper.DoGet``1(System.String,``0,System.String)">
             <summary>
             Get请求
             </summary>
+            <typeparam name="TP">入参类型</typeparam>
             <param name="address">请求地址</param>
+            <param name="parameters">请求参数</param>
+            <param name="dateTimeFormat">入参的时间格式</param>
             <returns></returns>
         </member>
-        <member name="M:UtilsSharp.WebHelper.DoGet``1(System.String)">
+        <member name="M:UtilsSharp.WebHelper.DoGet``2(System.String,``0,System.String)">
             <summary>
             Get请求
             </summary>
-            <param name="address">请求地址</param>
-            <returns></returns>
-        </member>
-        <member name="M:UtilsSharp.WebHelper.DoGet(System.String,System.Collections.Generic.Dictionary{System.String,System.String})">
-            <summary>
-            Get请求
-            </summary>
+            <typeparam name="TP">入参类型</typeparam>
+            <typeparam name="T">出参类型</typeparam>
             <param name="address">请求地址</param>
             <param name="parameters">请求参数</param>
+            <param name="dateTimeFormat">入参的时间格式</param>
             <returns></returns>
         </member>
-        <member name="M:UtilsSharp.WebHelper.DoGet``1(System.String,System.Collections.Generic.Dictionary{System.String,System.String})">
-            <summary>
-            Get请求
-            </summary>
-            <param name="address">请求地址</param>
-            <param name="parameters">请求参数</param>
-            <returns></returns>
-        </member>
-        <member name="M:UtilsSharp.WebHelper.GetRequest``1(System.String,System.Collections.Generic.Dictionary{System.String,System.String})">
-            <summary>
-            Get请求
-            </summary>
-            <param name="address">请求地址</param>
-            <param name="parameters">请求参数</param>
-            <returns></returns>
-        </member>
-        <member name="M:UtilsSharp.WebHelper.DoPost(System.String)">
-            <summary>
-            Post请求
-            </summary>
-            <param name="address">请求地址</param>
-            <returns></returns>
-        </member>
-        <member name="M:UtilsSharp.WebHelper.DoPost``1(System.String)">
-            <summary>
-            Post请求
-            </summary>
-            <param name="address">请求地址</param>
-            <returns></returns>
-        </member>
-        <member name="M:UtilsSharp.WebHelper.DoPost(System.String,System.Collections.Generic.Dictionary{System.String,System.String})">
+        <member name="M:UtilsSharp.WebHelper.DoPost(System.String,System.Collections.Generic.Dictionary{System.String,System.Object})">
             <summary>
             Post请求
             </summary>
@@ -3044,47 +3021,46 @@
             <param name="parameters">请求参数</param>
             <returns></returns>
         </member>
-        <member name="M:UtilsSharp.WebHelper.DoPost``1(System.String,System.Collections.Generic.Dictionary{System.String,System.String})">
+        <member name="M:UtilsSharp.WebHelper.DoPost``1(System.String,System.Collections.Generic.Dictionary{System.String,System.Object})">
             <summary>
             Post请求
             </summary>
+            <typeparam name="T">出参类型</typeparam>
             <param name="address">请求地址</param>
             <param name="parameters">请求参数</param>
             <returns></returns>
         </member>
-        <member name="M:UtilsSharp.WebHelper.PostRequest``1(System.String,System.Collections.Generic.Dictionary{System.String,System.String})">
+        <member name="M:UtilsSharp.WebHelper.DoPost``1(System.String,``0,System.String)">
             <summary>
             Post请求
             </summary>
+            <typeparam name="TP">入参类型</typeparam>
             <param name="address">请求地址</param>
             <param name="parameters">请求参数</param>
+            <param name="dateTimeFormat">入参的时间格式</param>
             <returns></returns>
         </member>
-        <member name="M:UtilsSharp.WebHelper.DoPost(System.String,System.Object,System.String)">
+        <member name="M:UtilsSharp.WebHelper.DoPost``2(System.String,``0,System.String)">
             <summary>
             Post请求
             </summary>
+            <typeparam name="TP">入参类型</typeparam>
+            <typeparam name="T">出参类型</typeparam>
             <param name="address">请求地址</param>
             <param name="parameters">请求参数</param>
-            <param name="dateTimeFormat">返回的时间格式</param>
+            <param name="dateTimeFormat">入参的时间格式</param>
             <returns></returns>
         </member>
-        <member name="M:UtilsSharp.WebHelper.DoPost``1(System.String,System.Object,System.String)">
+        <member name="M:UtilsSharp.WebHelper.Request``2(System.Net.Http.HttpMethod,System.String,``0,System.String)">
             <summary>
             Post请求
             </summary>
+            <typeparam name="TP">入参类型</typeparam>
+            <typeparam name="T">出参类型</typeparam>
+            <param name="method">表示请求的http方法，大写， 如POST、GET、PUT</param>
             <param name="address">请求地址</param>
             <param name="parameters">请求参数</param>
-            <param name="dateTimeFormat">返回的时间格式</param>
-            <returns></returns>
-        </member>
-        <member name="M:UtilsSharp.WebHelper.PostRequest``1(System.String,System.Object,System.String)">
-            <summary>
-            Post请求
-            </summary>
-            <param name="address">请求地址</param>
-            <param name="parameters">请求参数</param>
-            <param name="dateTimeFormat">返回的时间格式</param>
+            <param name="dateTimeFormat">入参的时间格式</param>
             <returns></returns>
         </member>
         <member name="M:UtilsSharp.WebHelper.BuildUrlParameter(System.String,System.Collections.Generic.Dictionary{System.String,System.String})">
@@ -3102,7 +3078,7 @@
             <param name="parameters">Key-Value形式请求参数字典</param>
             <returns>URL编码后的请求数据</returns>
         </member>
-        <member name="M:UtilsSharp.WebHelper.DoGetAsync(System.String,System.Object)">
+        <member name="M:UtilsSharp.WebHelper.DoGetAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Object})">
             <summary>
             Get请求
             </summary>
@@ -3110,67 +3086,37 @@
             <param name="parameters">请求参数</param>
             <returns></returns>
         </member>
-        <member name="M:UtilsSharp.WebHelper.DoGetAsync``1(System.String,System.Object)">
+        <member name="M:UtilsSharp.WebHelper.DoGetAsync``1(System.String,System.Collections.Generic.Dictionary{System.String,System.Object})">
             <summary>
             Get请求
             </summary>
+            <typeparam name="T">出参类型</typeparam>
             <param name="address">请求地址</param>
             <param name="parameters">请求参数</param>
             <returns></returns>
         </member>
-        <member name="M:UtilsSharp.WebHelper.DoGetAsync(System.String)">
+        <member name="M:UtilsSharp.WebHelper.DoGetAsync``1(System.String,``0,System.String)">
             <summary>
             Get请求
             </summary>
+            <typeparam name="TP">入参类型</typeparam>
             <param name="address">请求地址</param>
+            <param name="parameters">请求参数</param>
+            <param name="dateTimeFormat">入参的时间格式</param>
             <returns></returns>
         </member>
-        <member name="M:UtilsSharp.WebHelper.DoGetAsync``1(System.String)">
+        <member name="M:UtilsSharp.WebHelper.DoGetAsync``2(System.String,``0,System.String)">
             <summary>
             Get请求
             </summary>
-            <param name="address">请求地址</param>
-            <returns></returns>
-        </member>
-        <member name="M:UtilsSharp.WebHelper.DoGetAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.String})">
-            <summary>
-            Get请求
-            </summary>
+            <typeparam name="TP">入参类型</typeparam>
+            <typeparam name="T">出参类型</typeparam>
             <param name="address">请求地址</param>
             <param name="parameters">请求参数</param>
+            <param name="dateTimeFormat">入参的时间格式</param>
             <returns></returns>
         </member>
-        <member name="M:UtilsSharp.WebHelper.DoGetAsync``1(System.String,System.Collections.Generic.Dictionary{System.String,System.String})">
-            <summary>
-            Get请求
-            </summary>
-            <param name="address">请求地址</param>
-            <param name="parameters">请求参数</param>
-            <returns></returns>
-        </member>
-        <member name="M:UtilsSharp.WebHelper.GetRequestAsync``1(System.String,System.Collections.Generic.Dictionary{System.String,System.String})">
-            <summary>
-            Get请求
-            </summary>
-            <param name="address">请求地址</param>
-            <param name="parameters">请求参数</param>
-            <returns></returns>
-        </member>
-        <member name="M:UtilsSharp.WebHelper.DoPostAsync(System.String)">
-            <summary>
-            Post请求
-            </summary>
-            <param name="address">请求地址</param>
-            <returns></returns>
-        </member>
-        <member name="M:UtilsSharp.WebHelper.DoPostAsync``1(System.String)">
-            <summary>
-            Post请求
-            </summary>
-            <param name="address">请求地址</param>
-            <returns></returns>
-        </member>
-        <member name="M:UtilsSharp.WebHelper.DoPostAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.String})">
+        <member name="M:UtilsSharp.WebHelper.DoPostAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Object})">
             <summary>
             Post请求
             </summary>
@@ -3178,55 +3124,47 @@
             <param name="parameters">请求参数</param>
             <returns></returns>
         </member>
-        <member name="M:UtilsSharp.WebHelper.DoPostAsync``1(System.String,System.Collections.Generic.Dictionary{System.String,System.String})">
+        <member name="M:UtilsSharp.WebHelper.DoPostAsync``1(System.String,System.Collections.Generic.Dictionary{System.String,System.Object})">
             <summary>
             Post请求
             </summary>
+            <typeparam name="T">出参类型</typeparam>
             <param name="address">请求地址</param>
             <param name="parameters">请求参数</param>
             <returns></returns>
         </member>
-        <member name="M:UtilsSharp.WebHelper.PostRequestAsync``1(System.String,System.Collections.Generic.Dictionary{System.String,System.String})">
+        <member name="M:UtilsSharp.WebHelper.DoPostAsync``1(System.String,``0,System.String)">
             <summary>
             Post请求
             </summary>
+            <typeparam name="TP">入参类型</typeparam>
             <param name="address">请求地址</param>
             <param name="parameters">请求参数</param>
+            <param name="dateTimeFormat">入参的时间格式</param>
             <returns></returns>
         </member>
-        <member name="M:UtilsSharp.WebHelper.DoPostAsync(System.String,System.Object,System.String)">
+        <member name="M:UtilsSharp.WebHelper.DoPostAsync``2(System.String,``0,System.String)">
             <summary>
             Post请求
             </summary>
+            <typeparam name="TP">入参类型</typeparam>
+            <typeparam name="T">出参类型</typeparam>
             <param name="address">请求地址</param>
             <param name="parameters">请求参数</param>
-            <param name="dateTimeFormat">返回的时间格式</param>
+            <param name="dateTimeFormat">入参的时间格式</param>
             <returns></returns>
         </member>
-        <member name="M:UtilsSharp.WebHelper.DoPostAsync``1(System.String,System.Object,System.String)">
+        <member name="M:UtilsSharp.WebHelper.RequestAsync``2(System.Net.Http.HttpMethod,System.String,``0,System.String)">
             <summary>
-            Post请求
+            Request请求
             </summary>
+            <typeparam name="TP">入参类型</typeparam>
+            <typeparam name="T">出参类型</typeparam>
+            <param name="method">表示请求的http方法，大写， 如POST、GET、PUT</param>
             <param name="address">请求地址</param>
             <param name="parameters">请求参数</param>
-            <param name="dateTimeFormat">返回的时间格式</param>
+            <param name="dateTimeFormat">入参的时间格式</param>
             <returns></returns>
-        </member>
-        <member name="M:UtilsSharp.WebHelper.PostRequestAsync``1(System.String,System.Object,System.String)">
-            <summary>
-            Post请求
-            </summary>
-            <param name="address">请求地址</param>
-            <param name="parameters">请求参数</param>
-            <param name="dateTimeFormat">返回的时间格式</param>
-            <returns></returns>
-        </member>
-        <member name="M:UtilsSharp.WebHelper.BuildQueryAsync(System.Collections.Generic.IDictionary{System.String,System.String})">
-            <summary>
-            组装普通文本请求参数。
-            </summary>
-            <param name="parameters">Key-Value形式请求参数字典</param>
-            <returns>URL编码后的请求数据</returns>
         </member>
         <member name="P:UtilsSharp.WebHelper.CookieContainer">
             <summary>
@@ -3261,7 +3199,7 @@
             <summary>
             计时器过期
             </summary>
-            <param name="userdata"></param>
+            <param name="userData"></param>
         </member>
         <member name="T:UtilsSharp.WebHelperHandleResult">
             <summary>
@@ -3300,74 +3238,74 @@
             <param name="response">返回实体</param>
             <returns></returns>
         </member>
-        <member name="T:UtilsSharp.Calculagraph">
+        <member name="T:UtilsSharp.TimeCalculator">
             <summary>
              创建计时器监视响应情况，过期则取消下载
             </summary>
         </member>
-        <member name="E:UtilsSharp.Calculagraph.TimeOver">
+        <member name="E:UtilsSharp.TimeCalculator.TimeOver">
             <summary>
             时间到事件
             </summary>
         </member>
-        <member name="F:UtilsSharp.Calculagraph._startTime">
+        <member name="F:UtilsSharp.TimeCalculator._startTime">
             <summary>
             开始时间
             </summary>
         </member>
-        <member name="F:UtilsSharp.Calculagraph._timeout">
+        <member name="F:UtilsSharp.TimeCalculator._timeout">
             <summary>
             时间戳
             </summary>
         </member>
-        <member name="F:UtilsSharp.Calculagraph.cnHasStarted">
+        <member name="F:UtilsSharp.TimeCalculator.CnHasStarted">
             <summary>
             是否开始
             </summary>
         </member>
-        <member name="F:UtilsSharp.Calculagraph.cnUserdata">
+        <member name="F:UtilsSharp.TimeCalculator.CnUserData">
             <summary>
             用户数据
             </summary>
         </member>
-        <member name="M:UtilsSharp.Calculagraph.#ctor(System.Object)">
+        <member name="M:UtilsSharp.TimeCalculator.#ctor(System.Object)">
             <summary>
             计时器构造方法
             </summary>
-            <param name="userdata">计时结束时回调的用户数据</param>
+            <param name="userData">计时结束时回调的用户数据</param>
         </member>
-        <member name="M:UtilsSharp.Calculagraph.OnTimeOver(System.Object)">
+        <member name="M:UtilsSharp.TimeCalculator.OnTimeOver(System.Object)">
             <summary>
             超时退出
             </summary>
-            <param name="userdata"></param>
+            <param name="userData"></param>
         </member>
-        <member name="P:UtilsSharp.Calculagraph.Timeout">
+        <member name="P:UtilsSharp.TimeCalculator.Timeout">
             <summary>
             过期时间(秒)
             </summary>
         </member>
-        <member name="P:UtilsSharp.Calculagraph.HasStarted">
+        <member name="P:UtilsSharp.TimeCalculator.HasStarted">
             <summary>
             是否已经开始计时
             </summary>
         </member>
-        <member name="M:UtilsSharp.Calculagraph.Start">
+        <member name="M:UtilsSharp.TimeCalculator.Start">
             <summary>
             开始计时
             </summary>
         </member>
-        <member name="M:UtilsSharp.Calculagraph.Reset">
+        <member name="M:UtilsSharp.TimeCalculator.Reset">
             <summary>
             重置
             </summary>
         </member>
-        <member name="M:UtilsSharp.Calculagraph.Stop">
+        <member name="M:UtilsSharp.TimeCalculator.Stop">
             <summary>
             停止计时
             </summary>
         </member>
-        <member name="M:UtilsSharp.Calculagraph.CheckTimeout">
+        <member name="M:UtilsSharp.TimeCalculator.CheckTimeout">
             <summary>
             检查是否过期
             </summary>
@@ -3377,7 +3315,7 @@
             <summary>
             过期时回调委托
             </summary>
-            <param name="userdata">用户数据</param>
+            <param name="userData">用户数据</param>
         </member>
         <member name="T:UtilsSharp.WinCmdHelper">
             <summary>

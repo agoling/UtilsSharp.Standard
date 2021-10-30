@@ -270,7 +270,7 @@ namespace UtilsSharp
             try
             {
                 var webHelper = new WebHelper();
-                result = webHelper.DoPost<object>(webhook, message);
+                result = webHelper.DoPost<object,object>(webhook, message);
                 return result;
             }
             catch (Exception ex)

@@ -4333,7 +4333,7 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "http://develop.zhangxiaobao.net/NuGet/nuget/": {},
+        "http://218.66.91.50:8081/repository/nuget-group/index.json": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {

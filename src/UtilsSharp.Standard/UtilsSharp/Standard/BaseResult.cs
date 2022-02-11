@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 
 namespace UtilsSharp.Standard
 {
     /// <summary>
     /// 返回结果模型
     /// </summary>
+    [DataContract]
     public class BaseResult : BaseResult<string>
     {
 
@@ -15,11 +17,13 @@ namespace UtilsSharp.Standard
     /// 返回结果模型
     /// </summary>
     /// <typeparam name="T">自定义结果模型</typeparam>
+    [DataContract]
     public class BaseResult<T> : BaseInfoResult
     {
         /// <summary>
         /// 返回对象结果
         /// </summary>
+        [DataMember(Order = 1)]
         public T Result { get; set; }
 
         /// <summary>
@@ -71,11 +75,13 @@ namespace UtilsSharp.Standard
     /// 返回分页结果模型
     /// </summary>
     /// <typeparam name="T">自定义结果模型</typeparam>
+    [DataContract]
     public class BasePagedResult<T> : BaseInfoResult
     {
         /// <summary>
         /// 返回对象结果
         /// </summary>
+        [DataMember(Order = 1)]
         public BasePagedInfoResult<T> Result { get; set; } = new BasePagedInfoResult<T>();
 
         /// <summary>
@@ -118,6 +124,7 @@ namespace UtilsSharp.Standard
     /// <summary>
     /// 基础结果信息
     /// </summary>
+    [DataContract]
     public abstract class BaseInfoResult
     {
         /// <summary>
@@ -137,11 +144,13 @@ namespace UtilsSharp.Standard
         ///<para>8000|dbError|数据库异常</para>
         ///9000|SystemError|系统错误
         /// </summary>
+        [DataMember(Order = 1)]
         public int Code { get; set; } = 200;
 
         /// <summary>
         /// 提示信息
         /// </summary>
+        [DataMember(Order = 2)]
         public string Msg { get; set; } = "请求成功";
 
         /// <summary>
@@ -193,21 +202,25 @@ namespace UtilsSharp.Standard
     /// 分页基础结果信息
     /// </summary>
     /// <typeparam name="T"></typeparam>
+    [DataContract]
     public class BasePagedInfoResult<T>
     {
         /// <summary>
         /// 页码
         /// </summary>
+        [DataMember(Order = 1)]
         public int PageIndex { get; set; } = 1;
 
         /// <summary>
         /// 每页大小
         /// </summary>
+        [DataMember(Order = 2)]
         public int PageSize { get; set; }
 
         /// <summary>
         /// 总条数
         /// </summary>
+        [DataMember(Order = 3)]
         public int TotalCount { get; set; }
 
         /// <summary>
@@ -229,6 +242,7 @@ namespace UtilsSharp.Standard
         /// <summary>
         /// 排序
         /// </summary>
+        [DataMember(Order = 4)]
         public string OrderBy { get; set; }
 
         /// <summary>
@@ -244,12 +258,14 @@ namespace UtilsSharp.Standard
         /// <summary>
         /// 结果信息
         /// </summary>
+        [DataMember(Order = 5)]
         public List<T> List { get; set; }
 
         /// <summary>
         /// 参数信息
         /// </summary>
-        public object Params { get; set; }
+        [DataMember(Order = 6)]
+        public string Params { get; set; }
 
     }
 }

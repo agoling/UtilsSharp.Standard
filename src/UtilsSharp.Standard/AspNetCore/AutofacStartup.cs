@@ -1,5 +1,6 @@
 ﻿using Autofac;
 using Autofac.Extras.DynamicProxy;
+using AutoMapper;
 using Castle.DynamicProxy;
 using Microsoft.AspNetCore.Http;
 using UtilsSharp;
@@ -33,6 +34,22 @@ namespace AspNetCore
             builder.RegisterAssemblyTypes(enumerable.ToArray()).Where(t => typeof(ITransientDependency).IsAssignableFrom(t) && typeof(ITransientDependency) != t).AsImplementedInterfaces().InstancePerDependency().EnableInterfaceInterceptors();//注册类
             builder.RegisterAssemblyTypes(enumerable.ToArray()).Where(t => typeof(IUnitOfWorkDependency).IsAssignableFrom(t) && typeof(IUnitOfWorkDependency) != t).AsImplementedInterfaces().InstancePerLifetimeScope().EnableInterfaceInterceptors();//注册类
             builder.RegisterType<HttpContextAccessor>().As<IHttpContextAccessor>().InstancePerLifetimeScope();
+            //注册AutoMapping
+            builder.Register(context => new MapperConfiguration(cfg =>
+                {
+                    cfg.AddMaps(enumerable);
+                }
+            )).AsSelf().SingleInstance();
+
+            builder.Register(c =>
+                {
+                    //This resolves a new context that can be used later.
+                    var context = c.Resolve<IComponentContext>();
+                    var config = context.Resolve<MapperConfiguration>();
+                    return config.CreateMapper(context.Resolve);
+                })
+                .As<IMapper>()
+                .InstancePerLifetimeScope();
         }
 
         /// <summary>
@@ -49,6 +66,22 @@ namespace AspNetCore
             builder.RegisterAssemblyTypes(enumerable.ToArray()).Where(t => typeof(ITransientDependency).IsAssignableFrom(t) && typeof(ITransientDependency) != t).AsImplementedInterfaces().InstancePerDependency().InterceptedBy(typeof(T)).EnableInterfaceInterceptors();//注册类并为其添加拦截器
             builder.RegisterAssemblyTypes(enumerable.ToArray()).Where(t => typeof(IUnitOfWorkDependency).IsAssignableFrom(t) && typeof(IUnitOfWorkDependency) != t).AsImplementedInterfaces().InstancePerLifetimeScope().InterceptedBy(typeof(T)).EnableInterfaceInterceptors();//注册类并为其添加拦截器
             builder.RegisterType<HttpContextAccessor>().As<IHttpContextAccessor>().InstancePerLifetimeScope();
+            //注册AutoMapping
+            builder.Register(context => new MapperConfiguration(cfg =>
+                {
+                    cfg.AddMaps(enumerable);
+                }
+            )).AsSelf().SingleInstance();
+
+            builder.Register(c =>
+                {
+                    //This resolves a new context that can be used later.
+                    var context = c.Resolve<IComponentContext>();
+                    var config = context.Resolve<MapperConfiguration>();
+                    return config.CreateMapper(context.Resolve);
+                })
+                .As<IMapper>()
+                .InstancePerLifetimeScope();
         }
     }
 }

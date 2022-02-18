@@ -35,9 +35,9 @@ namespace UtilsSharp
         /// </summary>
         /// <param name="num">需要转换的双精度浮点数</param>
         /// <returns></returns>
-        public static BaseResult ToCnMoney(double num)
+        public static BaseResult<string> ToCnMoney(double num)
         {
-            var result = new BaseResult();
+            var result = new BaseResult<string>();
             try
             {
                 string[] lsShZ = { "零", "壹", "贰", "叁", "肆", "伍", "陆", "柒", "捌", "玖", "拾" };

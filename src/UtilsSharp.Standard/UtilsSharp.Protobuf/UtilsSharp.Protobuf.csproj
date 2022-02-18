@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <Authors>Agoling</Authors>
+    <Description>本项目是Protobuf帮助类基于.net standard2.0封装，属于UtilsSharp项目分支，依赖于protobuf-net</Description>
+    <PackageProjectUrl>https://github.com/agoling/UtilsSharp.Standard</PackageProjectUrl>
+    <PackageIcon>UtilsSharp.jpg</PackageIcon>
+    <PackageIconUrl />
+    <RepositoryUrl>https://github.com/agoling/UtilsSharp.Standard</RepositoryUrl>
+    <PackageTags>UtilsSharp Protobuf帮助类 Protobuf-net UtilsSharp.Protobuf</PackageTags>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="protobuf-net" Version="3.0.101" />
+    <PackageReference Include="UtilsSharp" Version="2.4.8" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\UtilsSharp.jpg">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+  </ItemGroup>
+
+</Project>

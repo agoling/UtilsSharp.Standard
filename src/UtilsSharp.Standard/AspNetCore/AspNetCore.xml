@@ -84,6 +84,35 @@
             <param name="app">IApplicationBuilder</param>
             <returns></returns>
         </member>
+        <member name="T:AspNetCore.Filter.ValidationActionFilter">
+            <summary>
+            验证入参模型过滤器
+            </summary>
+        </member>
+        <member name="M:AspNetCore.Filter.ValidationActionFilter.OnActionExecuting(Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext)">
+            <summary>
+            Action执行前
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="M:AspNetCore.Filter.ValidationActionFilter.OnActionExecuted(Microsoft.AspNetCore.Mvc.Filters.ActionExecutedContext)">
+            <summary>
+            Action执行后
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="T:AspNetCore.Filter.ValidationExtensions">
+            <summary>
+             验证入参模型插件
+            </summary>
+        </member>
+        <member name="M:AspNetCore.Filter.ValidationExtensions.AddValidationExtensions(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            添加Swagger扩展服务
+            </summary>
+            <param name="services">services</param>
+            <returns></returns>
+        </member>
         <member name="T:AspNetCore.Interceptor.LoggerInterceptor">
             <summary>
             日志拦截器
@@ -124,6 +153,11 @@
         <member name="T:AspNetCore.Swagger.AddRequiredHeaderParameter">
             <summary>
             添加Header配置
+            </summary>
+        </member>
+        <member name="M:AspNetCore.Swagger.AddRequiredHeaderParameter.Apply(Microsoft.OpenApi.Models.OpenApiOperation,Swashbuckle.AspNetCore.SwaggerGen.OperationFilterContext)">
+            <summary>
+            Apply
             </summary>
         </member>
         <member name="T:AspNetCore.Swagger.SwaggerDocOptions">

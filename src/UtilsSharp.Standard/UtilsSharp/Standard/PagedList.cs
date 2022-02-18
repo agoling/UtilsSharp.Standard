@@ -10,7 +10,7 @@ namespace UtilsSharp.Standard
     /// </summary>
     /// <typeparam name="T">分页项类型</typeparam>
     [Serializable]
-    public class PagedList<T> : List<T>, IPagedList<T>
+    public class PagedList<T> : List<T>, IPagedList<T>, IProtobufEntity
     {
         /// <summary>
         /// 构造函数

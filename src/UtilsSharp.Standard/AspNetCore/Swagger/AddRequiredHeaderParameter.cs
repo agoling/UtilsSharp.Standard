@@ -10,11 +10,12 @@ namespace AspNetCore.Swagger
     /// </summary>
     public class AddRequiredHeaderParameter : IOperationFilter
     {
+        /// <summary>
+        /// Apply
+        /// </summary>
         public void Apply(OpenApiOperation operation, OperationFilterContext context)
         {
-            if (operation.Parameters == null)
-                operation.Parameters = new List<OpenApiParameter>();
-
+            operation.Parameters ??= new List<OpenApiParameter>();
             if(AspNetCoreExtensionsConfig.SwaggerDocOptions==null) return;
             if (AspNetCoreExtensionsConfig.SwaggerDocOptions.HeaderParameters == null || AspNetCoreExtensionsConfig.SwaggerDocOptions.HeaderParameters.Count <= 0) return;
             foreach (var item in AspNetCoreExtensionsConfig.SwaggerDocOptions.HeaderParameters)

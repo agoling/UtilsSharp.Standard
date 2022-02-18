@@ -7,23 +7,40 @@ namespace UtilsSharp.Standard
     /// <summary>
     /// 返回结果模型
     /// </summary>
-    [DataContract]
-    public class BaseResult : BaseResult<string>
-    {
-
-    }
-
-    /// <summary>
-    /// 返回结果模型
-    /// </summary>
     /// <typeparam name="T">自定义结果模型</typeparam>
     [DataContract]
-    public class BaseResult<T> : BaseInfoResult
+    public class BaseResult<T>
     {
+        /// <summary>
+        /// 返回码|标识|说明
+        ///<para>200|success|请求成功</para>
+        ///999|defaultTips|业务提示
+        ///<para>2000|apiError|接口异常</para>
+        ///3000|networkError|网络异常
+        ///<para>4000|notLogin|未登录</para>
+        ///4010|authExpire|授权过期
+        ///<para>5000|exception|TryCatch异常错误</para>
+        ///6000|dataNotFound|数据找不到
+        ///<para>6010|dataNotValid|数据验证不通过</para>
+        ///7000|businessError|默认业务性错误
+        ///<para>7010|parameterCannotBeEmpty|参数不能为空</para>
+        ///7020|invalidParameter|非法参数
+        ///<para>8000|dbError|数据库异常</para>
+        ///9000|SystemError|系统错误
+        /// </summary>
+        [DataMember(Order = 1)]
+        public int Code { get; set; } = 200;
+
+        /// <summary>
+        /// 提示信息
+        /// </summary>
+        [DataMember(Order = 2)]
+        public string Msg { get; set; } = "请求成功";
+
         /// <summary>
         /// 返回对象结果
         /// </summary>
-        [DataMember(Order = 1)]
+        [DataMember(Order = 3)]
         public T Result { get; set; }
 
         /// <summary>
@@ -34,6 +51,44 @@ namespace UtilsSharp.Standard
             SetOkResult(default, "");
         }
 
+        #region 设置失败
+
+        /// <summary>
+        /// 设置错误提示
+        /// </summary>
+        /// <param name="msg">提示信息</param>
+        public void SetError(string msg)
+        {
+            SetError(msg, 999);
+        }
+
+        /// <summary>
+        /// 设置错误提示
+        /// </summary>
+        /// <param name="msg">提示信息</param>
+        /// <param name="code">
+        /// 返回码|标识|说明
+        ///<para>200|success|请求成功</para>
+        ///999|defaultTips|业务提示
+        ///<para>2000|apiError|接口异常</para>
+        ///3000|networkError|网络异常
+        ///<para>4000|notLogin|未登录</para>
+        ///4010|authExpire|授权过期
+        ///<para>5000|exception|TryCatch异常错误</para>
+        ///6000|dataNotFound|数据找不到
+        ///<para>6010|dataNotValid|数据验证不通过</para>
+        ///7000|businessError|默认业务性异常
+        ///<para>8000|dbError|数据库异常</para>
+        ///9000|SystemError|系统错误
+        /// </param>
+        public void SetError(string msg, int code)
+        {
+            Msg = msg;
+            Code = code;
+        }
+        #endregion
+
+        #region 设置成功
         /// <summary>
         /// 执行成功
         /// </summary>
@@ -69,6 +124,8 @@ namespace UtilsSharp.Standard
             }
             Code = 200;
         }
+        #endregion
+        
     }
 
     /// <summary>
@@ -76,14 +133,78 @@ namespace UtilsSharp.Standard
     /// </summary>
     /// <typeparam name="T">自定义结果模型</typeparam>
     [DataContract]
-    public class BasePagedResult<T> : BaseInfoResult
+    public class BasePagedResult<T>
     {
+        /// <summary>
+        /// 返回码|标识|说明
+        ///<para>200|success|请求成功</para>
+        ///999|defaultTips|业务提示
+        ///<para>2000|apiError|接口异常</para>
+        ///3000|networkError|网络异常
+        ///<para>4000|notLogin|未登录</para>
+        ///4010|authExpire|授权过期
+        ///<para>5000|exception|TryCatch异常错误</para>
+        ///6000|dataNotFound|数据找不到
+        ///<para>6010|dataNotValid|数据验证不通过</para>
+        ///7000|businessError|默认业务性错误
+        ///<para>7010|parameterCannotBeEmpty|参数不能为空</para>
+        ///7020|invalidParameter|非法参数
+        ///<para>8000|dbError|数据库异常</para>
+        ///9000|SystemError|系统错误
+        /// </summary>
+        [DataMember(Order = 1)]
+        public int Code { get; set; } = 200;
+
+        /// <summary>
+        /// 提示信息
+        /// </summary>
+        [DataMember(Order = 2)]
+        public string Msg { get; set; } = "请求成功";
+
         /// <summary>
         /// 返回对象结果
         /// </summary>
-        [DataMember(Order = 1)]
+        [DataMember(Order = 3)]
         public BasePagedInfoResult<T> Result { get; set; } = new BasePagedInfoResult<T>();
 
+        #region 设置失败
+
+        /// <summary>
+        /// 设置错误提示
+        /// </summary>
+        /// <param name="msg">提示信息</param>
+        public void SetError(string msg)
+        {
+            SetError(msg, 999);
+        }
+
+        /// <summary>
+        /// 设置错误提示
+        /// </summary>
+        /// <param name="msg">提示信息</param>
+        /// <param name="code">
+        /// 返回码|标识|说明
+        ///<para>200|success|请求成功</para>
+        ///999|defaultTips|业务提示
+        ///<para>2000|apiError|接口异常</para>
+        ///3000|networkError|网络异常
+        ///<para>4000|notLogin|未登录</para>
+        ///4010|authExpire|授权过期
+        ///<para>5000|exception|TryCatch异常错误</para>
+        ///6000|dataNotFound|数据找不到
+        ///<para>6010|dataNotValid|数据验证不通过</para>
+        ///7000|businessError|默认业务性异常
+        ///<para>8000|dbError|数据库异常</para>
+        ///9000|SystemError|系统错误
+        /// </param>
+        public void SetError(string msg, int code)
+        {
+            Msg = msg;
+            Code = code;
+        }
+        #endregion
+
+        #region 设置成功
         /// <summary>
         /// 执行成功
         /// </summary>
@@ -119,83 +240,8 @@ namespace UtilsSharp.Standard
             }
             Code = 200;
         }
-    }
-
-    /// <summary>
-    /// 基础结果信息
-    /// </summary>
-    [DataContract]
-    public abstract class BaseInfoResult
-    {
-        /// <summary>
-        /// 返回码|标识|说明
-        ///<para>200|success|请求成功</para>
-        ///999|defaultTips|业务提示
-        ///<para>2000|apiError|接口异常</para>
-        ///3000|networkError|网络异常
-        ///<para>4000|notLogin|未登录</para>
-        ///4010|authExpire|授权过期
-        ///<para>5000|exception|TryCatch异常错误</para>
-        ///6000|dataNotFound|数据找不到
-        ///<para>6010|dataNotValid|数据验证不通过</para>
-        ///7000|businessError|默认业务性错误
-        ///<para>7010|parameterCannotBeEmpty|参数不能为空</para>
-        ///7020|invalidParameter|非法参数
-        ///<para>8000|dbError|数据库异常</para>
-        ///9000|SystemError|系统错误
-        /// </summary>
-        [DataMember(Order = 1)]
-        public int Code { get; set; } = 200;
-
-        /// <summary>
-        /// 提示信息
-        /// </summary>
-        [DataMember(Order = 2)]
-        public string Msg { get; set; } = "请求成功";
-
-        /// <summary>
-        /// 设置错误提示
-        /// </summary>
-        /// <param name="result">基础结果信息</param>
-        public void SetError(BaseInfoResult result)
-        {
-            Code = result.Code;
-            Msg = result.Msg;
-        }
-
-        /// <summary>
-        /// 设置错误提示
-        /// </summary>
-        /// <param name="msg">提示信息</param>
-        public void SetError(string msg)
-        {
-            SetError(msg, 999);
-        }
-
-        /// <summary>
-        /// 设置错误提示
-        /// </summary>
-        /// <param name="msg">提示信息</param>
-        /// <param name="code">
-        /// 返回码|标识|说明
-        ///<para>200|success|请求成功</para>
-        ///999|defaultTips|业务提示
-        ///<para>2000|apiError|接口异常</para>
-        ///3000|networkError|网络异常
-        ///<para>4000|notLogin|未登录</para>
-        ///4010|authExpire|授权过期
-        ///<para>5000|exception|TryCatch异常错误</para>
-        ///6000|dataNotFound|数据找不到
-        ///<para>6010|dataNotValid|数据验证不通过</para>
-        ///7000|businessError|默认业务性异常
-        ///<para>8000|dbError|数据库异常</para>
-        ///9000|SystemError|系统错误
-        /// </param>
-        public void SetError(string msg, int code)
-        {
-            Msg = msg;
-            Code = code;
-        }
+        #endregion
+        
     }
 
     /// <summary>

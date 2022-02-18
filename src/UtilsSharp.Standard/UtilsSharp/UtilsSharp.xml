@@ -2207,16 +2207,35 @@
             排序类型：desc,asc
             </summary>
         </member>
-        <member name="T:UtilsSharp.Standard.BaseResult">
-            <summary>
-            返回结果模型
-            </summary>
-        </member>
         <member name="T:UtilsSharp.Standard.BaseResult`1">
             <summary>
             返回结果模型
             </summary>
             <typeparam name="T">自定义结果模型</typeparam>
+        </member>
+        <member name="P:UtilsSharp.Standard.BaseResult`1.Code">
+             <summary>
+             返回码|标识|说明
+            <para>200|success|请求成功</para>
+            999|defaultTips|业务提示
+            <para>2000|apiError|接口异常</para>
+            3000|networkError|网络异常
+            <para>4000|notLogin|未登录</para>
+            4010|authExpire|授权过期
+            <para>5000|exception|TryCatch异常错误</para>
+            6000|dataNotFound|数据找不到
+            <para>6010|dataNotValid|数据验证不通过</para>
+            7000|businessError|默认业务性错误
+            <para>7010|parameterCannotBeEmpty|参数不能为空</para>
+            7020|invalidParameter|非法参数
+            <para>8000|dbError|数据库异常</para>
+            9000|SystemError|系统错误
+             </summary>
+        </member>
+        <member name="P:UtilsSharp.Standard.BaseResult`1.Msg">
+            <summary>
+            提示信息
+            </summary>
         </member>
         <member name="P:UtilsSharp.Standard.BaseResult`1.Result">
             <summary>
@@ -2227,6 +2246,33 @@
             <summary>
             执行成功
             </summary>
+        </member>
+        <member name="M:UtilsSharp.Standard.BaseResult`1.SetError(System.String)">
+            <summary>
+            设置错误提示
+            </summary>
+            <param name="msg">提示信息</param>
+        </member>
+        <member name="M:UtilsSharp.Standard.BaseResult`1.SetError(System.String,System.Int32)">
+             <summary>
+             设置错误提示
+             </summary>
+             <param name="msg">提示信息</param>
+             <param name="code">
+             返回码|标识|说明
+            <para>200|success|请求成功</para>
+            999|defaultTips|业务提示
+            <para>2000|apiError|接口异常</para>
+            3000|networkError|网络异常
+            <para>4000|notLogin|未登录</para>
+            4010|authExpire|授权过期
+            <para>5000|exception|TryCatch异常错误</para>
+            6000|dataNotFound|数据找不到
+            <para>6010|dataNotValid|数据验证不通过</para>
+            7000|businessError|默认业务性异常
+            <para>8000|dbError|数据库异常</para>
+            9000|SystemError|系统错误
+             </param>
         </member>
         <member name="M:UtilsSharp.Standard.BaseResult`1.SetOk(System.String)">
             <summary>
@@ -2253,36 +2299,7 @@
             </summary>
             <typeparam name="T">自定义结果模型</typeparam>
         </member>
-        <member name="P:UtilsSharp.Standard.BasePagedResult`1.Result">
-            <summary>
-            返回对象结果
-            </summary>
-        </member>
-        <member name="M:UtilsSharp.Standard.BasePagedResult`1.SetOk(System.String)">
-            <summary>
-            执行成功
-            </summary>
-            <param name="msg">成功提示信息</param>
-        </member>
-        <member name="M:UtilsSharp.Standard.BasePagedResult`1.SetOkResult(UtilsSharp.Standard.BasePagedInfoResult{`0})">
-            <summary>
-            执行成功并返回结果
-            </summary>
-            <param name="result">返回对象结果</param>
-        </member>
-        <member name="M:UtilsSharp.Standard.BasePagedResult`1.SetOkResult(UtilsSharp.Standard.BasePagedInfoResult{`0},System.String)">
-            <summary>
-            执行成功并返回结果
-            </summary>
-            <param name="result">返回对象结果</param>
-            <param name="msg">成功提示信息</param>
-        </member>
-        <member name="T:UtilsSharp.Standard.BaseInfoResult">
-            <summary>
-            基础结果信息
-            </summary>
-        </member>
-        <member name="P:UtilsSharp.Standard.BaseInfoResult.Code">
+        <member name="P:UtilsSharp.Standard.BasePagedResult`1.Code">
              <summary>
              返回码|标识|说明
             <para>200|success|请求成功</para>
@@ -2301,24 +2318,23 @@
             9000|SystemError|系统错误
              </summary>
         </member>
-        <member name="P:UtilsSharp.Standard.BaseInfoResult.Msg">
+        <member name="P:UtilsSharp.Standard.BasePagedResult`1.Msg">
             <summary>
             提示信息
             </summary>
         </member>
-        <member name="M:UtilsSharp.Standard.BaseInfoResult.SetError(UtilsSharp.Standard.BaseInfoResult)">
+        <member name="P:UtilsSharp.Standard.BasePagedResult`1.Result">
             <summary>
-            设置错误提示
+            返回对象结果
             </summary>
-            <param name="result">基础结果信息</param>
         </member>
-        <member name="M:UtilsSharp.Standard.BaseInfoResult.SetError(System.String)">
+        <member name="M:UtilsSharp.Standard.BasePagedResult`1.SetError(System.String)">
             <summary>
             设置错误提示
             </summary>
             <param name="msg">提示信息</param>
         </member>
-        <member name="M:UtilsSharp.Standard.BaseInfoResult.SetError(System.String,System.Int32)">
+        <member name="M:UtilsSharp.Standard.BasePagedResult`1.SetError(System.String,System.Int32)">
              <summary>
              设置错误提示
              </summary>
@@ -2338,6 +2354,25 @@
             <para>8000|dbError|数据库异常</para>
             9000|SystemError|系统错误
              </param>
+        </member>
+        <member name="M:UtilsSharp.Standard.BasePagedResult`1.SetOk(System.String)">
+            <summary>
+            执行成功
+            </summary>
+            <param name="msg">成功提示信息</param>
+        </member>
+        <member name="M:UtilsSharp.Standard.BasePagedResult`1.SetOkResult(UtilsSharp.Standard.BasePagedInfoResult{`0})">
+            <summary>
+            执行成功并返回结果
+            </summary>
+            <param name="result">返回对象结果</param>
+        </member>
+        <member name="M:UtilsSharp.Standard.BasePagedResult`1.SetOkResult(UtilsSharp.Standard.BasePagedInfoResult{`0},System.String)">
+            <summary>
+            执行成功并返回结果
+            </summary>
+            <param name="result">返回对象结果</param>
+            <param name="msg">成功提示信息</param>
         </member>
         <member name="T:UtilsSharp.Standard.BasePagedInfoResult`1">
             <summary>
@@ -2581,6 +2616,12 @@
         <member name="P:UtilsSharp.Standard.Interface.IPagedList`1.HasNextPage">
             <summary>
             是否存在下一页
+            </summary>
+        </member>
+        <member name="T:UtilsSharp.Standard.Interface.IProtobufEntity">
+            <summary>
+            ReSharper disable once CommentTypo
+            Protobuf实体
             </summary>
         </member>
         <member name="T:UtilsSharp.Standard.PagedList`1">
@@ -2890,6 +2931,48 @@
             <typeparam name="T">对象模型</typeparam>
             <param name="obj">对象</param>
             <returns></returns>
+        </member>
+        <member name="T:UtilsSharp.ValidationHelper">
+            <summary>
+            验证入参模型帮助类
+            </summary>
+        </member>
+        <member name="M:UtilsSharp.ValidationHelper.IsValid(System.Object)">
+            <summary>
+            验证模型参数
+            </summary>
+            <param name="value">模型对象</param>
+            <returns></returns>
+        </member>
+        <member name="T:UtilsSharp.ValidResult">
+            <summary>
+            验证结果
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.ValidResult.ErrorMembers">
+            <summary>
+            错误成员集合
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.ValidResult.IsValid">
+            <summary>
+            是否验证成功
+            </summary>
+        </member>
+        <member name="T:UtilsSharp.ErrorMember">
+            <summary>
+            错误成员
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.ErrorMember.ErrorMessage">
+            <summary>
+            错误信息
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.ErrorMember.ErrorMemberName">
+            <summary>
+            错误成员名称
+            </summary>
         </member>
         <member name="T:UtilsSharp.VerificationCodeHelper">
             <summary>

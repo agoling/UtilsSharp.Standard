@@ -25,7 +25,7 @@ namespace UnitTestProjectNet.Core
         {
             using (var webHelper = new WebHelper())
             {
-                var dic = new Dictionary<string, string> { { "sign", "b486a1fa5e024be0a45c096ca5f6cfec" } };
+                var dic = new Dictionary<string, object> { { "sign", "b486a1fa5e024be0a45c096ca5f6cfec" } };
                 var url = $"https://www.baidu.com/api/xxxxxx";
                 webHelper.Headers.Add("Content-Type", "application/json;charset=UTF-8");
                 webHelper.Proxy=new WebProxy("127.0.0.1:98"){Credentials = new NetworkCredential("username","password")};//代理请求

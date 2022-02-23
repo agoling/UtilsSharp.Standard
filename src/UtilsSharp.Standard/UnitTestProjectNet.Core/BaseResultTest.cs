@@ -80,7 +80,7 @@ namespace UnitTestProjectNet.Core
                 response.PageIndex = request.PageIndex;
                 response.PageSize = request.PageSize;
                 response.TotalCount = 100;
-                response.Params = request;
+                response.Params =JsonConvert.SerializeObject(request);
                 result.SetOkResult(response);
                 return result;
             }

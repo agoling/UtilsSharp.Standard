@@ -13,7 +13,7 @@
 
   <ItemGroup>
     <PackageReference Include="protobuf-net" Version="3.0.101" />
-    <PackageReference Include="UtilsSharp" Version="2.4.8" />
+    <PackageReference Include="UtilsSharp" Version="2.4.9" />
   </ItemGroup>
 
   <ItemGroup>

@@ -75,6 +75,18 @@ namespace OssHelper
         /// <param name="reqOssEndpoint">ossEndpoint(默认访问内网)</param>
         public List<string> GetObjects(string prefix, string reqOssEndpoint = "")
         {
+            return GetObjectsResult(prefix, reqOssEndpoint).Result;
+        }
+
+
+        /// <summary>
+        /// 通过指定目录路径列举该目录下的所有文件
+        /// </summary>
+        /// <param name="prefix">文件目录路径</param>
+        /// <param name="reqOssEndpoint">ossEndpoint(默认访问内网)</param>
+        public OssResult<List<string>> GetObjectsResult(string prefix, string reqOssEndpoint = "")
+        {
+            var result = new OssResult<List<string>>();
             if (Setting == null)
             {
                 throw new Exception("请先配置OssSetting");
@@ -87,7 +99,7 @@ namespace OssHelper
             var keys = new List<string>();
             try
             {
-                ObjectListing result;
+                ObjectListing r;
                 var nextMarker = string.Empty;
                 do
                 {
@@ -97,16 +109,20 @@ namespace OssHelper
                         MaxKeys = 100,
                         Prefix = prefix,
                     };
-                    result = client.ListObjects(listObjectsRequest);
-                    keys.AddRange(result.ObjectSummaries.Select(s => s.Key));
-                    nextMarker = result.NextMarker;
-                } while (result.IsTruncated);
+                    r = client.ListObjects(listObjectsRequest);
+                    keys.AddRange(r.ObjectSummaries.Select(s => s.Key));
+                    nextMarker = r.NextMarker;
+                } while (r.IsTruncated);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                // ignored
+                result.Code = 5000;
+                result.Msg =$"Message:{ex.Message},StackTrace:{ex.StackTrace}";
+                return result;
             }
-            return keys;
+            result.Code = 200;
+            result.Result = keys;
+            return result;
         }
 
         /// <summary>
@@ -132,6 +148,36 @@ namespace OssHelper
         /// <returns></returns>
         public bool SaveFile(string ossFilePath, Stream content, string reqOssEndpoint = "")
         {
+            var r= SaveFileResult(ossFilePath, content, reqOssEndpoint);
+            return r.Code == 200;
+        }
+
+
+        /// <summary>
+        /// 保存文件内容到阿里对象存储(oss)
+        /// </summary>
+        /// <param name="ossFilePath">阿里对象存储(oss)服务器文件路径如：tools/2017-03-24/xxxx.jpg</param>
+        /// <param name="content">文件内容</param>
+        /// <param name="reqOssEndpoint">ossEndpoint(默认访问内网)</param>
+        /// <returns></returns>
+        public OssResult<PutObjectResult> SaveStrResult(string ossFilePath, string content, string reqOssEndpoint = "")
+        {
+            var binaryData = Encoding.UTF8.GetBytes(content);
+            var requestContent = new MemoryStream(binaryData);
+            return SaveFileResult(ossFilePath, requestContent, reqOssEndpoint);
+        }
+
+
+        /// <summary>
+        /// 保存文件流到阿里对象存储(oss)
+        /// </summary>
+        /// <param name="ossFilePath">阿里对象存储(oss)服务器文件路径如：tools/2017-03-24/xxxxxx.jpg</param>
+        /// <param name="content">文件流</param>
+        /// <param name="reqOssEndpoint">ossEndpoint(默认访问内网)</param>
+        /// <returns></returns>
+        public OssResult<PutObjectResult> SaveFileResult(string ossFilePath, Stream content, string reqOssEndpoint = "")
+        {
+            var result = new OssResult<PutObjectResult>();
             if (Setting == null)
             {
                 throw new Exception("请先配置OssSetting");
@@ -143,15 +189,20 @@ namespace OssHelper
             var client = new OssClient(reqOssEndpoint, Setting.OssAccessKeyId, Setting.OssAccessKeySecret);
             try
             {
-                client.PutObject(Setting.OssBucketName, ossFilePath, content);
-                return true;
+                var r=client.PutObject(Setting.OssBucketName, ossFilePath, content);
+                result.Result = r;
+                result.Code = Convert.ToInt32(r.HttpStatusCode);
+                return result;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                return false;
+                result.Code = 5000;
+                result.Msg = $"Message:{ex.Message},StackTrace:{ex.StackTrace}";
+                return result;
             }
         }
 
+        
         /// <summary>
         /// 保存文件到阿里对象存储(oss)
         /// </summary>
@@ -161,27 +212,7 @@ namespace OssHelper
         /// <returns></returns>
         public bool SaveFileByUrl(string ossFilePath, string url, string reqOssEndpoint = "")
         {
-            if (Setting == null)
-            {
-                throw new Exception("请先配置OssSetting");
-            }
-            if (string.IsNullOrEmpty(reqOssEndpoint))
-            {
-                reqOssEndpoint = Setting.OssEndpointIn;//默认内网
-            }
-            var client = new OssClient(reqOssEndpoint, Setting.OssAccessKeyId, Setting.OssAccessKeySecret);
-            try
-            {
-                var wc = new WebClient();
-                var bytes = wc.DownloadData(url);
-                Stream stream = new MemoryStream(bytes);
-                var r = client.PutObject(Setting.OssBucketName, ossFilePath, stream);
-                return true;
-            }
-            catch (Exception)
-            {
-                return false;
-            }
+            return SaveFileByUrl(ossFilePath, url,out _, reqOssEndpoint);
         }
 
 
@@ -195,6 +226,23 @@ namespace OssHelper
         /// <returns></returns>
         public bool SaveFileByUrl(string ossFilePath, string url, out byte[] bytes, string reqOssEndpoint = "")
         {
+            var r = SaveFileByUrlResult(ossFilePath, url,out bytes, reqOssEndpoint);
+            return r.Code == 200;
+        }
+
+
+        /// <summary>
+        /// 保存文件到阿里对象存储(oss)
+        /// </summary>
+        /// <param name="ossFilePath">阿里对象存储(oss)服务器文件路径如：tools/2017-03-24/xxxxxx.jpg</param>
+        /// <param name="url">要上传的文件地址</param>
+        /// <param name="bytes">bytes信息</param>
+        /// <param name="reqOssEndpoint">ossEndpoint(默认访问内网)</param>
+        /// <returns></returns>
+        public OssResult<PutObjectResult> SaveFileByUrlResult(string ossFilePath, string url, out byte[] bytes, string reqOssEndpoint = "")
+        {
+            var result = new OssResult<PutObjectResult>();
+            bytes = null;
             if (Setting == null)
             {
                 throw new Exception("请先配置OssSetting");
@@ -210,15 +258,19 @@ namespace OssHelper
                 bytes = wc.DownloadData(url);
                 Stream stream = new MemoryStream(bytes);
                 var r = client.PutObject(Setting.OssBucketName, ossFilePath, stream);
-                return true;
+                result.Result = r;
+                result.Code = Convert.ToInt32(r.HttpStatusCode);
+                return result;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                bytes = null;
-                return false;
+                result.Code = 5000;
+                result.Msg = $"Message:{ex.Message},StackTrace:{ex.StackTrace}";
+                return result;
             }
         }
 
+        
         /// <summary>
         /// 获取文件
         /// </summary>
@@ -239,6 +291,35 @@ namespace OssHelper
         /// <returns></returns>
         public byte[] GetObject(string ossFilePath, string reqOssEndpoint = "")
         {
+            return GetObjectResult(ossFilePath, reqOssEndpoint).Result;
+        }
+
+
+        /// <summary>
+        /// 获取文件
+        /// </summary>
+        /// <param name="ossFilePath">阿里对象存储(oss)服务器文件路径如：tools/2017-03-24/xxxxxx.jpg</param>
+        /// <param name="reqOssEndpoint">ossEndpoint(默认访问内网)</param>
+        /// <returns></returns>
+        public OssResult<string> GetStrResult(string ossFilePath, string reqOssEndpoint = "")
+        {
+            var result = new OssResult<string>();
+            var r = GetObjectResult(ossFilePath, reqOssEndpoint);
+            result.Code = r.Code;
+            result.Msg = r.Msg;
+            result.Result= Encoding.UTF8.GetString(r.Result);
+            return result;
+        }
+
+        /// <summary>
+        /// 获取文件
+        /// </summary>
+        /// <param name="ossFilePath">阿里对象存储(oss)服务器文件路径如：tools/2017-03-24/xxxxxx.jpg</param>
+        /// <param name="reqOssEndpoint">ossEndpoint(默认访问内网)</param>
+        /// <returns></returns>
+        public OssResult<byte[]> GetObjectResult(string ossFilePath, string reqOssEndpoint = "")
+        {
+            var result = new OssResult<byte[]>();
             if (Setting == null)
             {
                 throw new Exception("请先配置OssSetting");
@@ -273,14 +354,17 @@ namespace OssHelper
                     }
                 }
                 ms.Close();
-
-                return ms.ToArray();
+                result.Code =Convert.ToInt32(file.HttpStatusCode);
+                result.Result = ms.ToArray();
+                return result;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                //ignore
+                result.Code = 5000;
+                result.Result= new byte[] { };
+                result.Msg = $"Message:{ex.Message},StackTrace:{ex.StackTrace}";
+                return result;
             }
-            return new byte[] { };
         }
 
         /// <summary>
@@ -291,6 +375,18 @@ namespace OssHelper
         /// <returns></returns>
         public string DeleteObject(string ossFilePath, string reqOssEndpoint = "")
         {
+            return DeleteObjectResult(ossFilePath, reqOssEndpoint).Msg;
+        }
+
+        /// <summary>
+        /// 删除文件
+        /// </summary>
+        /// <param name="ossFilePath">阿里对象存储(oss)服务器文件路径如：tools/2017-03-24/xxxxxx.jpg</param>
+        /// <param name="reqOssEndpoint">ossEndpoint(默认访问内网)</param>
+        /// <returns></returns>
+        public OssResult<string> DeleteObjectResult(string ossFilePath, string reqOssEndpoint = "")
+        {
+            var result = new OssResult<string>();
             if (Setting == null)
             {
                 throw new Exception("请先配置OssSetting");
@@ -303,14 +399,19 @@ namespace OssHelper
             try
             {
                 client.DeleteObject(Setting.OssBucketName, ossFilePath);
-                return "删除成功";
+                result.Code = 200;
+                result.Msg = "删除成功";
+                return result;
             }
             catch (Exception ex)
             {
-                return "删除失败:" + ex.Message;
+                result.Code = 5000;
+                result.Msg = $"删除失败：Message:{ex.Message},StackTrace:{ex.StackTrace}";
+                return result;
             }
 
         }
+
 
         /// <summary>
         /// 获取服务端直传签名（policy和callback）

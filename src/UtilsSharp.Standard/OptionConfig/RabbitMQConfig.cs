@@ -8,13 +8,13 @@ namespace OptionConfig
     public static class RabbitMqConfig
     {
         /// <summary>
-        /// RabbitMQ设置
+        /// RabbitMq设置
         /// </summary>
         public static RabbitMqSetting RabbitMqSetting { set; get; }
     }
 
     /// <summary>
-    /// RabbitMQ设置
+    /// RabbitMq设置
     /// </summary>
     public class RabbitMqSetting
     {

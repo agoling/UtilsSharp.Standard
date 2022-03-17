@@ -7,6 +7,7 @@ using DotNetCore.Autofac;
 using Newtonsoft.Json;
 using OptionConfig;
 using TestDemoApp.ElasticSearch;
+using TestDemoApp.Kafka;
 using TestDemoApp.RabbitMQ;
 
 namespace TestDemoApp
@@ -15,6 +16,9 @@ namespace TestDemoApp
     {
         static void Main(string[] args)
         {
+            new KafkaInit();
+            Console.ReadKey();
+
             RabbitMqInit.Init();
 
             RabbitMqInit.SendMessage();

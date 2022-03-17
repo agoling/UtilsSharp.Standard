@@ -23,11 +23,12 @@ namespace RabbitMQ
         /// <summary>
         /// 注册
         /// </summary>
+        /// <typeparam name="T">T</typeparam>
         /// <param name="rabbitMqClient">rabbitMqClient</param>
-        public static void Register(RabbitMqClient rabbitMqClient)
+        public static void Register<T>(RabbitMqClient rabbitMqClient) where T : RabbitMqHelper<T>
         {
             //初始化 RabbitMqHelper
-            RabbitMqHelper.Initialization(rabbitMqClient); ;
+            RabbitMqHelper<T>.Initialization(rabbitMqClient); ;
         }
     }
 }

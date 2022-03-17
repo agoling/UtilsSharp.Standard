@@ -22,17 +22,21 @@ namespace Redis
             RedisCacheHelper.Initialization(csRedis);
         }
 
+
         /// <summary>
         /// 注册
         /// </summary>
-        /// <param name="csRedis">csRedis</param>
-        public static void Register(CSRedisClient csRedis)
+        /// <typeparam name="T">T</typeparam>
+        /// <typeparam name="T1">T1</typeparam>
+        /// <param name="csRedisClient">csRedisClient</param>
+        public static void Register<T,T1>(CSRedisClient csRedisClient) where T : RedisHelper<T> where T1: RedisCacheHelper<T1>
         {
             //初始化 RedisHelper
-            RedisHelper.Initialization(csRedis);
+            RedisHelper<T>.Initialization(csRedisClient);
             //初始化 RedisCacheHelper
-            RedisCacheHelper.Initialization(csRedis);
+            RedisCacheHelper<T1>.Initialization(csRedisClient);
         }
+
 
         /// <summary>
         /// 获取多数据库CsRedisClient客户端

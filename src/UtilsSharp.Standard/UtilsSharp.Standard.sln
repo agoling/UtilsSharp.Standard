@@ -37,7 +37,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Logger", "Logger\Logger.csp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitTestProjectNet.Core", "UnitTestProjectNet.Core\UnitTestProjectNet.Core.csproj", "{CEB634EB-592D-4F09-83D2-C72705DE1E2C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UtilsSharp.Protobuf", "UtilsSharp.Protobuf\UtilsSharp.Protobuf.csproj", "{B5F9DB1D-0074-48CE-AE5F-A5FA1832A2F2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UtilsSharp.Protobuf", "UtilsSharp.Protobuf\UtilsSharp.Protobuf.csproj", "{B5F9DB1D-0074-48CE-AE5F-A5FA1832A2F2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kafka", "Kafka\Kafka.csproj", "{62733622-C510-48C2-B530-122186B8208F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -117,6 +119,10 @@ Global
 		{B5F9DB1D-0074-48CE-AE5F-A5FA1832A2F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B5F9DB1D-0074-48CE-AE5F-A5FA1832A2F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B5F9DB1D-0074-48CE-AE5F-A5FA1832A2F2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{62733622-C510-48C2-B530-122186B8208F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{62733622-C510-48C2-B530-122186B8208F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{62733622-C510-48C2-B530-122186B8208F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{62733622-C510-48C2-B530-122186B8208F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

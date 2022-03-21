@@ -44,6 +44,45 @@ namespace Kafka
         /// </summary>
         public event Action<object, KafkaLogMessage> LogHandler;
 
+        /// <summary>
+        /// 是否暂停
+        /// </summary>
+        private bool IsPause { set; get; }
+        /// <summary>
+        /// 是否恢复
+        /// </summary>
+        private bool IsResume { set; get; }
+
+        /// <summary>
+        /// 暂停
+        /// </summary>
+        public void Pause()
+        {
+            if (IsPause) return;
+            foreach (var item in _consumers)
+            {
+                var topicPartitions = item.Assignment;
+                item.Pause(topicPartitions);
+            }
+            IsPause = true;
+            IsResume = false;
+        }
+
+        /// <summary>
+        /// 恢复
+        /// </summary>
+        public void Resume()
+        {
+            if (IsResume) return;
+            foreach (var item in _consumers)
+            {
+                var topicPartitions = item.Assignment;
+                item.Resume(topicPartitions);
+            }
+            IsPause = false;
+            IsResume = true;
+        }
+
         public KafkaConsumer(string groupId, params string[] bootstrapServers)
         {
             if (bootstrapServers == null || bootstrapServers.Length == 0)
@@ -285,7 +324,10 @@ namespace Kafka
             cancellationToken.Register(() => { result.Stop(); });
             while (!result.Stoped)
             {
-                InternalListen(consumer, result.Token, action);
+                if (!IsPause)
+                {
+                    InternalListen(consumer, result.Token, action);
+                }  
             }
         }
 
@@ -315,7 +357,10 @@ namespace Kafka
                 var consumer = CreateConsumer(result, subscribers);
                 while (!result.Stoped)
                 {
-                    InternalListen(consumer, result.Token, action);
+                    if (!IsPause)
+                    {
+                        InternalListen(consumer, result.Token, action);
+                    } 
                 }
             }).Start();
             return await Task.FromResult(result);

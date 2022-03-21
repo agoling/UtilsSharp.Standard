@@ -16,7 +16,6 @@ namespace Kafka
         private readonly KafkaSetting _kafkaSetting;
         private readonly IAdminClient _adminClient;
         private readonly KafkaProducer _kafkaProducer;
-        private readonly Dictionary<string, KafkaConsumer> _kafkaConsumer;
 
         public KafkaClient(KafkaSetting kafkaSetting)
         {
@@ -32,7 +31,7 @@ namespace Kafka
             _kafkaSetting = kafkaSetting;
             _adminClient = new AdminClientBuilder(new AdminClientConfig { BootstrapServers = string.Join(",", kafkaSetting.BootstrapServers) }).Build();
             _kafkaProducer = new KafkaProducer(_kafkaSetting.BootstrapServers);
-            _kafkaConsumer = new Dictionary<string, KafkaConsumer>();
+
         }
 
         /// <summary>
@@ -51,12 +50,7 @@ namespace Kafka
         /// <returns></returns>
         public KafkaConsumer GetConsumer(string groupId)
         {
-            if (_kafkaConsumer.ContainsKey(groupId))
-            {
-                return _kafkaConsumer[groupId];
-            }
             var consumer = new KafkaConsumer(groupId, _kafkaSetting.BootstrapServers);
-            _kafkaConsumer.Add(groupId,consumer);
             return consumer;
         }
 

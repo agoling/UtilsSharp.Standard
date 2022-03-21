@@ -15,7 +15,6 @@ namespace Kafka
     {
         private readonly KafkaSetting _kafkaSetting;
         private readonly IAdminClient _adminClient;
-        private readonly KafkaProducer _kafkaProducer;
 
         public KafkaClient(KafkaSetting kafkaSetting)
         {
@@ -30,8 +29,6 @@ namespace Kafka
 
             _kafkaSetting = kafkaSetting;
             _adminClient = new AdminClientBuilder(new AdminClientConfig { BootstrapServers = string.Join(",", kafkaSetting.BootstrapServers) }).Build();
-            _kafkaProducer = new KafkaProducer(_kafkaSetting.BootstrapServers);
-
         }
 
         /// <summary>
@@ -40,7 +37,8 @@ namespace Kafka
         /// <returns></returns>
         public KafkaProducer GetProducer()
         {
-            return _kafkaProducer;
+            var producer = new KafkaProducer(_kafkaSetting.BootstrapServers);
+            return producer;
         }
 
         /// <summary>

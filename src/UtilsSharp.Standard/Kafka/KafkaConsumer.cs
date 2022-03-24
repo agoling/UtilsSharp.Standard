@@ -164,6 +164,7 @@ namespace Kafka
         {
             try
             {
+                if (_disposed) return;
                 var result = consumer.Consume(cancellationToken);
                 if (!cancellationToken.IsCancellationRequested)
                 {
@@ -176,8 +177,9 @@ namespace Kafka
                     action?.Invoke(result == null ? null : new RecieveResult(result, cancellationTokenSource));
                 }
             }
-            catch
+            catch (Exception)
             {
+                // ignored
             }
         }
 
@@ -324,6 +326,7 @@ namespace Kafka
             cancellationToken.Register(() => { result.Stop(); });
             while (!result.Stoped)
             {
+                if (_disposed) return;
                 if (!IsPause)
                 {
                     InternalListen(consumer, result.Token, action);
@@ -357,6 +360,7 @@ namespace Kafka
                 var consumer = CreateConsumer(result, subscribers);
                 while (!result.Stoped)
                 {
+                    if (_disposed) return;
                     if (!IsPause)
                     {
                         InternalListen(consumer, result.Token, action);
@@ -375,13 +379,12 @@ namespace Kafka
         {
             _disposed = true;
             _builder = null;
-
+            Thread.Sleep(500);
             foreach (var consumer in _consumers)
             {
                 consumer?.Close();
                 consumer?.Dispose();
             }
-
             GC.Collect();
         }
     }

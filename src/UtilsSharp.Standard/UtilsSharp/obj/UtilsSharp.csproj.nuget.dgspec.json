@@ -5,7 +5,7 @@
   },
   "projects": {
     "D:\\GitHub\\Project\\UtilsSharp.Standard\\src\\UtilsSharp.Standard\\UtilsSharp\\UtilsSharp.csproj": {
-      "version": "2.4.9",
+      "version": "2.5.0",
       "restore": {
         "projectUniqueName": "D:\\GitHub\\Project\\UtilsSharp.Standard\\src\\UtilsSharp.Standard\\UtilsSharp\\UtilsSharp.csproj",
         "projectName": "UtilsSharp",
@@ -54,13 +54,17 @@
               "target": "Package",
               "version": "[3.1.4, )"
             },
+            "Microsoft.Extensions.Configuration.EnvironmentVariables": {
+              "target": "Package",
+              "version": "[3.1.23, )"
+            },
             "Microsoft.Extensions.Configuration.Json": {
               "target": "Package",
-              "version": "[3.1.4, )"
+              "version": "[3.1.23, )"
             },
             "Microsoft.Extensions.Options.ConfigurationExtensions": {
               "target": "Package",
-              "version": "[3.1.4, )"
+              "version": "[3.1.23, )"
             },
             "NETStandard.Library": {
               "suppressParent": "All",

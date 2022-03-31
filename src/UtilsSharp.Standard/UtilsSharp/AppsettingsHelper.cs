@@ -12,8 +12,11 @@ namespace UtilsSharp
         private static readonly IConfiguration Config;
         static AppsettingsHelper()
         {
-            var builder = new ConfigurationBuilder();//创建config的builder
-            builder.SetBasePath(Directory.GetCurrentDirectory()).AddJsonFile("appsettings.json");//设置配置文件所在的路径加载配置文件信息
+            //配置文件
+            var builder = new ConfigurationBuilder()//创建config的builder
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)//设置配置文件所在的路径加载配置文件信息
+                .AddEnvironmentVariables();
             Config = builder.Build();
         }
 

@@ -13,7 +13,7 @@
     <PackageIcon>UtilsSharp.jpg</PackageIcon>
     <PackageIconUrl />
     <ApplicationIcon>UtilsSharp.ico</ApplicationIcon>
-    <Version>1.1.5</Version>
+    <Version>1.1.6</Version>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">

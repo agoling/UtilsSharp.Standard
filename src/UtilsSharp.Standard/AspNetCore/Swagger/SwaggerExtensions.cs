@@ -5,6 +5,7 @@ using System.Linq;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
+using Swashbuckle.AspNetCore.SwaggerUI;
 using UtilsSharp;
 
 namespace AspNetCore.Swagger
@@ -64,7 +65,20 @@ namespace AspNetCore.Swagger
                     suoption.RoutePrefix = string.Empty;
                     AspNetCoreExtensionsConfig.SwaggerDocOptions.Groups.ForEach(group =>
                     {
+                        suoption.DefaultModelExpandDepth(2);
+                        suoption.DefaultModelRendering(ModelRendering.Example);
+                        suoption.DefaultModelsExpandDepth(-1);
+
+                        suoption.DisplayRequestDuration();
+                        suoption.DocExpansion(DocExpansion.None);
+                        suoption.EnableDeepLinking();
+                        suoption.EnableFilter();
+                        suoption.MaxDisplayedTags(int.MaxValue);
+                        suoption.ShowExtensions();
+                        suoption.EnableValidator();
                         suoption.SwaggerEndpoint($"/swagger/{group.GroupName}/swagger.json", $"{group.Title} {group.Version}");
+                        suoption.RoutePrefix = string.Empty;
+
                     });
                 });
                 return app;

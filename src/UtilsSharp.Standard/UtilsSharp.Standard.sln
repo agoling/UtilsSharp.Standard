@@ -39,7 +39,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitTestProjectNet.Core", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UtilsSharp.Protobuf", "UtilsSharp.Protobuf\UtilsSharp.Protobuf.csproj", "{B5F9DB1D-0074-48CE-AE5F-A5FA1832A2F2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kafka", "Kafka\Kafka.csproj", "{62733622-C510-48C2-B530-122186B8208F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kafka", "Kafka\Kafka.csproj", "{62733622-C510-48C2-B530-122186B8208F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ElasticSearch.Extension", "ElasticSearch.Extension\ElasticSearch.Extension.csproj", "{9DDEF6EF-E2B3-48A4-96D7-D11BED595380}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -123,6 +125,10 @@ Global
 		{62733622-C510-48C2-B530-122186B8208F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{62733622-C510-48C2-B530-122186B8208F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{62733622-C510-48C2-B530-122186B8208F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9DDEF6EF-E2B3-48A4-96D7-D11BED595380}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9DDEF6EF-E2B3-48A4-96D7-D11BED595380}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9DDEF6EF-E2B3-48A4-96D7-D11BED595380}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9DDEF6EF-E2B3-48A4-96D7-D11BED595380}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

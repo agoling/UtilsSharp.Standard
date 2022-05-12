@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using UtilsSharp.Standard.Interface;
 
-namespace ElasticSearch7.Extension.Entity
+namespace UtilsSharp.ElasticSearch7.Extension.Entity
 {
     /// <summary>
     /// 基础增量修改参数

@@ -1,8 +1,8 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <PackageId>UtilsSharp.ElasticSearch.Extension</PackageId>
+    <Version>1.0.2</Version>
     <Authors>Agoling</Authors>
     <Company>Agoling</Company>
     <Product>Agoling</Product>
@@ -12,7 +12,6 @@
     <PackageIconUrl />
     <RepositoryUrl>https://github.com/agoling/UtilsSharp.Standard</RepositoryUrl>
     <PackageTags>UtilsSharp UtilsSharp.ElasticSearch ElasticSearch帮助类 Es帮助类</PackageTags>
-    <Version>1.0.1</Version>
   </PropertyGroup>
 
   <ItemGroup>

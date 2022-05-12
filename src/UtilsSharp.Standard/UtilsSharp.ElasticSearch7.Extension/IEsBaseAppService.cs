@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using ElasticSearch7.Extension.Entity;
 using Nest;
 using UtilsSharp.Dependency;
+using UtilsSharp.ElasticSearch7.Extension.Entity;
 using UtilsSharp.Standard;
 
-namespace ElasticSearch7.Extension
+namespace UtilsSharp.ElasticSearch7.Extension
 {
     /// <summary>
     /// 公共增删查改

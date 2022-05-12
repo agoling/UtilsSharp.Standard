@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using UtilsSharp.Standard.Interface;
 
-namespace ElasticSearch.Extension.Entity
+namespace UtilsSharp.ElasticSearch7.Extension.Entity
 {
     /// <summary>
     /// 基础单条Id参数

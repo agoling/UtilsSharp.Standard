@@ -1,7 +1,7 @@
 ﻿using System;
 using UtilsSharp.Standard.Interface;
 
-namespace ElasticSearch7.Extension.Entity
+namespace UtilsSharp.ElasticSearch7.Extension.Entity
 {
     /// <summary>
     /// 基础保存参数

@@ -3,12 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
-using ElasticSearch.Extension.Entity;
 using Nest;
-using UtilsSharp;
+using UtilsSharp.ElasticSearch.Extension.Entity;
 using UtilsSharp.Standard;
 
-namespace ElasticSearch.Extension
+namespace UtilsSharp.ElasticSearch.Extension
 {
     /// <summary>
     /// 公共增删查改

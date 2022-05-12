@@ -41,9 +41,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UtilsSharp.Protobuf", "Util
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kafka", "Kafka\Kafka.csproj", "{62733622-C510-48C2-B530-122186B8208F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ElasticSearch.Extension", "ElasticSearch.Extension\ElasticSearch.Extension.csproj", "{9DDEF6EF-E2B3-48A4-96D7-D11BED595380}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UtilsSharp.ElasticSearch.Extension", "UtilsSharp.ElasticSearch.Extension\UtilsSharp.ElasticSearch.Extension.csproj", "{23EDBE70-8309-471B-8E2A-504F0EE49DCE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ElasticSearch7.Extension", "ElasticSearch7.Extension\ElasticSearch7.Extension.csproj", "{2FFBC5EB-DFA0-4C37-AFFE-33CD073A7705}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UtilsSharp.ElasticSearch7.Extension", "UtilsSharp.ElasticSearch7.Extension\UtilsSharp.ElasticSearch7.Extension.csproj", "{4CF7A300-56BA-4AF8-8CB7-9A5243E2B293}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -127,14 +127,14 @@ Global
 		{62733622-C510-48C2-B530-122186B8208F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{62733622-C510-48C2-B530-122186B8208F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{62733622-C510-48C2-B530-122186B8208F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9DDEF6EF-E2B3-48A4-96D7-D11BED595380}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9DDEF6EF-E2B3-48A4-96D7-D11BED595380}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9DDEF6EF-E2B3-48A4-96D7-D11BED595380}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9DDEF6EF-E2B3-48A4-96D7-D11BED595380}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2FFBC5EB-DFA0-4C37-AFFE-33CD073A7705}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2FFBC5EB-DFA0-4C37-AFFE-33CD073A7705}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2FFBC5EB-DFA0-4C37-AFFE-33CD073A7705}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2FFBC5EB-DFA0-4C37-AFFE-33CD073A7705}.Release|Any CPU.Build.0 = Release|Any CPU
+		{23EDBE70-8309-471B-8E2A-504F0EE49DCE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{23EDBE70-8309-471B-8E2A-504F0EE49DCE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{23EDBE70-8309-471B-8E2A-504F0EE49DCE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{23EDBE70-8309-471B-8E2A-504F0EE49DCE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4CF7A300-56BA-4AF8-8CB7-9A5243E2B293}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4CF7A300-56BA-4AF8-8CB7-9A5243E2B293}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4CF7A300-56BA-4AF8-8CB7-9A5243E2B293}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4CF7A300-56BA-4AF8-8CB7-9A5243E2B293}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

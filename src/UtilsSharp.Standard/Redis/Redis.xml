@@ -96,11 +96,13 @@
             注册
             </summary>
         </member>
-        <member name="M:Redis.RedisManager.Register(CSRedis.CSRedisClient)">
+        <member name="M:Redis.RedisManager.Register``2(CSRedis.CSRedisClient)">
             <summary>
             注册
             </summary>
-            <param name="csRedis">csRedis</param>
+            <typeparam name="T">T</typeparam>
+            <typeparam name="T1">T1</typeparam>
+            <param name="csRedisClient">csRedisClient</param>
         </member>
         <member name="M:Redis.RedisManager.GetMultipleDbCsRedisClient(System.String,System.Int32)">
             <summary>

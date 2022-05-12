@@ -2,11 +2,11 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <PackageId>UtilsSharp.ElasticSearch.Extension</PackageId>
+    <PackageId>UtilsSharp.ElasticSearch7.Extension</PackageId>
     <Authors>Agoling</Authors>
     <Company>Agoling</Company>
     <Product>Agoling</Product>
-    <Description>本项目是ElasticSearch扩展插件帮助类基于.net standard2.0封装，属于UtilsSharp项目分支，依赖于Nest</Description>
+    <Description>本项目是ElasticSearch7扩展插件帮助类基于.net standard2.0封装，属于UtilsSharp项目分支，依赖于Nest</Description>
     <PackageProjectUrl>https://github.com/agoling/UtilsSharp.Standard</PackageProjectUrl>
     <PackageIcon>UtilsSharp.jpg</PackageIcon>
     <PackageIconUrl />
@@ -18,7 +18,7 @@
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="9.0.0" />
     <PackageReference Include="Microsoft.Bcl.AsyncInterfaces" Version="6.0.0" />
-    <PackageReference Include="NEST" Version="5.6.5" />
+    <PackageReference Include="NEST" Version="7.17.1" />
     <PackageReference Include="System.ServiceModel.Primitives" Version="4.9.0" />
     <PackageReference Include="UtilsSharp.Protobuf" Version="1.0.1" />
   </ItemGroup>

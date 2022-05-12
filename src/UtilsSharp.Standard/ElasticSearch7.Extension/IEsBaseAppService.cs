@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using ElasticSearch.Extension.Entity;
+using ElasticSearch7.Extension.Entity;
 using Nest;
 using UtilsSharp.Dependency;
 using UtilsSharp.Standard;
 
-namespace ElasticSearch.Extension
+namespace ElasticSearch7.Extension
 {
     /// <summary>
     /// 公共增删查改
@@ -27,7 +27,7 @@ namespace ElasticSearch.Extension
         /// <param name="request">参数</param>
         /// <param name="saveFunc">保存方法</param>
         /// <returns></returns>
-        ValueTask<BaseResult<int>> BulkSave<T1, T2>(List<T1> request, Func<List<T2>, IBulkResponse> saveFunc) where T1 : EsBaseSaveRequest;
+        ValueTask<BaseResult<int>> BulkSave<T1, T2>(List<T1> request, Func<List<T2>, BulkResponse> saveFunc) where T1 : EsBaseSaveRequest;
 
         /// <summary>
         /// 批量增量修改
@@ -35,7 +35,7 @@ namespace ElasticSearch.Extension
         /// <param name="request">参数</param>
         /// <param name="incrementModifyFunc">增量修改方法</param>
         /// <returns></returns>
-        ValueTask<BaseResult<int>> IncrementModify<T>(EsBaseIncrementModifyRequest request, Func<string, Dictionary<string, object>, IUpdateResponse<T>> incrementModifyFunc) where T : class;
+        ValueTask<BaseResult<int>> IncrementModify<T>(EsBaseIncrementModifyRequest request, Func<string, Dictionary<string, object>, UpdateResponse<T>> incrementModifyFunc) where T : class;
 
         /// <summary>
         /// 批量删除
@@ -43,7 +43,7 @@ namespace ElasticSearch.Extension
         /// <param name="request">参数</param>
         /// <param name="deleteFunc">删除方法</param>
         /// <returns></returns>
-        ValueTask<BaseResult<int>> Delete(EsBaseIdsRequest request, Func<string[], IBulkResponse> deleteFunc);
+        ValueTask<BaseResult<int>> Delete(EsBaseIdsRequest request, Func<string[], BulkResponse> deleteFunc);
 
         ///  <summary>
         /// 单条获取

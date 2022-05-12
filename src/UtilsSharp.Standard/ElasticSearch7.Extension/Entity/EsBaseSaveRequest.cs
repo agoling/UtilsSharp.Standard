@@ -1,0 +1,26 @@
+﻿using System;
+using UtilsSharp.Standard.Interface;
+
+namespace ElasticSearch7.Extension.Entity
+{
+    /// <summary>
+    /// 基础保存参数
+    /// </summary>
+    public class EsBaseSaveRequest: IProtobufEntity
+    {
+        /// <summary>
+        /// Id
+        /// </summary>
+        public string Id { set; get; }
+
+        /// <summary>
+        /// 更新时间
+        /// </summary>
+        public DateTime? UpdateTime { set; get; }
+
+        /// <summary>
+        /// 创建时间
+        /// </summary>
+        public DateTime? CreateTime { set; get; }
+    }
+}

@@ -9,5 +9,16 @@
             依赖注入Container
             </summary>
         </member>
+        <member name="M:DotNetCore.Autofac.AutofacContainer.Register">
+            <summary>
+            依赖注入初始化
+            </summary>
+        </member>
+        <member name="M:DotNetCore.Autofac.AutofacContainer.Register(System.Action{Autofac.ContainerBuilder})">
+            <summary>
+            依赖注入初始化
+            </summary>
+            <param name="action">回调</param>
+        </member>
     </members>
 </doc>

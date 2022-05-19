@@ -16,16 +16,21 @@ namespace TestDemoApp
     {
         static void Main(string[] args)
         {
-            new KafkaInit();
+
+            ElasticSearchInit.Init();
             Console.ReadKey();
 
-            RabbitMqInit.Init();
 
-            RabbitMqInit.SendMessage();
+            //new KafkaInit();
+            //Console.ReadKey();
 
-            RabbitMqInit.GetMessage();
+            //RabbitMqInit.Init();
 
-            Console.ReadKey();
+            //RabbitMqInit.SendMessage();
+
+            //RabbitMqInit.GetMessage();
+
+            //Console.ReadKey();
         }
 
     }

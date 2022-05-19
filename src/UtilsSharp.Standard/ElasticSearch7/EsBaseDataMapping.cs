@@ -26,7 +26,7 @@ namespace ElasticSearch7
         /// <summary>
         /// 表当前配置
         /// </summary>
-        private  ElasticSearchSetting CurrSetting { get; set; }
+        private  ElasticSearchSetting CurSetting { get; set; }
 
         /// <summary>
         /// 连接设置
@@ -47,6 +47,11 @@ namespace ElasticSearch7
         /// 分片数
         /// </summary>
         public virtual int NumberOfShards => 5;
+
+        /// <summary>
+        /// 索引最大查询
+        /// </summary>
+        public virtual int MaxResultWindow => 10000;
 
         /// <summary>
         /// 实体映射
@@ -92,7 +97,7 @@ namespace ElasticSearch7
         /// <param name="index">索引名称</param>
         public ElasticClient EsClientByIndex(string index = "")
         {
-            if (CurrSetting == null)
+            if (CurSetting == null)
             {
                 if (Setting == null)
                 {
@@ -102,7 +107,7 @@ namespace ElasticSearch7
                         throw new Exception("esHttpAddress cannot be empty");
                     }
 
-                    CurrSetting = new ElasticSearchSetting()
+                    CurSetting = new ElasticSearchSetting()
                     {
                         EsHttpAddress = ElasticSearchConfig.ElasticSearchSetting.EsHttpAddress,
                         UserName = ElasticSearchConfig.ElasticSearchSetting.UserName,
@@ -114,7 +119,7 @@ namespace ElasticSearch7
                 }
                 else
                 {
-                    CurrSetting = new ElasticSearchSetting()
+                    CurSetting = new ElasticSearchSetting()
                     {
                         EsHttpAddress = Setting.EsHttpAddress,
                         UserName = Setting.UserName,
@@ -129,44 +134,34 @@ namespace ElasticSearch7
             if (!string.IsNullOrWhiteSpace(index) && index != CurrentIndex)
             {
                 //传参进来的索引
-                CurrSetting.EsDefaultIndex = index;
-                var currClient = GetClient(CurrSetting);
+                CurSetting.EsDefaultIndex = index;
+                var curClient = GetClient(CurSetting);
                 //索引是否已映射
-                if (EsClientProvider.MappingDictionary.ContainsKey(CurrSetting.EsDefaultIndex))
+                if (EsClientProvider.MappingDictionary.ContainsKey(CurSetting.EsDefaultIndex))
                 {
-                    return currClient;
+                    return curClient;
                 }
                 //判断索引是否存在
-                var exists = currClient.Indices.Exists(CurrSetting.EsDefaultIndex).Exists;
-                if (!exists) throw new Exception($"Index:{CurrSetting.EsDefaultIndex} does not exist");
-                RunEntityMapping(currClient, CurrSetting.EsDefaultIndex);
-                return currClient;
+                var exists = curClient.Indices.Exists(CurSetting.EsDefaultIndex).Exists;
+                if (!exists) throw new Exception($"Index:{CurSetting.EsDefaultIndex} does not exist");
+                RunEntityMapping(curClient, CurSetting.EsDefaultIndex);
+                return curClient;
             }
             else
             {
                 //程序创建的索引
-                CurrSetting.EsDefaultIndex = CurrentIndex;
-                var currClient =GetClient(CurrSetting);
+                CurSetting.EsDefaultIndex = CurrentIndex;
+                var curClient = GetClient(CurSetting);
                 //索引是否已映射
-                if (EsClientProvider.MappingDictionary.ContainsKey(CurrSetting.EsDefaultIndex))
+                if (EsClientProvider.MappingDictionary.ContainsKey(CurSetting.EsDefaultIndex))
                 {
-                    return currClient;
+                    return curClient;
                 }
-                //判断索引是否存在
-                var exists = currClient.Indices.Exists(CurrSetting.EsDefaultIndex).Exists;
-                //索引存在
-                if (exists)
-                {
-                    RunEntityMapping(currClient, CurrSetting.EsDefaultIndex);
-                    return currClient;
-                }
-                //索引不存在
                 var aliasIndex = AliasIndex;
                 if (string.IsNullOrEmpty(AliasIndex))
                 {
-                    aliasIndex = CurrSetting.EsDefaultIndex;
+                    aliasIndex = CurSetting.EsDefaultIndex;
                 }
-
                 IIndexState indexState = new IndexState()
                 {
                     Settings = new IndexSettings()
@@ -175,17 +170,19 @@ namespace ElasticSearch7
                         NumberOfShards = NumberOfShards
                     }
                 };
-                //按别名创建索引
-                if (!string.IsNullOrEmpty(aliasIndex) && !aliasIndex.Equals(CurrSetting.EsDefaultIndex))
+
+                //创建索引
+                if (!string.IsNullOrEmpty(aliasIndex) && !aliasIndex.Equals(CurSetting.EsDefaultIndex))
                 {
-                    currClient.Indices.Create(CurrSetting.EsDefaultIndex,c => c.InitializeUsing(indexState).Aliases(a => a.Alias(aliasIndex)));
+                    //绑定别名
+                    curClient.Indices.Create(CurSetting.EsDefaultIndex, c => c.InitializeUsing(indexState).Aliases(a => a.Alias(aliasIndex)).Settings(s => s.Setting(UpdatableIndexSettings.MaxResultWindow, MaxResultWindow)));
                 }
                 else
                 {
-                    currClient.Indices.Create(CurrSetting.EsDefaultIndex, c => c.InitializeUsing(indexState));
+                    curClient.Indices.Create(CurSetting.EsDefaultIndex, c => c.InitializeUsing(indexState).Settings(s => s.Setting(UpdatableIndexSettings.MaxResultWindow, MaxResultWindow)));
                 }
-                RunEntityMapping(currClient, CurrSetting.EsDefaultIndex);
-                return currClient;
+                RunEntityMapping(curClient, CurSetting.EsDefaultIndex);
+                return curClient;
             }
         }
 
@@ -198,7 +195,6 @@ namespace ElasticSearch7
         {
             lock (EsBaseDataMappingLock)
             {
-                if (EsClientProvider.MappingDictionary.ContainsKey(index)) return;
                 EntityMapping(client, index);
                 EsClientProvider.MappingDictionary.TryAdd(index, index);
             }

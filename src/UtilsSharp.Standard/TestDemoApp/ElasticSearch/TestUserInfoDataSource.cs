@@ -15,7 +15,12 @@ namespace TestDemoApp.ElasticSearch
         /// <summary>
         /// 按天生成
         /// </summary>
-        public override EsMappingType EsMappingType { get; set; } = EsMappingType.Day;
+        public override EsMappingType EsMappingType { get; set; } = EsMappingType.Hour;
+
+        /// <summary>
+        /// 索引最大查询
+        /// </summary>
+        public override int MaxResultWindow => 20000;
         /// <summary>
         /// 别名索引
         /// </summary>

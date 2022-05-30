@@ -70,6 +70,16 @@ namespace Logger
         }
 
         /// <summary>
+        /// 标题并写入日志(深灰色)
+        /// </summary>
+        /// <param name="entity">日志信息实体</param>
+        public static void TitleWithLog(BaseLogEntity entity)
+        {
+            Title(entity.Message);
+            LogHelper.Info(entity);
+        }
+
+        /// <summary>
         /// 信息(灰色)
         /// </summary>
         /// <param name="message">消息</param>
@@ -96,6 +106,16 @@ namespace Logger
         {
             Info(message);
             LogHelper.Info(message, logId, parameters, userId, func, requestUrl);
+        }
+
+        /// <summary>
+        /// 信息并写入日志(灰色)
+        /// </summary>
+        /// <param name="entity">日志信息实体</param>
+        public static void InfoWithLog(BaseLogEntity entity)
+        {
+            Info(entity.Message);
+            LogHelper.Info(entity);
         }
 
         /// <summary>
@@ -128,6 +148,16 @@ namespace Logger
         }
 
         /// <summary>
+        /// 追踪并写入日志(深青色)
+        /// </summary>
+        /// <param name="entity">日志信息实体</param>
+        public static void TraceWithLog(BaseLogEntity entity)
+        {
+            Trace(entity.Message);
+            LogHelper.Trace(entity);
+        }
+
+        /// <summary>
         /// 调试(青色)
         /// </summary>
         /// <param name="message">消息</param>
@@ -157,6 +187,16 @@ namespace Logger
         }
 
         /// <summary>
+        /// 调试并写入日志(青色)
+        /// </summary>
+        /// <param name="entity">日志信息实体</param>
+        public static void DebugWithLog(BaseLogEntity entity)
+        {
+            Debug(entity.Message);
+            LogHelper.Debug(entity);
+        }
+
+        /// <summary>
         /// 警告(黄色)
         /// </summary>
         /// <param name="message">消息</param>
@@ -183,6 +223,16 @@ namespace Logger
         {
             Warn(message);
             LogHelper.Warn(message, logId, parameters, userId, func, requestUrl);
+        }
+
+        /// <summary>
+        /// 警告并写入日志(黄色)
+        /// </summary>
+        /// <param name="entity">日志信息实体</param>
+        public static void WarnWithLog(BaseLogEntity entity)
+        {
+            Warn(entity.Message);
+            LogHelper.Warn(entity);
         }
 
         /// <summary>
@@ -217,6 +267,16 @@ namespace Logger
         }
 
         /// <summary>
+        /// 错误并写入日志(红色)
+        /// </summary>
+        /// <param name="entity">日志信息实体</param>
+        public static void ErrorWithLog(ErrorEntity entity)
+        {
+            Error(entity.Message);
+            LogHelper.Error(entity);
+        }
+
+        /// <summary>
         /// 成功(绿色)
         /// </summary>
         /// <param name="message">消息</param>
@@ -243,6 +303,16 @@ namespace Logger
         {
             Success(message);
             LogHelper.Info(message, logId, parameters, userId, func, requestUrl);
+        }
+
+        /// <summary>
+        /// 成功并写入日志(绿色)
+        /// </summary>
+        /// <param name="entity">日志信息实体</param>
+        public static void SuccessWithLog(BaseLogEntity entity)
+        {
+            Success(entity.Message);
+            LogHelper.Info(entity);
         }
 
         /// <summary>

@@ -10,7 +10,7 @@
     <PackageIcon>UtilsSharp.jpg</PackageIcon>
     <RepositoryUrl>https://github.com/agoling/UtilsSharp.Standard</RepositoryUrl>
     <PackageTags>UtilsSharp UtilsSharp.DotNetCore .netcore3.1帮助类  netcore帮助类</PackageTags>
-    <Version>1.1.0</Version>
+    <Version>1.1.1</Version>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
@@ -23,7 +23,7 @@
     <PackageReference Include="Autofac.Extras.DynamicProxy" Version="6.0.0" />
     <PackageReference Include="AutoMapper" Version="9.0.0" />
     <PackageReference Include="UtilsSharp" Version="2.5.0" />
-    <PackageReference Include="UtilsSharp.LoggerHelper" Version="1.0.1" />
+    <PackageReference Include="UtilsSharp.Logger" Version="1.1.2" />
   </ItemGroup>
 
   <ItemGroup>

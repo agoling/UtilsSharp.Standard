@@ -7,7 +7,7 @@
 
   <ItemGroup>
     <PackageReference Include="UtilsSharp.Kafka" Version="1.0.0" />
-    <PackageReference Include="UtilsSharp.LoggerHelper" Version="1.0.1" />
+    <PackageReference Include="UtilsSharp.Logger" Version="1.1.2" />
     <PackageReference Include="UtilsSharp.RabbitMQ" Version="3.0.1" />
   </ItemGroup>
 

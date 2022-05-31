@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>UtilsSharp.Protobuf</name>
+    </assembly>
+    <members>
+        <member name="T:UtilsSharp.Protobuf.ProtobufRunTime">
+            <summary>
+            注册ProtoContract、ProtoInclude、ProtoMember
+            </summary>
+        </member>
+        <member name="T:UtilsSharp.Protobuf.ProtobufConvert">
+            <summary>
+            序列化和反序列化
+            </summary>
+        </member>
+        <member name="M:UtilsSharp.Protobuf.ProtobufConvert.Serialize``1(``0,System.Text.Encoding)">
+            <summary>
+            序列化string类型
+            </summary>
+            <typeparam name="T">模型</typeparam>
+            <param name="t">对象</param>
+            <param name="encoding">编码</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.Protobuf.ProtobufConvert.SerializeByte``1(``0)">
+            <summary>
+            序列化 byte
+            </summary>
+            <typeparam name="T">模型</typeparam>
+            <param name="t">对象</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.Protobuf.ProtobufConvert.DeSerialize``1(System.String,System.Text.Encoding)">
+            <summary>
+            反序列化 string
+            </summary>
+            <typeparam name="T">模型</typeparam>
+            <param name="content">字符串</param>
+            <param name="encoding">编码</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.Protobuf.ProtobufConvert.DeSerialize``1(System.Byte[])">
+            <summary>
+            反序列化 T
+            </summary>
+            <typeparam name="T">模型</typeparam>
+            <param name="bytes">byte</param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

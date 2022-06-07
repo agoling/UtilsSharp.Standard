@@ -45,6 +45,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UtilsSharp.ElasticSearch.Ex
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UtilsSharp.ElasticSearch7.Extension", "UtilsSharp.ElasticSearch7.Extension\UtilsSharp.ElasticSearch7.Extension.csproj", "{4CF7A300-56BA-4AF8-8CB7-9A5243E2B293}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UtilsSharp.RabbitMq.Extension", "UtilsSharp.RabbitMq.Extension\UtilsSharp.RabbitMq.Extension.csproj", "{B7BE1F4E-643E-4D42-A07D-4F9F4969D895}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -135,6 +137,10 @@ Global
 		{4CF7A300-56BA-4AF8-8CB7-9A5243E2B293}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4CF7A300-56BA-4AF8-8CB7-9A5243E2B293}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4CF7A300-56BA-4AF8-8CB7-9A5243E2B293}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B7BE1F4E-643E-4D42-A07D-4F9F4969D895}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B7BE1F4E-643E-4D42-A07D-4F9F4969D895}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B7BE1F4E-643E-4D42-A07D-4F9F4969D895}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B7BE1F4E-643E-4D42-A07D-4F9F4969D895}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

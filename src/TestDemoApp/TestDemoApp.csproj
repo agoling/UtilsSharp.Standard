@@ -12,7 +12,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DotNetCore\DotNetCore.csproj" />
     <ProjectReference Include="..\ElasticSearch7\ElasticSearch7.csproj" />
   </ItemGroup>
 

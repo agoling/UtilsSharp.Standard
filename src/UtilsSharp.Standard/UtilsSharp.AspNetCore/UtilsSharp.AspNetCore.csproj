@@ -1,20 +1,21 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
-    <PackageId>UtilsSharp.DotNetCore</PackageId>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <PackageId>UtilsSharp.AspNetCore</PackageId>
+    <Version>2.0.0</Version>
     <Authors>Agoling</Authors>
-    <Product>UtilsSharp.DotNetCore</Product>
-    <Description>本项目是.net core3.1扩展类，属于UtilsSharp项目分支，应用于C/S客户端和控制台项目。</Description>
+    <Product>Agoling</Product>
+    <Description>本项目是.net core3.1扩展类，属于UtilsSharp项目分支，应用于B/S网页端项目。</Description>
     <PackageProjectUrl>https://github.com/agoling/UtilsSharp.Standard</PackageProjectUrl>
     <PackageIcon>UtilsSharp.jpg</PackageIcon>
+    <PackageIconUrl />
     <RepositoryUrl>https://github.com/agoling/UtilsSharp.Standard</RepositoryUrl>
-    <PackageTags>UtilsSharp UtilsSharp.DotNetCore .netcore3.1帮助类  netcore帮助类</PackageTags>
-    <Version>1.2.0</Version>
+    <PackageTags>UtilsSharp UtilsSharp.AspNetCore .netcore3.1帮助类  netcore帮助类</PackageTags>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>D:\GitHub\Project\UtilsSharp.Standard\src\UtilsSharp.Standard\DotNetCore\DotNetCore.xml</DocumentationFile>
+    <DocumentationFile>D:\GitHub\Project\UtilsSharp.Standard\src\UtilsSharp.Standard\UtilsSharp.AspNetCore\UtilsSharp.AspNetCore.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
@@ -22,6 +23,10 @@
     <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="7.1.0" />
     <PackageReference Include="Autofac.Extras.DynamicProxy" Version="6.0.0" />
     <PackageReference Include="AutoMapper" Version="9.0.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.3.1" />
+    <PackageReference Include="Swashbuckle.AspNetCore.Newtonsoft" Version="6.3.1" />
+    <PackageReference Include="Swashbuckle.AspNetCore.Swagger" Version="6.3.1" />
     <PackageReference Include="UtilsSharp" Version="2.5.0" />
     <PackageReference Include="UtilsSharp.Logger" Version="1.1.2" />
   </ItemGroup>

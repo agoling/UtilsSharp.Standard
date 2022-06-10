@@ -1,71 +1,71 @@
 <?xml version="1.0"?>
 <doc>
     <assembly>
-        <name>DotNetCore</name>
+        <name>UtilsSharp.DotNetCore</name>
     </assembly>
     <members>
-        <member name="T:DotNetCore.Autofac.AutofacContainer">
+        <member name="T:UtilsSharp.DotNetCore.Autofac.AutofacContainer">
             <summary>
             依赖注入Container
             </summary>
         </member>
-        <member name="M:DotNetCore.Autofac.AutofacContainer.Register">
+        <member name="M:UtilsSharp.DotNetCore.Autofac.AutofacContainer.Register">
             <summary>
             依赖注入初始化
             </summary>
         </member>
-        <member name="M:DotNetCore.Autofac.AutofacContainer.Register(System.Action{Autofac.ContainerBuilder})">
+        <member name="M:UtilsSharp.DotNetCore.Autofac.AutofacContainer.Register(System.Action{Autofac.ContainerBuilder})">
             <summary>
             依赖注入初始化
             </summary>
             <param name="action">回调</param>
         </member>
-        <member name="T:DotNetCore.BaseConfig">
+        <member name="T:UtilsSharp.DotNetCore.BaseConfig">
             <summary>
             基础配置信息
             </summary>
         </member>
-        <member name="P:DotNetCore.BaseConfig.MySqlConnection">
+        <member name="P:UtilsSharp.DotNetCore.BaseConfig.MySqlConnection">
             <summary>
             MySql链接字符串
             </summary>
         </member>
-        <member name="P:DotNetCore.BaseConfig.MsSqlConnection">
+        <member name="P:UtilsSharp.DotNetCore.BaseConfig.MsSqlConnection">
             <summary>
             MsSql链接字符串
             </summary>
         </member>
-        <member name="P:DotNetCore.BaseConfig.ClickHouseConnection">
+        <member name="P:UtilsSharp.DotNetCore.BaseConfig.ClickHouseConnection">
             <summary>
             ClickHouse链接字符串
             </summary>
         </member>
-        <member name="P:DotNetCore.BaseConfig.RedisConnection">
+        <member name="P:UtilsSharp.DotNetCore.BaseConfig.RedisConnection">
             <summary>
             Redis链接字符串
             </summary>
         </member>
-        <member name="P:DotNetCore.BaseConfig.RabbitMqConnection">
+        <member name="P:UtilsSharp.DotNetCore.BaseConfig.RabbitMqConnection">
             <summary>
             rabbitMq链接字符串
             </summary>
         </member>
-        <member name="P:DotNetCore.BaseConfig.EsSettingJson">
+        <member name="P:UtilsSharp.DotNetCore.BaseConfig.EsSettingJson">
             <summary>
             ElasticSearch EsSettingJson
             </summary>
         </member>
-        <member name="P:DotNetCore.BaseConfig.OssConfigJson">
+        <member name="P:UtilsSharp.DotNetCore.BaseConfig.OssConfigJson">
             <summary>
             阿里云Oss OssConfigJson
             </summary>
         </member>
-        <member name="P:DotNetCore.BaseConfig.MinWorkerThreadCount">
+        <member name="P:UtilsSharp.DotNetCore.BaseConfig.MinWorkerThreadCount">
             <summary>
             由线程池根据需要创建的新的最小工作程序线程数
             </summary>
         </member>
-        <member name="P:DotNetCore.BaseConfig.MinCompletionPortThreadCount">
+        <member name="P:UtilsSharp.DotNetCore.BaseConfig.MinCompletionPortThreadCount">
             <summary>
             由线程池根据需要创建的新的最小空闲异步 I/O 线程数
             </summary>

@@ -37,6 +37,11 @@ namespace UtilsSharp.AspNetCore
         public static string RabbitMqConnection { get; } = AppsettingsHelper.GetValue("RabbitMqConnection");
 
         /// <summary>
+        /// kafka链接字符串
+        /// </summary>
+        public static string KafkaConnection { get; } = AppsettingsHelper.GetValue("KafkaConnection");
+
+        /// <summary>
         /// ElasticSearch EsSettingJson
         /// </summary>
         public static string EsSettingJson { get; } = AppsettingsHelper.GetValue("EsSettingJson");

@@ -1,0 +1,541 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>UtilsSharp.OssHelper</name>
+    </assembly>
+    <members>
+        <member name="T:UtilsSharp.OssHelper.OssClient">
+            <summary>
+            OssClient
+            </summary>
+            <summary>
+            OssClient(异步)
+            </summary>
+        </member>
+        <member name="F:UtilsSharp.OssHelper.OssClient._ossSetting">
+            <summary>
+            设置文件
+            </summary>
+        </member>
+        <member name="M:UtilsSharp.OssHelper.OssClient.GetObjects(System.String,System.String)">
+            <summary>
+            通过指定目录路径列举该目录下的所有文件
+            </summary>
+            <param name="prefix">文件目录路径</param>
+            <param name="reqOssEndpoint">ossEndpoint(默认访问内网)</param>
+        </member>
+        <member name="M:UtilsSharp.OssHelper.OssClient.GetObjectsResult(System.String,System.String)">
+            <summary>
+            通过指定目录路径列举该目录下的所有文件
+            </summary>
+            <param name="prefix">文件目录路径</param>
+            <param name="reqOssEndpoint">ossEndpoint(默认访问内网)</param>
+        </member>
+        <member name="M:UtilsSharp.OssHelper.OssClient.SaveStr(System.String,System.String,System.String)">
+            <summary>
+            保存文件内容到阿里对象存储(oss)
+            </summary>
+            <param name="ossFilePath">阿里对象存储(oss)服务器文件路径如：tools/2017-03-24/xxxx.jpg</param>
+            <param name="content">文件内容</param>
+            <param name="reqOssEndpoint">ossEndpoint(默认访问内网)</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.OssHelper.OssClient.SaveFile(System.String,System.IO.Stream,System.String)">
+            <summary>
+            保存文件流到阿里对象存储(oss)
+            </summary>
+            <param name="ossFilePath">阿里对象存储(oss)服务器文件路径如：tools/2017-03-24/xxxxxx.jpg</param>
+            <param name="content">文件流</param>
+            <param name="reqOssEndpoint">ossEndpoint(默认访问内网)</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.OssHelper.OssClient.SaveStrResult(System.String,System.String,System.String)">
+            <summary>
+            保存文件内容到阿里对象存储(oss)
+            </summary>
+            <param name="ossFilePath">阿里对象存储(oss)服务器文件路径如：tools/2017-03-24/xxxx.jpg</param>
+            <param name="content">文件内容</param>
+            <param name="reqOssEndpoint">ossEndpoint(默认访问内网)</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.OssHelper.OssClient.SaveFileResult(System.String,System.IO.Stream,System.String)">
+            <summary>
+            保存文件流到阿里对象存储(oss)
+            </summary>
+            <param name="ossFilePath">阿里对象存储(oss)服务器文件路径如：tools/2017-03-24/xxxxxx.jpg</param>
+            <param name="content">文件流</param>
+            <param name="reqOssEndpoint">ossEndpoint(默认访问内网)</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.OssHelper.OssClient.SaveFileByUrl(System.String,System.String,System.String)">
+            <summary>
+            保存文件到阿里对象存储(oss)
+            </summary>
+            <param name="ossFilePath">阿里对象存储(oss)服务器文件路径如：tools/2017-03-24/xxxxxx.jpg</param>
+            <param name="url">要上传的文件地址</param>
+            <param name="reqOssEndpoint">ossEndpoint(默认访问内网)</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.OssHelper.OssClient.SaveFileByUrlResult(System.String,System.String,System.String)">
+            <summary>
+            保存文件到阿里对象存储(oss)
+            </summary>
+            <param name="ossFilePath">阿里对象存储(oss)服务器文件路径如：tools/2017-03-24/xxxxxx.jpg</param>
+            <param name="url">要上传的文件地址</param>
+            <param name="reqOssEndpoint">ossEndpoint(默认访问内网)</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.OssHelper.OssClient.GetStr(System.String,System.String)">
+            <summary>
+            获取文件
+            </summary>
+            <param name="ossFilePath">阿里对象存储(oss)服务器文件路径如：tools/2017-03-24/xxxxxx.jpg</param>
+            <param name="reqOssEndpoint">ossEndpoint(默认访问内网)</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.OssHelper.OssClient.GetObject(System.String,System.String)">
+            <summary>
+            获取文件
+            </summary>
+            <param name="ossFilePath">阿里对象存储(oss)服务器文件路径如：tools/2017-03-24/xxxxxx.jpg</param>
+            <param name="reqOssEndpoint">ossEndpoint(默认访问内网)</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.OssHelper.OssClient.GetStrResult(System.String,System.String)">
+            <summary>
+            获取文件
+            </summary>
+            <param name="ossFilePath">阿里对象存储(oss)服务器文件路径如：tools/2017-03-24/xxxxxx.jpg</param>
+            <param name="reqOssEndpoint">ossEndpoint(默认访问内网)</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.OssHelper.OssClient.GetObjectResult(System.String,System.String)">
+            <summary>
+            获取文件
+            </summary>
+            <param name="ossFilePath">阿里对象存储(oss)服务器文件路径如：tools/2017-03-24/xxxxxx.jpg</param>
+            <param name="reqOssEndpoint">ossEndpoint(默认访问内网)</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.OssHelper.OssClient.DeleteObject(System.String,System.String)">
+            <summary>
+            删除文件
+            </summary>
+            <param name="ossFilePath">阿里对象存储(oss)服务器文件路径如：tools/2017-03-24/xxxxxx.jpg</param>
+            <param name="reqOssEndpoint">ossEndpoint(默认访问内网)</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.OssHelper.OssClient.DeleteObjectResult(System.String,System.String)">
+            <summary>
+            删除文件
+            </summary>
+            <param name="ossFilePath">阿里对象存储(oss)服务器文件路径如：tools/2017-03-24/xxxxxx.jpg</param>
+            <param name="reqOssEndpoint">ossEndpoint(默认访问内网)</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.OssHelper.OssClient.GetSign(System.String,System.String,System.String@,System.String,System.String,System.Int64)">
+            <summary>
+            获取服务端直传签名（policy和callback）
+            </summary>
+            <param name="ossCallbackUrl">OSS往这个机器发送的url请求</param>
+            <param name="ossCallbackHost">OSS发送这个请求时，请求头部所带的Host头</param>
+            <param name="tips">提示信息</param>
+            <param name="reqOssEndpoint">ossEndpoint(默认访问内网)</param>
+            <param name="ossDir">上传目录 默认："tools/webUpload/"</param>
+            <param name="expireTime">过期时间(默认30秒)</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.OssHelper.OssClient.GetObjectsAsync(System.String,System.String)">
+            <summary>
+            通过指定目录路径列举该目录下的所有文件
+            </summary>
+            <param name="prefix">文件目录路径</param>
+            <param name="reqOssEndpoint">ossEndpoint(默认访问内网)</param>
+        </member>
+        <member name="M:UtilsSharp.OssHelper.OssClient.GetObjectsResultAsync(System.String,System.String)">
+            <summary>
+            通过指定目录路径列举该目录下的所有文件
+            </summary>
+            <param name="prefix">文件目录路径</param>
+            <param name="reqOssEndpoint">ossEndpoint(默认访问内网)</param>
+        </member>
+        <member name="M:UtilsSharp.OssHelper.OssClient.SaveStrAsync(System.String,System.String,System.String)">
+            <summary>
+            保存文件内容到阿里对象存储(oss)
+            </summary>
+            <param name="ossFilePath">阿里对象存储(oss)服务器文件路径如：tools/2017-03-24/xxxx.jpg</param>
+            <param name="content">文件内容</param>
+            <param name="reqOssEndpoint">ossEndpoint(默认访问内网)</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.OssHelper.OssClient.SaveFileAsync(System.String,System.IO.Stream,System.String)">
+            <summary>
+            保存文件流到阿里对象存储(oss)
+            </summary>
+            <param name="ossFilePath">阿里对象存储(oss)服务器文件路径如：tools/2017-03-24/xxxxxx.jpg</param>
+            <param name="content">文件流</param>
+            <param name="reqOssEndpoint">ossEndpoint(默认访问内网)</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.OssHelper.OssClient.SaveStrResultAsync(System.String,System.String,System.String)">
+            <summary>
+            保存文件内容到阿里对象存储(oss)
+            </summary>
+            <param name="ossFilePath">阿里对象存储(oss)服务器文件路径如：tools/2017-03-24/xxxx.jpg</param>
+            <param name="content">文件内容</param>
+            <param name="reqOssEndpoint">ossEndpoint(默认访问内网)</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.OssHelper.OssClient.SaveFileResultAsync(System.String,System.IO.Stream,System.String)">
+            <summary>
+            保存文件流到阿里对象存储(oss)
+            </summary>
+            <param name="ossFilePath">阿里对象存储(oss)服务器文件路径如：tools/2017-03-24/xxxxxx.jpg</param>
+            <param name="content">文件流</param>
+            <param name="reqOssEndpoint">ossEndpoint(默认访问内网)</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.OssHelper.OssClient.SaveFileByUrlAsync(System.String,System.String,System.String)">
+            <summary>
+            保存文件到阿里对象存储(oss)
+            </summary>
+            <param name="ossFilePath">阿里对象存储(oss)服务器文件路径如：tools/2017-03-24/xxxxxx.jpg</param>
+            <param name="url">要上传的文件地址</param>
+            <param name="reqOssEndpoint">ossEndpoint(默认访问内网)</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.OssHelper.OssClient.SaveFileByUrlResultAsync(System.String,System.String,System.String)">
+            <summary>
+            保存文件到阿里对象存储(oss)
+            </summary>
+            <param name="ossFilePath">阿里对象存储(oss)服务器文件路径如：tools/2017-03-24/xxxxxx.jpg</param>
+            <param name="url">要上传的文件地址</param>
+            <param name="bytes">bytes信息</param>
+            <param name="reqOssEndpoint">ossEndpoint(默认访问内网)</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.OssHelper.OssClient.GetStrAsync(System.String,System.String)">
+            <summary>
+            获取文件
+            </summary>
+            <param name="ossFilePath">阿里对象存储(oss)服务器文件路径如：tools/2017-03-24/xxxxxx.jpg</param>
+            <param name="reqOssEndpoint">ossEndpoint(默认访问内网)</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.OssHelper.OssClient.GetObjectAsync(System.String,System.String)">
+            <summary>
+            获取文件
+            </summary>
+            <param name="ossFilePath">阿里对象存储(oss)服务器文件路径如：tools/2017-03-24/xxxxxx.jpg</param>
+            <param name="reqOssEndpoint">ossEndpoint(默认访问内网)</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.OssHelper.OssClient.GetStrResultAsync(System.String,System.String)">
+            <summary>
+            获取文件
+            </summary>
+            <param name="ossFilePath">阿里对象存储(oss)服务器文件路径如：tools/2017-03-24/xxxxxx.jpg</param>
+            <param name="reqOssEndpoint">ossEndpoint(默认访问内网)</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.OssHelper.OssClient.GetObjectResultAsync(System.String,System.String)">
+            <summary>
+            获取文件
+            </summary>
+            <param name="ossFilePath">阿里对象存储(oss)服务器文件路径如：tools/2017-03-24/xxxxxx.jpg</param>
+            <param name="reqOssEndpoint">ossEndpoint(默认访问内网)</param>
+            <returns></returns>
+        </member>
+        <member name="T:UtilsSharp.OssHelper.OssHelper">
+            <summary>
+            OssHelper
+            </summary>
+        </member>
+        <member name="T:UtilsSharp.OssHelper.OssHelper`1">
+            <summary>
+            Oss帮助类
+            </summary>
+            <summary>
+            Oss帮助类
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.OssHelper.OssHelper`1.Instance">
+            <summary>
+            OssClient 静态实例，使用前请初始化
+            OssHelper.Initialization(new OssClient())
+            </summary>
+        </member>
+        <member name="M:UtilsSharp.OssHelper.OssHelper`1.Initialization(UtilsSharp.OssHelper.OssClient)">
+            <summary>
+            初始化OssClient静态访问类
+            OssHelper.Initialization(new OssClient())
+            </summary>
+            <param name="ossClient"></param>
+        </member>
+        <member name="M:UtilsSharp.OssHelper.OssHelper`1.GetObjects(System.String,System.String)">
+            <summary>
+            通过指定目录路径列举该目录下的所有文件
+            </summary>
+            <param name="prefix">文件目录路径</param>
+            <param name="reqOssEndpoint">ossEndpoint(默认访问内网)</param>
+        </member>
+        <member name="M:UtilsSharp.OssHelper.OssHelper`1.GetObjectsResult(System.String,System.String)">
+            <summary>
+            通过指定目录路径列举该目录下的所有文件
+            </summary>
+            <param name="prefix">文件目录路径</param>
+            <param name="reqOssEndpoint">ossEndpoint(默认访问内网)</param>
+        </member>
+        <member name="M:UtilsSharp.OssHelper.OssHelper`1.SaveStr(System.String,System.String,System.String)">
+            <summary>
+            保存文件内容到阿里对象存储(oss)
+            </summary>
+            <param name="ossFilePath">阿里对象存储(oss)服务器文件路径如：tools/2017-03-24/xxxx.jpg</param>
+            <param name="content">文件内容</param>
+            <param name="reqOssEndpoint">ossEndpoint(默认访问内网)</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.OssHelper.OssHelper`1.SaveFile(System.String,System.IO.Stream,System.String)">
+            <summary>
+            保存文件流到阿里对象存储(oss)
+            </summary>
+            <param name="ossFilePath">阿里对象存储(oss)服务器文件路径如：tools/2017-03-24/xxxxxx.jpg</param>
+            <param name="content">文件流</param>
+            <param name="reqOssEndpoint">ossEndpoint(默认访问内网)</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.OssHelper.OssHelper`1.SaveStrResult(System.String,System.String,System.String)">
+            <summary>
+            保存文件内容到阿里对象存储(oss)
+            </summary>
+            <param name="ossFilePath">阿里对象存储(oss)服务器文件路径如：tools/2017-03-24/xxxx.jpg</param>
+            <param name="content">文件内容</param>
+            <param name="reqOssEndpoint">ossEndpoint(默认访问内网)</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.OssHelper.OssHelper`1.SaveFileResult(System.String,System.IO.Stream,System.String)">
+            <summary>
+            保存文件流到阿里对象存储(oss)
+            </summary>
+            <param name="ossFilePath">阿里对象存储(oss)服务器文件路径如：tools/2017-03-24/xxxxxx.jpg</param>
+            <param name="content">文件流</param>
+            <param name="reqOssEndpoint">ossEndpoint(默认访问内网)</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.OssHelper.OssHelper`1.SaveFileByUrl(System.String,System.String,System.String)">
+            <summary>
+            保存文件到阿里对象存储(oss)
+            </summary>
+            <param name="ossFilePath">阿里对象存储(oss)服务器文件路径如：tools/2017-03-24/xxxxxx.jpg</param>
+            <param name="url">要上传的文件地址</param>
+            <param name="reqOssEndpoint">ossEndpoint(默认访问内网)</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.OssHelper.OssHelper`1.SaveFileByUrlResult(System.String,System.String,System.String)">
+            <summary>
+            保存文件到阿里对象存储(oss)
+            </summary>
+            <param name="ossFilePath">阿里对象存储(oss)服务器文件路径如：tools/2017-03-24/xxxxxx.jpg</param>
+            <param name="url">要上传的文件地址</param>
+            <param name="reqOssEndpoint">ossEndpoint(默认访问内网)</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.OssHelper.OssHelper`1.GetStr(System.String,System.String)">
+            <summary>
+            获取文件
+            </summary>
+            <param name="ossFilePath">阿里对象存储(oss)服务器文件路径如：tools/2017-03-24/xxxxxx.jpg</param>
+            <param name="reqOssEndpoint">ossEndpoint(默认访问内网)</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.OssHelper.OssHelper`1.GetObject(System.String,System.String)">
+            <summary>
+            获取文件
+            </summary>
+            <param name="ossFilePath">阿里对象存储(oss)服务器文件路径如：tools/2017-03-24/xxxxxx.jpg</param>
+            <param name="reqOssEndpoint">ossEndpoint(默认访问内网)</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.OssHelper.OssHelper`1.GetStrResult(System.String,System.String)">
+            <summary>
+            获取文件
+            </summary>
+            <param name="ossFilePath">阿里对象存储(oss)服务器文件路径如：tools/2017-03-24/xxxxxx.jpg</param>
+            <param name="reqOssEndpoint">ossEndpoint(默认访问内网)</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.OssHelper.OssHelper`1.GetObjectResult(System.String,System.String)">
+            <summary>
+            获取文件
+            </summary>
+            <param name="ossFilePath">阿里对象存储(oss)服务器文件路径如：tools/2017-03-24/xxxxxx.jpg</param>
+            <param name="reqOssEndpoint">ossEndpoint(默认访问内网)</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.OssHelper.OssHelper`1.DeleteObject(System.String,System.String)">
+            <summary>
+            删除文件
+            </summary>
+            <param name="ossFilePath">阿里对象存储(oss)服务器文件路径如：tools/2017-03-24/xxxxxx.jpg</param>
+            <param name="reqOssEndpoint">ossEndpoint(默认访问内网)</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.OssHelper.OssHelper`1.DeleteObjectResult(System.String,System.String)">
+            <summary>
+            删除文件
+            </summary>
+            <param name="ossFilePath">阿里对象存储(oss)服务器文件路径如：tools/2017-03-24/xxxxxx.jpg</param>
+            <param name="reqOssEndpoint">ossEndpoint(默认访问内网)</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.OssHelper.OssHelper`1.GetSign(System.String,System.String,System.String@,System.String,System.String,System.Int64)">
+            <summary>
+            获取服务端直传签名（policy和callback）
+            </summary>
+            <param name="ossCallbackUrl">OSS往这个机器发送的url请求</param>
+            <param name="ossCallbackHost">OSS发送这个请求时，请求头部所带的Host头</param>
+            <param name="tips">提示信息</param>
+            <param name="reqOssEndpoint">ossEndpoint(默认访问内网)</param>
+            <param name="ossDir">上传目录 默认："tools/webUpload/"</param>
+            <param name="expireTime">过期时间(默认30秒)</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.OssHelper.OssHelper`1.GetObjectsAsync(System.String,System.String)">
+            <summary>
+            通过指定目录路径列举该目录下的所有文件
+            </summary>
+            <param name="prefix">文件目录路径</param>
+            <param name="reqOssEndpoint">ossEndpoint(默认访问内网)</param>
+        </member>
+        <member name="M:UtilsSharp.OssHelper.OssHelper`1.GetObjectsResultAsync(System.String,System.String)">
+            <summary>
+            通过指定目录路径列举该目录下的所有文件
+            </summary>
+            <param name="prefix">文件目录路径</param>
+            <param name="reqOssEndpoint">ossEndpoint(默认访问内网)</param>
+        </member>
+        <member name="M:UtilsSharp.OssHelper.OssHelper`1.SaveStrAsync(System.String,System.String,System.String)">
+            <summary>
+            保存文件内容到阿里对象存储(oss)
+            </summary>
+            <param name="ossFilePath">阿里对象存储(oss)服务器文件路径如：tools/2017-03-24/xxxx.jpg</param>
+            <param name="content">文件内容</param>
+            <param name="reqOssEndpoint">ossEndpoint(默认访问内网)</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.OssHelper.OssHelper`1.SaveFileAsync(System.String,System.IO.Stream,System.String)">
+            <summary>
+            保存文件流到阿里对象存储(oss)
+            </summary>
+            <param name="ossFilePath">阿里对象存储(oss)服务器文件路径如：tools/2017-03-24/xxxxxx.jpg</param>
+            <param name="content">文件流</param>
+            <param name="reqOssEndpoint">ossEndpoint(默认访问内网)</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.OssHelper.OssHelper`1.SaveStrResultAsync(System.String,System.String,System.String)">
+            <summary>
+            保存文件内容到阿里对象存储(oss)
+            </summary>
+            <param name="ossFilePath">阿里对象存储(oss)服务器文件路径如：tools/2017-03-24/xxxx.jpg</param>
+            <param name="content">文件内容</param>
+            <param name="reqOssEndpoint">ossEndpoint(默认访问内网)</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.OssHelper.OssHelper`1.SaveFileResultAsync(System.String,System.IO.Stream,System.String)">
+            <summary>
+            保存文件流到阿里对象存储(oss)
+            </summary>
+            <param name="ossFilePath">阿里对象存储(oss)服务器文件路径如：tools/2017-03-24/xxxxxx.jpg</param>
+            <param name="content">文件流</param>
+            <param name="reqOssEndpoint">ossEndpoint(默认访问内网)</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.OssHelper.OssHelper`1.SaveFileByUrlAsync(System.String,System.String,System.String)">
+            <summary>
+            保存文件到阿里对象存储(oss)
+            </summary>
+            <param name="ossFilePath">阿里对象存储(oss)服务器文件路径如：tools/2017-03-24/xxxxxx.jpg</param>
+            <param name="url">要上传的文件地址</param>
+            <param name="reqOssEndpoint">ossEndpoint(默认访问内网)</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.OssHelper.OssHelper`1.SaveFileByUrlResultAsync(System.String,System.String,System.String)">
+            <summary>
+            保存文件到阿里对象存储(oss)
+            </summary>
+            <param name="ossFilePath">阿里对象存储(oss)服务器文件路径如：tools/2017-03-24/xxxxxx.jpg</param>
+            <param name="url">要上传的文件地址</param>
+            <param name="reqOssEndpoint">ossEndpoint(默认访问内网)</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.OssHelper.OssHelper`1.GetStrAsync(System.String,System.String)">
+            <summary>
+            获取文件
+            </summary>
+            <param name="ossFilePath">阿里对象存储(oss)服务器文件路径如：tools/2017-03-24/xxxxxx.jpg</param>
+            <param name="reqOssEndpoint">ossEndpoint(默认访问内网)</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.OssHelper.OssHelper`1.GetObjectAsync(System.String,System.String)">
+            <summary>
+            获取文件
+            </summary>
+            <param name="ossFilePath">阿里对象存储(oss)服务器文件路径如：tools/2017-03-24/xxxxxx.jpg</param>
+            <param name="reqOssEndpoint">ossEndpoint(默认访问内网)</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.OssHelper.OssHelper`1.GetStrResultAsync(System.String,System.String)">
+            <summary>
+            获取文件
+            </summary>
+            <param name="ossFilePath">阿里对象存储(oss)服务器文件路径如：tools/2017-03-24/xxxxxx.jpg</param>
+            <param name="reqOssEndpoint">ossEndpoint(默认访问内网)</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.OssHelper.OssHelper`1.GetObjectResultAsync(System.String,System.String)">
+            <summary>
+            获取文件
+            </summary>
+            <param name="ossFilePath">阿里对象存储(oss)服务器文件路径如：tools/2017-03-24/xxxxxx.jpg</param>
+            <param name="reqOssEndpoint">ossEndpoint(默认访问内网)</param>
+            <returns></returns>
+        </member>
+        <member name="T:UtilsSharp.OssHelper.OssManager">
+            <summary>
+            Oss注册管理
+            </summary>
+        </member>
+        <member name="M:UtilsSharp.OssHelper.OssManager.Register">
+            <summary>
+            注册
+            </summary>
+        </member>
+        <member name="M:UtilsSharp.OssHelper.OssManager.Register``1(UtilsSharp.OssHelper.OssClient)">
+            <summary>
+            注册
+            </summary>
+            <typeparam name="T">T</typeparam>
+            <param name="ossClient">OssClient</param>
+        </member>
+        <member name="T:UtilsSharp.OssHelper.OssResult`1">
+            <summary>
+            Oss执行返回参数
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.OssHelper.OssResult`1.Code">
+            <summary>
+            状态码
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.OssHelper.OssResult`1.Result">
+            <summary>
+            结果
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.OssHelper.OssResult`1.Msg">
+            <summary>
+            消息
+            </summary>
+        </member>
+    </members>
+</doc>

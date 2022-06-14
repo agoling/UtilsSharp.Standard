@@ -49,6 +49,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UtilsSharp.DotNetCore", "Ut
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UtilsSharp.OssHelper", "UtilsSharp.OssHelper\UtilsSharp.OssHelper.csproj", "{B8A3BD3A-281D-40D2-88F6-99DA0271D520}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UtilsSharp.Redis", "UtilsSharp.Redis\UtilsSharp.Redis.csproj", "{C449D9E4-3B4F-4492-B13C-B280882C8A4F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -147,6 +149,10 @@ Global
 		{B8A3BD3A-281D-40D2-88F6-99DA0271D520}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B8A3BD3A-281D-40D2-88F6-99DA0271D520}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B8A3BD3A-281D-40D2-88F6-99DA0271D520}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C449D9E4-3B4F-4492-B13C-B280882C8A4F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C449D9E4-3B4F-4492-B13C-B280882C8A4F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C449D9E4-3B4F-4492-B13C-B280882C8A4F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C449D9E4-3B4F-4492-B13C-B280882C8A4F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

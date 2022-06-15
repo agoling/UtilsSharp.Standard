@@ -21,7 +21,7 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>D:\GitHub\Project\UtilsSharp.Standard\src\UtilsSharp.Standard\UtilsSharp\contentFiles\UtilsSharp.xml</DocumentationFile>
+    <DocumentationFile>D:\GitHub\Project\UtilsSharp.Standard\src\UtilsSharp\UtilsSharp.xml</DocumentationFile>
     <OutputPath></OutputPath>
   </PropertyGroup>
 

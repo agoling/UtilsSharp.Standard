@@ -114,6 +114,11 @@
             rabbitMq链接字符串
             </summary>
         </member>
+        <member name="P:UtilsSharp.AspNetCore.BaseConfig.KafkaConnection">
+            <summary>
+            kafka链接字符串
+            </summary>
+        </member>
         <member name="P:UtilsSharp.AspNetCore.BaseConfig.EsSettingJson">
             <summary>
             ElasticSearch EsSettingJson

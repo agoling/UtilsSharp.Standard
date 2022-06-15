@@ -23,6 +23,20 @@
             </summary>
             <param name="obj">参数</param>
         </member>
+        <member name="M:UtilsSharp.RabbitMq.Extension.AbsConsumer`1.ExecuteAsync(System.String,System.Int32,System.Int32)">
+            <summary>
+            执行消费者
+            </summary>
+            <param name="rabbitMqBusinessName">业务名称</param>
+            <param name="consumerCount">消费者数量</param>
+            <param name="consumerHandleCount">每个消费者每次执行条数</param>
+        </member>
+        <member name="M:UtilsSharp.RabbitMq.Extension.AbsConsumer`1.BatchReceivedAsync(System.Object)">
+            <summary>
+            消费者
+            </summary>
+            <param name="obj">参数</param>
+        </member>
         <member name="M:UtilsSharp.RabbitMq.Extension.AbsConsumer`1.ReceiveCallBack(System.Collections.Generic.List{System.String})">
             <summary>
             消费者委托
@@ -35,6 +49,14 @@
             </summary>
         </member>
         <member name="M:UtilsSharp.RabbitMq.Extension.IConsumer.Execute(System.String,System.Int32,System.Int32)">
+            <summary>
+            执行消费者
+            </summary>
+            <param name="rabbitMqBusinessName">业务名称</param>
+            <param name="consumerCount">消费者数量</param>
+            <param name="consumerHandleCount">每个消费者每次执行条数</param>
+        </member>
+        <member name="M:UtilsSharp.RabbitMq.Extension.IConsumer.ExecuteAsync(System.String,System.Int32,System.Int32)">
             <summary>
             执行消费者
             </summary>

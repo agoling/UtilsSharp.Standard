@@ -15,7 +15,7 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>D:\GitHub\Project\UtilsSharp.Standard\src\UtilsSharp.Standard\UtilsSharp.AspNetCore\UtilsSharp.AspNetCore.xml</DocumentationFile>
+    <DocumentationFile>D:\GitHub\Project\UtilsSharp.Standard\src\UtilsSharp.AspNetCore\UtilsSharp.AspNetCore.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>

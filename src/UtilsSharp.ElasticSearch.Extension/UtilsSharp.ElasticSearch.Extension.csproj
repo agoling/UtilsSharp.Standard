@@ -15,7 +15,7 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>D:\GitHub\Project\UtilsSharp.Standard\src\UtilsSharp.Standard\UtilsSharp.ElasticSearch.Extension\UtilsSharp.ElasticSearch.Extension.xml</DocumentationFile>
+    <DocumentationFile>D:\GitHub\Project\UtilsSharp.Standard\src\UtilsSharp.ElasticSearch.Extension\UtilsSharp.ElasticSearch.Extension.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>

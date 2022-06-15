@@ -9,7 +9,7 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>D:\GitHub\Project\UtilsSharp.Standard\src\UtilsSharp.Standard\TestDemo\TestDemo.xml</DocumentationFile>
+    <DocumentationFile>D:\GitHub\Project\UtilsSharp.Standard\src\TestDemo\TestDemo.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>

@@ -13,7 +13,7 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>D:\GitHub\Project\UtilsSharp.Standard\src\UtilsSharp.Standard\UtilsSharp.RabbitMq.Extension\UtilsSharp.RabbitMq.Extension.xml</DocumentationFile>
+    <DocumentationFile>D:\GitHub\Project\UtilsSharp.Standard\src\UtilsSharp.RabbitMq.Extension\UtilsSharp.RabbitMq.Extension.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>

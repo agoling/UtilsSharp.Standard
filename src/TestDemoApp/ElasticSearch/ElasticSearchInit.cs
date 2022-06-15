@@ -4,9 +4,9 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Autofac;
-using DotNetCore.Autofac;
 using Newtonsoft.Json;
-using OptionConfig;
+using UtilsSharp.DotNetCore.Autofac;
+using UtilsSharp.OptionConfig;
 
 namespace TestDemoApp.ElasticSearch
 {

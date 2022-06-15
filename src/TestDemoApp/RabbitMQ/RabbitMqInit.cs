@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Threading;
-using OptionConfig;
 using RabbitMQ;
 using RabbitMQ.Client;
+using UtilsSharp.OptionConfig;
+using UtilsSharp.RabbitMq;
 
 namespace TestDemoApp.RabbitMQ
 {

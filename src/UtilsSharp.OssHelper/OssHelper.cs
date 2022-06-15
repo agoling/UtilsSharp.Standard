@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
 using Aliyun.OSS;
-using OptionConfig;
 
 namespace UtilsSharp.OssHelper
 {

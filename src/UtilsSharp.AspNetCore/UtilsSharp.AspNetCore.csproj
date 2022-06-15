@@ -28,7 +28,7 @@
     <PackageReference Include="Swashbuckle.AspNetCore.Newtonsoft" Version="6.3.1" />
     <PackageReference Include="Swashbuckle.AspNetCore.Swagger" Version="6.3.1" />
     <PackageReference Include="UtilsSharp" Version="2.5.0" />
-    <PackageReference Include="UtilsSharp.Logger" Version="1.1.2" />
+    <PackageReference Include="UtilsSharp.Logger" Version="2.0.0" />
   </ItemGroup>
 
   <ItemGroup>

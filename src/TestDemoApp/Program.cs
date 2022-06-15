@@ -2,10 +2,7 @@
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
-using Autofac;
-using DotNetCore.Autofac;
 using Newtonsoft.Json;
-using OptionConfig;
 using TestDemoApp.ElasticSearch;
 using TestDemoApp.Kafka;
 using TestDemoApp.RabbitMQ;

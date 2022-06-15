@@ -7,12 +7,13 @@
 
   <ItemGroup>
     <PackageReference Include="UtilsSharp.Kafka" Version="1.0.0" />
-    <PackageReference Include="UtilsSharp.Logger" Version="1.1.2" />
-    <PackageReference Include="UtilsSharp.RabbitMQ" Version="3.0.1" />
+    <PackageReference Include="UtilsSharp.Logger.Config" Version="2.0.0" />
+    <PackageReference Include="UtilsSharp.RabbitMQ" Version="3.0.2" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ElasticSearch7\ElasticSearch7.csproj" />
+    <ProjectReference Include="..\UtilsSharp.DotNetCore\UtilsSharp.DotNetCore.csproj" />
+    <ProjectReference Include="..\UtilsSharp.ElasticSearch7\UtilsSharp.ElasticSearch7.csproj" />
   </ItemGroup>
 
 </Project>

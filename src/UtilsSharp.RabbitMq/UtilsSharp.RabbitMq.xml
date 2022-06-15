@@ -1,0 +1,486 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>UtilsSharp.RabbitMq</name>
+    </assembly>
+    <members>
+        <member name="T:UtilsSharp.RabbitMq.MessageAskModel">
+            <summary>
+            MessageAskModel
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.RabbitMq.MessageAskModel.DeliveryTag">
+            <summary>
+            DeliveryTag
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.RabbitMq.MessageAskModel.Message">
+            <summary>
+            Message
+            </summary>
+        </member>
+        <member name="T:UtilsSharp.RabbitMq.RabbitMqClient">
+            <summary>
+            RabbitMqClient
+            </summary>
+            <summary>
+            RabbitMqClient
+            </summary>
+        </member>
+        <member name="M:UtilsSharp.RabbitMq.RabbitMqClient.#ctor(UtilsSharp.OptionConfig.RabbitMqSetting)">
+            <summary>
+            构造方法
+            </summary>
+        </member>
+        <member name="M:UtilsSharp.RabbitMq.RabbitMqClient.Init">
+            <summary>
+            初始化
+            </summary>
+        </member>
+        <member name="M:UtilsSharp.RabbitMq.RabbitMqClient.GetChannel">
+            <summary>
+            获取Channel
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.RabbitMq.RabbitMqClient.GetConsumerCount(System.String)">
+            <summary>
+            获取消费者数量
+            </summary>
+            <param name="queueName">队列名称</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.RabbitMq.RabbitMqClient.GetMessageCount(System.String)">
+            <summary>
+            获取消息数量
+            </summary>
+            <param name="queueName">队列名称</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.RabbitMq.RabbitMqClient.ExchangeDeclare(System.String,System.String)">
+            <summary>
+            申明交换机
+            </summary>
+            <param name="exchangeName">交换机名称</param>
+            <param name="exchangeType">交换机类型</param>
+        </member>
+        <member name="M:UtilsSharp.RabbitMq.RabbitMqClient.ExchangeDelete(System.String,System.Boolean)">
+            <summary>
+            删除交换机
+            </summary>
+            <param name="exchangeName">交换机名称</param>
+            <param name="ifUnused">是否要不在使用中</param>
+        </member>
+        <member name="M:UtilsSharp.RabbitMq.RabbitMqClient.QueueDeclare(System.String,System.Collections.Generic.IDictionary{System.String,System.Object})">
+            <summary>
+            申明队列
+            </summary>
+            <param name="queueName">队列名称</param>
+            <param name="arguments">参数</param>
+        </member>
+        <member name="M:UtilsSharp.RabbitMq.RabbitMqClient.QueueDelete(System.String)">
+            <summary>
+            删除队列
+            </summary>
+            <param name="queueName">队列名称</param>
+        </member>
+        <member name="M:UtilsSharp.RabbitMq.RabbitMqClient.QueuePurge(System.String)">
+            <summary>
+            清空队列数据
+            </summary>
+            <param name="queueName">队列名称</param>
+        </member>
+        <member name="M:UtilsSharp.RabbitMq.RabbitMqClient.QueueBind(System.String,System.String,System.String)">
+            <summary>
+            队列绑定
+            </summary>
+            <param name="queueName">队列名称</param>
+            <param name="exchangeName">交换机名称</param>
+            <param name="routingKey">路由key</param>
+        </member>
+        <member name="M:UtilsSharp.RabbitMq.RabbitMqClient.QueueUnbind(System.String,System.String,System.String)">
+            <summary>
+            队列解绑
+            </summary>
+            <param name="queueName">队列名称</param>
+            <param name="exchangeName">交换机名称</param>
+            <param name="routingKey">路由key</param>
+        </member>
+        <member name="M:UtilsSharp.RabbitMq.RabbitMqClient.Send``1(System.String,System.String,``0)">
+            <summary>
+            发送消息
+            </summary>
+            <param name="exchangeName">交换机名称</param>
+            <param name="routingKey">路由key</param>
+            <param name="content">消息内容</param>
+        </member>
+        <member name="M:UtilsSharp.RabbitMq.RabbitMqClient.Send``1(System.String,System.String,System.Collections.Generic.List{``0})">
+            <summary>
+            发送消息
+            </summary>
+            <param name="exchangeName">交换机名称</param>
+            <param name="routingKey">路由key</param>
+            <param name="contents">消息内容集合</param>
+        </member>
+        <member name="M:UtilsSharp.RabbitMq.RabbitMqClient.Send``1(System.String,System.String,``0,System.Int32)">
+            <summary>
+            发送消息
+            </summary>
+            <param name="exchangeName">交换机名称</param>
+            <param name="routingKey">路由key</param>
+            <param name="content">消息内容</param>
+            <param name="expiration">过期时间（秒）</param>
+        </member>
+        <member name="M:UtilsSharp.RabbitMq.RabbitMqClient.Send``1(System.String,System.String,System.Collections.Generic.List{``0},System.Int32)">
+            <summary>
+            发送消息
+            </summary>
+            <param name="exchangeName">交换机名称</param>
+            <param name="routingKey">路由key</param>
+            <param name="contents">消息内容集合</param>
+            <param name="expiration">过期时间（秒）</param>
+        </member>
+        <member name="M:UtilsSharp.RabbitMq.RabbitMqClient.Received(System.String,System.Action{System.String},System.Action{System.String})">
+            <summary>
+            消费者接收消息
+            </summary>
+            <param name="queueName">队列名称</param>
+            <param name="callback">回调方法</param>
+            <param name="errorCallback">错误回调方法</param>
+        </member>
+        <member name="M:UtilsSharp.RabbitMq.RabbitMqClient.BatchReceived(System.String,System.Action{System.Collections.Generic.List{System.String}},System.Int32,System.Action{System.String},System.Int32)">
+            <summary>
+            消费者批量接收消息
+            </summary>
+            <param name="queueName">队列名称</param>
+            <param name="callback">回调方法</param>
+            <param name="batchCount">每次批量接收条数</param>
+            <param name="errorCallback">错误回调方法</param>
+            <param name="millisecondsDelay">如果队列无数据休眠时间：毫秒</param>
+        </member>
+        <member name="M:UtilsSharp.RabbitMq.RabbitMqClient.GetMessage(System.String,System.Boolean,System.Action{RabbitMQ.Client.IModel,UtilsSharp.RabbitMq.MessageAskModel})">
+            <summary>
+            获取消息
+            </summary>
+            <param name="queueName">队列名称</param>
+            <param name="autoAck">是否消息自动确认</param>
+            <param name="beforeAckAction">手动确认消息前回调(自动确认消息时无效)</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.RabbitMq.RabbitMqClient.BatchReceivedHandle(System.Action{System.Collections.Generic.List{System.String}},System.Collections.Generic.List{UtilsSharp.RabbitMq.MessageAskModel})">
+            <summary>
+            消费者批量接收消息处理
+            </summary>
+            <param name="callback">回调方法</param>
+            <param name="rabbitMessage">批量消息</param>
+        </member>
+        <member name="M:UtilsSharp.RabbitMq.RabbitMqClient.ReceivedAsync(System.String,System.Action{System.String},System.Action{System.String})">
+            <summary>
+            消费者接收消息
+            </summary>
+            <param name="queueName">队列名称</param>
+            <param name="callback">回调方法</param>
+            <param name="errorCallback">错误回调方法</param>
+        </member>
+        <member name="M:UtilsSharp.RabbitMq.RabbitMqClient.BatchReceivedAsync(System.String,System.Action{System.Collections.Generic.List{System.String}},System.Int32,System.Action{System.String},System.Int32)">
+            <summary>
+            消费者批量接收消息
+            </summary>
+            <param name="queueName">队列名称</param>
+            <param name="callback">回调方法</param>
+            <param name="batchCount">每次批量接收条数</param>
+            <param name="errorCallback">错误回调方法</param>
+            <param name="millisecondsDelay">如果队列无数据休眠时间：毫秒</param>
+        </member>
+        <member name="M:UtilsSharp.RabbitMq.RabbitMqClient.BatchReceivedHandleAsync(System.Action{System.Collections.Generic.List{System.String}},System.Collections.Generic.List{UtilsSharp.RabbitMq.MessageAskModel})">
+            <summary>
+            消费者批量接收消息处理
+            </summary>
+            <param name="callback">回调方法</param>
+            <param name="rabbitMessage">批量消息</param>
+        </member>
+        <member name="T:UtilsSharp.RabbitMq.RabbitMqHelper">
+            <summary>
+            RabbitMqHelper
+            </summary>
+        </member>
+        <member name="T:UtilsSharp.RabbitMq.RabbitMqHelper`1">
+            <summary>
+            RabbitMq帮助类
+            </summary>
+            <summary>
+            RabbitMq帮助类
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.RabbitMq.RabbitMqHelper`1.Instance">
+            <summary>
+            RabbitMqClient 静态实例，使用前请初始化
+            RabbitMqHelper.Initialization(new RabbitMqClient())
+            </summary>
+        </member>
+        <member name="M:UtilsSharp.RabbitMq.RabbitMqHelper`1.Initialization(UtilsSharp.RabbitMq.RabbitMqClient)">
+            <summary>
+            初始化RabbitMqClient静态访问类
+            RabbitMqHelper.Initialization(new RabbitMqClient())
+            </summary>
+            <param name="rabbitMqClient"></param>
+        </member>
+        <member name="M:UtilsSharp.RabbitMq.RabbitMqHelper`1.GetConsumerCount(System.String)">
+            <summary>
+            获取消费者数量
+            </summary>
+            <param name="queueName">队列名称</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.RabbitMq.RabbitMqHelper`1.GetMessageCount(System.String)">
+            <summary>
+            获取消息数量
+            </summary>
+            <param name="queueName">队列名称</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.RabbitMq.RabbitMqHelper`1.ExchangeDeclare(System.String,System.String)">
+            <summary>
+            申明交换机
+            </summary>
+            <param name="exchangeName">交换机名称</param>
+            <param name="exchangeType">交换机类型</param>
+        </member>
+        <member name="M:UtilsSharp.RabbitMq.RabbitMqHelper`1.ExchangeDelete(System.String,System.Boolean)">
+            <summary>
+            删除交换机
+            </summary>
+            <param name="exchangeName">交换机名称</param>
+            <param name="ifUnused">是否要不在使用中</param>
+        </member>
+        <member name="M:UtilsSharp.RabbitMq.RabbitMqHelper`1.QueueDeclare(System.String,System.Collections.Generic.IDictionary{System.String,System.Object})">
+            <summary>
+            申明队列
+            </summary>
+            <param name="queueName">队列名称</param>
+            <param name="arguments">参数</param>
+        </member>
+        <member name="M:UtilsSharp.RabbitMq.RabbitMqHelper`1.QueueDelete(System.String)">
+            <summary>
+            删除队列
+            </summary>
+            <param name="queueName">队列名称</param>
+        </member>
+        <member name="M:UtilsSharp.RabbitMq.RabbitMqHelper`1.QueuePurge(System.String)">
+            <summary>
+            清空队列数据
+            </summary>
+            <param name="queueName">队列名称</param>
+        </member>
+        <member name="M:UtilsSharp.RabbitMq.RabbitMqHelper`1.QueueBind(System.String,System.String,System.String)">
+            <summary>
+            队列绑定
+            </summary>
+            <param name="queueName">队列名称</param>
+            <param name="exchangeName">交换机名称</param>
+            <param name="routingKey">路由key</param>
+        </member>
+        <member name="M:UtilsSharp.RabbitMq.RabbitMqHelper`1.QueueUnbind(System.String,System.String,System.String)">
+            <summary>
+            队列解绑
+            </summary>
+            <param name="queueName">队列名称</param>
+            <param name="exchangeName">交换机名称</param>
+            <param name="routingKey">路由key</param>
+        </member>
+        <member name="M:UtilsSharp.RabbitMq.RabbitMqHelper`1.Send``1(System.String,System.String,``0)">
+            <summary>
+            发送消息
+            </summary>
+            <param name="exchangeName">交换机名称</param>
+            <param name="routingKey">路由key</param>
+            <param name="content">消息内容</param>
+        </member>
+        <member name="M:UtilsSharp.RabbitMq.RabbitMqHelper`1.Send``1(System.String,System.String,System.Collections.Generic.List{``0})">
+            <summary>
+            发送消息
+            </summary>
+            <param name="exchangeName">交换机名称</param>
+            <param name="routingKey">路由key</param>
+            <param name="contents">消息内容集合</param>
+        </member>
+        <member name="M:UtilsSharp.RabbitMq.RabbitMqHelper`1.Send``1(System.String,System.String,``0,System.Int32)">
+            <summary>
+            发送消息
+            </summary>
+            <param name="exchangeName">交换机名称</param>
+            <param name="routingKey">路由key</param>
+            <param name="content">消息内容</param>
+            <param name="expiration">过期时间（秒）</param>
+        </member>
+        <member name="M:UtilsSharp.RabbitMq.RabbitMqHelper`1.Send``1(System.String,System.String,System.Collections.Generic.List{``0},System.Int32)">
+            <summary>
+            发送消息
+            </summary>
+            <param name="exchangeName">交换机名称</param>
+            <param name="routingKey">路由key</param>
+            <param name="contents">消息内容集合</param>
+            <param name="expiration">过期时间（秒）</param>
+        </member>
+        <member name="M:UtilsSharp.RabbitMq.RabbitMqHelper`1.Received(System.String,System.Action{System.String},System.Action{System.String})">
+            <summary>
+            消费者接收消息
+            </summary>
+            <param name="queueName">队列名称</param>
+            <param name="callback">回调方法</param>
+            <param name="errorCallback">错误回调方法</param>
+        </member>
+        <member name="M:UtilsSharp.RabbitMq.RabbitMqHelper`1.BatchReceived(System.String,System.Action{System.Collections.Generic.List{System.String}},System.Int32,System.Action{System.String})">
+            <summary>
+            消费者批量接收消息
+            </summary>
+            <param name="queueName">队列名称</param>
+            <param name="callback">回调方法</param>
+            <param name="batchCount">每次批量接收条数</param>
+            <param name="errorCallback">错误回调方法</param>
+        </member>
+        <member name="M:UtilsSharp.RabbitMq.RabbitMqHelper`1.GetMessage(System.String,System.Boolean,System.Action{RabbitMQ.Client.IModel,UtilsSharp.RabbitMq.MessageAskModel})">
+            <summary>
+            获取消息
+            </summary>
+            <param name="queueName">队列名称</param>
+            <param name="autoAck">是否消息自动确认</param>
+            <param name="beforeAckAction">手动确认消息前回调(自动确认消息时无效)</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.RabbitMq.RabbitMqHelper`1.SendByBusiness``1(System.String,``0)">
+            <summary>
+            生产者（发送消息）
+            </summary>
+            <typeparam name="T">消息类型</typeparam>
+            <param name="businessName">业务名称</param>
+            <param name="content">消息内容</param>
+        </member>
+        <member name="M:UtilsSharp.RabbitMq.RabbitMqHelper`1.SendByBusiness``1(System.String,System.Collections.Generic.List{``0})">
+            <summary>
+            生产者（发送消息）
+            </summary>
+            <typeparam name="T">消息类型</typeparam>
+            <param name="businessName">业务名称</param>
+            <param name="contents">消息内容集合</param>
+        </member>
+        <member name="M:UtilsSharp.RabbitMq.RabbitMqHelper`1.SendByBusiness``1(System.String,``0,System.Int32)">
+            <summary>
+            生产者（发送消息）
+            </summary>
+            <typeparam name="T">消息类型</typeparam>
+            <param name="businessName">业务名称</param>
+            <param name="content">消息内容集合</param>
+            <param name="expiration">过期时间（秒）</param>
+        </member>
+        <member name="M:UtilsSharp.RabbitMq.RabbitMqHelper`1.SendByBusiness``1(System.String,System.Collections.Generic.List{``0},System.Int32)">
+            <summary>
+            生产者（发送消息）
+            </summary>
+            <typeparam name="T">消息类型</typeparam>
+            <param name="businessName">业务名称</param>
+            <param name="contents">消息内容集合</param>
+            <param name="expiration">过期时间（秒）</param>
+        </member>
+        <member name="M:UtilsSharp.RabbitMq.RabbitMqHelper`1.ReceivedByBusiness(System.String,System.Action{System.String},System.Action{System.String})">
+            <summary>
+            消费者（消费消息）
+            </summary>
+            <param name="businessName">业务名称</param>
+            <param name="callback">消费回调方法</param>
+            <param name="errorCallback">错误回调方法</param>
+        </member>
+        <member name="M:UtilsSharp.RabbitMq.RabbitMqHelper`1.BatchReceivedByBusiness(System.String,System.Action{System.Collections.Generic.List{System.String}},System.Int32,System.Action{System.String})">
+            <summary>
+            批量消费者（消费消息）
+            </summary>
+            <param name="businessName">业务名称</param>
+            <param name="callback">消费回调方法</param>
+            <param name="batchCount">每次批量接收条数</param>
+            <param name="errorCallback">错误回调方法</param>
+        </member>
+        <member name="M:UtilsSharp.RabbitMq.RabbitMqHelper`1.QueuePurgeByBusiness(System.String)">
+            <summary>
+            清空队列数据
+            </summary>
+            <param name="businessName">业务名称</param>
+        </member>
+        <member name="M:UtilsSharp.RabbitMq.RabbitMqHelper`1.GetMessageByBusiness(System.String,System.Boolean,System.Action{RabbitMQ.Client.IModel,UtilsSharp.RabbitMq.MessageAskModel})">
+            <summary>
+            获取消息
+            </summary>
+            <param name="businessName">业务名称</param>
+            <param name="autoAck">是否消息自动确认</param>
+            <param name="beforeAckAction">手动确认消息前回调方法(自动确认消息该回调无效)</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.RabbitMq.RabbitMqHelper`1.BindBusiness(System.String,System.Boolean)">
+            <summary>
+            绑定交换机名、路由名、队列名
+            </summary>
+            <param name="businessName">RabbitMq业务名称</param>
+            <param name="update">是否更新</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.RabbitMq.RabbitMqHelper`1.UnBindBusiness(System.String)">
+            <summary>
+            解绑交换机名、路由名、队列名
+            </summary>
+            <param name="businessName">RabbitMq业务名称</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.RabbitMq.RabbitMqHelper`1.ReceivedAsync(System.String,System.Action{System.String},System.Action{System.String})">
+            <summary>
+            消费者接收消息
+            </summary>
+            <param name="queueName">队列名称</param>
+            <param name="callback">回调方法</param>
+            <param name="errorCallback">错误回调方法</param>
+        </member>
+        <member name="M:UtilsSharp.RabbitMq.RabbitMqHelper`1.BatchReceivedAsync(System.String,System.Action{System.Collections.Generic.List{System.String}},System.Int32,System.Action{System.String},System.Int32)">
+            <summary>
+            消费者批量接收消息
+            </summary>
+            <param name="queueName">队列名称</param>
+            <param name="callback">回调方法</param>
+            <param name="batchCount">每次批量接收条数</param>
+            <param name="errorCallback">错误回调方法</param>
+            <param name="millisecondsDelay">如果队列无数据休眠时间：毫秒</param>
+        </member>
+        <member name="M:UtilsSharp.RabbitMq.RabbitMqHelper`1.ReceivedByBusinessAsync(System.String,System.Action{System.String},System.Action{System.String})">
+            <summary>
+            消费者（消费消息）
+            </summary>
+            <param name="businessName">业务名称</param>
+            <param name="callback">消费回调方法</param>
+            <param name="errorCallback">错误回调方法</param>
+        </member>
+        <member name="M:UtilsSharp.RabbitMq.RabbitMqHelper`1.BatchReceivedByBusinessAsync(System.String,System.Action{System.Collections.Generic.List{System.String}},System.Int32,System.Action{System.String},System.Int32)">
+            <summary>
+            批量消费者（消费消息）
+            </summary>
+            <param name="businessName">业务名称</param>
+            <param name="callback">消费回调方法</param>
+            <param name="batchCount">每次批量接收条数</param>
+            <param name="errorCallback">错误回调方法</param>
+            <param name="millisecondsDelay">如果队列无数据休眠时间：毫秒</param>
+        </member>
+        <member name="T:UtilsSharp.RabbitMq.RabbitMqManager">
+            <summary>
+            RabbitMq注册管理
+            </summary>
+        </member>
+        <member name="M:UtilsSharp.RabbitMq.RabbitMqManager.Register">
+            <summary>
+            注册
+            </summary>
+        </member>
+        <member name="M:UtilsSharp.RabbitMq.RabbitMqManager.Register``1(UtilsSharp.RabbitMq.RabbitMqClient)">
+            <summary>
+            注册
+            </summary>
+            <typeparam name="T">T</typeparam>
+            <param name="rabbitMqClient">rabbitMqClient</param>
+        </member>
+    </members>
+</doc>

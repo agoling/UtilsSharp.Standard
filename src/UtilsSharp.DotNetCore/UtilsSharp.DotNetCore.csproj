@@ -24,7 +24,7 @@
     <PackageReference Include="Autofac.Extras.DynamicProxy" Version="6.0.0" />
     <PackageReference Include="AutoMapper" Version="9.0.0" />
     <PackageReference Include="UtilsSharp" Version="2.5.0" />
-    <PackageReference Include="UtilsSharp.Logger" Version="1.1.2" />
+    <PackageReference Include="UtilsSharp.Logger" Version="2.0.0" />
   </ItemGroup>
 
   <ItemGroup>

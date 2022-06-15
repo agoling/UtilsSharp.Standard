@@ -2,8 +2,8 @@
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using Logger;
-using static UtilsSharp.Standard.BaseMsg;
+using UtilsSharp.Logger;
+using UtilsSharp.Standard;
 
 namespace UtilsSharp.AspNetCore.Interceptor
 {

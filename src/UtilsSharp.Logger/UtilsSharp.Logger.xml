@@ -1,0 +1,497 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>UtilsSharp.Logger</name>
+    </assembly>
+    <members>
+        <member name="T:UtilsSharp.Logger.BaseLogEntity">
+            <summary>
+            基础日志信息
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.Logger.BaseLogEntity.LogId">
+            <summary>
+            日志标识
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.Logger.BaseLogEntity.ErrorCode">
+            <summary>
+            错误码
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.Logger.BaseLogEntity.Params">
+            <summary>
+            参数
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.Logger.BaseLogEntity.Func">
+            <summary>
+            方法
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.Logger.BaseLogEntity.Message">
+            <summary>
+            日志标题信息
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.Logger.BaseLogEntity.DetailTrace">
+            <summary>
+            日志详情信息
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.Logger.BaseLogEntity.UserId">
+            <summary>
+            用户Id
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.Logger.BaseLogEntity.RequestUrl">
+            <summary>
+            请求地址
+            </summary>
+        </member>
+        <member name="T:UtilsSharp.Logger.ConsoleHelper">
+            <summary>
+            控制台日志输出
+            </summary>
+        </member>
+        <member name="M:UtilsSharp.Logger.ConsoleHelper.Blocking">
+            <summary>
+            阻塞控制台程序
+            退出程序请执行指令:Ctrl+C或者Ctrl+Break
+            </summary>
+        </member>
+        <member name="F:UtilsSharp.Logger.ConsoleHelper._currentMsgCount">
+            <summary>
+            当前消息总数
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.Logger.ConsoleHelper.MaxMsgCount">
+            <summary>
+            最大消息总数（达到这个数后将清理屏幕消息）
+            </summary>
+        </member>
+        <member name="M:UtilsSharp.Logger.ConsoleHelper.Title(System.String)">
+            <summary>
+            标题(深灰色)
+            </summary>
+            <param name="message">消息</param>
+        </member>
+        <member name="M:UtilsSharp.Logger.ConsoleHelper.TitleWithLog(System.String,System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            标题并写入日志(深灰色)
+            </summary>
+            <param name="message">消息</param>
+            <param name="logId">日志Id</param>
+            <param name="parameters">入参</param>
+            <param name="userId">阿里Id</param>
+            <param name="func">功能名称</param>
+            <param name="requestUrl">请求地址</param>
+        </member>
+        <member name="M:UtilsSharp.Logger.ConsoleHelper.TitleWithLog(UtilsSharp.Logger.BaseLogEntity)">
+            <summary>
+            标题并写入日志(深灰色)
+            </summary>
+            <param name="entity">日志信息实体</param>
+        </member>
+        <member name="M:UtilsSharp.Logger.ConsoleHelper.Info(System.String)">
+            <summary>
+            信息(灰色)
+            </summary>
+            <param name="message">消息</param>
+        </member>
+        <member name="M:UtilsSharp.Logger.ConsoleHelper.InfoWithLog(System.String,System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+             信息并写入日志(灰色)
+            </summary>
+            <param name="message">错误信息</param>
+            <param name="logId">日志Id</param>
+            <param name="parameters">入参</param>
+            <param name="userId">阿里Id</param>
+            <param name="func">功能名称</param>
+            <param name="requestUrl">请求地址</param>
+        </member>
+        <member name="M:UtilsSharp.Logger.ConsoleHelper.InfoWithLog(UtilsSharp.Logger.BaseLogEntity)">
+            <summary>
+            信息并写入日志(灰色)
+            </summary>
+            <param name="entity">日志信息实体</param>
+        </member>
+        <member name="M:UtilsSharp.Logger.ConsoleHelper.Trace(System.String)">
+            <summary>
+            追踪(深青色)
+            </summary>
+            <param name="message">消息</param>
+        </member>
+        <member name="M:UtilsSharp.Logger.ConsoleHelper.TraceWithLog(System.String,System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+             追踪并写入日志(深青色)
+            </summary>
+            <param name="message">错误信息</param>
+            <param name="logId">日志Id</param>
+            <param name="parameters">入参</param>
+            <param name="userId">阿里Id</param>
+            <param name="func">功能名称</param>
+            <param name="requestUrl">请求地址</param>
+        </member>
+        <member name="M:UtilsSharp.Logger.ConsoleHelper.TraceWithLog(UtilsSharp.Logger.BaseLogEntity)">
+            <summary>
+            追踪并写入日志(深青色)
+            </summary>
+            <param name="entity">日志信息实体</param>
+        </member>
+        <member name="M:UtilsSharp.Logger.ConsoleHelper.Debug(System.String)">
+            <summary>
+            调试(青色)
+            </summary>
+            <param name="message">消息</param>
+        </member>
+        <member name="M:UtilsSharp.Logger.ConsoleHelper.DebugWithLog(System.String,System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+             调试并写入日志(青色)
+            </summary>
+            <param name="message">错误信息</param>
+            <param name="logId">日志Id</param>
+            <param name="parameters">入参</param>
+            <param name="userId">阿里Id</param>
+            <param name="func">功能名称</param>
+            <param name="requestUrl">请求地址</param>
+        </member>
+        <member name="M:UtilsSharp.Logger.ConsoleHelper.DebugWithLog(UtilsSharp.Logger.BaseLogEntity)">
+            <summary>
+            调试并写入日志(青色)
+            </summary>
+            <param name="entity">日志信息实体</param>
+        </member>
+        <member name="M:UtilsSharp.Logger.ConsoleHelper.Warn(System.String)">
+            <summary>
+            警告(黄色)
+            </summary>
+            <param name="message">消息</param>
+        </member>
+        <member name="M:UtilsSharp.Logger.ConsoleHelper.WarnWithLog(System.String,System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+             警告并写入日志(黄色)
+            </summary>
+            <param name="message">错误信息</param>
+            <param name="logId">日志Id</param>
+            <param name="parameters">入参</param>
+            <param name="userId">阿里Id</param>
+            <param name="func">功能名称</param>
+            <param name="requestUrl">请求地址</param>
+        </member>
+        <member name="M:UtilsSharp.Logger.ConsoleHelper.WarnWithLog(UtilsSharp.Logger.BaseLogEntity)">
+            <summary>
+            警告并写入日志(黄色)
+            </summary>
+            <param name="entity">日志信息实体</param>
+        </member>
+        <member name="M:UtilsSharp.Logger.ConsoleHelper.Error(System.String)">
+            <summary>
+            错误(红色)
+            </summary>
+            <param name="message">消息</param>
+        </member>
+        <member name="M:UtilsSharp.Logger.ConsoleHelper.ErrorWithLog(System.String,System.Exception,System.String,System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+             错误并写入日志(红色)
+            </summary>
+            <param name="message">错误信息</param>
+            <param name="ex">Exception</param>
+            <param name="logId">日志Id</param>
+            <param name="errCode">错误码</param>
+            <param name="parameters">入参</param>
+            <param name="userId">阿里Id</param>
+            <param name="func">功能名称</param>
+            <param name="requestUrl">请求地址</param>
+        </member>
+        <member name="M:UtilsSharp.Logger.ConsoleHelper.ErrorWithLog(UtilsSharp.Logger.ErrorEntity)">
+            <summary>
+            错误并写入日志(红色)
+            </summary>
+            <param name="entity">日志信息实体</param>
+        </member>
+        <member name="M:UtilsSharp.Logger.ConsoleHelper.Success(System.String)">
+            <summary>
+            成功(绿色)
+            </summary>
+            <param name="message">消息</param>
+        </member>
+        <member name="M:UtilsSharp.Logger.ConsoleHelper.SuccessWithLog(System.String,System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+             成功并写入日志(绿色)
+            </summary>
+            <param name="message">错误信息</param>
+            <param name="logId">日志Id</param>
+            <param name="parameters">入参</param>
+            <param name="userId">阿里Id</param>
+            <param name="func">功能名称</param>
+            <param name="requestUrl">请求地址</param>
+        </member>
+        <member name="M:UtilsSharp.Logger.ConsoleHelper.SuccessWithLog(UtilsSharp.Logger.BaseLogEntity)">
+            <summary>
+            成功并写入日志(绿色)
+            </summary>
+            <param name="entity">日志信息实体</param>
+        </member>
+        <member name="M:UtilsSharp.Logger.ConsoleHelper.ClearAndShow(System.Action{System.String},System.String)">
+            <summary>
+            清理屏幕
+            </summary>
+            <param name="action">日志展示</param>
+            <param name="message">消息</param>
+        </member>
+        <member name="T:UtilsSharp.Logger.ErrorEntity">
+            <summary>
+            错误日志信息
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.Logger.ErrorEntity.Ex">
+            <summary>
+            错误日志信息
+            </summary>
+        </member>
+        <member name="T:UtilsSharp.Logger.LogEntity">
+            <summary>
+            日志模型
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.Logger.LogEntity.Level">
+            <summary>
+            日志等级
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.Logger.LogEntity.Ex">
+            <summary>
+            异常
+            </summary>
+        </member>
+        <member name="T:UtilsSharp.Logger.LogHelper">
+            <summary>
+            日志管理系统
+            </summary>
+        </member>
+        <member name="M:UtilsSharp.Logger.LogHelper.Trace(System.String,System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            追踪
+            </summary>
+            <param name="message">日志标题</param>
+            <param name="logId">日志Id</param>
+            <param name="parameters">入参</param>
+            <param name="userId">用户Id</param>
+            <param name="func">功能名称</param>
+            <param name="requestUrl">请求地址</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.Logger.LogHelper.Trace(UtilsSharp.Logger.BaseLogEntity)">
+            <summary>
+            追踪
+            </summary>
+            <param name="entity">日志信息实体</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.Logger.LogHelper.Info(System.String,System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            信息
+            </summary>
+            <param name="message">日志标题</param>
+            <param name="logId">日志Id</param>
+            <param name="parameters">入参</param>
+            <param name="userId">阿里Id</param>
+            <param name="func">功能名称</param>
+            <param name="requestUrl">请求地址</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.Logger.LogHelper.Info(UtilsSharp.Logger.BaseLogEntity)">
+            <summary>
+            信息
+            </summary>
+            <param name="entity">日志信息实体</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.Logger.LogHelper.Debug(System.String,System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            调试
+            </summary>
+            <param name="message">日志标题</param>
+            <param name="logId">日志Id</param>
+            <param name="parameters">入参</param>
+            <param name="userId">阿里Id</param>
+            <param name="func">功能名称</param>
+            <param name="requestUrl">请求地址</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.Logger.LogHelper.Debug(UtilsSharp.Logger.BaseLogEntity)">
+            <summary>
+            调试
+            </summary>
+            <param name="entity">日志信息实体</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.Logger.LogHelper.Warn(System.String,System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            警告
+            </summary>
+            <param name="message">日志标题</param>
+            <param name="logId">日志Id</param>
+            <param name="parameters">入参</param>
+            <param name="userId">用户Id</param>
+            <param name="func">功能名称</param>
+            <param name="requestUrl">请求地址</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.Logger.LogHelper.Warn(UtilsSharp.Logger.BaseLogEntity)">
+            <summary>
+            警告
+            </summary>
+            <param name="entity">日志信息实体</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.Logger.LogHelper.Error(System.String,System.Exception,System.String,System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            异常错误
+            </summary>
+            <param name="message">日志标题</param>
+            <param name="ex">Exception</param>
+            <param name="logId">日志Id</param>
+            <param name="errCode">错误码</param>
+            <param name="parameters">入参</param>
+            <param name="userId">阿里Id</param>
+            <param name="func">功能名称</param>
+            <param name="requestUrl">请求地址</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.Logger.LogHelper.Error(UtilsSharp.Logger.ErrorEntity)">
+            <summary>
+            异常错误
+            </summary>
+            <param name="entity">日志信息实体</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.Logger.LogHelper.Fatal(System.String,System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            致命
+            </summary>
+            <param name="message">日志标题</param>
+            <param name="logId">日志Id</param>
+            <param name="parameters">入参</param>
+            <param name="userId">用户Id</param>
+            <param name="func">功能名称</param>
+            <param name="requestUrl">请求地址</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.Logger.LogHelper.Fatal(UtilsSharp.Logger.BaseLogEntity)">
+            <summary>
+            致命
+            </summary>
+            <param name="entity">日志信息实体</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.Logger.LogHelper.Off(System.String,System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            关闭
+            </summary>
+            <param name="message">日志标题</param>
+            <param name="logId">日志Id</param>
+            <param name="parameters">入参</param>
+            <param name="userId">用户Id</param>
+            <param name="func">功能名称</param>
+            <param name="requestUrl">请求地址</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.Logger.LogHelper.Off(UtilsSharp.Logger.BaseLogEntity)">
+            <summary>
+            关闭
+            </summary>
+            <param name="entity">日志信息实体</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.Logger.LogHelper.WriteLog(NLog.LogLevel,System.String,System.String,System.Exception,System.String,System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            写日志
+            </summary>
+            <param name="level">日志等级</param>
+            <param name="message">日志标题</param>
+            <param name="detailTrace">日志详情</param>
+            <param name="ex">Exception</param>
+            <param name="logId">日志Id</param>
+            <param name="requestUrl">请求地址</param>
+            <param name="parameters">入参</param>
+            <param name="userId">用户Id</param>
+            <param name="func">功能名称</param>
+            <param name="errCode">错误码</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.Logger.LogHelper.WriteLog(UtilsSharp.Logger.LogEntity)">
+            <summary>
+            写日志
+            </summary>
+            <param name="model">日志模型</param>
+            <returns></returns>
+        </member>
+        <member name="T:UtilsSharp.Logger.TraceHelper">
+            <summary>
+            追踪帮助类
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.Logger.TraceHelper.IsOpenTrace">
+            <summary>
+            是否开启追踪
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.Logger.TraceHelper.IsWithNumber">
+            <summary>
+            是否带序号
+            </summary>
+        </member>
+        <member name="M:UtilsSharp.Logger.TraceHelper.#ctor(System.Boolean,System.Boolean)">
+            <summary>
+            追踪帮助类
+            </summary>
+            <param name="isOpenTrace">是否开启追踪</param>
+            <param name="isWithNumber">是否带序号</param>
+        </member>
+        <member name="M:UtilsSharp.Logger.TraceHelper.Add(System.String,System.String,System.String)">
+            <summary>
+            添加追踪日志
+            </summary>
+            <param name="key">键</param>
+            <param name="msg">消息</param>
+            <param name="timeFormat">时间格式</param>
+        </member>
+        <member name="M:UtilsSharp.Logger.TraceHelper.Remove(System.String)">
+            <summary>
+            获取追踪日志
+            </summary>
+            <param name="key">键</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.Logger.TraceHelper.Get(System.String)">
+            <summary>
+            获取追踪日志
+            </summary>
+            <param name="key">键</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.Logger.TraceHelper.Dispose">
+            <summary>
+            实现IDisposable中的Dispose方法
+            </summary>
+        </member>
+        <member name="M:UtilsSharp.Logger.TraceHelper.Close">
+            <summary>
+            不必要的方法，只是为了符合其他语言的规范
+            </summary>
+        </member>
+        <member name="M:UtilsSharp.Logger.TraceHelper.Finalize">
+            <summary>
+            必须的，防止程序员忘记显示调用Dispose方法(隐式清理)
+            </summary>
+        </member>
+        <member name="M:UtilsSharp.Logger.TraceHelper.Dispose(System.Boolean)">
+            <summary>
+            非密封类修饰用protected virtual，提醒子类必须实现自己的清理方法时注意到父类的清理工作
+            </summary>
+            <param name="isDisposing">是否销毁</param>
+        </member>
+    </members>
+</doc>

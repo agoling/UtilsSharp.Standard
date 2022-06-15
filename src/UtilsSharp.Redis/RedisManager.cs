@@ -1,7 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using CSRedis;
-using OptionConfig;
+using UtilsSharp.OptionConfig;
 
 namespace UtilsSharp.Redis
 {

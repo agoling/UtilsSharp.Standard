@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Aliyun.OSS;
 using Newtonsoft.Json;
-using OptionConfig;
+using UtilsSharp.OptionConfig;
 
 namespace UtilsSharp.OssHelper
 {

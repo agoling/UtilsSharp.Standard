@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using ElasticSearch7;
 using Nest;
-using OptionConfig;
+using UtilsSharp.ElasticSearch7;
 
 namespace TestDemoApp.ElasticSearch
 {

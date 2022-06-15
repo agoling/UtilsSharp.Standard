@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using ElasticSearch7;
 using UtilsSharp.Dependency;
+using UtilsSharp.ElasticSearch7;
 
 namespace TestDemoApp.ElasticSearch
 {

@@ -1,0 +1,308 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>UtilsSharp.AspNetCore</name>
+    </assembly>
+    <members>
+        <member name="T:UtilsSharp.AspNetCore.AspNetCoreBuilderExtensions">
+            <summary>
+            AspNetCoreBuilderExtensions
+            </summary>
+        </member>
+        <member name="M:UtilsSharp.AspNetCore.AspNetCoreBuilderExtensions.UseAspNetCoreExtensions(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
+            <summary>
+            注册AspNetCore扩展
+            </summary>
+            <param name="app">IApplicationBuilder</param>
+            <returns></returns>
+        </member>
+        <member name="T:UtilsSharp.AspNetCore.AspNetCoreExtensions">
+            <summary>
+            AspNetCoreExtensions
+            </summary>
+        </member>
+        <member name="M:UtilsSharp.AspNetCore.AspNetCoreExtensions.AddAspNetCoreExtensions(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            添加AspNetCore扩展服务
+            </summary>
+            <param name="services">services</param>
+            <returns></returns>
+        </member>
+        <member name="T:UtilsSharp.AspNetCore.AspNetCoreExtensionsConfig">
+            <summary>
+            AspNetCoreExtensions 配置文件
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.AspNetCore.AspNetCoreExtensionsConfig.SwaggerDocOptions">
+            <summary>
+            SwaggerDocOptions
+            </summary>
+        </member>
+        <member name="T:UtilsSharp.AspNetCore.AutofacStartup">
+            <summary>
+            AutofacStartup
+            </summary>
+        </member>
+        <member name="M:UtilsSharp.AspNetCore.AutofacStartup.ConfigureContainer(Autofac.ContainerBuilder)">
+            <summary>
+            依赖注入映射
+            </summary>
+            <param name="builder">ContainerBuilder</param>
+        </member>
+        <member name="M:UtilsSharp.AspNetCore.AutofacStartup.Init(Autofac.ContainerBuilder)">
+            <summary>
+            依赖注入初始化 [Intercept(typeof(LoggerInterceptor))]
+            </summary>
+            <param name="builder">ContainerBuilder</param>
+        </member>
+        <member name="M:UtilsSharp.AspNetCore.AutofacStartup.Init``1(Autofac.ContainerBuilder)">
+            <summary>
+            依赖注入初始化
+            </summary>
+            <typeparam name="T">IInterceptor 拦截器</typeparam>
+            <param name="builder">ContainerBuilder</param>
+        </member>
+        <member name="T:UtilsSharp.AspNetCore.Autofac.AutofacContainer">
+            <summary>
+            依赖注入Container
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.AspNetCore.Autofac.AutofacContainer.Current">
+            <summary>
+            Current
+            </summary>
+        </member>
+        <member name="T:UtilsSharp.AspNetCore.Autofac.AutofacExtensions">
+            <summary>
+            AutofacExtensions
+            </summary>
+        </member>
+        <member name="M:UtilsSharp.AspNetCore.Autofac.AutofacExtensions.UseAutofacExtensions(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
+            <summary>
+            注册依赖注入
+            </summary>
+            <param name="app">IApplicationBuilder</param>
+            <returns></returns>
+        </member>
+        <member name="T:UtilsSharp.AspNetCore.BaseConfig">
+            <summary>
+            基础配置信息
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.AspNetCore.BaseConfig.MySqlConnection">
+            <summary>
+            MySql链接字符串
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.AspNetCore.BaseConfig.MsSqlConnection">
+            <summary>
+            MsSql链接字符串
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.AspNetCore.BaseConfig.ClickHouseConnection">
+            <summary>
+            ClickHouse链接字符串
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.AspNetCore.BaseConfig.RedisConnection">
+            <summary>
+            Redis链接字符串
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.AspNetCore.BaseConfig.RabbitMqConnection">
+            <summary>
+            rabbitMq链接字符串
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.AspNetCore.BaseConfig.KafkaConnection">
+            <summary>
+            kafka链接字符串
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.AspNetCore.BaseConfig.EsSettingJson">
+            <summary>
+            ElasticSearch EsSettingJson
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.AspNetCore.BaseConfig.OssConfigJson">
+            <summary>
+            阿里云Oss OssConfigJson
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.AspNetCore.BaseConfig.SwaggerDocOptions">
+            <summary>
+            swagger配置
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.AspNetCore.BaseConfig.MinWorkerThreadCount">
+            <summary>
+            由线程池根据需要创建的新的最小工作程序线程数
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.AspNetCore.BaseConfig.MinCompletionPortThreadCount">
+            <summary>
+            由线程池根据需要创建的新的最小空闲异步 I/O 线程数
+            </summary>
+        </member>
+        <member name="T:UtilsSharp.AspNetCore.Filter.ValidationActionFilter">
+            <summary>
+            验证入参模型过滤器
+            </summary>
+        </member>
+        <member name="M:UtilsSharp.AspNetCore.Filter.ValidationActionFilter.OnActionExecuting(Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext)">
+            <summary>
+            Action执行前
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="M:UtilsSharp.AspNetCore.Filter.ValidationActionFilter.OnActionExecuted(Microsoft.AspNetCore.Mvc.Filters.ActionExecutedContext)">
+            <summary>
+            Action执行后
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="T:UtilsSharp.AspNetCore.Filter.ValidationExtensions">
+            <summary>
+             验证入参模型插件
+            </summary>
+        </member>
+        <member name="M:UtilsSharp.AspNetCore.Filter.ValidationExtensions.AddValidationExtensions(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            添加Swagger扩展服务
+            </summary>
+            <param name="services">services</param>
+            <returns></returns>
+        </member>
+        <member name="T:UtilsSharp.AspNetCore.Interceptor.LoggerInterceptor">
+            <summary>
+            日志拦截器
+            </summary>
+        </member>
+        <member name="M:UtilsSharp.AspNetCore.Interceptor.LoggerInterceptor.Intercept(Castle.DynamicProxy.IInvocation)">
+            <summary>
+            Aop拦截
+            </summary>
+        </member>
+        <member name="T:UtilsSharp.AspNetCore.MVC.BaseAreaController">
+            <summary>
+            基础区域控制器
+            </summary>
+        </member>
+        <member name="T:UtilsSharp.AspNetCore.MVC.BaseController">
+            <summary>
+            基础控制器
+            </summary>
+        </member>
+        <member name="T:UtilsSharp.AspNetCore.MVC.IpController">
+            <summary>
+            Ip控制器
+            </summary>
+        </member>
+        <member name="M:UtilsSharp.AspNetCore.MVC.IpController.Client">
+            <summary>
+            客户端
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.AspNetCore.MVC.IpController.Server">
+            <summary>
+            服务器
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:UtilsSharp.AspNetCore.Swagger.AddRequiredHeaderParameter">
+            <summary>
+            添加Header配置
+            </summary>
+        </member>
+        <member name="M:UtilsSharp.AspNetCore.Swagger.AddRequiredHeaderParameter.Apply(Microsoft.OpenApi.Models.OpenApiOperation,Swashbuckle.AspNetCore.SwaggerGen.OperationFilterContext)">
+            <summary>
+            Apply
+            </summary>
+        </member>
+        <member name="T:UtilsSharp.AspNetCore.Swagger.SwaggerDocOptions">
+            <summary>
+            SwaggerDocOptions
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.AspNetCore.Swagger.SwaggerDocOptions.Enable">
+            <summary>
+            生产环境可禁用Swagger
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.AspNetCore.Swagger.SwaggerDocOptions.ProjectName">
+            <summary>
+            项目名称
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.AspNetCore.Swagger.SwaggerDocOptions.ProjectDescription">
+            <summary>
+            项目描述
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.AspNetCore.Swagger.SwaggerDocOptions.ProjectVersion">
+            <summary>
+            项目版本号
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.AspNetCore.Swagger.SwaggerDocOptions.HeaderParameters">
+            <summary>
+            Header默认值
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.AspNetCore.Swagger.SwaggerDocOptions.Groups">
+            <summary>
+            swagger分组
+            </summary>
+        </member>
+        <member name="T:UtilsSharp.AspNetCore.Swagger.HeaderParameter">
+            <summary>
+            Header参数
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.AspNetCore.Swagger.HeaderParameter.Name">
+            <summary>
+            Header名称
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.AspNetCore.Swagger.HeaderParameter.Value">
+            <summary>
+            Header默认值
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.AspNetCore.Swagger.HeaderParameter.Description">
+            <summary>
+            Header描述
+            </summary>
+        </member>
+        <member name="T:UtilsSharp.AspNetCore.Swagger.SwaggerGroup">
+            <summary>
+            swagger分组
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.AspNetCore.Swagger.SwaggerGroup.GroupName">
+            <summary>
+            分组名称
+            </summary>
+        </member>
+        <member name="T:UtilsSharp.AspNetCore.Swagger.SwaggerExtensions">
+            <summary>
+            SwaggerExtensions
+            </summary>
+        </member>
+        <member name="M:UtilsSharp.AspNetCore.Swagger.SwaggerExtensions.UseSwaggerExtensions(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
+            <summary>
+            注册swagger
+            </summary>
+            <param name="app">IApplicationBuilder</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.AspNetCore.Swagger.SwaggerExtensions.AddSwaggerExtensions(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            添加Swagger扩展服务
+            </summary>
+            <param name="services">services</param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

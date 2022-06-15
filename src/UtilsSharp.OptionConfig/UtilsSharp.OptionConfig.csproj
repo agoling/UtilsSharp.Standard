@@ -2,22 +2,20 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <Version>2.0.0</Version>
     <Authors>Agoling</Authors>
     <Company>Agoling</Company>
+    <Product>UtilsSharp.OptionConfig</Product>
     <Description>UtilsSharp工具类共享配置库</Description>
     <PackageProjectUrl>https://github.com/agoling/UtilsSharp.Standard</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/agoling/UtilsSharp.Standard</RepositoryUrl>
-    <PackageTags>数据库共享配置 UtilsSharp OptionConfig</PackageTags>
-    <PackageId>UtilsSharp.OptionConfig</PackageId>
-    <Product>UtilsSharp.OptionConfig</Product>
-    <Version>1.0.8</Version>
     <PackageIcon>UtilsSharp.jpg</PackageIcon>
     <PackageIconUrl />
-    <ApplicationIcon>UtilsSharp.ico</ApplicationIcon>
+    <RepositoryUrl>https://github.com/agoling/UtilsSharp.Standard</RepositoryUrl>
+    <PackageTags>数据库共享配置 UtilsSharp OptionConfig</PackageTags>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>D:\GitHub\Project\UtilsSharp.Standard\src\UtilsSharp.Standard\OptionConfig\OptionConfig.xml</DocumentationFile>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DocumentationFile>D:\GitHub\Project\UtilsSharp.Standard\src\UtilsSharp.OptionConfig\UtilsSharp.OptionConfig.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>

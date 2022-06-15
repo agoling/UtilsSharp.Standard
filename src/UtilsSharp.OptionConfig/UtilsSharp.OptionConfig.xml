@@ -1,0 +1,226 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>UtilsSharp.OptionConfig</name>
+    </assembly>
+    <members>
+        <member name="T:UtilsSharp.OptionConfig.ClickHouseConfig">
+             <summary>
+            ClickHouse配置
+             </summary>
+        </member>
+        <member name="P:UtilsSharp.OptionConfig.ClickHouseConfig.ClickHouseConnection">
+            <summary>
+            连接字符串
+            </summary>
+        </member>
+        <member name="T:UtilsSharp.OptionConfig.ElasticSearchConfig">
+            <summary>
+            ElasticSearch配置
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.OptionConfig.ElasticSearchConfig.ElasticSearchSetting">
+            <summary>
+            ElasticSearch设置
+            </summary>
+        </member>
+        <member name="T:UtilsSharp.OptionConfig.ElasticSearchSetting">
+            <summary>
+            ElasticSearch设置
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.OptionConfig.ElasticSearchSetting.EsHttpAddress">
+            <summary>
+            连接字符串
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.OptionConfig.ElasticSearchSetting.UserName">
+            <summary>
+            用户名
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.OptionConfig.ElasticSearchSetting.Password">
+            <summary>
+            密码
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.OptionConfig.ElasticSearchSetting.EsDefaultIndex">
+            <summary>
+            默认索引
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.OptionConfig.ElasticSearchSetting.EsNetworkProxy">
+            <summary>
+            网络代理
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.OptionConfig.ElasticSearchSetting.EsConnectionLimit">
+            <summary>
+            连接数限制
+            </summary>
+        </member>
+        <member name="T:UtilsSharp.OptionConfig.KafkaConfig">
+            <summary>
+            KafkaHelper配置
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.OptionConfig.KafkaConfig.KafkaSetting">
+            <summary>
+             Kafka设置
+            </summary>
+        </member>
+        <member name="T:UtilsSharp.OptionConfig.KafkaSetting">
+            <summary>
+            Kafka设置
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.OptionConfig.KafkaSetting.BootstrapServers">
+            <summary>
+            服务器地址
+            </summary>
+        </member>
+        <member name="T:UtilsSharp.OptionConfig.MsSqlConfig">
+            <summary>
+            MsSql配置
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.OptionConfig.MsSqlConfig.MsSqlConnection">
+            <summary>
+            连接字符串
+            </summary>
+        </member>
+        <member name="T:UtilsSharp.OptionConfig.MySqlConfig">
+            <summary>
+            MySql配置
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.OptionConfig.MySqlConfig.MySqlConnection">
+            <summary>
+            连接字符串
+            </summary>
+        </member>
+        <member name="T:UtilsSharp.OptionConfig.OssConfig">
+            <summary>
+            OssHelper存储配置
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.OptionConfig.OssConfig.OssSetting">
+            <summary>
+            Oss存储设置
+            </summary>
+        </member>
+        <member name="T:UtilsSharp.OptionConfig.OssSetting">
+            <summary>
+            Oss存储设置
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.OptionConfig.OssSetting.OssEndpoint">
+            <summary>
+            OssEndpoint 外网
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.OptionConfig.OssSetting.OssEndpointIn">
+            <summary>
+            OssEndpoint 内网
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.OptionConfig.OssSetting.OssAccessKeyId">
+            <summary>
+            OssAccessKeyId
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.OptionConfig.OssSetting.OssAccessKeySecret">
+            <summary>
+            OssAccessKeySecret
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.OptionConfig.OssSetting.OssBucketName">
+            <summary>
+            OssBucketName
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.OptionConfig.OssSetting.OssProtocol">
+            <summary>
+            Oss协议
+            http://
+            或
+            https://
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.OptionConfig.OssSetting.OssHost">
+            <summary>
+            OssHost
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.OptionConfig.OssSetting.OssCallbackUrl">
+            <summary>
+            Oss回调地址
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.OptionConfig.OssSetting.OssCallbackHost">
+            <summary>
+            Oss回调Host
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.OptionConfig.OssSetting.OssCallbackExpireTime">
+            <summary>
+            Oss回调过期时间
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.OptionConfig.OssSetting.OssRootDir">
+            <summary>
+            Oss文件根目录
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.OptionConfig.OssSetting.OssRootTemporaryDir">
+            <summary>
+            Oss临时文件根目录（oss可配置文件到期自动删除）
+            </summary>
+        </member>
+        <member name="T:UtilsSharp.OptionConfig.RabbitMqConfig">
+            <summary>
+            RabbitMqHelper配置
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.OptionConfig.RabbitMqConfig.RabbitMqSetting">
+            <summary>
+            RabbitMq设置
+            </summary>
+        </member>
+        <member name="T:UtilsSharp.OptionConfig.RabbitMqSetting">
+            <summary>
+            RabbitMq设置
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.OptionConfig.RabbitMqSetting.RabbitMqConnection">
+            <summary>
+            RabbitMQConnection
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.OptionConfig.RabbitMqSetting.RequestedConnectionTimeout">
+            <summary>
+            请求连接超时设置
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.OptionConfig.RabbitMqSetting.RequestedHeartbeat">
+             <summary>
+            请求心跳设置
+             </summary>
+        </member>
+        <member name="P:UtilsSharp.OptionConfig.RabbitMqSetting.AutomaticRecoveryEnabled">
+            <summary>
+            是否自动恢复
+            </summary>
+        </member>
+        <member name="T:UtilsSharp.OptionConfig.RedisConfig">
+            <summary>
+            Redis配置
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.OptionConfig.RedisConfig.RedisConnection">
+            <summary>
+            连接字符串
+            </summary>
+        </member>
+    </members>
+</doc>

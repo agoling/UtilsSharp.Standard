@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace OptionConfig
+namespace UtilsSharp.OptionConfig
 {
     /// <summary>
     /// RabbitMqHelper配置

@@ -9,8 +9,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestDemo", "TestDemo\TestDe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestProjectNet", "UnitTestProjectNet\UnitTestProjectNet.csproj", "{A86B4F09-784E-477C-8703-B446F395125D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OptionConfig", "OptionConfig\OptionConfig.csproj", "{0D0F5D37-1BA9-43A1-A8F1-4CA7CB434BE7}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MySql", "MySql\MySql.csproj", "{AF167E20-6CD2-4CB8-93B4-409941DFB038}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MsSql", "MsSql\MsSql.csproj", "{7E531A02-143F-41F6-8220-6380426D63CA}"
@@ -43,9 +41,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UtilsSharp.AspNetCore", "Ut
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UtilsSharp.DotNetCore", "UtilsSharp.DotNetCore\UtilsSharp.DotNetCore.csproj", "{59BC84BF-6CAA-4137-AF21-538448802529}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UtilsSharp.OssHelper", "UtilsSharp.OssHelper\UtilsSharp.OssHelper.csproj", "{B8A3BD3A-281D-40D2-88F6-99DA0271D520}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UtilsSharp.OssHelper", "UtilsSharp.OssHelper\UtilsSharp.OssHelper.csproj", "{B8A3BD3A-281D-40D2-88F6-99DA0271D520}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UtilsSharp.Redis", "UtilsSharp.Redis\UtilsSharp.Redis.csproj", "{C449D9E4-3B4F-4492-B13C-B280882C8A4F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UtilsSharp.Redis", "UtilsSharp.Redis\UtilsSharp.Redis.csproj", "{C449D9E4-3B4F-4492-B13C-B280882C8A4F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UtilsSharp.RabbitMq", "UtilsSharp.RabbitMq\UtilsSharp.RabbitMq.csproj", "{1728CB0F-97AA-44EC-B5B8-BBBF46F8A05C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UtilsSharp.OptionConfig", "UtilsSharp.OptionConfig\UtilsSharp.OptionConfig.csproj", "{0523E9D5-CFD7-4EFF-8C4C-1541B6E2D476}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -65,10 +67,6 @@ Global
 		{A86B4F09-784E-477C-8703-B446F395125D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A86B4F09-784E-477C-8703-B446F395125D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A86B4F09-784E-477C-8703-B446F395125D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0D0F5D37-1BA9-43A1-A8F1-4CA7CB434BE7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0D0F5D37-1BA9-43A1-A8F1-4CA7CB434BE7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0D0F5D37-1BA9-43A1-A8F1-4CA7CB434BE7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0D0F5D37-1BA9-43A1-A8F1-4CA7CB434BE7}.Release|Any CPU.Build.0 = Release|Any CPU
 		{AF167E20-6CD2-4CB8-93B4-409941DFB038}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{AF167E20-6CD2-4CB8-93B4-409941DFB038}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AF167E20-6CD2-4CB8-93B4-409941DFB038}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -141,6 +139,14 @@ Global
 		{C449D9E4-3B4F-4492-B13C-B280882C8A4F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C449D9E4-3B4F-4492-B13C-B280882C8A4F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C449D9E4-3B4F-4492-B13C-B280882C8A4F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1728CB0F-97AA-44EC-B5B8-BBBF46F8A05C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1728CB0F-97AA-44EC-B5B8-BBBF46F8A05C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1728CB0F-97AA-44EC-B5B8-BBBF46F8A05C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1728CB0F-97AA-44EC-B5B8-BBBF46F8A05C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0523E9D5-CFD7-4EFF-8C4C-1541B6E2D476}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0523E9D5-CFD7-4EFF-8C4C-1541B6E2D476}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0523E9D5-CFD7-4EFF-8C4C-1541B6E2D476}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0523E9D5-CFD7-4EFF-8C4C-1541B6E2D476}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

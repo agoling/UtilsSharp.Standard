@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace OptionConfig
+namespace UtilsSharp.OptionConfig
 {
     /// <summary>
     /// OssHelper存储配置

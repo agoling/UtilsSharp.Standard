@@ -15,4 +15,8 @@
     <PackageReference Include="UtilsSharp.RabbitMQ" Version="3.0.2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\UtilsSharp.Logger\UtilsSharp.Logger.csproj" />
+  </ItemGroup>
+
 </Project>

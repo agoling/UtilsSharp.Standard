@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using Logger;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using UtilsSharp;
+using UtilsSharp.Logger;
 
 namespace UnitTestProjectNet.Core
 {

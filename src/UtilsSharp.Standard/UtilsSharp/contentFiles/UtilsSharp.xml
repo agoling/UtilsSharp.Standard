@@ -1,0 +1,3433 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>UtilsSharp</name>
+    </assembly>
+    <members>
+        <member name="T:UtilsSharp.AppsettingsHelper">
+            <summary>
+            配置文件帮助类
+            </summary>
+        </member>
+        <member name="M:UtilsSharp.AppsettingsHelper.GetValue(System.String)">
+            <summary>
+            根据key获取对应的配置值
+            </summary>
+            <param name="key">key</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.AppsettingsHelper.GetConnectionString(System.String)">
+            <summary>
+            获取ConnectionStrings下默认的配置连接字符串
+            </summary>
+            <param name="key">key</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.AppsettingsHelper.GetSection(System.String)">
+            <summary>
+            根据key获取对应节点的配置值
+            </summary>
+            <param name="key">key:子节点冒号隔开,如aa:bb</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.AppsettingsHelper.GetSection``1(System.String)">
+            <summary>
+            根据key获取对应节点的配置值
+            </summary>
+            <param name="key">key:子节点冒号隔开,如aa:bb</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.AppsettingsHelper.GetChildren">
+            <summary>
+            获取所有配置子节点
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:UtilsSharp.AssemblyHelper">
+            <summary>
+            程序集帮助类
+            </summary>
+        </member>
+        <member name="M:UtilsSharp.AssemblyHelper.GetClassInterfacePairs(System.String)">
+            <summary>
+            获取类以及类实现的接口键值对
+            </summary>
+            <param name="assemblyName">程序集名称</param>
+            <returns>类以及类实现的接口键值对</returns>
+        </member>
+        <member name="M:UtilsSharp.AssemblyHelper.GetAssemblies">
+            <summary>
+            获取所有的程序集(排除所有的系统程序集、Nuget下载包)
+            </summary>
+            <returns>程序集集合</returns>
+        </member>
+        <member name="M:UtilsSharp.AssemblyHelper.GetAllAssemblies">
+            <summary>
+            获取所有的程序集(含所有系统程序集、Nuget下载包)
+            </summary>
+            <returns>程序集集合</returns>
+        </member>
+        <member name="M:UtilsSharp.AssemblyHelper.GetAssembly(System.String)">
+            <summary>
+            获取指定的程序集(模糊匹配)
+            </summary>
+            <param name="assemblyName">程序集名称</param>
+            <returns>程序集</returns>
+        </member>
+        <member name="T:UtilsSharp.CacheHelper">
+            <summary>
+            服务器缓存帮助类
+            </summary>
+        </member>
+        <member name="F:UtilsSharp.CacheHelper.MemoryCache">
+            <summary>
+            缓存对象
+            </summary>
+        </member>
+        <member name="M:UtilsSharp.CacheHelper.GetCacheTypeName">
+            <summary>
+            获取当前缓存类型
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.CacheHelper.Set(System.String,System.Object,System.Int32)">
+            <summary>
+            添加缓存
+            </summary>
+            <param name="key">缓存key</param>
+            <param name="value">缓存数据</param>
+            <param name="expireSeconds">缓存时间(秒)</param>
+            <returns>是否成功</returns>
+        </member>
+        <member name="M:UtilsSharp.CacheHelper.Set(System.String,System.Object,System.TimeSpan)">
+            <summary>
+            添加缓存
+            </summary>
+            <param name="key">缓存key</param>
+            <param name="value">缓存数据</param>
+            <param name="expire">缓存时间戳</param>
+            <returns>是否成功</returns>
+        </member>
+        <member name="M:UtilsSharp.CacheHelper.Remove(System.String[])">
+            <summary>
+            移除缓存
+            </summary>
+            <param name="keys">缓存keys</param>
+        </member>
+        <member name="M:UtilsSharp.CacheHelper.IsExists(System.String)">
+            <summary>
+            验证缓存是否存在
+            </summary>
+            <param name="key">缓存key</param>
+            <returns >是否存在</returns>
+        </member>
+        <member name="M:UtilsSharp.CacheHelper.Get(System.String)">
+            <summary>
+            获取缓存
+            </summary>
+            <param name="key">缓存Key</param>
+            <returns>缓存数据</returns>
+        </member>
+        <member name="M:UtilsSharp.CacheHelper.Get``1(System.String)">
+            <summary>
+            获取缓存
+            </summary>
+            <typeparam name="T">缓存数据类型</typeparam>
+            <param name="key">缓存Key</param>
+            <returns>缓存数据</returns>
+        </member>
+        <member name="T:UtilsSharp.CNDate">
+            <summary>
+            农历属性
+            </summary>
+        </member>
+        <member name="F:UtilsSharp.CNDate.cnIntYear">
+            <summary>
+            农历年(整型)
+            </summary>
+        </member>
+        <member name="F:UtilsSharp.CNDate.cnIntMonth">
+            <summary>
+            农历月份(整型)
+            </summary>
+        </member>
+        <member name="F:UtilsSharp.CNDate.cnIntDay">
+            <summary>
+            农历天(整型)
+            </summary>
+        </member>
+        <member name="F:UtilsSharp.CNDate.cnStrYear">
+            <summary>
+            农历年(支干)
+            </summary>
+        </member>
+        <member name="F:UtilsSharp.CNDate.cnStrMonth">
+            <summary>
+            农历月份(字符)
+            </summary>
+        </member>
+        <member name="F:UtilsSharp.CNDate.cnStrDay">
+            <summary>
+            农历天(字符)
+            </summary>
+        </member>
+        <member name="F:UtilsSharp.CNDate.cnAnm">
+            <summary>
+            农历属象
+            </summary>
+        </member>
+        <member name="F:UtilsSharp.CNDate.cnSolarTerm">
+            <summary>
+            二十四节气
+            </summary>
+        </member>
+        <member name="F:UtilsSharp.CNDate.cnFtvl">
+            <summary>
+            阴历节日
+            </summary>
+        </member>
+        <member name="F:UtilsSharp.CNDate.cnFtvs">
+            <summary>
+            阳历节日
+            </summary>
+        </member>
+        <member name="T:UtilsSharp.ChinaDate">
+            <summary>
+            公历农历相关类
+            </summary>
+        </member>
+        <member name="M:UtilsSharp.ChinaDate.lYearDays(System.Int32)">
+            <summary>
+            传回农历y年的总天数
+            </summary>
+        </member>
+        <member name="M:UtilsSharp.ChinaDate.leapDays(System.Int32)">
+            <summary>
+            传回农历y年闰月的天数
+            </summary>
+        </member>
+        <member name="M:UtilsSharp.ChinaDate.leapMonth(System.Int32)">
+            <summary>
+            传回农历y年闰哪个月 1-12 , 没闰传回 0
+            </summary>
+        </member>
+        <member name="M:UtilsSharp.ChinaDate.monthDays(System.Int32,System.Int32)">
+            <summary>
+            传回农历y年m月的总天数
+            </summary>
+        </member>
+        <member name="M:UtilsSharp.ChinaDate.AnimalsYear(System.Int32)">
+            <summary>
+            传回农历y年的生肖
+            </summary>
+        </member>
+        <member name="M:UtilsSharp.ChinaDate.cyclicalm(System.Int32)">
+            <summary>
+            传入月日的offset 传回干支,0=甲子
+            </summary>
+        </member>
+        <member name="M:UtilsSharp.ChinaDate.cyclical(System.Int32)">
+            <summary>
+            传入offset 传回干支, 0=甲子
+            </summary>
+        </member>
+        <member name="M:UtilsSharp.ChinaDate.Lunar(System.Int32,System.Int32)">
+            <summary>
+            传出农历.year0 .month1 .day2 .yearCyl3 .monCyl4 .dayCyl5 .isLeap6
+            </summary>
+        </member>
+        <member name="M:UtilsSharp.ChinaDate.calElement(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            传出y年m月d日对应的农历.year0 .month1 .day2 .yearCyl3 .monCyl4 .dayCyl5 .isLeap6
+            </summary>
+        </member>
+        <member name="M:UtilsSharp.ChinaDate.GetDaysByMonth(System.Int32,System.Int32)">
+            <summary>
+            传回公历y年m月的总天数
+            </summary>
+            <param name="y">年</param>
+            <param name="m">月</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.ChinaDate.GetMondayDateByDate(System.DateTime)">
+            <summary>
+            根据日期值获得周一的日期
+            </summary>
+            <param name="dt">输入日期</param>
+            <returns>周一的日期</returns>
+        </member>
+        <member name="M:UtilsSharp.ChinaDate.GetChinaDate(System.DateTime)">
+            <summary>
+            根据时间获取农历信息
+            </summary>
+            <param name="dt">时间</param>
+            <returns></returns>
+        </member>
+        <member name="T:UtilsSharp.ChineseCalendar">
+            <summary>
+            中国日历
+            </summary>
+        </member>
+        <member name="T:UtilsSharp.ChineseCalendar.SolarHolidayStruct">
+            <summary>
+            阳历
+            </summary>
+        </member>
+        <member name="T:UtilsSharp.ChineseCalendar.LunarHolidayStruct">
+            <summary>
+            农历
+            </summary>
+        </member>
+        <member name="F:UtilsSharp.ChineseCalendar.LunarDateArray">
+             <summary>
+             来源于网上的农历数据
+             </summary>
+             <remarks>
+             数据结构如下，共使用17位数据
+             第17位：表示闰月天数，0表示29天   1表示30天
+             第16位-第5位（共12位）表示12个月，其中第16位表示第一月，如果该月为30天则为1，29天为0
+             第4位-第1位（共4位）表示闰月是哪个月，如果当年没有闰月，则置0
+            </remarks>
+        </member>
+        <member name="M:UtilsSharp.ChineseCalendar.#ctor(System.DateTime)">
+            <summary>
+            用一个标准的公历日期来初使化
+            </summary>
+        </member>
+        <member name="M:UtilsSharp.ChineseCalendar.#ctor(System.Int32,System.Int32,System.Int32,System.Boolean)">
+            <summary>
+            用农历的日期来初使化
+            </summary>
+            <param name="cy">农历年</param>
+            <param name="cm">农历月</param>
+            <param name="cd">农历日</param>
+            <param name="leapMonthFlag">闰月标志</param>
+        </member>
+        <member name="M:UtilsSharp.ChineseCalendar.GetChineseMonthDays(System.Int32,System.Int32)">
+            <summary>
+            //传回农历y年m月的总天数
+            </summary>
+        </member>
+        <member name="M:UtilsSharp.ChineseCalendar.GetChineseLeapMonth(System.Int32)">
+            <summary>
+            传回农历 y年闰哪个月 1-12 , 没闰传回 0
+            </summary>
+        </member>
+        <member name="M:UtilsSharp.ChineseCalendar.GetChineseLeapMonthDays(System.Int32)">
+            <summary>
+            传回农历y年闰月的天数
+            </summary>
+        </member>
+        <member name="M:UtilsSharp.ChineseCalendar.GetChineseYearDays(System.Int32)">
+            <summary>
+            取农历年一年的天数
+            </summary>
+        </member>
+        <member name="M:UtilsSharp.ChineseCalendar.GetChineseHour(System.DateTime)">
+            <summary>
+            获得当前时间的时辰
+            </summary> 
+        </member>
+        <member name="M:UtilsSharp.ChineseCalendar.CheckDateLimit(System.DateTime)">
+            <summary>
+            检查公历日期是否符合要求
+            </summary>
+        </member>
+        <member name="M:UtilsSharp.ChineseCalendar.CheckChineseDateLimit(System.Int32,System.Int32,System.Int32,System.Boolean)">
+            <summary>
+            检查农历日期是否合理
+            </summary>
+        </member>
+        <member name="M:UtilsSharp.ChineseCalendar.ConvertNumToChineseNum(System.Char)">
+            <summary>
+            将0-9转成汉字形式
+            </summary>
+        </member>
+        <member name="M:UtilsSharp.ChineseCalendar.BitTest32(System.Int32,System.Int32)">
+            <summary>
+            测试某位是否为真
+            </summary>
+        </member>
+        <member name="M:UtilsSharp.ChineseCalendar.ConvertDayOfWeek(System.DayOfWeek)">
+            <summary>
+            将星期几转成数字表示
+            </summary>
+        </member>
+        <member name="M:UtilsSharp.ChineseCalendar.CompareWeekDayHoliday(System.DateTime,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            比较当天是不是指定的第周几
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.ChineseCalendar.newCalendarHoliday">
+            <summary>
+            计算中国农历节日
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.ChineseCalendar.WeekDayHoliday">
+            <summary>
+            按某月第几周第几日计算的节日
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.ChineseCalendar.DateHoliday">
+            <summary>
+            按公历日计算的节日
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.ChineseCalendar.Date">
+            <summary>
+            取对应的公历日期
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.ChineseCalendar.WeekDay">
+            <summary>
+            取星期几
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.ChineseCalendar.WeekDayStr">
+            <summary>
+            周几的字符
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.ChineseCalendar.DateString">
+            <summary>
+            公历日期中文表示法 如一九九七年七月一日
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.ChineseCalendar.IsLeapYear">
+            <summary>
+            当前是否公历闰年
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.ChineseCalendar.ChineseConstellation">
+            <summary>
+            28星宿计算
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.ChineseCalendar.ChineseHour">
+            <summary>
+            时辰
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.ChineseCalendar.IsChineseLeapMonth">
+            <summary>
+            是否闰月
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.ChineseCalendar.IsChineseLeapYear">
+            <summary>
+            当年是否有闰月
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.ChineseCalendar.ChineseDay">
+            <summary>
+            农历日
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.ChineseCalendar.ChineseDayString">
+            <summary>
+            农历日中文表示
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.ChineseCalendar.ChineseMonth">
+            <summary>
+            农历的月份
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.ChineseCalendar.ChineseMonthString">
+            <summary>
+            农历月份字符串
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.ChineseCalendar.ChineseYear">
+            <summary>
+            取农历年份
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.ChineseCalendar.ChineseYearString">
+            <summary>
+            取农历年字符串如，一九九七年
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.ChineseCalendar.ChineseDateString">
+            <summary>
+            取农历日期表示法：农历一九九七年正月初五
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.ChineseCalendar.ChineseTwentyFourDay">
+            <summary>
+            定气法计算二十四节气,二十四节气是按地球公转来计算的，并非是阴历计算的
+            </summary>
+            <remarks>
+            节气的定法有两种。古代历法采用的称为"恒气"，即按时间把一年等分为24份，
+            每一节气平均得15天有余，所以又称"平气"。现代农历采用的称为"定气"，即
+            按地球在轨道上的位置为标准，一周360°，两节气之间相隔15°。由于冬至时地
+            球位于近日点附近，运动速度较快，因而太阳在黄道上移动15°的时间不到15天。
+            夏至前后的情况正好相反，太阳在黄道上移动较慢，一个节气达16天之多。采用
+            定气时可以保证春、秋两分必然在昼夜平分的那两天。
+            </remarks>
+        </member>
+        <member name="P:UtilsSharp.ChineseCalendar.ChineseTwentyFourPrevDay">
+            <summary>
+            当前日期前一个最近节气
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.ChineseCalendar.ChineseTwentyFourNextDay">
+            <summary>
+            当前日期后一个最近节气
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.ChineseCalendar.Constellation">
+            <summary>
+            计算指定日期的星座序号 
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.ChineseCalendar.Animal">
+            <summary>
+            计算属相的索引，注意虽然属相是以农历年来区别的，但是目前在实际使用中是按公历来计算的
+            鼠年为1,其它类推
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.ChineseCalendar.AnimalString">
+            <summary>
+            取属相字符串
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.ChineseCalendar.GanZhiYearString">
+            <summary>
+            取农历年的干支表示法如 乙丑年
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.ChineseCalendar.GanZhiMonthString">
+            <summary>
+            取干支的月表示字符串，注意农历的闰月不记干支
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.ChineseCalendar.GanZhiDayString">
+            <summary>
+            取干支日表示法
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.ChineseCalendar.GanZhiDateString">
+            <summary>
+            取当前日期的干支表示法如 甲子年乙丑月丙庚日
+            </summary>
+        </member>
+        <member name="T:UtilsSharp.ChinesePinyinHelper">
+            <summary>
+            汉字拼音帮助类
+            </summary>
+        </member>
+        <member name="M:UtilsSharp.ChinesePinyinHelper.GetPinyinInitials(System.String)">
+            <summary>
+            获取汉字拼音的首字母
+            </summary>
+            <param name="chineseStr">汉字字符串</param>
+            <returns></returns>
+        </member>
+        <member name="F:UtilsSharp.ChinesePinyinHelper.GetValue">
+            <summary>
+            定义拼音区编码数组
+            </summary>
+        </member>
+        <member name="F:UtilsSharp.ChinesePinyinHelper.GetName">
+            <summary>
+            定义拼音数组
+            </summary>
+        </member>
+        <member name="M:UtilsSharp.ChinesePinyinHelper.GetPinyin(System.String)">
+            <summary>
+            获取汉字拼音
+            </summary>
+            <param name="chineseStr">汉字字符串</param>
+            <returns></returns>
+        </member>
+        <member name="T:UtilsSharp.CryptoHelper">
+            <summary>
+            加密解密
+            </summary>
+        </member>
+        <member name="M:UtilsSharp.CryptoHelper.ToMd5(System.String)">
+            <summary>
+            MD5加密
+            </summary>
+            <param name="str">加密字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.CryptoHelper.ToDesEncrypt(System.String,System.String,System.String)">
+            <summary>
+            DES加密
+            </summary>
+            <param name="str">加密字符串</param>
+            <param name="secretKey">密文</param>
+            <param name="iv">向量</param>
+            <returns>加密后的字符串</returns>
+        </member>
+        <member name="M:UtilsSharp.CryptoHelper.ToDesDecrypt(System.String,System.String,System.String)">
+            <summary>
+            DES解密
+            </summary>
+            <param name="str">解密字符串</param>
+            <param name="secretKey">密文</param>
+            <param name="iv">向量</param>
+            <returns>解密后的字符串</returns>
+        </member>
+        <member name="M:UtilsSharp.CryptoHelper.ToRsaEncrypt(System.String,System.String)">
+            <summary> 
+            RSA加密 
+            </summary> 
+            <param name="str">加密字符串</param> 
+            <param name="secretKey">密文</param> 
+            <returns></returns> 
+        </member>
+        <member name="M:UtilsSharp.CryptoHelper.ToRsaDecrypt(System.String,System.String)">
+            <summary> 
+            RSA解密 
+            </summary> 
+            <param name="str">解密字符串</param> 
+            <param name="secretKey">密匙容器的名称</param> 
+            <returns></returns> 
+        </member>
+        <member name="M:UtilsSharp.CryptoHelper.ToSha1Encrypt(System.String)">
+            <summary>
+            SHA1加密
+            </summary>
+            <param name="str">加密字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.CryptoHelper.ToSha256Encrypt(System.String)">
+            <summary>
+            SHA256加密
+            </summary>
+            <param name="str">加密字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.CryptoHelper.ToSha384Encrypt(System.String)">
+            <summary>
+            SHA384加密
+            </summary>
+            <param name="str">加密字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.CryptoHelper.ToSha512Encrypt(System.String)">
+            <summary>
+            SHA512加密
+            </summary>
+            <param name="str">加密字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.CryptoHelper.ToBase64Encrypt(System.String)">
+            <summary>
+            Base64加密
+            </summary>
+            <param name="str">需要加密的字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.CryptoHelper.ToBase64Encrypt(System.String,System.Text.Encoding)">
+            <summary>
+            Base64加密(指定字符编码)
+            </summary>
+            <param name="str">需要加密的字符串</param>
+            <param name="encode">字符编码</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.CryptoHelper.ToBase64Decrypt(System.String)">
+            <summary>
+            Base64解密
+            </summary>
+            <param name="str">需要解密的字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.CryptoHelper.ToBase64Decrypt(System.String,System.Text.Encoding)">
+            <summary>
+            Base64解密(指定字符编码)
+            </summary>
+            <param name="str">需要解密的字符串</param>
+            <param name="encode">字符的编码</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.CryptoHelper.ToAesEncrypt(System.String,System.String)">
+            <summary>
+             AES加密
+            </summary>
+            <param name="str">明文（待加密）</param>
+            <param name="secretKey">密文</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.CryptoHelper.ToAesDecrypt(System.String,System.String)">
+            <summary>
+             AES解密
+            </summary>
+            <param name="str">明文（待解密）</param>
+            <param name="secretKey">密文</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.CryptoHelper.ToHmacSha1Encrypt(System.String,System.String,System.Text.Encoding)">
+             <summary>
+             HmacSha1加密
+             </summary>
+             <param name="str">要加密的原串</param>
+            <param name="key">私钥</param>
+             <param name="encode"></param>
+             <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.CryptoHelper.ToBase64HmacSha1Encrypt(System.String,System.String,System.Text.Encoding)">
+             <summary>
+             HmacSha1加密(Base64方式)
+             </summary>
+             <param name="str">要加密的原串</param>
+            <param name="key">私钥</param>
+             <param name="encode"></param>
+             <returns></returns>
+        </member>
+        <member name="T:UtilsSharp.DataTableHelper">
+            <summary>
+            DataTable帮助类
+            </summary>
+        </member>
+        <member name="M:UtilsSharp.DataTableHelper.ToEntity``1(System.Data.DataTable)">
+            <summary>
+            DataTable转实体
+            </summary>
+            <typeparam name="T">实体</typeparam>
+            <param name="table">DataTable实例</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.DataTableHelper.ToEntities``1(System.Data.DataTable)">
+            <summary>
+             DataTable转实体集合
+            </summary>
+            <typeparam name="T">实体</typeparam>
+            <param name="table">DataTable实例</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.DataTableHelper.ToDataTable(System.Collections.IList)">
+            <summary>
+            指定集合转DataTable
+            </summary>
+            <param name="list">指定集合</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.DataTableHelper.ToDataTable``1(System.Collections.Generic.List{``0})">
+            <summary>
+            指定实体集合转DataTable
+            </summary>
+            <typeparam name="T">实体</typeparam>
+            <param name="list">实体集合</param>
+            <returns></returns>
+        </member>
+        <member name="T:UtilsSharp.Dependency.IDependency">
+            <summary>
+            DI依赖接口标识
+            </summary>
+        </member>
+        <member name="T:UtilsSharp.Dependency.ISingletonDependency">
+            <summary>
+            表示实现者是一个单列依赖。
+            </summary>
+        </member>
+        <member name="T:UtilsSharp.Dependency.ITransientDependency">
+            <summary>
+            表示实现者是一个瞬态依赖
+            </summary>
+        </member>
+        <member name="T:UtilsSharp.Dependency.IUnitOfWorkDependency">
+            <summary>
+            表示实现者是一个工作单元依赖
+            </summary>
+        </member>
+        <member name="T:UtilsSharp.DictionaryHelper">
+            <summary>
+            字典帮助类
+            </summary>
+        </member>
+        <member name="M:UtilsSharp.DictionaryHelper.GetValue(System.Collections.Generic.Dictionary{System.String,System.String},System.String)">
+            <summary>
+            获取字典值
+            </summary>
+            <param name="dic">字典</param>
+            <param name="key">字典Key</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.DictionaryHelper.GetValue``1(System.Collections.Generic.Dictionary{System.String,System.Object},System.String)">
+            <summary>
+            获取字典值
+            </summary>
+            <typeparam name="T">类型</typeparam>
+            <param name="dic">字典</param>
+            <param name="key">字典Key</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.DictionaryHelper.ToDynamic(System.Collections.Generic.Dictionary{System.String,System.Object})">
+            <summary>
+            字典转Dynamic
+            </summary>
+            <param name="dic">字典</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.DictionaryHelper.ToDictionaryStringValue(System.Object)">
+            <summary>
+            转换对象为字典
+            </summary>
+            <param name="obj">要转换的对象</param>
+            <returns>返回字典</returns>
+        </member>
+        <member name="M:UtilsSharp.DictionaryHelper.ToDictionary(System.Object)">
+            <summary>
+            转换对象为字典
+            </summary>
+            <param name="obj">要转换的对象</param>
+            <returns>返回字典</returns>
+        </member>
+        <member name="M:UtilsSharp.DictionaryHelper.ToDictionary(System.Object,System.String[],System.String[])">
+            <summary>
+            转换对象为字典
+            </summary>
+            <param name="obj">要转换的对象</param>
+            <param name="members">需要转换的成员</param>
+            <param name="ignoreMembers">忽略转换的成员</param>
+            <returns>返回字典</returns>
+        </member>
+        <member name="M:UtilsSharp.DictionaryHelper.ToEntity``1(System.Collections.Generic.Dictionary{System.String,System.Object})">
+            <summary>
+            转换字典为对象
+            </summary>
+            <param name="dictionary">要转换的字典</param>
+            <returns>返回对象</returns>
+        </member>
+        <member name="M:UtilsSharp.DictionaryHelper.ToEntity``1(System.Collections.Generic.Dictionary{System.String,System.Object},System.String[],System.String[])">
+            <summary>
+            转换字典为对象
+            </summary>
+            <param name="dictionary">要转换的字典</param>
+            <param name="members">需要转换的成员</param>
+            <param name="ignoreMembers">忽略转换的成员</param>
+            <returns>返回对象</returns>
+        </member>
+        <member name="T:UtilsSharp.DingTalkRobot">
+            <summary>
+            钉钉自定义机器人
+            </summary>
+        </member>
+        <member name="M:UtilsSharp.DingTalkRobot.SendTextMessage(System.String,System.String,System.Collections.Generic.List{System.String},System.Boolean)">
+            <summary>
+             调用自定义机器人发Text类型消息
+            </summary>
+            <param name="webhook">webHook地址</param>
+            <param name="content">消息内容</param>
+            <param name="atMobiles">被@人的手机号</param>
+            <param name="isAtAll">@所有人时:true,否则为:false</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.DingTalkRobot.SendLinkMessage(System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            调用自定义机器人发Link类型消息
+            </summary>
+            <param name="webhook">webHook地址</param>
+            <param name="title">消息标题</param>
+            <param name="text">消息内容(注：如果太长只会部分展示)</param>
+            <param name="picUrl">图片url</param>
+            <param name="messageUrl">点击消息跳转的url</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.DingTalkRobot.SendMarkdownMessage(System.String,System.String,UtilsSharp.Entity.TitleType,System.Collections.Generic.List{UtilsSharp.Entity.MarkdownMessage},System.Collections.Generic.List{System.String},System.Boolean)">
+            <summary>
+            调用自定义机器人发Markdown类型消息
+            </summary>
+            <param name="webhook">webHook地址</param>
+            <param name="title">消息标题</param>
+            <param name="titleType">标题类型等级</param>
+            <param name="markdownMessages">消息内容</param>
+            <param name="atMobiles">被@手机号</param>
+            <param name="isAtAll">@所有人时:true,否则为:false</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.DingTalkRobot.SendActionCardMessage(System.String,System.String,System.Collections.Generic.List{UtilsSharp.Entity.MarkdownMessage},System.Int32,System.Int32,System.String,System.String)">
+            <summary>
+            调用自定义机器人发整体跳转ActionCard类型消息
+            </summary>
+            <param name="webhook">webHook地址</param>
+            <param name="title">消息标题</param>
+            <param name="markdownMessages">消息内容</param>
+            <param name="hideAvatar">0-正常发消息者头像,1-隐藏发消息者头像</param>
+            <param name="btnOrientation">0-按钮竖直排列，1-按钮横向排列</param>
+            <param name="singleTitle">单个按钮的方案。(设置此项和singleUrl后btns无效。)</param>
+            <param name="singleUrl">点击singleTitle按钮触发的URL</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.DingTalkRobot.SendSingleActionCardMessage(System.String,System.String,System.Collections.Generic.List{UtilsSharp.Entity.MarkdownMessage},System.Int32,System.Int32,System.Collections.Generic.List{UtilsSharp.Entity.Btn})">
+            <summary>
+            调用自定义机器人发独立跳转ActionCard类型消息
+            </summary>
+            <param name="webhook">webHook地址</param>
+            <param name="title">消息标题</param>
+            <param name="markdownMessages">消息内容</param>
+            <param name="hideAvatar">0-正常发消息者头像,1-隐藏发消息者头像</param>
+            <param name="btnOrientation">0-按钮竖直排列，1-按钮横向排列</param>
+            <param name="btns">按钮集合</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.DingTalkRobot.SendFeedCardMessage(System.String,System.Collections.Generic.List{UtilsSharp.Entity.Link})">
+            <summary>
+            调用自定义机器人发FeedCard类型消息
+            </summary>
+            <param name="webhook">webHook地址</param>
+            <param name="links">图片按钮集合</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.DingTalkRobot.SendMessage(System.String,System.Object)">
+            <summary>
+            调用自定义机器人发消息
+            </summary>
+            <param name="webhook">webHook地址</param>
+            <param name="message">消息信息</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.DingTalkRobot.RestructureMessage(System.Collections.Generic.List{UtilsSharp.Entity.MarkdownMessage})">
+            <summary>
+            重构消息内容
+            </summary>
+            <param name="markdownMessages">消息内容</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.DingTalkRobot.GetAtMobiles(System.Collections.Generic.List{System.String})">
+            <summary>
+            获取被@人的手机号
+            </summary>
+            <param name="atMobiles">被@人的手机号</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.DingTalkRobot.GetContentGrade(UtilsSharp.Entity.TitleType,System.String)">
+            <summary>
+            获取等级文本
+            </summary>
+            <param name="titleType">文本类型</param>
+            <param name="title">文本</param>
+            <returns></returns>
+        </member>
+        <member name="T:UtilsSharp.DirectoryHelper">
+            <summary>
+            文件夹帮助类
+            </summary>
+        </member>
+        <member name="M:UtilsSharp.DirectoryHelper.GetDesktopDirectory">
+            <summary>
+            获取桌面目录路径
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.DirectoryHelper.ConvertToDirectory(System.String)">
+            <summary>
+            得到绝对目录路径
+            </summary>
+            <param name="dirPath">目录路径如：dir/{DateTime.Now.Date:yyyy-MM-dd}/ </param>
+            <returns></returns>
+        </member>
+        <member name="T:UtilsSharp.Entity.MarkdownMessage">
+            <summary>
+            Markdown消息内容类
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.Entity.MarkdownMessage.Index">
+            <summary>
+            内容坐标索引
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.Entity.MarkdownMessage.MarkdownType">
+            <summary>
+            内容类型(文字、图片、链接)
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.Entity.MarkdownMessage.Text">
+            <summary>
+            内容（注：文字类型的内容中禁止字符["#"、"*"、"["、"]"、"!"]；
+            图片类型和链接类型的内容传可访问的http地址即可）
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.Entity.MarkdownMessage.IsLineFeed">
+            <summary>
+            是否换行
+            </summary>
+        </member>
+        <member name="T:UtilsSharp.Entity.Text">
+            <summary>
+            内容
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.Entity.Text.Content">
+            <summary>
+            文本或链接显示文字
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.Entity.Text.ImgUrl">
+            <summary>
+            图片链接
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.Entity.Text.Url">
+            <summary>
+            超链接地址
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.Entity.Text.ContentType">
+            <summary>
+            文本类型
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.Entity.Text.ContentGrade">
+            <summary>
+            文本等级
+            </summary>
+        </member>
+        <member name="T:UtilsSharp.Entity.Btn">
+            <summary>
+            超链接按钮
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.Entity.Btn.Title">
+            <summary>
+            标题
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.Entity.Btn.ActionUrl">
+            <summary>
+            标题对应的超链接
+            </summary>
+        </member>
+        <member name="T:UtilsSharp.Entity.Link">
+            <summary>
+            超链接按钮带图片
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.Entity.Link.Title">
+            <summary>
+            标题
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.Entity.Link.MessageUrl">
+            <summary>
+            超链接
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.Entity.Link.PicUrl">
+            <summary>
+            图片超链接
+            </summary>
+        </member>
+        <member name="T:UtilsSharp.Entity.ContentType">
+            <summary>
+            文本类型
+            </summary>
+        </member>
+        <member name="F:UtilsSharp.Entity.ContentType.默认">
+            <summary>
+            默认
+            </summary>
+        </member>
+        <member name="F:UtilsSharp.Entity.ContentType.加粗">
+            <summary>
+            加粗
+            </summary>
+        </member>
+        <member name="F:UtilsSharp.Entity.ContentType.斜体">
+            <summary>
+            斜体
+            </summary>
+        </member>
+        <member name="T:UtilsSharp.Entity.MarkdownType">
+            <summary>
+            Markdown消息内容类型
+            </summary>
+        </member>
+        <member name="F:UtilsSharp.Entity.MarkdownType.文本">
+            <summary>
+            文本
+            </summary>
+        </member>
+        <member name="F:UtilsSharp.Entity.MarkdownType.图片">
+            <summary>
+            图片
+            </summary>
+        </member>
+        <member name="F:UtilsSharp.Entity.MarkdownType.链接">
+            <summary>
+            链接
+            </summary>
+        </member>
+        <member name="T:UtilsSharp.Entity.TitleType">
+            <summary>
+            标题(文本)类型等级
+            </summary>
+        </member>
+        <member name="F:UtilsSharp.Entity.TitleType.默认">
+            <summary>
+            默认
+            </summary>
+        </member>
+        <member name="F:UtilsSharp.Entity.TitleType.一级">
+            <summary>
+            一级
+            </summary>
+        </member>
+        <member name="F:UtilsSharp.Entity.TitleType.二级">
+            <summary>
+            二级
+            </summary>
+        </member>
+        <member name="F:UtilsSharp.Entity.TitleType.三级">
+            <summary>
+            三级
+            </summary>
+        </member>
+        <member name="F:UtilsSharp.Entity.TitleType.四级">
+            <summary>
+            四级
+            </summary>
+        </member>
+        <member name="F:UtilsSharp.Entity.TitleType.五级">
+            <summary>
+            五级
+            </summary>
+        </member>
+        <member name="F:UtilsSharp.Entity.TitleType.六级">
+            <summary>
+            六级
+            </summary>
+        </member>
+        <member name="T:UtilsSharp.Entity.EnumEntity">
+            <summary>
+            枚举对象模型
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.Entity.EnumEntity.EnumName">
+            <summary>  
+            枚举名称  
+            </summary>  
+        </member>
+        <member name="P:UtilsSharp.Entity.EnumEntity.EnumValue">
+            <summary>  
+            枚举对象的值  
+            </summary>  
+        </member>
+        <member name="P:UtilsSharp.Entity.EnumEntity.Description">
+            <summary>  
+            枚举的描述  
+            </summary>  
+        </member>
+        <member name="T:UtilsSharp.Entity.关系运算符">
+            <summary>
+            关系运算符
+            </summary>
+        </member>
+        <member name="F:UtilsSharp.Entity.关系运算符.大于">
+            <summary>
+            大于
+            </summary>
+        </member>
+        <member name="F:UtilsSharp.Entity.关系运算符.大于等于">
+            <summary>
+            大于等于
+            </summary>
+        </member>
+        <member name="F:UtilsSharp.Entity.关系运算符.等于">
+            <summary>
+            等于
+            </summary>
+        </member>
+        <member name="F:UtilsSharp.Entity.关系运算符.不等于">
+            <summary>
+            不等于
+            </summary>
+        </member>
+        <member name="F:UtilsSharp.Entity.关系运算符.小于等于">
+            <summary>
+            小于等于
+            </summary>
+        </member>
+        <member name="F:UtilsSharp.Entity.关系运算符.小于">
+            <summary>
+            小于
+            </summary>
+        </member>
+        <member name="T:UtilsSharp.Entity.算术运算符">
+            <summary>
+            算数运算符
+            </summary>
+        </member>
+        <member name="F:UtilsSharp.Entity.算术运算符.加">
+            <summary>
+            加
+            </summary>
+        </member>
+        <member name="F:UtilsSharp.Entity.算术运算符.减">
+            <summary>
+            减
+            </summary>
+        </member>
+        <member name="F:UtilsSharp.Entity.算术运算符.乘">
+            <summary>
+            乘
+            </summary>
+        </member>
+        <member name="F:UtilsSharp.Entity.算术运算符.除">
+            <summary>
+            除
+            </summary>
+        </member>
+        <member name="F:UtilsSharp.Entity.算术运算符.求余">
+            <summary>
+            求余
+            </summary>
+        </member>
+        <member name="T:UtilsSharp.EnumExtension">
+            <summary>
+            枚举扩展类
+            </summary>
+        </member>
+        <member name="M:UtilsSharp.EnumExtension.ToEnum``1(System.String)">
+            <summary>
+            字符串值转换为枚举值
+            </summary>
+            <typeparam name="T">枚举</typeparam>
+            <param name="value">枚举值不区分(字符串)</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.EnumExtension.ToEnum``1(System.Int32)">
+            <summary>
+            数字值转换为枚举值
+            </summary>
+            <typeparam name="T">枚举</typeparam>
+            <param name="value">枚举值(数值)</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.EnumExtension.IsDefined``1(System.Object)">
+            <summary>
+            判断某个值是否定义在枚举中
+            </summary>
+            <typeparam name="T">枚举</typeparam>
+            <param name="value">值</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.EnumExtension.GetEnumDescription(System.Enum)">
+            <summary>
+            获取枚举的描述信息
+            </summary>
+            <param name="en">枚举对象</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.EnumExtension.EnumToList``1">
+            <summary>
+            枚举转List
+            </summary>
+            <typeparam name="T">枚举对象</typeparam>
+            <returns></returns>
+        </member>
+        <member name="T:UtilsSharp.FileHelper">
+            <summary>
+            文件操作类
+            </summary>
+        </member>
+        <member name="M:UtilsSharp.FileHelper.ReadFileToBytes(System.String)">
+            <summary>
+            读取文件到byte[]
+            </summary>
+            <param name="fileName">硬盘文件路径</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.FileHelper.ReadFileToStream(System.String)">
+            <summary>
+            读取文件到stream
+            </summary>
+            <param name="fileName">硬盘文件路径</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.FileHelper.WriteBytesToFile(System.Byte[],System.String)">
+            <summary>
+            写byte[]到fileName
+            </summary>
+            <param name="bytes">byte[]</param>
+            <param name="fileName">保存至硬盘路径</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.FileHelper.StreamToBytes(System.IO.Stream)">
+            <summary>
+            stream转为byte[]
+            </summary>
+            <param name="stream">参数</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.FileHelper.BytesToStream(System.Byte[])">
+            <summary>
+            byte[] 转为stream
+            </summary>
+            <param name="bytes">参数</param>
+            <returns></returns>
+        </member>
+        <member name="T:UtilsSharp.ImageHelper">
+            <summary>
+            图片帮助类
+            </summary>
+        </member>
+        <member name="M:UtilsSharp.ImageHelper.BitmapToBytes(System.Drawing.Bitmap,System.Drawing.Imaging.ImageFormat)">
+            <summary>
+            Bitmap转bytes
+            </summary>
+            <param name="bitmap">bitmap</param>
+            <param name="imageFormat">图像格式</param>
+        </member>
+        <member name="M:UtilsSharp.ImageHelper.ImageToBytes(System.Drawing.Image)">
+            <summary>
+            图片转bytes
+            </summary>
+            <param name="image">图片</param>
+        </member>
+        <member name="M:UtilsSharp.ImageHelper.BytesToImage(System.Byte[])">
+            <summary>
+            bytes转Image
+            </summary>
+            <param name="bytes">bytes</param>
+        </member>
+        <member name="M:UtilsSharp.ImageHelper.CreateImageFromBytes(System.String,System.Byte[])">
+            <summary>
+            bytes生成并保存图片
+            </summary>
+            <param name="path">图片路径</param>
+            <param name="bytes">bytes</param>
+        </member>
+        <member name="M:UtilsSharp.ImageHelper.OrientationImage(System.Drawing.Image)">
+            <summary>
+            将图片旋转到正确位置
+            旋转角度  参数值
+            0°	        1
+            顺时针90°	6
+            逆时针90°	8
+            180°	    3
+            </summary>
+            <param name="image">图片对象</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.ImageHelper.UrlToImage(System.Collections.Generic.List{System.String})">
+            <summary>
+            图片地址转图片
+            图片数目若与实际下载链接数目不符说明下载失败
+            自动过滤下载失败的图片
+            </summary>
+            <param name="imgUrls">图片地址集合</param>
+        </member>
+        <member name="M:UtilsSharp.ImageHelper.UrlToImage(System.String)">
+            <summary>
+            图片地址转图片
+            返回null说明下载失败
+            </summary>
+            <param name="imgUrl">图片地址</param>
+        </member>
+        <member name="T:UtilsSharp.ImageHelper.MakeThumbnailMode">
+            <summary>
+            生成缩略图的方式
+            </summary>
+        </member>
+        <member name="F:UtilsSharp.ImageHelper.MakeThumbnailMode.指定高宽缩放可能变形">
+            <summary>
+            指定高宽缩放可能变形
+            </summary>
+        </member>
+        <member name="F:UtilsSharp.ImageHelper.MakeThumbnailMode.指定宽然后高按比例">
+            <summary>
+            指定宽然后高按比例
+            </summary>
+        </member>
+        <member name="F:UtilsSharp.ImageHelper.MakeThumbnailMode.指定高然后宽按比例">
+            <summary>
+            指定高然后宽按比例
+            </summary>
+        </member>
+        <member name="F:UtilsSharp.ImageHelper.MakeThumbnailMode.指定高宽裁减不变形">
+            <summary>
+            指定高宽裁减不变形
+            </summary>
+        </member>
+        <member name="M:UtilsSharp.ImageHelper.MakeThumbnail(System.String,System.String,System.Int32,System.Int32,UtilsSharp.ImageHelper.MakeThumbnailMode)">
+            <summary>
+            生成缩略图
+            </summary>
+            <param name="originalImagePath">源图路径（物理路径）</param>
+            <param name="thumbnailPath">缩略图路径（物理路径）</param>
+            <param name="width">缩略图宽度</param>
+            <param name="height">缩略图高度</param>
+            <param name="mode">生成缩略图的方式</param>    
+        </member>
+        <member name="M:UtilsSharp.ImageHelper.ImageWatermark(System.String,System.String,System.String)">
+            <summary>
+            图片水印处理
+            </summary>
+            <param name="path">需要加载水印的图片路径（绝对路径）</param>
+            <param name="waterpath">水印图片（绝对路径）</param>
+            <param name="location">水印位置（传送正确的代码）</param>
+        </member>
+        <member name="M:UtilsSharp.ImageHelper.GetLocation(System.String,System.Drawing.Image,System.Drawing.Image)">
+            <summary>
+            图片水印位置处理方法
+            </summary>
+            <param name="location">水印位置</param>
+            <param name="img">需要添加水印的图片</param>
+            <param name="waterimg">水印图片</param>
+        </member>
+        <member name="M:UtilsSharp.ImageHelper.LetterWatermark(System.String,System.Int32,System.String,System.Drawing.Color,System.String)">
+            <summary>
+            文字水印处理
+            </summary>
+            <param name="path">图片路径（绝对路径）</param>
+            <param name="size">字体大小</param>
+            <param name="letter">水印文字</param>
+            <param name="color">颜色</param>
+            <param name="location">水印位置</param>
+        </member>
+        <member name="M:UtilsSharp.ImageHelper.GetLocation(System.String,System.Drawing.Image,System.Int32,System.Int32)">
+            <summary>
+            文字水印位置的方法
+            </summary>
+            <param name="location">位置代码</param>
+            <param name="img">图片对象</param>
+            <param name="width">宽(当水印类型为文字时,传过来的就是字体的大小)</param>
+            <param name="height">高(当水印类型为文字时,传过来的就是字符的长度)</param>
+        </member>
+        <member name="M:UtilsSharp.ImageHelper.LdPic(System.Drawing.Bitmap,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            调整光暗
+            </summary>
+            <param name="mybm">原始图片</param>
+            <param name="width">原始图片的长度</param>
+            <param name="height">原始图片的高度</param>
+            <param name="val">增加或减少的光暗值</param>
+        </member>
+        <member name="M:UtilsSharp.ImageHelper.RePic(System.Drawing.Bitmap,System.Int32,System.Int32)">
+            <summary>
+            反色处理
+            </summary>
+            <param name="mybm">原始图片</param>
+            <param name="width">原始图片的长度</param>
+            <param name="height">原始图片的高度</param>
+        </member>
+        <member name="M:UtilsSharp.ImageHelper.Fd(System.Drawing.Bitmap,System.Int32,System.Int32)">
+            <summary>
+            浮雕处理
+            </summary>
+            <param name="oldBitmap">原始图片</param>
+            <param name="width">原始图片的长度</param>
+            <param name="height">原始图片的高度</param>
+        </member>
+        <member name="M:UtilsSharp.ImageHelper.ResizeImage(System.Drawing.Bitmap,System.Int32,System.Int32)">
+            <summary>
+            拉伸图片
+            </summary>
+            <param name="bmp">原始图片</param>
+            <param name="newW">新的宽度</param>
+            <param name="newH">新的高度</param>
+        </member>
+        <member name="M:UtilsSharp.ImageHelper.FilPic(System.Drawing.Bitmap,System.Int32,System.Int32)">
+            <summary>
+            滤色处理
+            </summary>
+            <param name="mybm">原始图片</param>
+            <param name="width">原始图片的长度</param>
+            <param name="height">原始图片的高度</param>
+        </member>
+        <member name="M:UtilsSharp.ImageHelper.RevPicLr(System.Drawing.Bitmap,System.Int32,System.Int32)">
+            <summary>
+            左右翻转
+            </summary>
+            <param name="mybm">原始图片</param>
+            <param name="width">原始图片的长度</param>
+            <param name="height">原始图片的高度</param>
+        </member>
+        <member name="M:UtilsSharp.ImageHelper.RevPicUd(System.Drawing.Bitmap,System.Int32,System.Int32)">
+            <summary>
+            上下翻转
+            </summary>
+            <param name="mybm">原始图片</param>
+            <param name="width">原始图片的长度</param>
+            <param name="height">原始图片的高度</param>
+        </member>
+        <member name="M:UtilsSharp.ImageHelper.Compress(System.String,System.String)">
+            <summary>
+            压缩图片到指定尺寸
+            </summary>
+            <param name="oldfile">原文件</param>
+            <param name="newfile">新文件</param>
+        </member>
+        <member name="M:UtilsSharp.ImageHelper.Compress(System.Drawing.Image,System.Int32,System.String)">
+            <summary>
+            图片无损高质量压缩
+            </summary>
+            <param name="bitmap">要压缩的图片对象</param>
+            <param name="quality">压缩质量:数字越小压缩率越高1-100</param>
+            <param name="newfile">压缩完的图片文件地址</param>
+        </member>
+        <member name="M:UtilsSharp.ImageHelper.Gray(System.Drawing.Color)">
+            <summary>
+            图片灰度化
+            </summary>
+            <param name="c">颜色</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.ImageHelper.BwPic(System.Drawing.Bitmap,System.Int32,System.Int32)">
+            <summary>
+            转换为黑白图片
+            </summary>
+            <param name="mybm">要进行处理的图片</param>
+            <param name="width">图片的长度</param>
+            <param name="height">图片的高度</param>
+        </member>
+        <member name="M:UtilsSharp.ImageHelper.GetFrames(System.String,System.String)">
+            <summary>
+            获取图片中的各帧
+            </summary>
+            <param name="pPath">图片路径</param>
+            <param name="pSavedPath">保存路径</param>
+        </member>
+        <member name="T:UtilsSharp.IpHelper">
+            <summary>
+            Ip帮助类
+            </summary>
+        </member>
+        <member name="M:UtilsSharp.IpHelper.GetClientIp">
+            <summary>
+            获取客户端Ip
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.IpHelper.GetServerIp">
+            <summary>
+            获取服务端Ip
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.IpHelper.GetIpInfo(System.String)">
+            <summary>
+            获取Ip详细信息
+            </summary>
+            <param name="ip">ip</param>
+            <returns></returns>
+        </member>
+        <member name="T:UtilsSharp.IpInfo">
+            <summary>
+            Ip信息
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.IpInfo.Status">
+            <summary>
+            状态 success fail
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.IpInfo.Country">
+            <summary>
+            国家
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.IpInfo.CountryCode">
+            <summary>
+            国家码
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.IpInfo.Region">
+            <summary>
+            地区码(省、州、自治区、直辖市)
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.IpInfo.RegionName">
+            <summary>
+            地区名(省、州、自治区、直辖市)
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.IpInfo.City">
+            <summary>
+            城市
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.IpInfo.Zip">
+            <summary>
+            zip
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.IpInfo.Lat">
+            <summary>
+            lat
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.IpInfo.Lon">
+            <summary>
+            lon
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.IpInfo.Timezone">
+            <summary>
+            时区
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.IpInfo.Isp">
+            <summary>
+            Isp
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.IpInfo.Org">
+            <summary>
+            org
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.IpInfo.As">
+            <summary>
+            as
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.IpInfo.Query">
+            <summary>
+            请求数据
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.IpInfo.Message">
+            <summary>
+            错误信息
+            </summary>
+        </member>
+        <member name="T:UtilsSharp.JsonXmlHelper">
+            <summary>
+            JsonXml帮助类
+            </summary>
+        </member>
+        <member name="M:UtilsSharp.JsonXmlHelper.JsonToXml(System.String)">
+            <summary>
+            json转xml
+            </summary>
+            <param name="json">json字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.JsonXmlHelper.XmlToJson(System.String)">
+            <summary>
+            xml转json
+            </summary>
+            <param name="xml">xml字符串</param>
+            <returns></returns>
+        </member>
+        <member name="T:UtilsSharp.MapperHelper`2">
+            <summary>
+            对象与对象映射
+            </summary>
+            <typeparam name="TSource">源对象</typeparam>
+            <typeparam name="TTarget">结果对象</typeparam>
+        </member>
+        <member name="M:UtilsSharp.MapperHelper`2.Map(`0)">
+            <summary>
+            将对象TSource转换为TTarget
+            </summary>
+            <param name="source">对象</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.MapperHelper`2.MapList(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            将对象TSource集合转换为TTarget集合
+            </summary>
+            <param name="sources">对象集合</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.MapperHelper`2.Map(`0,`1)">
+            <summary>
+            将对象TSource的值赋给给TTarget
+            </summary>
+            <param name="source">源对象</param>
+            <param name="target">结果对象</param>
+        </member>
+        <member name="M:UtilsSharp.MapperHelper`2.GetClassExpression(System.Linq.Expressions.Expression,System.Type,System.Type)">
+            <summary>
+            类型是clas时赋值
+            </summary>
+            <param name="sourceProperty"></param>
+            <param name="sourceType"></param>
+            <param name="targetType"></param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.MapperHelper`2.GetListExpression(System.Linq.Expressions.Expression,System.Type,System.Type)">
+            <summary>
+            类型为集合时赋值
+            </summary>
+            <param name="sourceProperty"></param>
+            <param name="sourceType"></param>
+            <param name="targetType"></param>
+            <returns></returns>
+        </member>
+        <member name="T:UtilsSharp.NumberHelper">
+            <summary>
+            中文数字帮助类
+            </summary>
+        </member>
+        <member name="M:UtilsSharp.NumberHelper.ToCnNumber(System.Int32,System.Boolean)">
+            <summary>
+            阿拉伯数字转中文数字
+            </summary>
+            <param name="num">数字(仅支持0~10)</param>
+            <param name="capitalization">是否返回大写中文数字</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.NumberHelper.ToCnMoney(System.Double)">
+            <summary>
+            金额转中文大写整数支持到万亿,小数部分支持到分(超过两位将进行Banker舍入法处理)
+            </summary>
+            <param name="num">需要转换的双精度浮点数</param>
+            <returns></returns>
+        </member>
+        <member name="T:UtilsSharp.RandomHelper">
+            <summary>
+            随机相关帮助类
+            </summary>
+        </member>
+        <member name="M:UtilsSharp.RandomHelper.Number(System.Int32)">
+            <summary>
+            生成随机数字
+            </summary>
+            <param name="length">生成长度</param>
+        </member>
+        <member name="M:UtilsSharp.RandomHelper.Number(System.Int32,System.Boolean)">
+            <summary>
+            生成随机数字
+            </summary>
+            <param name="length">生成长度</param>
+            <param name="sleep">是否要在生成前将当前线程阻止以避免重复</param>
+        </member>
+        <member name="M:UtilsSharp.RandomHelper.NumberAndLetters(System.Int32)">
+            <summary>
+            生成随机数字与字母
+            </summary>
+            <param name="length">生成长度</param>
+        </member>
+        <member name="M:UtilsSharp.RandomHelper.NumberAndLetters(System.Int32,System.Boolean)">
+            <summary>
+            生成随机数字与字母
+            </summary>
+            <param name="length">生成长度</param>
+            <param name="sleep">是否要在生成前将当前线程阻止以避免重复</param>
+        </member>
+        <member name="M:UtilsSharp.RandomHelper.Letters(System.Int32)">
+            <summary>
+            生成随机字母(只有字母)
+            </summary>
+            <param name="length">生成长度</param>
+        </member>
+        <member name="M:UtilsSharp.RandomHelper.Letters(System.Int32,System.Boolean)">
+            <summary>
+            生成随机字母(只有字母)
+            </summary>
+            <param name="length">生成长度</param>
+            <param name="sleep">是否要在生成前将当前线程阻止以避免重复</param>
+        </member>
+        <member name="M:UtilsSharp.RandomHelper.ListData``1(System.Collections.Generic.List{``0})">
+            <summary>
+             随机排序list数据
+            </summary>
+            <typeparam name="T">对象</typeparam>
+            <param name="data">数据</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.RandomHelper.NumbersNoRepeating(System.Int32,System.Int32)">
+            <summary>
+            生成不重复的随机数值
+            </summary>
+            <param name="minValue">最小值</param>
+            <param name="maxValue">最大值</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.RandomHelper.Time(System.DateTime,System.DateTime)">
+            <summary>
+            生成随机时间
+            </summary>
+            <param name="time1">起始时间</param>
+            <param name="time2">结束时间</param>
+            <returns>间隔时间之间的 随机时间</returns>
+        </member>
+        <member name="T:UtilsSharp.RegexHelper">
+            <summary>
+            正则匹配帮助类
+            </summary>
+        </member>
+        <member name="M:UtilsSharp.RegexHelper.IsMatch(System.String,System.String)">
+            <summary>
+            正则是否匹配
+            </summary>
+            <param name="input">字符串</param>
+            <param name="pattern">正则规则</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.RegexHelper.IsMatch(System.String,System.String,System.Text.RegularExpressions.RegexOptions)">
+            <summary>
+            正则是否匹配
+            </summary>
+            <param name="input">字符串</param>
+            <param name="pattern">正则规则</param>
+            <param name="options">提供用于设置正则表达式选项的枚举值</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.RegexHelper.Match(System.String,System.String)">
+            <summary>
+            从指定字符串中过滤出符合正则匹配的字符串
+            </summary>
+            <param name="input">字符串</param>
+            <param name="pattern">正则规则</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.RegexHelper.Match(System.String,System.String,System.Text.RegularExpressions.RegexOptions)">
+            <summary>
+            从指定字符串中过滤出符合正则匹配的字符串
+            </summary>
+            <param name="input">字符串</param>
+            <param name="pattern">正则规则</param>
+            <param name="options">提供用于设置正则表达式选项的枚举值</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.RegexHelper.Matches(System.String,System.String)">
+            <summary>
+            从指定字符串中过滤出所有符合正则匹配的子集
+            </summary>
+            <param name="input">字符串</param>
+            <param name="pattern">正则规则</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.RegexHelper.Matches(System.String,System.String,System.Text.RegularExpressions.RegexOptions)">
+            <summary>
+            从指定字符串中过滤出所有符合正则匹配的子集
+            </summary>
+            <param name="input">字符串</param>
+            <param name="pattern">正则规则</param>
+            <param name="options">提供用于设置正则表达式选项的枚举值</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.RegexHelper.IsIp(System.String)">
+            <summary>
+            验证IP地址是否合法，如果为空认为验证不合格
+            </summary>
+            <param name="ip">要验证的IP地址</param>        
+        </member>
+        <member name="M:UtilsSharp.RegexHelper.IsMobile(System.String)">
+            <summary>
+            验证手机号码是否合法，如果为空认为验证不合格
+            </summary>
+            <param name="mobile">要验证的手机号码</param>        
+        </member>
+        <member name="M:UtilsSharp.RegexHelper.IsEmail(System.String)">
+            <summary>
+            验证EMail是否合法，如果为空认为验证不合格
+            </summary>
+            <param name="email">要验证的Email</param>
+        </member>
+        <member name="M:UtilsSharp.RegexHelper.IsInt(System.String)">
+            <summary>
+            验证是否为整数，如果为空认为验证不合格
+            </summary>
+            <param name="number">要验证的整数</param>        
+        </member>
+        <member name="M:UtilsSharp.RegexHelper.IsNumber(System.String)">
+            <summary>
+            验证是否为数字，如果为空认为验证不合格
+            </summary>
+            <param name="number">要验证的数字</param>        
+        </member>
+        <member name="M:UtilsSharp.RegexHelper.IsDate(System.String@)">
+            <summary>
+            验证日期是否合法,如果为空认为验证不合格
+            </summary>
+            <param name="date">日期</param>
+        </member>
+        <member name="M:UtilsSharp.RegexHelper.IsIdCard(System.String)">
+            <summary>
+            验证身份证是否合法，如果为空认为验证不合格
+            </summary>
+            <param name="idCard">要验证的身份证</param>        
+        </member>
+        <member name="M:UtilsSharp.RegexHelper.IsValidInput(System.String@)">
+            <summary>
+            检测客户输入的字符串是否有效,并将原始字符串修改为有效字符串或空字符串
+            当检测到客户的输入中有攻击性危险字符串,则返回false,有效返回true
+            </summary>
+            <param name="input">要检测的字符串</param>
+        </member>
+        <member name="T:UtilsSharp.RetryHelper">
+            <summary>
+            异常重试帮助类
+            </summary>
+        </member>
+        <member name="M:UtilsSharp.RetryHelper.Execute(System.Action,System.TimeSpan,System.Int32)">
+            <summary>
+            重试零个参数无返回值的方法
+            </summary>
+            <param name="action">执行方法方法</param>
+            <param name="retryInterval">重试间隔</param>
+            <param name="retryCount">重试次数</param>
+        </member>
+        <member name="M:UtilsSharp.RetryHelper.Execute``1(System.Action{``0},``0,System.TimeSpan,System.Int32)">
+            <summary>
+            重试一个参数无返回值的方法
+            </summary>
+            <typeparam name="T1">参数类型1</typeparam>
+            <param name="action">执行方法方法</param>
+            <param name="arg1">参数1</param>
+            <param name="retryInterval">重试间隔</param>
+            <param name="retryCount">重试次数</param>
+        </member>
+        <member name="M:UtilsSharp.RetryHelper.Execute``2(System.Action{``0,``1},``0,``1,System.TimeSpan,System.Int32)">
+            <summary>
+            重试两个参数无返回值的方法
+            </summary>
+            <typeparam name="T1">参数类型1</typeparam>
+            <typeparam name="T2">参数类型2</typeparam>
+            <param name="action">执行方法方法</param>
+            <param name="arg1">参数1</param>
+            <param name="arg2">参数2</param>
+            <param name="retryInterval">重试间隔</param>
+            <param name="retryCount">重试次数</param>
+        </member>
+        <member name="M:UtilsSharp.RetryHelper.Execute``3(System.Action{``0,``1,``2},``0,``1,``2,System.TimeSpan,System.Int32)">
+            <summary>
+            重试三个参数无返回值的方法
+            </summary>
+            <typeparam name="T1">参数类型1</typeparam>
+            <typeparam name="T2">参数类型2</typeparam>
+            <typeparam name="T3">参数类型3</typeparam>
+            <param name="action">执行方法方法</param>
+            <param name="arg1">参数1</param>
+            <param name="arg2">参数2</param>
+            <param name="arg3">参数3</param>
+            <param name="retryInterval">重试间隔</param>
+            <param name="retryCount">重试次数</param>
+        </member>
+        <member name="M:UtilsSharp.RetryHelper.Execute``4(System.Action{``0,``1,``2,``3},``0,``1,``2,``3,System.TimeSpan,System.Int32)">
+            <summary>
+            重试四个参数无返回值的方法
+            </summary>
+            <typeparam name="T1">参数类型1</typeparam>
+            <typeparam name="T2">参数类型2</typeparam>
+            <typeparam name="T3">参数类型3</typeparam>
+            <typeparam name="T4">参数类型4</typeparam>
+            <param name="action">执行方法方法</param>
+            <param name="arg1">参数1</param>
+            <param name="arg2">参数2</param>
+            <param name="arg3">参数3</param>
+            <param name="arg4">参数4</param>
+            <param name="retryInterval">重试间隔</param>
+            <param name="retryCount">重试次数</param>
+        </member>
+        <member name="M:UtilsSharp.RetryHelper.Execute``1(System.Func{``0},System.TimeSpan,System.Int32)">
+            <summary>
+            重试零个参数带返回值
+            </summary>
+            <typeparam name="T">返回类型</typeparam>
+            <param name="func">执行的方法</param>
+            <param name="retryInterval">重试间隔</param>
+            <param name="retryCount">重试次数</param>
+            <returns>返回类型T</returns>
+        </member>
+        <member name="M:UtilsSharp.RetryHelper.Execute``2(System.Func{``0,``1},``0,System.TimeSpan,System.Int32)">
+            <summary>
+            重试一个参数带返回值
+            </summary>
+            <typeparam name="T1">参数类型1</typeparam>
+            <typeparam name="T">返回类型</typeparam>
+            <param name="func">执行的方法</param>
+            <param name="arg1">参数1</param>
+            <param name="retryInterval">重试间隔</param>
+            <param name="retryCount">重试次数</param>
+            <returns>返回类型T</returns>
+        </member>
+        <member name="M:UtilsSharp.RetryHelper.Execute``3(System.Func{``0,``1,``2},``0,``1,System.TimeSpan,System.Int32)">
+            <summary>
+            重试两个参数带返回值
+            </summary>
+            <typeparam name="T1">参数类型1</typeparam>
+            <typeparam name="T2">参数类型2</typeparam>
+            <typeparam name="T">返回类型</typeparam>
+            <param name="func">执行的方法</param>
+            <param name="arg1">参数1</param>
+            <param name="arg2">参数2</param>
+            <param name="retryInterval">重试间隔</param>
+            <param name="retryCount">重试次数</param>
+            <returns>返回类型T</returns>
+        </member>
+        <member name="M:UtilsSharp.RetryHelper.Execute``4(System.Func{``0,``1,``2,``3},``0,``1,``2,System.TimeSpan,System.Int32)">
+            <summary>
+            重试三个参数带返回值
+            </summary>
+            <typeparam name="T1">参数类型1</typeparam>
+            <typeparam name="T2">参数类型2</typeparam>
+            <typeparam name="T3">参数类型3</typeparam>
+            <typeparam name="T">返回类型</typeparam>
+            <param name="func">执行的方法</param>
+            <param name="arg1">参数1</param>
+            <param name="arg2">参数2</param>
+            <param name="arg3">参数3</param>
+            <param name="retryInterval">重试间隔</param>
+            <param name="retryCount">重试次数</param>
+            <returns>返回类型T</returns>
+        </member>
+        <member name="M:UtilsSharp.RetryHelper.Execute``5(System.Func{``0,``1,``2,``3,``4},``0,``1,``2,``3,System.TimeSpan,System.Int32)">
+            <summary>
+            重试四个参数带返回值
+            </summary>
+            <typeparam name="T1">参数类型1</typeparam>
+            <typeparam name="T2">参数类型2</typeparam>
+            <typeparam name="T3">参数类型3</typeparam>
+            <typeparam name="T4">参数类型4</typeparam>
+            <typeparam name="T">返回类型</typeparam>
+            <param name="func">执行的方法</param>
+            <param name="arg1">参数1</param>
+            <param name="arg2">参数2</param>
+            <param name="arg3">参数3</param>
+            <param name="arg4">参数4</param>
+            <param name="retryInterval">重试间隔</param>
+            <param name="retryCount">重试次数</param>
+            <returns>返回类型T</returns>
+        </member>
+        <member name="T:UtilsSharp.ShortcutHelper">
+            <summary>
+            生成快捷方式
+            </summary>
+        </member>
+        <member name="M:UtilsSharp.ShortcutHelper.UrlToDesktop(System.String,System.String)">
+            <summary>
+            创建Url桌面快捷方式
+            </summary>
+            <param name="linkName">链接名称</param>
+            <param name="linkUrl">链接地址</param>
+        </member>
+        <member name="M:UtilsSharp.ShortcutHelper.AppToDesktop(System.String)">
+            <summary>
+            创建应用桌面快捷方式
+            </summary>
+            <param name="linkName">链接名称</param>
+        </member>
+        <member name="T:UtilsSharp.Standard.BaseBackgroundWorker">
+            <summary>
+            BackgroundWorker后台操作基类
+            </summary>
+        </member>
+        <member name="F:UtilsSharp.Standard.BaseBackgroundWorker.BgWorker">
+            <summary>
+            后台操作对象
+            </summary>
+        </member>
+        <member name="F:UtilsSharp.Standard.BaseBackgroundWorker.ThreadName">
+            <summary>
+            线程名称
+            </summary>
+        </member>
+        <member name="M:UtilsSharp.Standard.BaseBackgroundWorker.#ctor(System.String)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="threadName">线程名称</param>
+        </member>
+        <member name="M:UtilsSharp.Standard.BaseBackgroundWorker.RunWorkerAsync">
+            <summary>
+            开始执行后台操作
+            </summary>
+        </member>
+        <member name="M:UtilsSharp.Standard.BaseBackgroundWorker.RunWorkerAsync``1(``0)">
+            <summary>
+            开始执行后台操作
+            </summary>
+            <typeparam name="T">参数模型</typeparam>
+            <param name="workerContext">参数</param>
+        </member>
+        <member name="M:UtilsSharp.Standard.BaseBackgroundWorker.ReportProgress(System.Int32)">
+            <summary>
+            报告进度引发ProgressChanged事件
+            </summary>
+            <param name="percentProgress">进度</param>
+        </member>
+        <member name="M:UtilsSharp.Standard.BaseBackgroundWorker.IsBusy">
+            <summary>
+            指示是否正在运行异步操作
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.Standard.BaseBackgroundWorker.CancelAsync">
+            <summary>
+            取消挂起的后台操作
+            </summary>
+        </member>
+        <member name="M:UtilsSharp.Standard.BaseBackgroundWorker.CancellationPending">
+            <summary>
+            指示应用程序是否已请求取消后台操作
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.Standard.BaseBackgroundWorker.BgWorker_DoWork(System.Object,System.ComponentModel.DoWorkEventArgs)">
+            <summary>
+            开始执行后台操作事件
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:UtilsSharp.Standard.BaseBackgroundWorker.BgWorker_ProgressChanged(System.Object,System.ComponentModel.ProgressChangedEventArgs)">
+            <summary>
+            进度改变事件
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:UtilsSharp.Standard.BaseBackgroundWorker.BgWorker_RunWorkerCompleted(System.Object,System.ComponentModel.RunWorkerCompletedEventArgs)">
+            <summary>
+            执行完成后台操作事件
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:UtilsSharp.Standard.BaseBackgroundWorker.BgWorker_Disposed(System.Object,System.EventArgs)">
+            <summary>
+            销毁后台操作事件
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="T:UtilsSharp.Standard.BaseMsg">
+            <summary>
+            提示信息模板
+            </summary>
+        </member>
+        <member name="M:UtilsSharp.Standard.BaseMsg.ToMsgApiError(System.String)">
+            <summary>
+            2000|apiError|接口异常
+            </summary>
+            <param name="errorCode">错误码</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.Standard.BaseMsg.ToMsgNetworkError(System.String)">
+            <summary>
+            3000|networkError|网络异常
+            </summary>
+            <param name="errorCode">错误码</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.Standard.BaseMsg.ToMsgNotLogin(System.String)">
+            <summary>
+            4000|notLogin|未登录
+            </summary>
+            <param name="errorCode">错误码</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.Standard.BaseMsg.ToMsgAuthExpire(System.String)">
+            <summary>
+            4010|authExpire|授权过期
+            </summary>
+            <param name="errorCode">错误码</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.Standard.BaseMsg.ToMsgException(System.String)">
+            <summary>
+            5000|exception|TryCatch异常错误
+            </summary>
+            <param name="errorCode">错误码</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.Standard.BaseMsg.ToMsgDataNotFound(System.String)">
+            <summary>
+            6000|dataNotFound|数据找不到
+            </summary>
+            <param name="errorCode">错误码</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.Standard.BaseMsg.ToMsgDataNotValid(System.String)">
+            <summary>
+            6010|dataNotValid|数据验证不通过
+            </summary>
+            <param name="errorCode">错误码</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.Standard.BaseMsg.ToMsgBusinessError(System.String)">
+            <summary>
+            7000|businessError|默认业务性异常
+            </summary>
+            <param name="errorCode">错误码</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.Standard.BaseMsg.ToMsgParameterCannotBeEmpty(System.String)">
+            <summary>
+            7010|parameterCannotBeEmpty|参数不能为空
+            </summary>
+            <param name="errorCode">错误码</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.Standard.BaseMsg.ToMsgInvalidParameter(System.String)">
+            <summary>
+            7020|invalidParameter|非法参数
+            </summary>
+            <param name="errorCode">错误码</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.Standard.BaseMsg.ToMsgDbError(System.String)">
+            <summary>
+            8000|dbError|数据库异常
+            </summary>
+            <param name="errorCode">错误码</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.Standard.BaseMsg.ToMsgSystemError(System.String)">
+            <summary>
+            9000|SystemError|系统错误
+            </summary>
+            <param name="errorCode">错误码</param>
+            <returns></returns>
+        </member>
+        <member name="T:UtilsSharp.Standard.BasePage">
+            <summary>
+            基础分页参数
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.Standard.BasePage.PageIndex">
+            <summary>
+            页码
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.Standard.BasePage.PageSize">
+            <summary>
+            每页大小
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.Standard.BasePage.Keyword">
+            <summary>
+            搜索关键字
+            </summary>
+        </member>
+        <member name="T:UtilsSharp.Standard.BaseSortPage">
+            <summary>
+            基础分页参数(含排序参数)
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.Standard.BaseSortPage.SortField">
+            <summary>
+            排序字段
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.Standard.BaseSortPage.SortType">
+            <summary>
+            排序类型：desc,asc
+            </summary>
+        </member>
+        <member name="T:UtilsSharp.Standard.BaseResult`1">
+            <summary>
+            返回结果模型
+            </summary>
+            <typeparam name="T">自定义结果模型</typeparam>
+        </member>
+        <member name="P:UtilsSharp.Standard.BaseResult`1.Code">
+             <summary>
+             返回码|标识|说明
+            <para>200|success|请求成功</para>
+            999|defaultTips|业务提示
+            <para>2000|apiError|接口异常</para>
+            3000|networkError|网络异常
+            <para>4000|notLogin|未登录</para>
+            4010|authExpire|授权过期
+            <para>5000|exception|TryCatch异常错误</para>
+            6000|dataNotFound|数据找不到
+            <para>6010|dataNotValid|数据验证不通过</para>
+            7000|businessError|默认业务性错误
+            <para>7010|parameterCannotBeEmpty|参数不能为空</para>
+            7020|invalidParameter|非法参数
+            <para>8000|dbError|数据库异常</para>
+            9000|SystemError|系统错误
+             </summary>
+        </member>
+        <member name="P:UtilsSharp.Standard.BaseResult`1.Msg">
+            <summary>
+            提示信息
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.Standard.BaseResult`1.Result">
+            <summary>
+            返回对象结果
+            </summary>
+        </member>
+        <member name="M:UtilsSharp.Standard.BaseResult`1.SetOk">
+            <summary>
+            执行成功
+            </summary>
+        </member>
+        <member name="M:UtilsSharp.Standard.BaseResult`1.SetError(System.String)">
+            <summary>
+            设置错误提示
+            </summary>
+            <param name="msg">提示信息</param>
+        </member>
+        <member name="M:UtilsSharp.Standard.BaseResult`1.SetError(System.String,System.Int32)">
+             <summary>
+             设置错误提示
+             </summary>
+             <param name="msg">提示信息</param>
+             <param name="code">
+             返回码|标识|说明
+            <para>200|success|请求成功</para>
+            999|defaultTips|业务提示
+            <para>2000|apiError|接口异常</para>
+            3000|networkError|网络异常
+            <para>4000|notLogin|未登录</para>
+            4010|authExpire|授权过期
+            <para>5000|exception|TryCatch异常错误</para>
+            6000|dataNotFound|数据找不到
+            <para>6010|dataNotValid|数据验证不通过</para>
+            7000|businessError|默认业务性异常
+            <para>8000|dbError|数据库异常</para>
+            9000|SystemError|系统错误
+             </param>
+        </member>
+        <member name="M:UtilsSharp.Standard.BaseResult`1.SetOk(System.String)">
+            <summary>
+            执行成功
+            </summary>
+            <param name="msg">成功提示信息</param>
+        </member>
+        <member name="M:UtilsSharp.Standard.BaseResult`1.SetOkResult(`0)">
+            <summary>
+            执行成功并返回结果
+            </summary>
+            <param name="result">返回对象结果</param>
+        </member>
+        <member name="M:UtilsSharp.Standard.BaseResult`1.SetOkResult(`0,System.String)">
+            <summary>
+            执行成功并返回结果
+            </summary>
+            <param name="result">返回对象结果</param>
+            <param name="msg">成功提示信息</param>
+        </member>
+        <member name="T:UtilsSharp.Standard.BasePagedResult`1">
+            <summary>
+            返回分页结果模型
+            </summary>
+            <typeparam name="T">自定义结果模型</typeparam>
+        </member>
+        <member name="P:UtilsSharp.Standard.BasePagedResult`1.Code">
+             <summary>
+             返回码|标识|说明
+            <para>200|success|请求成功</para>
+            999|defaultTips|业务提示
+            <para>2000|apiError|接口异常</para>
+            3000|networkError|网络异常
+            <para>4000|notLogin|未登录</para>
+            4010|authExpire|授权过期
+            <para>5000|exception|TryCatch异常错误</para>
+            6000|dataNotFound|数据找不到
+            <para>6010|dataNotValid|数据验证不通过</para>
+            7000|businessError|默认业务性错误
+            <para>7010|parameterCannotBeEmpty|参数不能为空</para>
+            7020|invalidParameter|非法参数
+            <para>8000|dbError|数据库异常</para>
+            9000|SystemError|系统错误
+             </summary>
+        </member>
+        <member name="P:UtilsSharp.Standard.BasePagedResult`1.Msg">
+            <summary>
+            提示信息
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.Standard.BasePagedResult`1.Result">
+            <summary>
+            返回对象结果
+            </summary>
+        </member>
+        <member name="M:UtilsSharp.Standard.BasePagedResult`1.SetError(System.String)">
+            <summary>
+            设置错误提示
+            </summary>
+            <param name="msg">提示信息</param>
+        </member>
+        <member name="M:UtilsSharp.Standard.BasePagedResult`1.SetError(System.String,System.Int32)">
+             <summary>
+             设置错误提示
+             </summary>
+             <param name="msg">提示信息</param>
+             <param name="code">
+             返回码|标识|说明
+            <para>200|success|请求成功</para>
+            999|defaultTips|业务提示
+            <para>2000|apiError|接口异常</para>
+            3000|networkError|网络异常
+            <para>4000|notLogin|未登录</para>
+            4010|authExpire|授权过期
+            <para>5000|exception|TryCatch异常错误</para>
+            6000|dataNotFound|数据找不到
+            <para>6010|dataNotValid|数据验证不通过</para>
+            7000|businessError|默认业务性异常
+            <para>8000|dbError|数据库异常</para>
+            9000|SystemError|系统错误
+             </param>
+        </member>
+        <member name="M:UtilsSharp.Standard.BasePagedResult`1.SetOk(System.String)">
+            <summary>
+            执行成功
+            </summary>
+            <param name="msg">成功提示信息</param>
+        </member>
+        <member name="M:UtilsSharp.Standard.BasePagedResult`1.SetOkResult(UtilsSharp.Standard.BasePagedInfoResult{`0})">
+            <summary>
+            执行成功并返回结果
+            </summary>
+            <param name="result">返回对象结果</param>
+        </member>
+        <member name="M:UtilsSharp.Standard.BasePagedResult`1.SetOkResult(UtilsSharp.Standard.BasePagedInfoResult{`0},System.String)">
+            <summary>
+            执行成功并返回结果
+            </summary>
+            <param name="result">返回对象结果</param>
+            <param name="msg">成功提示信息</param>
+        </member>
+        <member name="T:UtilsSharp.Standard.BasePagedInfoResult`1">
+            <summary>
+            分页基础结果信息
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="P:UtilsSharp.Standard.BasePagedInfoResult`1.PageIndex">
+            <summary>
+            页码
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.Standard.BasePagedInfoResult`1.PageSize">
+            <summary>
+            每页大小
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.Standard.BasePagedInfoResult`1.TotalCount">
+            <summary>
+            总条数
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.Standard.BasePagedInfoResult`1.TotalPages">
+            <summary>
+            总页数
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.Standard.BasePagedInfoResult`1.OrderBy">
+            <summary>
+            排序
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.Standard.BasePagedInfoResult`1.HasPreviousPage">
+            <summary>
+            是否有上一页
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.Standard.BasePagedInfoResult`1.HasNextPage">
+            <summary>
+            是否有下一页
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.Standard.BasePagedInfoResult`1.List">
+            <summary>
+            结果信息
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.Standard.BasePagedInfoResult`1.Params">
+            <summary>
+            参数信息
+            </summary>
+        </member>
+        <member name="T:UtilsSharp.Standard.BaseStateCode">
+            <summary>
+            基础状态码
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.Standard.BaseStateCode.请求成功">
+            <summary>
+            请求成功
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.Standard.BaseStateCode.业务提示">
+            <summary>
+            业务提示
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.Standard.BaseStateCode.接口异常">
+            <summary>
+            接口异常[2000~2999接口类异常]
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.Standard.BaseStateCode.网络异常">
+            <summary>
+            网络异常[3000~3999网络类异常]
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.Standard.BaseStateCode.未登录">
+            <summary>
+            未登录[4000~4999登入授权类异常]
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.Standard.BaseStateCode.授权过期">
+            <summary>
+            授权过期[4000~4999登入授权类异常]
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.Standard.BaseStateCode.TryCatch异常错误">
+            <summary>
+            TryCatch异常错误[5000~5999TryCatch类异常]
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.Standard.BaseStateCode.数据找不到">
+            <summary>
+            数据找不到[6000~6999数据类异常]
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.Standard.BaseStateCode.数据验证不通过">
+            <summary>
+            数据验证不通过[6000~6999数据类异常]
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.Standard.BaseStateCode.默认业务性错误">
+            <summary>
+            默认业务性错误[7000~7999其他业务及参数类异常]
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.Standard.BaseStateCode.参数不能为空">
+            <summary>
+            参数不能为空[7000~7999其他业务及参数类异常]
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.Standard.BaseStateCode.非法参数">
+            <summary>
+            非法参数[7000~7999其他业务及参数类异常]
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.Standard.BaseStateCode.数据库异常">
+            <summary>
+            数据库异常[8000~8999数据库类异常]
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.Standard.BaseStateCode.系统错误">
+            <summary>
+            系统错误
+            </summary>
+        </member>
+        <member name="T:UtilsSharp.Standard.ConfigurationSectionHandler`1">
+            <summary>
+            通过Section生成配置文件
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:UtilsSharp.Standard.ConfigurationSectionHandler`1.Create(System.Object,System.Object,System.Xml.XmlNode)">
+            <summary>
+            生成配置文件
+            </summary>
+        </member>
+        <member name="T:UtilsSharp.Standard.HttpContext">
+            <summary>
+            HttpContext
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.Standard.HttpContext.Current">
+            <summary>
+            Current
+            </summary>
+        </member>
+        <member name="M:UtilsSharp.Standard.HttpContext.Register(Microsoft.AspNetCore.Http.IHttpContextAccessor)">
+            <summary>
+            HttpContext
+            </summary>
+        </member>
+        <member name="T:UtilsSharp.Standard.Interface.ICacheManager">
+            <summary>
+            缓存管理接口
+            </summary>
+        </member>
+        <member name="M:UtilsSharp.Standard.Interface.ICacheManager.GetCacheTypeName">
+            <summary>
+            获取当前缓存实例类型名字
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.Standard.Interface.ICacheManager.Set(System.String,System.Object,System.Int32)">
+            <summary>
+            添加缓存
+            </summary>
+            <param name="key">缓存key</param>
+            <param name="value">缓存数据</param>
+            <param name="expireSeconds">缓存时间(秒)</param>
+            <returns>是否成功</returns>
+        </member>
+        <member name="M:UtilsSharp.Standard.Interface.ICacheManager.Set(System.String,System.Object,System.TimeSpan)">
+            <summary>
+            添加缓存
+            </summary>
+            <param name="key">缓存key</param>
+            <param name="value">缓存数据</param>
+            <param name="expire">缓存时间戳</param>
+            <returns>是否成功</returns>
+        </member>
+        <member name="M:UtilsSharp.Standard.Interface.ICacheManager.Remove(System.String[])">
+            <summary>
+            移除缓存
+            </summary>
+            <param name="keys">缓存keys</param>
+        </member>
+        <member name="M:UtilsSharp.Standard.Interface.ICacheManager.IsExists(System.String)">
+            <summary>
+            验证缓存是否存在
+            </summary>
+            <param name="key">缓存key</param>
+            <returns >是否存在</returns>
+        </member>
+        <member name="M:UtilsSharp.Standard.Interface.ICacheManager.Get(System.String)">
+            <summary>
+            获取缓存
+            </summary>
+            <param name="key">缓存Key</param>
+            <returns>缓存数据</returns>
+        </member>
+        <member name="M:UtilsSharp.Standard.Interface.ICacheManager.Get``1(System.String)">
+            <summary>
+            获取缓存
+            </summary>
+            <typeparam name="T">缓存数据类型</typeparam>
+            <param name="key">缓存Key</param>
+            <returns>缓存数据</returns>
+        </member>
+        <member name="T:UtilsSharp.Standard.Interface.IPagedList`1">
+             <summary>
+            列表分页接口
+             </summary>
+        </member>
+        <member name="P:UtilsSharp.Standard.Interface.IPagedList`1.PageIndex">
+            <summary>
+            当前页
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.Standard.Interface.IPagedList`1.PageSize">
+            <summary>
+            每页显示条数
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.Standard.Interface.IPagedList`1.TotalCount">
+            <summary>
+            总记录数
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.Standard.Interface.IPagedList`1.TotalPages">
+            <summary>
+            总页数
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.Standard.Interface.IPagedList`1.HasPreviousPage">
+            <summary>
+            是否存在上一页
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.Standard.Interface.IPagedList`1.HasNextPage">
+            <summary>
+            是否存在下一页
+            </summary>
+        </member>
+        <member name="T:UtilsSharp.Standard.Interface.IProtobufEntity">
+            <summary>
+            ReSharper disable once CommentTypo
+            Protobuf实体
+            </summary>
+        </member>
+        <member name="T:UtilsSharp.Standard.PagedList`1">
+            <summary>
+            列表分页
+            </summary>
+            <typeparam name="T">分页项类型</typeparam>
+        </member>
+        <member name="M:UtilsSharp.Standard.PagedList`1.#ctor(System.Linq.IQueryable{`0},System.Int32,System.Int32)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="source">数据源</param>
+            <param name="pageIndex">当前页</param>
+            <param name="pageSize">每页显示条数</param>
+        </member>
+        <member name="M:UtilsSharp.Standard.PagedList`1.#ctor(System.Collections.Generic.IList{`0},System.Int32,System.Int32)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="source">数据源</param>
+            <param name="pageIndex">当前页</param>
+            <param name="pageSize">每页显示条数</param>
+        </member>
+        <member name="M:UtilsSharp.Standard.PagedList`1.#ctor(System.Collections.Generic.IEnumerable{`0},System.Int32,System.Int32,System.Int32)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="source">数据源</param>
+            <param name="pageIndex">当前页</param>
+            <param name="pageSize">每页显示条数</param>
+            <param name="totalCount">总记录数</param>
+        </member>
+        <member name="P:UtilsSharp.Standard.PagedList`1.PageIndex">
+            <summary>
+            当前页
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.Standard.PagedList`1.PageSize">
+            <summary>
+            每页显示条数
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.Standard.PagedList`1.TotalCount">
+            <summary>
+            总记录数
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.Standard.PagedList`1.TotalPages">
+            <summary>
+            总页数
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.Standard.PagedList`1.HasPreviousPage">
+            <summary>
+            是否存在上一页
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.Standard.PagedList`1.HasNextPage">
+            <summary>
+            是否存在下一页
+            </summary>
+        </member>
+        <member name="T:UtilsSharp.StringHelper">
+            <summary>
+            字符串帮助类
+            </summary>
+        </member>
+        <member name="M:UtilsSharp.StringHelper.EncodingRegister">
+             <summary>
+            需要全局注册下本方法，可以支持.Net平台上不支持的编码，如GB2312
+             </summary>
+        </member>
+        <member name="M:UtilsSharp.StringHelper.TransferenceRegex(System.String)">
+            <summary>
+            转义正则表达式特殊符号
+            </summary>
+            <param name="str">字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.StringHelper.HtmlToTxt(System.String)">
+            <summary>
+            过滤Html符号
+            </summary>
+            <param name="htmlStr">html字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.StringHelper.GetCharLength(System.String)">
+            <summary>
+            获取字符串长度
+            </summary>
+            <param name="str">字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.StringHelper.CutChar(System.String,System.Int32)">
+            <summary>
+            按字符长度截取字符串
+            </summary>
+            <param name="str">字符串</param>
+            <param name="charLength">要截取的字符长度</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.StringHelper.CutString(System.String,System.Int32)">
+            <summary>
+            按字长度截取字符串
+            </summary>
+            <param name="str">字符串</param>
+            <param name="strCount">要截取的字数（含）</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.StringHelper.SplitString(System.String,System.Char,System.Int32)">
+            <summary>
+            字符串分割获取项
+            </summary>
+            <param name="str">例如："苹果,香蕉,猕猴桃,凤梨,枇杷,葡萄,柠檬,橘子,火龙果"</param>
+            <param name="splitChar">,</param>
+            <param name="returnItemCount">2</param>
+            <returns>苹果,香蕉</returns>
+        </member>
+        <member name="M:UtilsSharp.StringHelper.Reverse(System.String)">
+            <summary>
+            反转字符串
+            </summary>
+            <param name="str">字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.StringHelper.Compress(System.String,System.Text.Encoding)">
+            <summary>
+            压缩字符串
+            </summary>
+            <param name="str">字符串</param>
+            <param name="encoding">编码</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.StringHelper.DeCompress(System.String,System.Text.Encoding)">
+            <summary>
+             字符串解压缩
+            </summary>
+            <param name="str">字符串</param>
+            <param name="encoding">编码</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.StringHelper.HideMobilePhone(System.String)">
+            <summary>
+            隐藏手机号(手机号加星星如：136****8568)
+            </summary>
+            <param name="mobilePhone">手机号</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.StringHelper.StreamToString(System.IO.Stream,System.Text.Encoding)">
+            <summary>
+            Stream转String
+            </summary>
+            <param name="stream">stream对象</param>
+            <param name="encoding">编码</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.StringHelper.StringToStream(System.String,System.Text.Encoding)">
+            <summary>
+            String转Stream
+            </summary>
+            <param name="str">字符串</param>
+            <param name="encoding">编码</param>
+            <returns></returns>
+        </member>
+        <member name="T:UtilsSharp.TimeHelper">
+            <summary>
+            时间相关类
+            </summary>
+        </member>
+        <member name="M:UtilsSharp.TimeHelper.GetUtcStartDate(System.DateTime)">
+            <summary>
+            获取开始日期(UTC)
+            </summary>
+            <param name="dateTime">时间</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.TimeHelper.GetStartDate(System.DateTime)">
+            <summary>
+            获取开始日期
+            </summary>
+            <param name="dateTime">时间</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.TimeHelper.GetUtcEndDate(System.DateTime)">
+            <summary>
+            获取结束日期(UTC)
+            </summary>
+            <param name="dateTime">时间</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.TimeHelper.GetEndDate(System.DateTime)">
+            <summary>
+            获取结束日期
+            </summary>
+            <param name="dateTime">时间</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.TimeHelper.TimeWithZero(System.String)">
+            <summary>
+            时间格式化(小时分钟前面加上0)
+            </summary>
+            <param name="intStr">小时、分钟</param>
+            <returns>"00"</returns>
+        </member>
+        <member name="M:UtilsSharp.TimeHelper.TimeTrimZero(System.String)">
+            <summary>
+            时间格式化(小时分钟去掉前面的0)
+            </summary>
+            <param name="intStr">小时、分钟</param>
+            <returns>0</returns>
+        </member>
+        <member name="M:UtilsSharp.TimeHelper.GetMonthLastDate(System.Int32,System.Int32)">
+            <summary>
+            返回某年某月最后一天
+            </summary>
+            <param name="year">年份</param>
+            <param name="month">月份</param>
+            <returns>日</returns>
+        </member>
+        <member name="M:UtilsSharp.TimeHelper.GetDateDiff(System.DateTime,System.DateTime)">
+            <summary>
+            获取时间差字符串
+            </summary>
+            <param name="time1">起始时间</param>
+            <param name="time2">结束时间</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.TimeHelper.GetTimeSpan(System.DateTime,System.DateTime)">
+            <summary>
+            获得两个日期的间隔
+            </summary>
+            <param name="time1">起始日期</param>
+            <param name="time2">结束日期</param>
+            <returns>日期间隔TimeSpan。</returns>
+        </member>
+        <member name="M:UtilsSharp.TimeHelper.ChinaDayOfWeek(System.DateTime)">
+            <summary>
+            中文版指定一周的某天
+            </summary>
+            <param name="dateTime">时间</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.TimeHelper.ChinaDayOfWeek(System.DayOfWeek)">
+            <summary>
+            中文版指定一周的某天
+            </summary>
+            <param name="dayOfWeek">指定一周的某天</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.TimeHelper.TimeStampToDateTime(System.String,UtilsSharp.TimeStampType)">
+            <summary>
+            时间戳转DateTime
+            </summary>
+            <param name="timeStamp">时间戳</param>
+            <param name="type">类型：秒，毫秒</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.TimeHelper.DateTimeToTimeStamp(System.DateTime,UtilsSharp.TimeStampType)">
+            <summary>
+            DateTime转时间戳
+            </summary>
+            <param name="dateTime">DateTime</param>
+            <param name="type">类型：秒，毫秒</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.TimeHelper.GetWeekOfYear(System.DateTime)">
+            <summary>
+            获取指定日期，在为一年中为第几周
+            </summary>
+            <param name="dt">指定时间</param>
+            <reutrn>返回第几周</reutrn>
+        </member>
+        <member name="T:UtilsSharp.TimeStampType">
+            <summary>
+            时间戳类型
+            </summary>
+        </member>
+        <member name="F:UtilsSharp.TimeStampType.秒">
+            <summary>
+            秒类型
+            </summary>
+        </member>
+        <member name="F:UtilsSharp.TimeStampType.毫秒">
+            <summary>
+            毫秒类型
+            </summary>
+        </member>
+        <member name="T:UtilsSharp.UtilsHelper">
+            <summary>
+            公共工具类
+            </summary>
+        </member>
+        <member name="M:UtilsSharp.UtilsHelper.CalcProgress(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            计算进度条进度
+            </summary>
+            <param name="step">增加的量</param>
+            <param name="totalCount">总条数</param>
+            <param name="completeProgress">总完成进度</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.UtilsHelper.DeepCopy``1(``0)">
+            <summary>
+            反射对象深度拷贝
+            </summary>
+            <typeparam name="T">对象模型</typeparam>
+            <param name="obj">对象</param>
+            <returns></returns>
+        </member>
+        <member name="T:UtilsSharp.ValidationHelper">
+            <summary>
+            验证入参模型帮助类
+            </summary>
+        </member>
+        <member name="M:UtilsSharp.ValidationHelper.IsValid(System.Object)">
+            <summary>
+            验证模型参数
+            </summary>
+            <param name="value">模型对象</param>
+            <returns></returns>
+        </member>
+        <member name="T:UtilsSharp.ValidResult">
+            <summary>
+            验证结果
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.ValidResult.ErrorMembers">
+            <summary>
+            错误成员集合
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.ValidResult.IsValid">
+            <summary>
+            是否验证成功
+            </summary>
+        </member>
+        <member name="T:UtilsSharp.ErrorMember">
+            <summary>
+            错误成员
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.ErrorMember.ErrorMessage">
+            <summary>
+            错误信息
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.ErrorMember.ErrorMemberName">
+            <summary>
+            错误成员名称
+            </summary>
+        </member>
+        <member name="T:UtilsSharp.VerificationCodeHelper">
+            <summary>
+            验证图片类
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.VerificationCodeHelper.Text">
+            <summary>
+            验证码
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.VerificationCodeHelper.Image">
+            <summary>
+            验证码图片
+            </summary>
+        </member>
+        <member name="M:UtilsSharp.VerificationCodeHelper.#ctor(UtilsSharp.VerificationCodeRule)">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="M:UtilsSharp.VerificationCodeHelper.Next(System.Int32)">
+            <summary>
+            获得下一个随机数
+            </summary>
+            <param name="max">最大值</param>
+        </member>
+        <member name="M:UtilsSharp.VerificationCodeHelper.Next(System.Int32,System.Int32)">
+            <summary>
+            获得下一个随机数
+            </summary>
+            <param name="min">最小值</param>
+            <param name="max">最大值</param>
+        </member>
+        <member name="M:UtilsSharp.VerificationCodeHelper.CreateImage(UtilsSharp.VerificationCodeRule)">
+            <summary>
+            绘制验证码
+            </summary>
+            <param name="rule">绘制规则</param>
+        </member>
+        <member name="M:UtilsSharp.VerificationCodeHelper.GetRandomColor">
+            <summary>
+            字体随机颜色
+            </summary>
+        </member>
+        <member name="M:UtilsSharp.VerificationCodeHelper.TwistImage(System.Drawing.Bitmap,System.Boolean,System.Double,System.Double)">
+            <summary>
+            正弦曲线Wave扭曲图片
+            </summary>
+            <param name="srcBmp">图片路径</param>
+            <param name="bXDir">如果扭曲则选择为True</param>
+            <param name="waveformValue">波形的幅度倍数，越大扭曲的程度越高,一般为3</param>
+            <param name="dPhase">波形的起始相位,取值区间[0-2*PI)</param>
+        </member>
+        <member name="T:UtilsSharp.VerificationCodeRule">
+            <summary>
+            验证码生成规则
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.VerificationCodeRule.LetterCount">
+            <summary>
+            验证码位数
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.VerificationCodeRule.LetterWidth">
+            <summary>
+            单个字体的宽度范围
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.VerificationCodeRule.LetterHeight">
+            <summary>
+            单个字体的高度范围
+            </summary>
+        </member>
+        <member name="T:UtilsSharp.WebHelper">
+            <summary>
+            网络请求工具帮助类
+            </summary>
+            <summary>
+            网络请求工具帮助类(异步)
+            </summary>
+            <summary>
+            网络请求工具帮助类(兼容超时)
+            </summary>
+        </member>
+        <member name="M:UtilsSharp.WebHelper.DoGet(System.String,System.Collections.Generic.Dictionary{System.String,System.Object})">
+            <summary>
+            Get请求
+            </summary>
+            <param name="address">请求地址</param>
+            <param name="parameters">请求参数</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.WebHelper.DoGet``1(System.String,System.Collections.Generic.Dictionary{System.String,System.Object})">
+            <summary>
+            Get请求
+            </summary>
+            <typeparam name="T">出参类型</typeparam>
+            <param name="address">请求地址</param>
+            <param name="parameters">请求参数</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.WebHelper.DoGet``1(System.String,``0,System.String)">
+            <summary>
+            Get请求
+            </summary>
+            <typeparam name="TP">入参类型</typeparam>
+            <param name="address">请求地址</param>
+            <param name="parameters">请求参数</param>
+            <param name="dateTimeFormat">入参的时间格式</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.WebHelper.DoGet``2(System.String,``0,System.String)">
+            <summary>
+            Get请求
+            </summary>
+            <typeparam name="TP">入参类型</typeparam>
+            <typeparam name="T">出参类型</typeparam>
+            <param name="address">请求地址</param>
+            <param name="parameters">请求参数</param>
+            <param name="dateTimeFormat">入参的时间格式</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.WebHelper.DoPost(System.String,System.Collections.Generic.Dictionary{System.String,System.Object})">
+            <summary>
+            Post请求
+            </summary>
+            <param name="address">请求地址</param>
+            <param name="parameters">请求参数</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.WebHelper.DoPost``1(System.String,System.Collections.Generic.Dictionary{System.String,System.Object})">
+            <summary>
+            Post请求
+            </summary>
+            <typeparam name="T">出参类型</typeparam>
+            <param name="address">请求地址</param>
+            <param name="parameters">请求参数</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.WebHelper.DoPost``1(System.String,``0,System.String)">
+            <summary>
+            Post请求
+            </summary>
+            <typeparam name="TP">入参类型</typeparam>
+            <param name="address">请求地址</param>
+            <param name="parameters">请求参数</param>
+            <param name="dateTimeFormat">入参的时间格式</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.WebHelper.DoPost``2(System.String,``0,System.String)">
+            <summary>
+            Post请求
+            </summary>
+            <typeparam name="TP">入参类型</typeparam>
+            <typeparam name="T">出参类型</typeparam>
+            <param name="address">请求地址</param>
+            <param name="parameters">请求参数</param>
+            <param name="dateTimeFormat">入参的时间格式</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.WebHelper.Request``2(System.Net.Http.HttpMethod,System.String,``0,System.String)">
+            <summary>
+            Post请求
+            </summary>
+            <typeparam name="TP">入参类型</typeparam>
+            <typeparam name="T">出参类型</typeparam>
+            <param name="method">表示请求的http方法，大写， 如POST、GET、PUT</param>
+            <param name="address">请求地址</param>
+            <param name="parameters">请求参数</param>
+            <param name="dateTimeFormat">入参的时间格式</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.WebHelper.BuildUrlParameter(System.String,System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            调整url和参数
+            </summary>
+            <param name="address">url地址</param>
+            <param name="parameters">参数</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.WebHelper.BuildQuery(System.Collections.Generic.IDictionary{System.String,System.String})">
+            <summary>
+            组装普通文本请求参数。
+            </summary>
+            <param name="parameters">Key-Value形式请求参数字典</param>
+            <returns>URL编码后的请求数据</returns>
+        </member>
+        <member name="M:UtilsSharp.WebHelper.DoGetAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Object})">
+            <summary>
+            Get请求
+            </summary>
+            <param name="address">请求地址</param>
+            <param name="parameters">请求参数</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.WebHelper.DoGetAsync``1(System.String,System.Collections.Generic.Dictionary{System.String,System.Object})">
+            <summary>
+            Get请求
+            </summary>
+            <typeparam name="T">出参类型</typeparam>
+            <param name="address">请求地址</param>
+            <param name="parameters">请求参数</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.WebHelper.DoGetAsync``1(System.String,``0,System.String)">
+            <summary>
+            Get请求
+            </summary>
+            <typeparam name="TP">入参类型</typeparam>
+            <param name="address">请求地址</param>
+            <param name="parameters">请求参数</param>
+            <param name="dateTimeFormat">入参的时间格式</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.WebHelper.DoGetAsync``2(System.String,``0,System.String)">
+            <summary>
+            Get请求
+            </summary>
+            <typeparam name="TP">入参类型</typeparam>
+            <typeparam name="T">出参类型</typeparam>
+            <param name="address">请求地址</param>
+            <param name="parameters">请求参数</param>
+            <param name="dateTimeFormat">入参的时间格式</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.WebHelper.DoPostAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Object})">
+            <summary>
+            Post请求
+            </summary>
+            <param name="address">请求地址</param>
+            <param name="parameters">请求参数</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.WebHelper.DoPostAsync``1(System.String,System.Collections.Generic.Dictionary{System.String,System.Object})">
+            <summary>
+            Post请求
+            </summary>
+            <typeparam name="T">出参类型</typeparam>
+            <param name="address">请求地址</param>
+            <param name="parameters">请求参数</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.WebHelper.DoPostAsync``1(System.String,``0,System.String)">
+            <summary>
+            Post请求
+            </summary>
+            <typeparam name="TP">入参类型</typeparam>
+            <param name="address">请求地址</param>
+            <param name="parameters">请求参数</param>
+            <param name="dateTimeFormat">入参的时间格式</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.WebHelper.DoPostAsync``2(System.String,``0,System.String)">
+            <summary>
+            Post请求
+            </summary>
+            <typeparam name="TP">入参类型</typeparam>
+            <typeparam name="T">出参类型</typeparam>
+            <param name="address">请求地址</param>
+            <param name="parameters">请求参数</param>
+            <param name="dateTimeFormat">入参的时间格式</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.WebHelper.RequestAsync``2(System.Net.Http.HttpMethod,System.String,``0,System.String)">
+            <summary>
+            Request请求
+            </summary>
+            <typeparam name="TP">入参类型</typeparam>
+            <typeparam name="T">出参类型</typeparam>
+            <param name="method">表示请求的http方法，大写， 如POST、GET、PUT</param>
+            <param name="address">请求地址</param>
+            <param name="parameters">请求参数</param>
+            <param name="dateTimeFormat">入参的时间格式</param>
+            <returns></returns>
+        </member>
+        <member name="P:UtilsSharp.WebHelper.CookieContainer">
+            <summary>
+            CookieContainer
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.WebHelper.Timeout">
+            <summary>
+            过期时间(秒)
+            </summary>
+        </member>
+        <member name="M:UtilsSharp.WebHelper.GetWebRequest(System.Uri)">
+            <summary>
+            重写GetWebRequest
+            </summary>
+            <param name="address"></param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.WebHelper.DownloadFileAsyncWithTimeout(System.Uri,System.String,System.Object)">
+            <summary>
+            带过期计时的下载
+            </summary>
+        </member>
+        <member name="M:UtilsSharp.WebHelper.WebHelper_DownloadProgressChanged(System.Object,System.Net.DownloadProgressChangedEventArgs)">
+            <summary>
+            WebClient下载过程事件，接收到数据时引发
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:UtilsSharp.WebHelper._timer_TimeOver(System.Object)">
+            <summary>
+            计时器过期
+            </summary>
+            <param name="userData"></param>
+        </member>
+        <member name="T:UtilsSharp.WebHelperHandleResult">
+            <summary>
+            网络请求工具帮助类(处理返回实体)
+            </summary>
+        </member>
+        <member name="M:UtilsSharp.WebHelperHandleResult.HandleResult``1(UtilsSharp.Standard.BaseResult{UtilsSharp.Standard.BaseResult{``0}})">
+            <summary>
+            处理返回实体
+            </summary>
+            <typeparam name="T">T</typeparam>
+            <param name="response">返回实体</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.WebHelperHandleResult.HandleResult``1(UtilsSharp.Standard.BaseResult{UtilsSharp.Standard.BasePagedResult{``0}})">
+            <summary>
+            处理返回实体
+            </summary>
+            <typeparam name="T">T</typeparam>
+            <param name="response">返回实体</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.WebHelperHandleResult.HandleResultAsync``1(System.Threading.Tasks.Task{UtilsSharp.Standard.BaseResult{UtilsSharp.Standard.BaseResult{``0}}})">
+            <summary>
+            处理返回实体(异步)
+            </summary>
+            <typeparam name="T">T</typeparam>
+            <param name="response">返回实体</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.WebHelperHandleResult.HandleResultAsync``1(System.Threading.Tasks.Task{UtilsSharp.Standard.BaseResult{UtilsSharp.Standard.BasePagedResult{``0}}})">
+            <summary>
+            处理返回实体(异步)
+            </summary>
+            <typeparam name="T">T</typeparam>
+            <param name="response">返回实体</param>
+            <returns></returns>
+        </member>
+        <member name="T:UtilsSharp.TimeCalculator">
+            <summary>
+             创建计时器监视响应情况，过期则取消下载
+            </summary>
+        </member>
+        <member name="E:UtilsSharp.TimeCalculator.TimeOver">
+            <summary>
+            时间到事件
+            </summary>
+        </member>
+        <member name="F:UtilsSharp.TimeCalculator._startTime">
+            <summary>
+            开始时间
+            </summary>
+        </member>
+        <member name="F:UtilsSharp.TimeCalculator._timeout">
+            <summary>
+            时间戳
+            </summary>
+        </member>
+        <member name="F:UtilsSharp.TimeCalculator.CnHasStarted">
+            <summary>
+            是否开始
+            </summary>
+        </member>
+        <member name="F:UtilsSharp.TimeCalculator.CnUserData">
+            <summary>
+            用户数据
+            </summary>
+        </member>
+        <member name="M:UtilsSharp.TimeCalculator.#ctor(System.Object)">
+            <summary>
+            计时器构造方法
+            </summary>
+            <param name="userData">计时结束时回调的用户数据</param>
+        </member>
+        <member name="M:UtilsSharp.TimeCalculator.OnTimeOver(System.Object)">
+            <summary>
+            超时退出
+            </summary>
+            <param name="userData"></param>
+        </member>
+        <member name="P:UtilsSharp.TimeCalculator.Timeout">
+            <summary>
+            过期时间(秒)
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.TimeCalculator.HasStarted">
+            <summary>
+            是否已经开始计时
+            </summary>
+        </member>
+        <member name="M:UtilsSharp.TimeCalculator.Start">
+            <summary>
+            开始计时
+            </summary>
+        </member>
+        <member name="M:UtilsSharp.TimeCalculator.Reset">
+            <summary>
+            重置
+            </summary>
+        </member>
+        <member name="M:UtilsSharp.TimeCalculator.Stop">
+            <summary>
+            停止计时
+            </summary>
+        </member>
+        <member name="M:UtilsSharp.TimeCalculator.CheckTimeout">
+            <summary>
+            检查是否过期
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:UtilsSharp.TimeoutCaller">
+            <summary>
+            过期时回调委托
+            </summary>
+            <param name="userData">用户数据</param>
+        </member>
+        <member name="T:UtilsSharp.WinCmdHelper">
+            <summary>
+            windows命令帮助类
+            </summary>
+        </member>
+        <member name="M:UtilsSharp.WinCmdHelper.RunCommand(System.String,System.Boolean,System.Boolean)">
+            <summary>
+            执行Dos命令
+            </summary>
+            <param name="cmd">Dos命令及参数</param>
+            <param name="isShowCmdWindow">是否显示cmd窗口</param>
+            <param name="isCloseCmdProcess">执行完毕后是否关闭cmd进程</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.WinCmdHelper.IsProcessExists(System.String,System.String)">
+            <summary>
+            判断指定的进程是否在运行中
+            </summary>
+            <param name="processName">要判断的进程名称，不包括扩展名exe</param>
+            <param name="processFileName">进程文件的完整路径</param>
+            <returns>存在返回true，否则返回false</returns>
+        </member>
+        <member name="M:UtilsSharp.WinCmdHelper.KillProcess(System.String,System.String)">
+            <summary>
+            结束指定的windows进程如果进程存在
+            </summary>
+            <param name="processName">进程名称，不包含扩展名</param>
+            <param name="processFileName">进程文件完整路径，如果为空则删除所有进程名为processName参数值的进程</param>
+        </member>
+    </members>
+</doc>

@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.Threading;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using OptionConfig;
 using RabbitMQ;
+using UtilsSharp.OptionConfig;
+using UtilsSharp.RabbitMq;
 
 namespace UnitTestProjectNet
 {

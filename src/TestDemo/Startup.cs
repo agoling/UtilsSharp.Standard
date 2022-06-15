@@ -1,6 +1,3 @@
-using AspNetCore;
-using AspNetCore.Interceptor;
-using AspNetCore.Swagger;
 using Autofac;
 using Autofac.Extras.DynamicProxy;
 using Microsoft.AspNetCore.Builder;
@@ -9,6 +6,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using TestDemo.Service;
 using UtilsSharp;
+using UtilsSharp.AspNetCore;
+using UtilsSharp.AspNetCore.Interceptor;
+using UtilsSharp.AspNetCore.Swagger;
 
 namespace TestDemo
 {

@@ -23,7 +23,7 @@ namespace UnitTestProjectNet
             mqTests.Add("测试11");
             mqTests.Add("测试21");
             mqTests.Add("测试31");
-            RabbitMqHelper.Send(businessName, mqTests);
+            RabbitMqHelper.SendByBusiness(businessName, mqTests);
 
         }
 
@@ -40,7 +40,7 @@ namespace UnitTestProjectNet
             //var r1 = RabbitMqHelper.GetMessage(businessName, true);
 
             //var r2 = RabbitMqHelper.GetMessage(businessName, false);
-            RabbitMqHelper.Received(businessName, fun, "direct", (string e) =>
+            RabbitMqHelper.ReceivedByBusiness(businessName, fun, (string e) =>
             {
                 var cc =e;
 

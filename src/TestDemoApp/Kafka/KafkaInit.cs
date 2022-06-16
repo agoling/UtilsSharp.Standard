@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using Kafka;
+using UtilsSharp.Kafka;
 using UtilsSharp.OptionConfig;
 
 namespace TestDemoApp.Kafka

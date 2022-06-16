@@ -11,15 +11,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestProjectNet", "UnitT
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MySql", "MySql\MySql.csproj", "{AF167E20-6CD2-4CB8-93B4-409941DFB038}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MsSql", "MsSql\MsSql.csproj", "{7E531A02-143F-41F6-8220-6380426D63CA}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestDemoApp", "TestDemoApp\TestDemoApp.csproj", "{F017A0E2-2DB1-4CBB-9F07-0E36A9EBFDE7}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitTestProjectNet.Core", "UnitTestProjectNet.Core\UnitTestProjectNet.Core.csproj", "{CEB634EB-592D-4F09-83D2-C72705DE1E2C}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UtilsSharp.Protobuf", "UtilsSharp.Protobuf\UtilsSharp.Protobuf.csproj", "{B5F9DB1D-0074-48CE-AE5F-A5FA1832A2F2}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kafka", "Kafka\Kafka.csproj", "{62733622-C510-48C2-B530-122186B8208F}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UtilsSharp.ElasticSearch.Extension", "UtilsSharp.ElasticSearch.Extension\UtilsSharp.ElasticSearch.Extension.csproj", "{23EDBE70-8309-471B-8E2A-504F0EE49DCE}"
 EndProject
@@ -35,17 +31,23 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UtilsSharp.OssHelper", "Uti
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UtilsSharp.Redis", "UtilsSharp.Redis\UtilsSharp.Redis.csproj", "{C449D9E4-3B4F-4492-B13C-B280882C8A4F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UtilsSharp.RabbitMq", "UtilsSharp.RabbitMq\UtilsSharp.RabbitMq.csproj", "{1728CB0F-97AA-44EC-B5B8-BBBF46F8A05C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UtilsSharp.RabbitMq", "UtilsSharp.RabbitMq\UtilsSharp.RabbitMq.csproj", "{1728CB0F-97AA-44EC-B5B8-BBBF46F8A05C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UtilsSharp.OptionConfig", "UtilsSharp.OptionConfig\UtilsSharp.OptionConfig.csproj", "{0523E9D5-CFD7-4EFF-8C4C-1541B6E2D476}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UtilsSharp.OptionConfig", "UtilsSharp.OptionConfig\UtilsSharp.OptionConfig.csproj", "{0523E9D5-CFD7-4EFF-8C4C-1541B6E2D476}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UtilsSharp.ElasticSearch", "UtilsSharp.ElasticSearch\UtilsSharp.ElasticSearch.csproj", "{1D5C2D76-A2EB-41C5-A6D2-2BBBAECFF6CD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UtilsSharp.ElasticSearch", "UtilsSharp.ElasticSearch\UtilsSharp.ElasticSearch.csproj", "{1D5C2D76-A2EB-41C5-A6D2-2BBBAECFF6CD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UtilsSharp.ElasticSearch7", "UtilsSharp.ElasticSearch7\UtilsSharp.ElasticSearch7.csproj", "{C6A6877D-0C43-4C03-A75F-50C9CFC0E2E6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UtilsSharp.ElasticSearch7", "UtilsSharp.ElasticSearch7\UtilsSharp.ElasticSearch7.csproj", "{C6A6877D-0C43-4C03-A75F-50C9CFC0E2E6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UtilsSharp.Logger", "UtilsSharp.Logger\UtilsSharp.Logger.csproj", "{85F76A53-B7A2-426C-8DC2-47C9ECF76332}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UtilsSharp.Logger", "UtilsSharp.Logger\UtilsSharp.Logger.csproj", "{85F76A53-B7A2-426C-8DC2-47C9ECF76332}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UtilsSharp.Logger.Config", "UtilsSharp.Logger.Config\UtilsSharp.Logger.Config.csproj", "{21D3CCC6-00CE-4176-AF50-9F7C2B5028C6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UtilsSharp.Logger.Config", "UtilsSharp.Logger.Config\UtilsSharp.Logger.Config.csproj", "{21D3CCC6-00CE-4176-AF50-9F7C2B5028C6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UtilsSharp.Kafka", "UtilsSharp.Kafka\UtilsSharp.Kafka.csproj", "{9CA3CC83-F80E-45C5-8DA8-EFC6526EBB49}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UtilsSharp.MsSql", "UtilsSharp.MsSql\UtilsSharp.MsSql.csproj", "{92B8048A-6E9D-4517-9348-4BE60F8B006D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UtilsSharp.MySql", "UtilsSharp.MySql\UtilsSharp.MySql.csproj", "{49860A96-7E1F-47E1-BC0D-ADF1AFEF2626}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -69,10 +71,6 @@ Global
 		{AF167E20-6CD2-4CB8-93B4-409941DFB038}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AF167E20-6CD2-4CB8-93B4-409941DFB038}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AF167E20-6CD2-4CB8-93B4-409941DFB038}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7E531A02-143F-41F6-8220-6380426D63CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7E531A02-143F-41F6-8220-6380426D63CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7E531A02-143F-41F6-8220-6380426D63CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7E531A02-143F-41F6-8220-6380426D63CA}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F017A0E2-2DB1-4CBB-9F07-0E36A9EBFDE7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F017A0E2-2DB1-4CBB-9F07-0E36A9EBFDE7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F017A0E2-2DB1-4CBB-9F07-0E36A9EBFDE7}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -85,10 +83,6 @@ Global
 		{B5F9DB1D-0074-48CE-AE5F-A5FA1832A2F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B5F9DB1D-0074-48CE-AE5F-A5FA1832A2F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B5F9DB1D-0074-48CE-AE5F-A5FA1832A2F2}.Release|Any CPU.Build.0 = Release|Any CPU
-		{62733622-C510-48C2-B530-122186B8208F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{62733622-C510-48C2-B530-122186B8208F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{62733622-C510-48C2-B530-122186B8208F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{62733622-C510-48C2-B530-122186B8208F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{23EDBE70-8309-471B-8E2A-504F0EE49DCE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{23EDBE70-8309-471B-8E2A-504F0EE49DCE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{23EDBE70-8309-471B-8E2A-504F0EE49DCE}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -141,6 +135,18 @@ Global
 		{21D3CCC6-00CE-4176-AF50-9F7C2B5028C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{21D3CCC6-00CE-4176-AF50-9F7C2B5028C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{21D3CCC6-00CE-4176-AF50-9F7C2B5028C6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9CA3CC83-F80E-45C5-8DA8-EFC6526EBB49}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9CA3CC83-F80E-45C5-8DA8-EFC6526EBB49}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9CA3CC83-F80E-45C5-8DA8-EFC6526EBB49}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9CA3CC83-F80E-45C5-8DA8-EFC6526EBB49}.Release|Any CPU.Build.0 = Release|Any CPU
+		{92B8048A-6E9D-4517-9348-4BE60F8B006D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{92B8048A-6E9D-4517-9348-4BE60F8B006D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{92B8048A-6E9D-4517-9348-4BE60F8B006D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{92B8048A-6E9D-4517-9348-4BE60F8B006D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{49860A96-7E1F-47E1-BC0D-ADF1AFEF2626}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{49860A96-7E1F-47E1-BC0D-ADF1AFEF2626}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{49860A96-7E1F-47E1-BC0D-ADF1AFEF2626}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{49860A96-7E1F-47E1-BC0D-ADF1AFEF2626}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

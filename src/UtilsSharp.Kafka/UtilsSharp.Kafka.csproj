@@ -2,25 +2,23 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <LangVersion>latest</LangVersion>
-    <Version>3.0.2</Version>
+    <Version>2.0.0</Version>
     <Authors>Agoling</Authors>
-    <Description>UtilsSharp.RabbitMq 帮助类</Description>
-    <PackageProjectUrl>https://github.com/agoling/UtilsSharp.Standard</PackageProjectUrl>
+    <Description>UtilsSharp.Kafka 帮助类  Kafka帮助类 KafkaHelper</Description>
+    <PackageTags>UtilsSharp.Kafka 帮助类  Kafka帮助类 KafkaHelper</PackageTags>
+    <RepositoryUrl>https://github.com/agoling/UtilsSharp.Standard</RepositoryUrl>
     <PackageIcon>UtilsSharp.jpg</PackageIcon>
     <PackageIconUrl />
-    <RepositoryUrl>https://github.com/agoling/UtilsSharp.Standard</RepositoryUrl>
-    <PackageTags>RabbitMq帮助类 RabbitMq公共类 RabbitMq封装 RabbitMq类库</PackageTags>
-    <PackageId>UtilsSharp.RabbitMq</PackageId>
+    <PackageProjectUrl>https://github.com/agoling/UtilsSharp.Standard</PackageProjectUrl>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>D:\GitHub\Project\UtilsSharp.Standard\src\UtilsSharp.RabbitMq\UtilsSharp.RabbitMq.xml</DocumentationFile>
+    <DocumentationFile>D:\GitHub\Project\UtilsSharp.Standard\src\UtilsSharp.Kafka\UtilsSharp.Kafka.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Confluent.Kafka" Version="1.8.2" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
-    <PackageReference Include="RabbitMQ.Client" Version="6.3.1" />
     <PackageReference Include="UtilsSharp.OptionConfig" Version="2.0.0" />
   </ItemGroup>
 
@@ -36,7 +34,7 @@
     <None Update="UtilsSharp.ico">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="UtilsSharp.RabbitMq.xml">
+    <None Update="UtilsSharp.Kafka.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>

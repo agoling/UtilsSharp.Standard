@@ -23,9 +23,16 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="UtilsSharp.jpg">
+    <None Include="..\UtilsSharp.jpg">
       <Pack>True</Pack>
       <PackagePath></PackagePath>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="UtilsSharp.ElasticSearch7.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
 

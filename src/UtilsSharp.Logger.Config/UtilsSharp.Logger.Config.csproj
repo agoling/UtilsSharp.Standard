@@ -21,6 +21,7 @@
     <None Include="..\UtilsSharp.jpg">
       <Pack>True</Pack>
       <PackagePath></PackagePath>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </None>
     <None Include="contentFiles\**">
       <Pack>true</Pack>
@@ -38,6 +39,9 @@
 	<None Update="contentFiles\NLog.xsd">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+	<None Update="UtilsSharp.Logger.Config.xml">
+	  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	</None>
   </ItemGroup>
 
 </Project>

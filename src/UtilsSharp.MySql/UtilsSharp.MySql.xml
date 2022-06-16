@@ -1,0 +1,489 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>UtilsSharp.MySql</name>
+    </assembly>
+    <members>
+        <member name="T:UtilsSharp.MySql.BaseEntity">
+            <summary>
+            基类
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.MySql.BaseEntity.Id">
+            <summary>
+            主键Id
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.MySql.BaseEntity.CreateTime">
+            <summary>
+            创建时间
+            </summary>
+        </member>
+        <member name="T:UtilsSharp.MySql.IBaseEntity">
+            <summary>
+            基类
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.MySql.IBaseEntity.Id">
+            <summary>
+            主键Id
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.MySql.IBaseEntity.CreateTime">
+            <summary>
+            创建时间
+            </summary>
+        </member>
+        <member name="T:UtilsSharp.MySql.IMySqlBaseDataSource`1">
+            <summary>
+             MySql基础数据源
+            </summary>
+        </member>
+        <member name="M:UtilsSharp.MySql.IMySqlBaseDataSource`1.Save(`0)">
+            <summary>
+            单条保存
+            </summary>
+            <param name="t">参数</param>
+        </member>
+        <member name="M:UtilsSharp.MySql.IMySqlBaseDataSource`1.Save(System.Collections.Generic.List{`0})">
+            <summary>
+            批量保存
+            </summary>
+            <param name="entitys">参数</param>
+        </member>
+        <member name="M:UtilsSharp.MySql.IMySqlBaseDataSource`1.Get(System.Int64)">
+            <summary>
+            获取一条数据
+            </summary>
+            <param name="id">Id</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.MySql.IMySqlBaseDataSource`1.Delete(`0)">
+            <summary>
+            单条删除
+            </summary>
+            <param name="t">模型</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.MySql.IMySqlBaseDataSource`1.GetList">
+            <summary>
+            获取所有的列表
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:UtilsSharp.MySql.MySqlBaseDataSource`1">
+            <summary>
+            MySql基础数据源
+            </summary>
+        </member>
+        <member name="M:UtilsSharp.MySql.MySqlBaseDataSource`1.GetDbConnection">
+            <summary>
+            初始化链接
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.MySql.MySqlBaseDataSource`1.Save(`0)">
+            <summary>
+            单条保存
+            </summary>
+            <param name="t">参数</param>
+        </member>
+        <member name="M:UtilsSharp.MySql.MySqlBaseDataSource`1.Save(System.Collections.Generic.List{`0})">
+            <summary>
+            批量保存
+            </summary>
+            <param name="entitys">参数</param>
+        </member>
+        <member name="M:UtilsSharp.MySql.MySqlBaseDataSource`1.Get(System.Int64)">
+            <summary>
+            获取一条数据
+            </summary>
+            <param name="id">Id</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.MySql.MySqlBaseDataSource`1.Delete(`0)">
+            <summary>
+            单条删除
+            </summary>
+            <param name="t">模型</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.MySql.MySqlBaseDataSource`1.GetList">
+            <summary>
+            获取所有的列表
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:UtilsSharp.MySql.MySqlSimpleCRUD">
+            <summary>
+            Main class for Dapper.SimpleCRUD extensions
+            </summary>
+        </member>
+        <member name="M:UtilsSharp.MySql.MySqlSimpleCRUD.StringBuilderCache(System.Text.StringBuilder,System.String,System.Action{System.Text.StringBuilder})">
+            <summary>
+            Append a Cached version of a strinbBuilderAction result based on a cacheKey
+            </summary>
+            <param name="sb"></param>
+            <param name="cacheKey"></param>
+            <param name="stringBuilderAction"></param>
+        </member>
+        <member name="M:UtilsSharp.MySql.MySqlSimpleCRUD.SetDialect">
+            <summary>
+            Sets the database dialect 
+            </summary>
+        </member>
+        <member name="M:UtilsSharp.MySql.MySqlSimpleCRUD.SetTableNameResolver(UtilsSharp.MySql.MySqlSimpleCRUD.ITableNameResolver)">
+            <summary>
+            Sets the table name resolver
+            </summary>
+            <param name="resolver">The resolver to use when requesting the format of a table name</param>
+        </member>
+        <member name="M:UtilsSharp.MySql.MySqlSimpleCRUD.SetColumnNameResolver(UtilsSharp.MySql.MySqlSimpleCRUD.IColumnNameResolver)">
+            <summary>
+            Sets the column name resolver
+            </summary>
+            <param name="resolver">The resolver to use when requesting the format of a column name</param>
+        </member>
+        <member name="M:UtilsSharp.MySql.MySqlSimpleCRUD.Get``1(System.Data.IDbConnection,System.Object,System.Data.IDbTransaction,System.Nullable{System.Int32})">
+            <summary>
+            <para>By default queries the table matching the class name</para>
+            <para>-Table name can be overridden by adding an attribute on your class [Table("YourTableName")]</para>
+            <para>By default filters on the Id column</para>
+            <para>-Id column name can be overridden by adding an attribute on your primary key property [Key]</para>
+            <para>Supports transaction and command timeout</para>
+            <para>Returns a single entity by a single id from table T</para>
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="connection"></param>
+            <param name="id"></param>
+            <param name="transaction"></param>
+            <param name="commandTimeout"></param>
+            <returns>Returns a single entity by a single id from table T.</returns>
+        </member>
+        <member name="M:UtilsSharp.MySql.MySqlSimpleCRUD.GetList``1(System.Data.IDbConnection,System.Object,System.Data.IDbTransaction,System.Nullable{System.Int32})">
+            <summary>
+            <para>By default queries the table matching the class name</para>
+            <para>-Table name can be overridden by adding an attribute on your class [Table("YourTableName")]</para>
+            <para>whereConditions is an anonymous type to filter the results ex: new {Category = 1, SubCategory=2}</para>
+            <para>Supports transaction and command timeout</para>
+            <para>Returns a list of entities that match where conditions</para>
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="connection"></param>
+            <param name="whereConditions"></param>
+            <param name="transaction"></param>
+            <param name="commandTimeout"></param>
+            <returns>Gets a list of entities with optional exact match where conditions</returns>
+        </member>
+        <member name="M:UtilsSharp.MySql.MySqlSimpleCRUD.GetList``1(System.Data.IDbConnection,System.String,System.Object,System.Data.IDbTransaction,System.Nullable{System.Int32})">
+            <summary>
+            <para>By default queries the table matching the class name</para>
+            <para>-Table name can be overridden by adding an attribute on your class [Table("YourTableName")]</para>
+            <para>conditions is an SQL where clause and/or order by clause ex: "where name='bob'" or "where age>=@Age"</para>
+            <para>parameters is an anonymous type to pass in named parameter values: new { Age = 15 }</para>
+            <para>Supports transaction and command timeout</para>
+            <para>Returns a list of entities that match where conditions</para>
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="connection"></param>
+            <param name="conditions"></param>
+            <param name="parameters"></param>
+            <param name="transaction"></param>
+            <param name="commandTimeout"></param>
+            <returns>Gets a list of entities with optional SQL where conditions</returns>
+        </member>
+        <member name="M:UtilsSharp.MySql.MySqlSimpleCRUD.GetList``1(System.Data.IDbConnection)">
+            <summary>
+            <para>By default queries the table matching the class name</para>
+            <para>-Table name can be overridden by adding an attribute on your class [Table("YourTableName")]</para>
+            <para>Returns a list of all entities</para>
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="connection"></param>
+            <returns>Gets a list of all entities</returns>
+        </member>
+        <member name="M:UtilsSharp.MySql.MySqlSimpleCRUD.GetListPaged``1(System.Data.IDbConnection,System.Int32,System.Int32,System.String,System.String,System.Object,System.Data.IDbTransaction,System.Nullable{System.Int32})">
+            <summary>
+            <para>By default queries the table matching the class name</para>
+            <para>-Table name can be overridden by adding an attribute on your class [Table("YourTableName")]</para>
+            <para>conditions is an SQL where clause ex: "where name='bob'" or "where age>=@Age" - not required </para>
+            <para>orderby is a column or list of columns to order by ex: "lastname, age desc" - not required - default is by primary key</para>
+            <para>parameters is an anonymous type to pass in named parameter values: new { Age = 15 }</para>
+            <para>Supports transaction and command timeout</para>
+            <para>Returns a list of entities that match where conditions</para>
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="connection"></param>
+            <param name="pageNumber"></param>
+            <param name="rowsPerPage"></param>
+            <param name="conditions"></param>
+            <param name="orderby"></param>
+            <param name="parameters"></param>
+            <param name="transaction"></param>
+            <param name="commandTimeout"></param>
+            <returns>Gets a paged list of entities with optional exact match where conditions</returns>
+        </member>
+        <member name="M:UtilsSharp.MySql.MySqlSimpleCRUD.Insert``1(System.Data.IDbConnection,``0,System.Data.IDbTransaction,System.Nullable{System.Int32})">
+            <summary>
+            <para>Inserts a row into the database</para>
+            <para>By default inserts into the table matching the class name</para>
+            <para>-Table name can be overridden by adding an attribute on your class [Table("YourTableName")]</para>
+            <para>Insert filters out Id column and any columns with the [Key] attribute</para>
+            <para>Properties marked with attribute [Editable(false)] and complex types are ignored</para>
+            <para>Supports transaction and command timeout</para>
+            <para>Returns the ID (primary key) of the newly inserted record if it is identity using the int? type, otherwise null</para>
+            </summary>
+            <param name="connection"></param>
+            <param name="entityToInsert"></param>
+            <param name="transaction"></param>
+            <param name="commandTimeout"></param>
+            <returns>The ID (primary key) of the newly inserted record if it is identity using the int? type, otherwise null</returns>
+        </member>
+        <member name="M:UtilsSharp.MySql.MySqlSimpleCRUD.Insert``2(System.Data.IDbConnection,``1,System.Data.IDbTransaction,System.Nullable{System.Int32})">
+            <summary>
+            <para>Inserts a row into the database, using ONLY the properties defined by TEntity</para>
+            <para>By default inserts into the table matching the class name</para>
+            <para>-Table name can be overridden by adding an attribute on your class [Table("YourTableName")]</para>
+            <para>Insert filters out Id column and any columns with the [Key] attribute</para>
+            <para>Properties marked with attribute [Editable(false)] and complex types are ignored</para>
+            <para>Supports transaction and command timeout</para>
+            <para>Returns the ID (primary key) of the newly inserted record if it is identity using the defined type, otherwise null</para>
+            </summary>
+            <param name="connection"></param>
+            <param name="entityToInsert"></param>
+            <param name="transaction"></param>
+            <param name="commandTimeout"></param>
+            <returns>The ID (primary key) of the newly inserted record if it is identity using the defined type, otherwise null</returns>
+        </member>
+        <member name="M:UtilsSharp.MySql.MySqlSimpleCRUD.Update``1(System.Data.IDbConnection,``0,System.Data.IDbTransaction,System.Nullable{System.Int32})">
+            <summary>
+            <para>Updates a record or records in the database with only the properties of TEntity</para>
+            <para>By default updates records in the table matching the class name</para>
+            <para>-Table name can be overridden by adding an attribute on your class [Table("YourTableName")]</para>
+            <para>Updates records where the Id property and properties with the [Key] attribute match those in the database.</para>
+            <para>Properties marked with attribute [Editable(false)] and complex types are ignored</para>
+            <para>Supports transaction and command timeout</para>
+            <para>Returns number of rows affected</para>
+            </summary>
+            <param name="connection"></param>
+            <param name="entityToUpdate"></param>
+            <param name="transaction"></param>
+            <param name="commandTimeout"></param>
+            <returns>The number of affected records</returns>
+        </member>
+        <member name="M:UtilsSharp.MySql.MySqlSimpleCRUD.Delete``1(System.Data.IDbConnection,``0,System.Data.IDbTransaction,System.Nullable{System.Int32})">
+            <summary>
+            <para>Deletes a record or records in the database that match the object passed in</para>
+            <para>-By default deletes records in the table matching the class name</para>
+            <para>Table name can be overridden by adding an attribute on your class [Table("YourTableName")]</para>
+            <para>Supports transaction and command timeout</para>
+            <para>Returns the number of records affected</para>
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="connection"></param>
+            <param name="entityToDelete"></param>
+            <param name="transaction"></param>
+            <param name="commandTimeout"></param>
+            <returns>The number of records affected</returns>
+        </member>
+        <member name="M:UtilsSharp.MySql.MySqlSimpleCRUD.Delete``1(System.Data.IDbConnection,System.Object,System.Data.IDbTransaction,System.Nullable{System.Int32})">
+            <summary>
+            <para>Deletes a record or records in the database by ID</para>
+            <para>By default deletes records in the table matching the class name</para>
+            <para>-Table name can be overridden by adding an attribute on your class [Table("YourTableName")]</para>
+            <para>Deletes records where the Id property and properties with the [Key] attribute match those in the database</para>
+            <para>The number of records affected</para>
+            <para>Supports transaction and command timeout</para>
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="connection"></param>
+            <param name="id"></param>
+            <param name="transaction"></param>
+            <param name="commandTimeout"></param>
+            <returns>The number of records affected</returns>
+        </member>
+        <member name="M:UtilsSharp.MySql.MySqlSimpleCRUD.DeleteList``1(System.Data.IDbConnection,System.Object,System.Data.IDbTransaction,System.Nullable{System.Int32})">
+            <summary>
+            <para>Deletes a list of records in the database</para>
+            <para>By default deletes records in the table matching the class name</para>
+            <para>-Table name can be overridden by adding an attribute on your class [Table("YourTableName")]</para>
+            <para>Deletes records where that match the where clause</para>
+            <para>whereConditions is an anonymous type to filter the results ex: new {Category = 1, SubCategory=2}</para>
+            <para>The number of records affected</para>
+            <para>Supports transaction and command timeout</para>
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="connection"></param>
+            <param name="whereConditions"></param>
+            <param name="transaction"></param>
+            <param name="commandTimeout"></param>
+            <returns>The number of records affected</returns>
+        </member>
+        <member name="M:UtilsSharp.MySql.MySqlSimpleCRUD.DeleteList``1(System.Data.IDbConnection,System.String,System.Object,System.Data.IDbTransaction,System.Nullable{System.Int32})">
+            <summary>
+            <para>Deletes a list of records in the database</para>
+            <para>By default deletes records in the table matching the class name</para>
+            <para>-Table name can be overridden by adding an attribute on your class [Table("YourTableName")]</para>
+            <para>Deletes records where that match the where clause</para>
+            <para>conditions is an SQL where clause ex: "where name='bob'" or "where age>=@Age"</para>
+            <para>parameters is an anonymous type to pass in named parameter values: new { Age = 15 }</para>
+            <para>Supports transaction and command timeout</para>
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="connection"></param>
+            <param name="conditions"></param>
+            <param name="parameters"></param>
+            <param name="transaction"></param>
+            <param name="commandTimeout"></param>
+            <returns>The number of records affected</returns>
+        </member>
+        <member name="M:UtilsSharp.MySql.MySqlSimpleCRUD.RecordCount``1(System.Data.IDbConnection,System.String,System.Object,System.Data.IDbTransaction,System.Nullable{System.Int32})">
+            <summary>
+            <para>By default queries the table matching the class name</para>
+            <para>-Table name can be overridden by adding an attribute on your class [Table("YourTableName")]</para>
+            <para>Returns a number of records entity by a single id from table T</para>
+            <para>Supports transaction and command timeout</para>
+            <para>conditions is an SQL where clause ex: "where name='bob'" or "where age>=@Age" - not required </para>
+            <para>parameters is an anonymous type to pass in named parameter values: new { Age = 15 }</para>
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="connection"></param>
+            <param name="conditions"></param>
+            <param name="parameters"></param>
+            <param name="transaction"></param>
+            <param name="commandTimeout"></param>
+            <returns>Returns a count of records.</returns>
+        </member>
+        <member name="M:UtilsSharp.MySql.MySqlSimpleCRUD.RecordCount``1(System.Data.IDbConnection,System.Object,System.Data.IDbTransaction,System.Nullable{System.Int32})">
+            <summary>
+            <para>By default queries the table matching the class name</para>
+            <para>-Table name can be overridden by adding an attribute on your class [Table("YourTableName")]</para>
+            <para>Returns a number of records entity by a single id from table T</para>
+            <para>Supports transaction and command timeout</para>
+            <para>whereConditions is an anonymous type to filter the results ex: new {Category = 1, SubCategory=2}</para>
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="connection"></param>
+            <param name="whereConditions"></param>
+            <param name="transaction"></param>
+            <param name="commandTimeout"></param>
+            <returns>Returns a count of records.</returns>
+        </member>
+        <member name="M:UtilsSharp.MySql.MySqlSimpleCRUD.SequentialGuid">
+            <summary>
+            Generates a GUID based on the current date/time
+            http://stackoverflow.com/questions/1752004/sequential-guid-generator-c-sharp
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:UtilsSharp.MySql.TableAttribute">
+            <summary>
+            Optional Table attribute.
+            You can use the System.ComponentModel.DataAnnotations version in its place to specify the table name of a poco
+            </summary>
+        </member>
+        <member name="M:UtilsSharp.MySql.TableAttribute.#ctor(System.String)">
+            <summary>
+            Optional Table attribute.
+            </summary>
+            <param name="tableName"></param>
+        </member>
+        <member name="P:UtilsSharp.MySql.TableAttribute.Name">
+            <summary>
+            Name of the table
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.MySql.TableAttribute.Schema">
+            <summary>
+            Name of the schema
+            </summary>
+        </member>
+        <member name="T:UtilsSharp.MySql.ColumnAttribute">
+            <summary>
+            Optional Column attribute.
+            You can use the System.ComponentModel.DataAnnotations version in its place to specify the table name of a poco
+            </summary>
+        </member>
+        <member name="M:UtilsSharp.MySql.ColumnAttribute.#ctor(System.String)">
+            <summary>
+            Optional Column attribute.
+            </summary>
+            <param name="columnName"></param>
+        </member>
+        <member name="P:UtilsSharp.MySql.ColumnAttribute.Name">
+            <summary>
+            Name of the column
+            </summary>
+        </member>
+        <member name="T:UtilsSharp.MySql.KeyAttribute">
+            <summary>
+            Optional Key attribute.
+            You can use the System.ComponentModel.DataAnnotations version in its place to specify the Primary Key of a poco
+            </summary>
+        </member>
+        <member name="T:UtilsSharp.MySql.NotMappedAttribute">
+            <summary>
+            Optional NotMapped attribute.
+            You can use the System.ComponentModel.DataAnnotations version in its place to specify that the property is not mapped
+            </summary>
+        </member>
+        <member name="T:UtilsSharp.MySql.RequiredAttribute">
+            <summary>
+            Optional Key attribute.
+            You can use the System.ComponentModel.DataAnnotations version in its place to specify a required property of a poco
+            </summary>
+        </member>
+        <member name="T:UtilsSharp.MySql.EditableAttribute">
+            <summary>
+            Optional Editable attribute.
+            You can use the System.ComponentModel.DataAnnotations version in its place to specify the properties that are editable
+            </summary>
+        </member>
+        <member name="M:UtilsSharp.MySql.EditableAttribute.#ctor(System.Boolean)">
+            <summary>
+            Optional Editable attribute.
+            </summary>
+            <param name="iseditable"></param>
+        </member>
+        <member name="P:UtilsSharp.MySql.EditableAttribute.AllowEdit">
+            <summary>
+            Does this property persist to the database?
+            </summary>
+        </member>
+        <member name="T:UtilsSharp.MySql.ReadOnlyAttribute">
+            <summary>
+            Optional Readonly attribute.
+            You can use the System.ComponentModel version in its place to specify the properties that are editable
+            </summary>
+        </member>
+        <member name="M:UtilsSharp.MySql.ReadOnlyAttribute.#ctor(System.Boolean)">
+            <summary>
+            Optional ReadOnly attribute.
+            </summary>
+            <param name="isReadOnly"></param>
+        </member>
+        <member name="P:UtilsSharp.MySql.ReadOnlyAttribute.IsReadOnly">
+            <summary>
+            Does this property persist to the database?
+            </summary>
+        </member>
+        <member name="T:UtilsSharp.MySql.IgnoreSelectAttribute">
+            <summary>
+            Optional IgnoreSelect attribute.
+            Custom for Dapper.SimpleCRUD to exclude a property from Select methods
+            </summary>
+        </member>
+        <member name="T:UtilsSharp.MySql.IgnoreInsertAttribute">
+            <summary>
+            Optional IgnoreInsert attribute.
+            Custom for Dapper.SimpleCRUD to exclude a property from Insert methods
+            </summary>
+        </member>
+        <member name="T:UtilsSharp.MySql.IgnoreUpdateAttribute">
+            <summary>
+            Optional IgnoreUpdate attribute.
+            Custom for Dapper.SimpleCRUD to exclude a property from Update methods
+            </summary>
+        </member>
+    </members>
+</doc>

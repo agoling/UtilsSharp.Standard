@@ -1,0 +1,700 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>UtilsSharp.Kafka</name>
+    </assembly>
+    <members>
+        <member name="P:UtilsSharp.Kafka.DeliveryResult.IsError">
+            <summary>
+            是否异常
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.Kafka.DeliveryResult.Reason">
+            <summary>
+            异常原因
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.Kafka.DeliveryResult.Topic">
+            <summary>
+            主题
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.Kafka.DeliveryResult.Partition">
+            <summary>
+            分区
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.Kafka.DeliveryResult.Offset">
+            <summary>
+            偏移
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.Kafka.DeliveryResult.Status">
+            <summary>
+            状态
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.Kafka.DeliveryResult.Key">
+            <summary>
+            消息键值
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.Kafka.DeliveryResult.Message">
+            <summary>
+            消息
+            </summary>
+        </member>
+        <member name="F:UtilsSharp.Kafka.DeliveryResultStatus.NotPersisted">
+            <summary>
+            消息提交失败
+            </summary>
+        </member>
+        <member name="F:UtilsSharp.Kafka.DeliveryResultStatus.PossiblyPersisted">
+            <summary>
+            消息已提交，是否成功未知
+            </summary>
+        </member>
+        <member name="F:UtilsSharp.Kafka.DeliveryResultStatus.Persisted">
+            <summary>
+            消息提交成功
+            </summary>
+        </member>
+        <member name="T:UtilsSharp.Kafka.KafkaClient">
+            <summary>
+            KafkaClient
+            </summary>
+        </member>
+        <member name="M:UtilsSharp.Kafka.KafkaClient.GetProducer">
+            <summary>
+            生产者
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.Kafka.KafkaClient.GetConsumer(System.String)">
+            <summary>
+            消费者
+            </summary>
+            <param name="groupId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.Kafka.KafkaClient.CreateTopicsAsync(System.String,System.Int32,System.Int16)">
+            <summary>
+            创建主题
+            </summary>
+            <param name="topicName">主题名称</param>
+            <param name="numPartitions">Partitions数量</param>
+            <param name="replicationFactor">replicationFactor</param>
+            <returns>ErrorReason</returns>
+        </member>
+        <member name="M:UtilsSharp.Kafka.KafkaClient.DeleteTopicsAsync(System.Collections.Generic.IEnumerable{System.String},Confluent.Kafka.Admin.DeleteTopicsOptions)">
+            <summary>
+            删除主题
+            </summary>
+            <param name="topicNames">主题名称集合</param>
+            <param name="options">参数</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.Kafka.KafkaClient.DeleteRecordsAsync(System.Collections.Generic.IEnumerable{Confluent.Kafka.TopicPartitionOffset},Confluent.Kafka.Admin.DeleteRecordsOptions)">
+            <summary>
+            删除记录
+            </summary>
+            <param name="topicPartitionOffset">topicPartitionOffset</param>
+            <param name="options"></param>
+            <returns>ErrorReason</returns>
+        </member>
+        <member name="M:UtilsSharp.Kafka.KafkaClient.IsTopicExist(System.String,System.Nullable{System.TimeSpan})">
+            <summary>
+            主题是否存在
+            </summary>
+            <param name="topicName">主题名称</param>
+            <param name="timeout">超时时间(默认10秒)</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.Kafka.KafkaClient.GetTopic(System.String,System.Nullable{System.TimeSpan})">
+            <summary>
+            获取主题
+            </summary>
+            <param name="topicName">主题名称</param>
+            <param name="timeout">超时时间(默认10秒)</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.Kafka.KafkaClient.GetTopics(System.Nullable{System.TimeSpan})">
+            <summary>
+            获取所有主题
+            </summary>
+            <param name="timeout">超时时间(默认10秒)</param>
+            <returns></returns>
+        </member>
+        <member name="P:UtilsSharp.Kafka.KafkaConsumer.BootstrapServers">
+            <summary>
+            kafka服务节点
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.Kafka.KafkaConsumer.GroupId">
+            <summary>
+            群组
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.Kafka.KafkaConsumer.EnableAutoCommit">
+            <summary>
+            是否允许自动提交（enable.auto.commit）
+            </summary>
+        </member>
+        <member name="E:UtilsSharp.Kafka.KafkaConsumer.ErrorHandler">
+            <summary>
+            异常事件
+            </summary>
+        </member>
+        <member name="E:UtilsSharp.Kafka.KafkaConsumer.StatisticsHandler">
+            <summary>
+            统计事件
+            </summary>
+        </member>
+        <member name="E:UtilsSharp.Kafka.KafkaConsumer.LogHandler">
+            <summary>
+            日志事件
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.Kafka.KafkaConsumer.IsPause">
+            <summary>
+            是否暂停
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.Kafka.KafkaConsumer.IsResume">
+            <summary>
+            是否恢复
+            </summary>
+        </member>
+        <member name="M:UtilsSharp.Kafka.KafkaConsumer.Pause">
+            <summary>
+            暂停
+            </summary>
+        </member>
+        <member name="M:UtilsSharp.Kafka.KafkaConsumer.Resume">
+            <summary>
+            恢复
+            </summary>
+        </member>
+        <member name="M:UtilsSharp.Kafka.KafkaConsumer.CreateConsumerBuilder">
+            <summary>
+            创建消费者生成器
+            </summary>
+        </member>
+        <member name="M:UtilsSharp.Kafka.KafkaConsumer.InternalListen(Confluent.Kafka.IConsumer{System.String,System.Object},System.Threading.CancellationToken,System.Action{UtilsSharp.Kafka.RecieveResult})">
+            <summary>
+            内部处理消息
+            </summary>
+            <param name="consumer"></param>
+            <param name="cancellationToken"></param>
+            <param name="action"></param>
+        </member>
+        <member name="M:UtilsSharp.Kafka.KafkaConsumer.CheckSubscribers(UtilsSharp.Kafka.KafkaSubscriber[])">
+            <summary>
+            验证消费主题和分区
+            </summary>
+            <param name="subscribers"></param>
+        </member>
+        <member name="M:UtilsSharp.Kafka.KafkaConsumer.SetSubscribers(Confluent.Kafka.IConsumer{System.String,System.Object},UtilsSharp.Kafka.KafkaSubscriber[])">
+            <summary>
+            设置监听主题
+            </summary>
+            <param name="consumer"></param>
+        </member>
+        <member name="M:UtilsSharp.Kafka.KafkaConsumer.CreateConsumer(UtilsSharp.Kafka.ListenResult,UtilsSharp.Kafka.KafkaSubscriber[])">
+            <summary>
+            创建一个消费者
+            </summary>
+            <param name="listenResult"></param>
+            <param name="subscribers"></param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.Kafka.KafkaConsumer.ListenOnce(System.String[])">
+            <summary>
+            监听一次并阻塞当前线程，直至有消息获取或者取消获取
+            </summary>
+            <param name="topics"></param>
+        </member>
+        <member name="M:UtilsSharp.Kafka.KafkaConsumer.ListenOnce(UtilsSharp.Kafka.KafkaSubscriber[])">
+            <summary>
+            监听一次并阻塞当前线程，直至有消息获取或者取消获取
+            </summary>
+            <param name="subscribers"></param>
+        </member>
+        <member name="M:UtilsSharp.Kafka.KafkaConsumer.ListenOnceAsync(System.String[])">
+            <summary>
+            异步监听一次
+            </summary>
+            <param name="topics"></param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.Kafka.KafkaConsumer.ListenOnceAsync(UtilsSharp.Kafka.KafkaSubscriber[])">
+            <summary>
+            异步监听一次
+            </summary>
+            <param name="subscribers"></param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.Kafka.KafkaConsumer.Listen(System.String[],System.Action{UtilsSharp.Kafka.RecieveResult},System.Threading.CancellationToken)">
+            <summary>
+            监听
+            </summary>
+            <param name="topics"></param>
+            <param name="action"></param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.Kafka.KafkaConsumer.Listen(UtilsSharp.Kafka.KafkaSubscriber[],System.Action{UtilsSharp.Kafka.RecieveResult},System.Threading.CancellationToken)">
+            <summary>
+            监听
+            </summary>
+            <param name="subscribers"></param>
+            <param name="action"></param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.Kafka.KafkaConsumer.ListenAsync(System.String[],System.Action{UtilsSharp.Kafka.RecieveResult})">
+            <summary>
+            异步监听
+            </summary>
+            <param name="topics"></param>
+            <param name="action"></param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.Kafka.KafkaConsumer.ListenAsync(UtilsSharp.Kafka.KafkaSubscriber[],System.Action{UtilsSharp.Kafka.RecieveResult})">
+            <summary>
+            异步监听
+            </summary>
+            <param name="subscribers"></param>
+            <param name="action"></param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.Kafka.KafkaConsumer.Dispose">
+            <summary>
+            释放资源
+            </summary>
+        </member>
+        <member name="M:UtilsSharp.Kafka.KafkaConverter.Serialize(System.Object,Confluent.Kafka.SerializationContext)">
+            <summary>
+            序列化数据成字节
+            </summary>
+            <param name="data"></param>
+            <param name="context"></param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.Kafka.KafkaConverter.Deserialize(System.ReadOnlySpan{System.Byte},System.Boolean,Confluent.Kafka.SerializationContext)">
+            <summary>
+            反序列化字节数据成实体数据
+            </summary>
+            <param name="data"></param>
+            <param name="context"></param>
+            <returns></returns>
+        </member>
+        <member name="T:UtilsSharp.Kafka.KafkaHelper">
+            <summary>
+            KafkaHelper
+            </summary>
+        </member>
+        <member name="T:UtilsSharp.Kafka.KafkaHelper`1">
+            <summary>
+            Kafka帮助类
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.Kafka.KafkaHelper`1.Instance">
+            <summary>
+            KafkaClient 静态实例，使用前请初始化
+            KafkaHelper.Initialization(new KafkaClient())
+            </summary>
+        </member>
+        <member name="M:UtilsSharp.Kafka.KafkaHelper`1.Initialization(UtilsSharp.Kafka.KafkaClient)">
+            <summary>
+            初始化KafkaClient静态访问类
+            KafkaHelper.Initialization(new KafkaClient())
+            </summary>
+            <param name="kafkaClient"></param>
+        </member>
+        <member name="M:UtilsSharp.Kafka.KafkaHelper`1.GetProducer">
+            <summary>
+            生产者
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.Kafka.KafkaHelper`1.GetConsumer(System.String)">
+            <summary>
+            消费者
+            </summary>
+            <param name="groupId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.Kafka.KafkaHelper`1.CreateTopicsAsync(System.String,System.Int32,System.Int16)">
+            <summary>
+            创建主题
+            </summary>
+            <param name="topicName">主题名称</param>
+            <param name="numPartitions">Partitions数量</param>
+            <param name="replicationFactor">replicationFactor</param>
+            <returns>ErrorReason</returns>
+        </member>
+        <member name="M:UtilsSharp.Kafka.KafkaHelper`1.DeleteTopicsAsync(System.Collections.Generic.IEnumerable{System.String},Confluent.Kafka.Admin.DeleteTopicsOptions)">
+            <summary>
+            删除主题
+            </summary>
+            <param name="topicNames">主题名称集合</param>
+            <param name="options">参数</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.Kafka.KafkaHelper`1.DeleteRecordsAsync(System.Collections.Generic.IEnumerable{Confluent.Kafka.TopicPartitionOffset},Confluent.Kafka.Admin.DeleteRecordsOptions)">
+            <summary>
+            删除记录
+            </summary>
+            <param name="topicPartitionOffset">topicPartitionOffset</param>
+            <param name="options"></param>
+            <returns>ErrorReason</returns>
+        </member>
+        <member name="M:UtilsSharp.Kafka.KafkaHelper`1.IsTopicExist(System.String,System.Nullable{System.TimeSpan})">
+            <summary>
+            主题是否存在
+            </summary>
+            <param name="topicName">主题名称</param>
+            <param name="timeout">超时时间(默认10秒)</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.Kafka.KafkaHelper`1.GetTopic(System.String,System.Nullable{System.TimeSpan})">
+            <summary>
+            获取主题
+            </summary>
+            <param name="topicName">主题名称</param>
+            <param name="timeout">超时时间(默认10秒)</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.Kafka.KafkaHelper`1.GetTopics(System.Nullable{System.TimeSpan})">
+            <summary>
+            获取所有主题
+            </summary>
+            <param name="timeout">超时时间(默认10秒)</param>
+            <returns></returns>
+        </member>
+        <member name="P:UtilsSharp.Kafka.KafkaLogMessage.Name">
+            <summary>
+            名称
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.Kafka.KafkaLogMessage.Level">
+            <summary>
+            级别
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.Kafka.KafkaLogMessage.Facility">
+            <summary>
+            装置
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.Kafka.KafkaLogMessage.Message">
+            <summary>
+            信息
+            </summary>
+        </member>
+        <member name="T:UtilsSharp.Kafka.KafkaManager">
+            <summary>
+            Kafka注册管理
+            </summary>
+        </member>
+        <member name="M:UtilsSharp.Kafka.KafkaManager.Register">
+            <summary>
+            注册
+            </summary>
+        </member>
+        <member name="M:UtilsSharp.Kafka.KafkaManager.Register``1(UtilsSharp.Kafka.KafkaClient)">
+            <summary>
+            注册
+            </summary>
+            <typeparam name="T">T</typeparam>
+            <param name="kafkaClient">kafkaClient</param>
+        </member>
+        <member name="P:UtilsSharp.Kafka.KafkaMessage.Topic">
+            <summary>
+            主题
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.Kafka.KafkaMessage.Partition">
+            <summary>
+            分区，不指定分区即交给kafka指定分区
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.Kafka.KafkaMessage.Key">
+            <summary>
+            键值
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.Kafka.KafkaMessage.Message">
+            <summary>
+            消息
+            </summary>
+        </member>
+        <member name="F:UtilsSharp.Kafka.KafkaProducer._builder">
+            <summary>
+            负责生成producer
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.Kafka.KafkaProducer.BootstrapServers">
+            <summary>
+            kafka服务节点
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.Kafka.KafkaProducer.FlushTimeOut">
+            <summary>
+            Flush超时时间(ms)
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.Kafka.KafkaProducer.InitializeCount">
+            <summary>
+            保留发布者数
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.Kafka.KafkaProducer.DefaultKey">
+            <summary>
+            默认的消息键值
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.Kafka.KafkaProducer.DefaultTopic">
+            <summary>
+            默认的主题
+            </summary>
+        </member>
+        <member name="E:UtilsSharp.Kafka.KafkaProducer.ErrorHandler">
+            <summary>
+            异常事件
+            </summary>
+        </member>
+        <member name="E:UtilsSharp.Kafka.KafkaProducer.StatisticsHandler">
+            <summary>
+            统计事件
+            </summary>
+        </member>
+        <member name="E:UtilsSharp.Kafka.KafkaProducer.LogHandler">
+            <summary>
+            日志事件
+            </summary>
+        </member>
+        <member name="M:UtilsSharp.Kafka.KafkaProducer.CreateProducerBuilder">
+            <summary>
+            producer构造器
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.Kafka.KafkaProducer.RentProducer">
+            <summary>
+            租赁一个发布者
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.Kafka.KafkaProducer.ReturnProducer(Confluent.Kafka.IProducer{System.String,System.Object})">
+            <summary>
+            返回保存发布者
+            </summary>
+            <param name="producer"></param>
+        </member>
+        <member name="M:UtilsSharp.Kafka.KafkaProducer.SendWithKey(System.String,System.Object,System.Action{UtilsSharp.Kafka.DeliveryResult})">
+            <summary>
+            发送消息
+            </summary>
+            <param name="key"></param>
+            <param name="message"></param>
+            <param name="callback"></param>
+        </member>
+        <member name="M:UtilsSharp.Kafka.KafkaProducer.SendWithKey(System.Nullable{System.Int32},System.String,System.Object,System.Action{UtilsSharp.Kafka.DeliveryResult})">
+            <summary>
+            发送消息
+            </summary>
+            <param name="partition"></param>
+            <param name="key"></param>
+            <param name="message"></param>
+            <param name="callback"></param>
+        </member>
+        <member name="M:UtilsSharp.Kafka.KafkaProducer.SendWithKey(System.String,System.String,System.Object,System.Action{UtilsSharp.Kafka.DeliveryResult})">
+            <summary>
+            发送消息
+            </summary>
+            <param name="topic"></param>
+            <param name="key"></param>
+            <param name="message"></param>
+            <param name="callback"></param>
+        </member>
+        <member name="M:UtilsSharp.Kafka.KafkaProducer.Send(System.Object,System.Action{UtilsSharp.Kafka.DeliveryResult})">
+            <summary>
+            发送消息
+            </summary>
+            <param name="message"></param>
+            <param name="callback"></param>
+        </member>
+        <member name="M:UtilsSharp.Kafka.KafkaProducer.Send(System.Nullable{System.Int32},System.Object,System.Action{UtilsSharp.Kafka.DeliveryResult})">
+            <summary>
+            发送消息
+            </summary>
+            <param name="partition"></param>
+            <param name="message"></param>
+            <param name="callback"></param>
+        </member>
+        <member name="M:UtilsSharp.Kafka.KafkaProducer.Send(System.String,System.Object,System.Action{UtilsSharp.Kafka.DeliveryResult})">
+            <summary>
+            发送消息
+            </summary>
+            <param name="topic"></param>
+            <param name="message"></param>
+            <param name="callback"></param>
+        </member>
+        <member name="M:UtilsSharp.Kafka.KafkaProducer.Send(System.String,System.Nullable{System.Int32},System.Object,System.Action{UtilsSharp.Kafka.DeliveryResult})">
+            <summary>
+            发送消息
+            </summary>
+            <param name="topic"></param>
+            <param name="partition"></param>
+            <param name="message"></param>
+            <param name="callback"></param>
+        </member>
+        <member name="M:UtilsSharp.Kafka.KafkaProducer.Send(System.String,System.Nullable{System.Int32},System.String,System.Object,System.Action{UtilsSharp.Kafka.DeliveryResult})">
+            <summary>
+            发送消息
+            </summary>
+            <param name="topic"></param>
+            <param name="partition"></param>
+            <param name="key"></param>
+            <param name="message"></param>
+            <param name="callback"></param>
+        </member>
+        <member name="M:UtilsSharp.Kafka.KafkaProducer.Send(UtilsSharp.Kafka.KafkaMessage,System.Action{UtilsSharp.Kafka.DeliveryResult})">
+            <summary>
+            发送消息
+            </summary>
+            <param name="kafkaMessage"></param>
+            <param name="callback"></param>
+        </member>
+        <member name="M:UtilsSharp.Kafka.KafkaProducer.SendWithKeyAsync(System.String,System.Object)">
+            <summary>
+            异步发送消息
+            </summary>
+            <param name="key"></param>
+            <param name="message"></param>
+        </member>
+        <member name="M:UtilsSharp.Kafka.KafkaProducer.SendWithKeyAsync(System.Nullable{System.Int32},System.String,System.Object)">
+            <summary>
+            异步发送消息
+            </summary>
+            <param name="partition"></param>
+            <param name="key"></param>
+            <param name="message"></param>
+        </member>
+        <member name="M:UtilsSharp.Kafka.KafkaProducer.SendWithKeyAsync(System.String,System.String,System.Object)">
+            <summary>
+            异步发送消息
+            </summary>
+            <param name="topic"></param>
+            <param name="key"></param>
+            <param name="message"></param>
+        </member>
+        <member name="M:UtilsSharp.Kafka.KafkaProducer.SendAsync(System.Object)">
+            <summary>
+            异步发送消息
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="M:UtilsSharp.Kafka.KafkaProducer.SendAsync(System.Nullable{System.Int32},System.Object)">
+            <summary>
+            异步发送消息
+            </summary>
+            <param name="partition"></param>
+            <param name="message"></param>
+        </member>
+        <member name="M:UtilsSharp.Kafka.KafkaProducer.SendAsync(System.String,System.Object)">
+            <summary>
+            异步发送消息
+            </summary>
+            <param name="topic"></param>
+            <param name="message"></param>
+        </member>
+        <member name="M:UtilsSharp.Kafka.KafkaProducer.SendAsync(System.String,System.Nullable{System.Int32},System.Object)">
+            <summary>
+            异步发送消息
+            </summary>
+            <param name="topic"></param>
+            <param name="partition"></param>
+            <param name="message"></param>
+        </member>
+        <member name="M:UtilsSharp.Kafka.KafkaProducer.SendAsync(System.String,System.Nullable{System.Int32},System.String,System.Object)">
+            <summary>
+            异步发送消息
+            </summary>
+            <param name="topic"></param>
+            <param name="partition"></param>
+            <param name="key"></param>
+            <param name="message"></param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.Kafka.KafkaProducer.SendAsync(UtilsSharp.Kafka.KafkaMessage)">
+            <summary>
+            异步发送消息
+            </summary>
+            <param name="kafkaMessage"></param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.Kafka.KafkaProducer.Dispose">
+            <summary>
+            释放资源
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.Kafka.KafkaSubscriber.Topic">
+            <summary>
+            主题
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.Kafka.KafkaSubscriber.Partition">
+            <summary>
+            分区
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.Kafka.ListenResult.Token">
+            <summary>
+            CancellationToken
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.Kafka.ListenResult.Stoped">
+            <summary>
+            是否已停止
+            </summary>
+        </member>
+        <member name="M:UtilsSharp.Kafka.ListenResult.Stop">
+            <summary>
+            停止监听
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.Kafka.RecieveResult.Topic">
+            <summary>
+            Kafka消息所属的主题
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.Kafka.RecieveResult.Key">
+            <summary>
+            键值
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.Kafka.RecieveResult.Message">
+            <summary>
+            我们需要处理的消息具体的内容
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.Kafka.RecieveResult.Offset">
+            <summary>
+            Kafka数据读取的当前位置
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.Kafka.RecieveResult.Partition">
+            <summary>
+            消息所在的物理分区
+            </summary>
+        </member>
+        <member name="M:UtilsSharp.Kafka.RecieveResult.Commit">
+            <summary>
+            提交
+            </summary>
+        </member>
+    </members>
+</doc>

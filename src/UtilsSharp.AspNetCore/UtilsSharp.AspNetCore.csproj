@@ -12,6 +12,7 @@
     <PackageIconUrl />
     <RepositoryUrl>https://github.com/agoling/UtilsSharp.Standard</RepositoryUrl>
     <PackageTags>UtilsSharp UtilsSharp.AspNetCore .netcore3.1帮助类  netcore帮助类</PackageTags>
+    <ApplicationIcon>UtilsSharp.ico</ApplicationIcon>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
@@ -35,6 +36,16 @@
     <None Include="..\UtilsSharp.jpg">
       <Pack>True</Pack>
       <PackagePath></PackagePath>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="C:\Users\Administrator\.nuget\packages\utilssharp\2.5.0\contentFiles\any\any\UtilsSharp.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="UtilsSharp.AspNetCore.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
 

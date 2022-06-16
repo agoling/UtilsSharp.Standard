@@ -10,7 +10,7 @@
     <PackageProjectUrl>https://github.com/agoling/UtilsSharp.Standard</PackageProjectUrl>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <RepositoryUrl>https://github.com/agoling/UtilsSharp.Standard</RepositoryUrl>
-    <ApplicationIcon></ApplicationIcon>
+    <ApplicationIcon>UtilsSharp.ico</ApplicationIcon>
     <Win32Resource />
     <PackageIcon>UtilsSharp.jpg</PackageIcon>
     <PackageIconUrl />
@@ -42,6 +42,7 @@
     <None Include="..\UtilsSharp.jpg">
       <Pack>True</Pack>
       <PackagePath></PackagePath>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </None>
   </ItemGroup>
 
@@ -56,6 +57,9 @@
    <ItemGroup>
     <None Update="contentFiles\UtilsSharp.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="UtilsSharp.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
 

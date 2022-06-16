@@ -9,8 +9,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestDemo", "TestDemo\TestDe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestProjectNet", "UnitTestProjectNet\UnitTestProjectNet.csproj", "{A86B4F09-784E-477C-8703-B446F395125D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MySql", "MySql\MySql.csproj", "{AF167E20-6CD2-4CB8-93B4-409941DFB038}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestDemoApp", "TestDemoApp\TestDemoApp.csproj", "{F017A0E2-2DB1-4CBB-9F07-0E36A9EBFDE7}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitTestProjectNet.Core", "UnitTestProjectNet.Core\UnitTestProjectNet.Core.csproj", "{CEB634EB-592D-4F09-83D2-C72705DE1E2C}"
@@ -67,10 +65,6 @@ Global
 		{A86B4F09-784E-477C-8703-B446F395125D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A86B4F09-784E-477C-8703-B446F395125D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A86B4F09-784E-477C-8703-B446F395125D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{AF167E20-6CD2-4CB8-93B4-409941DFB038}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AF167E20-6CD2-4CB8-93B4-409941DFB038}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AF167E20-6CD2-4CB8-93B4-409941DFB038}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AF167E20-6CD2-4CB8-93B4-409941DFB038}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F017A0E2-2DB1-4CBB-9F07-0E36A9EBFDE7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F017A0E2-2DB1-4CBB-9F07-0E36A9EBFDE7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F017A0E2-2DB1-4CBB-9F07-0E36A9EBFDE7}.Release|Any CPU.ActiveCfg = Release|Any CPU

@@ -1,0 +1,37 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <Authors>Agoling</Authors>
+    <Description>Castle.Core.AsyncInterceptor UtilsSharp.AsyncInterceptor  AsyncInterceptor</Description>
+    <PackageProjectUrl>https://github.com/agoling/UtilsSharp.Standard</PackageProjectUrl>
+    <PackageIcon>UtilsSharp.jpg</PackageIcon>
+    <PackageIconUrl />
+    <RepositoryUrl>https://github.com/agoling/UtilsSharp.Standard</RepositoryUrl>
+    <PackageTags>Castle.Core.AsyncInterceptor UtilsSharp.AsyncInterceptor  AsyncInterceptor</PackageTags>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DocumentationFile>D:\GitHub\Project\UtilsSharp.Standard\src\UtilsSharp.AsyncInterceptor\UtilsSharp.AsyncInterceptor.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Castle.Core" Version="4.4.0" />
+    <PackageReference Include="System.Threading.Tasks.Extensions" Version="4.5.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\UtilsSharp.jpg">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="UtilsSharp.AsyncInterceptor.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>

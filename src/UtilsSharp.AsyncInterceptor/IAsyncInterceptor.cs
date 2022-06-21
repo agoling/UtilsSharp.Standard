@@ -6,38 +6,41 @@ using Castle.DynamicProxy;
 
 namespace UtilsSharp.AsyncInterceptor
 {
+    /// <summary>
+    /// 异步拦截
+    /// </summary>
     public interface IAsyncInterceptor
     {
         /// <summary>
-        /// Intercepts a synchronous method <paramref name="invocation"/>.
+        /// 同步拦截
         /// </summary>
-        /// <param name="invocation">The method invocation.</param>
+        /// <param name="invocation">IInvocation</param>
         void InterceptSynchronous(IInvocation invocation);
 
         /// <summary>
-        /// Intercepts an asynchronous method <paramref name="invocation"/> with return type of <see cref="Task"/>.
+        /// 异步Task拦截
         /// </summary>
-        /// <param name="invocation">The method invocation.</param>
+        /// <param name="invocation">IInvocation</param>
         void InterceptTaskAsynchronous(IInvocation invocation);
 
         /// <summary>
-        /// Intercepts an asynchronous method <paramref name="invocation"/> with return type of <see cref="Task{T}"/>.
+        /// 异步Task`1拦截
         /// </summary>
-        /// <typeparam name="TResult">The type of the <see cref="Task{T}"/> <see cref="Task{T}.Result"/>.</typeparam>
-        /// <param name="invocation">The method invocation.</param>
+        /// <typeparam name="TResult">返回参数</typeparam>
+        /// <param name="invocation">IInvocation</param>
         void InterceptTaskAsynchronous<TResult>(IInvocation invocation);
 
         /// <summary>
-        /// Intercepts an asynchronous method <paramref name="invocation"/> with return type of <see cref="Task"/>.
+        /// 异步ValueTask拦截
         /// </summary>
-        /// <param name="invocation">The method invocation.</param>
+        /// <param name="invocation">IInvocation</param>
         void InterceptValueTaskAsynchronous(IInvocation invocation);
 
         /// <summary>
-        /// Intercepts an asynchronous method <paramref name="invocation"/> with return type of <see cref="Task{T}"/>.
+        /// 异步ValueTask`1拦截
         /// </summary>
-        /// <typeparam name="TResult">The type of the <see cref="Task{T}"/> <see cref="Task{T}.Result"/>.</typeparam>
-        /// <param name="invocation">The method invocation.</param>
+        /// <typeparam name="TResult">返回参数</typeparam>
+        /// <param name="invocation">IInvocation</param>
         void InterceptValueTaskAsynchronous<TResult>(IInvocation invocation);
     }
 }

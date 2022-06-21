@@ -3,6 +3,7 @@ using Autofac.Extras.DynamicProxy;
 using AutoMapper;
 using Castle.DynamicProxy;
 using Microsoft.AspNetCore.Http;
+using UtilsSharp.AsyncInterceptor;
 using UtilsSharp.Dependency;
 
 namespace UtilsSharp.AspNetCore
@@ -61,6 +62,7 @@ namespace UtilsSharp.AspNetCore
             //获取所有相关类库的程序集
             var enumerable = AssemblyHelper.GetAllAssemblies();
             builder.RegisterType<T>();//注册拦截器
+            builder.RegisterAssemblyTypes(enumerable.ToArray()).Where(t => typeof(IAsyncInterceptor).IsAssignableFrom(t) && typeof(IAsyncInterceptor) != t && !t.IsAbstract).AsSelf();//注册异步拦截器
             builder.RegisterAssemblyTypes(enumerable.ToArray()).Where(t => typeof(ISingletonDependency).IsAssignableFrom(t) && typeof(ISingletonDependency) != t).AsImplementedInterfaces().SingleInstance().InterceptedBy(typeof(T)).EnableInterfaceInterceptors();//注册类并为其添加拦截器
             builder.RegisterAssemblyTypes(enumerable.ToArray()).Where(t => typeof(ITransientDependency).IsAssignableFrom(t) && typeof(ITransientDependency) != t).AsImplementedInterfaces().InstancePerDependency().InterceptedBy(typeof(T)).EnableInterfaceInterceptors();//注册类并为其添加拦截器
             builder.RegisterAssemblyTypes(enumerable.ToArray()).Where(t => typeof(IUnitOfWorkDependency).IsAssignableFrom(t) && typeof(IUnitOfWorkDependency) != t).AsImplementedInterfaces().InstancePerLifetimeScope().InterceptedBy(typeof(T)).EnableInterfaceInterceptors();//注册类并为其添加拦截器

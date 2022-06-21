@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <PackageId>UtilsSharp.AspNetCore</PackageId>
-    <Version>2.0.1</Version>
+    <Version>2.1.1</Version>
     <Authors>Agoling</Authors>
     <Product>Agoling</Product>
     <Description>本项目是.net core3.1扩展类，属于UtilsSharp项目分支，应用于B/S网页端项目。</Description>
@@ -29,6 +29,7 @@
     <PackageReference Include="Swashbuckle.AspNetCore.Newtonsoft" Version="6.3.1" />
     <PackageReference Include="Swashbuckle.AspNetCore.Swagger" Version="6.3.1" />
     <PackageReference Include="UtilsSharp" Version="2.5.0" />
+    <PackageReference Include="UtilsSharp.AsyncInterceptor" Version="1.0.0" />
     <PackageReference Include="UtilsSharp.Logger" Version="2.0.0" />
   </ItemGroup>
 

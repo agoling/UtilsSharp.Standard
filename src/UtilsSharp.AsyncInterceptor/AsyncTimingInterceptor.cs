@@ -6,6 +6,9 @@ using Castle.DynamicProxy;
 
 namespace UtilsSharp.AsyncInterceptor
 {
+    /// <summary>
+    /// AsyncTimingInterceptor
+    /// </summary>
     public abstract class AsyncTimingInterceptor : ProcessingAsyncInterceptor<Stopwatch>
     {
         /// <summary>

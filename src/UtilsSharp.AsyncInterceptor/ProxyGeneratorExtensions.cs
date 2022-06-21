@@ -6,6 +6,9 @@ using Castle.DynamicProxy;
 
 namespace UtilsSharp.AsyncInterceptor
 {
+    /// <summary>
+    /// ProxyGeneratorExtensions
+    /// </summary>
     public static class ProxyGeneratorExtensions
     {
         /// <summary>

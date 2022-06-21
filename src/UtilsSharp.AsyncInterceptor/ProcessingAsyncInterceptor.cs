@@ -6,6 +6,10 @@ using Castle.DynamicProxy;
 
 namespace UtilsSharp.AsyncInterceptor
 {
+    /// <summary>
+    /// ProcessingAsyncInterceptor
+    /// </summary>
+    /// <typeparam name="TState"></typeparam>
     public abstract class ProcessingAsyncInterceptor<TState> : IAsyncInterceptor where TState : class
     {
         /// <summary>

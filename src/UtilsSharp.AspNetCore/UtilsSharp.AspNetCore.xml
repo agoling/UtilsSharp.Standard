@@ -173,6 +173,111 @@
             <param name="services">services</param>
             <returns></returns>
         </member>
+        <member name="T:UtilsSharp.AspNetCore.Interceptor.AsyncInterceptor`1">
+            <summary>
+            异步拦截
+            </summary>
+            <typeparam name="TAsyncInterceptor">异步拦截服务</typeparam>
+        </member>
+        <member name="M:UtilsSharp.AspNetCore.Interceptor.AsyncInterceptor`1.#ctor(`0)">
+            <summary>
+            异步拦截
+            </summary>
+        </member>
+        <member name="M:UtilsSharp.AspNetCore.Interceptor.AsyncInterceptor`1.Intercept(Castle.DynamicProxy.IInvocation)">
+            <summary>
+            拦截主方法
+            </summary>
+            <param name="invocation"></param>
+        </member>
+        <member name="T:UtilsSharp.AspNetCore.Interceptor.InterceptorException">
+            <summary>
+            拦截异常信息
+            </summary>
+        </member>
+        <member name="M:UtilsSharp.AspNetCore.Interceptor.InterceptorException.Interceptor(Castle.DynamicProxy.IInvocation,System.Exception)">
+            <summary>
+            拦截异常信息
+            </summary>
+            <param name="invocation">IInvocation</param>
+            <param name="ex">Exception</param>
+        </member>
+        <member name="M:UtilsSharp.AspNetCore.Interceptor.InterceptorException.InterceptorAsync``1(Castle.DynamicProxy.IInvocation,System.Exception)">
+            <summary>
+            拦截异常信息(异步带参数)
+            </summary>
+            <typeparam name="TResult">TResult</typeparam>
+            <param name="invocation">IInvocation</param>
+            <param name="ex">Exception</param>
+            <returns></returns>
+        </member>
+        <member name="T:UtilsSharp.AspNetCore.Interceptor.LoggerAsyncInterceptor">
+            <summary>
+            日志异步拦截
+            </summary>
+        </member>
+        <member name="M:UtilsSharp.AspNetCore.Interceptor.LoggerAsyncInterceptor.InterceptSynchronous(Castle.DynamicProxy.IInvocation)">
+            <summary>
+            同步方法拦截时使用
+            </summary>
+            <param name="invocation"></param>
+        </member>
+        <member name="M:UtilsSharp.AspNetCore.Interceptor.LoggerAsyncInterceptor.InterceptTaskAsynchronous(Castle.DynamicProxy.IInvocation)">
+            <summary>
+            异步方法返回Task拦截时使用
+            </summary>
+            <param name="invocation">IInvocation</param>
+        </member>
+        <member name="M:UtilsSharp.AspNetCore.Interceptor.LoggerAsyncInterceptor.InternalInterceptTaskAsynchronous(Castle.DynamicProxy.IInvocation)">
+            <summary>
+            异步方法返回Task`1拦截时使用 私有方法
+            </summary>
+            <param name="invocation">IInvocation</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.AspNetCore.Interceptor.LoggerAsyncInterceptor.InterceptTaskAsynchronous``1(Castle.DynamicProxy.IInvocation)">
+            <summary>
+            异步方法返回Task`1拦截时使用
+            </summary>
+            <typeparam name="TResult">返回参数</typeparam>
+            <param name="invocation">IInvocation</param>
+        </member>
+        <member name="M:UtilsSharp.AspNetCore.Interceptor.LoggerAsyncInterceptor.InternalInterceptTaskAsynchronous``1(Castle.DynamicProxy.IInvocation)">
+            <summary>
+            异步方法返回Task`1拦截时使用 私有方法
+            </summary>
+            <typeparam name="TResult">返回参数</typeparam>
+            <param name="invocation">IInvocation</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.AspNetCore.Interceptor.LoggerAsyncInterceptor.InterceptValueTaskAsynchronous(Castle.DynamicProxy.IInvocation)">
+            <summary>
+            异步方法返回ValueTask拦截时使用
+            </summary>
+            <param name="invocation">IInvocation</param>
+        </member>
+        <member name="M:UtilsSharp.AspNetCore.Interceptor.LoggerAsyncInterceptor.InternalInterceptValueTaskAsynchronous(Castle.DynamicProxy.IInvocation)">
+            <summary>
+            异步方法返回ValueTask拦截时使用 私有方法
+            </summary>
+            <param name="invocation">IInvocation</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.AspNetCore.Interceptor.LoggerAsyncInterceptor.InterceptValueTaskAsynchronous``1(Castle.DynamicProxy.IInvocation)">
+            <summary>
+            异步方法返回ValueTask`1拦截时使用
+            </summary>
+            <typeparam name="TResult">返回参数</typeparam>
+            <param name="invocation">IInvocation</param>
+        </member>
+        <member name="M:UtilsSharp.AspNetCore.Interceptor.LoggerAsyncInterceptor.InternalInterceptValueTaskAsynchronous``1(Castle.DynamicProxy.IInvocation)">
+            <summary>
+            异步方法返回ValueTask`1拦截时使用 私有方法
+            </summary>
+            <typeparam name="TResult">返回参数</typeparam>
+            <param name="invocation">IInvocation</param>
+            <returns></returns>
+        </member>
         <member name="T:UtilsSharp.AspNetCore.Interceptor.LoggerInterceptor">
             <summary>
             日志拦截器

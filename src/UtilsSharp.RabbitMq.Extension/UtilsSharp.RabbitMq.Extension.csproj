@@ -9,7 +9,7 @@
     <PackageIconUrl />
     <RepositoryUrl>https://github.com/agoling/UtilsSharp.Standard</RepositoryUrl>
     <PackageTags>RabbitMQ帮助类 RabbitMQ公共类 RabbitMQ封装 RabbitMQ类库</PackageTags>
-    <Version>2.0.0</Version>
+    <Version>3.1.0</Version>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
@@ -19,7 +19,7 @@
   <ItemGroup>
     <PackageReference Include="UtilsSharp" Version="2.5.0" />
     <PackageReference Include="UtilsSharp.Logger" Version="2.0.0" />
-    <PackageReference Include="UtilsSharp.RabbitMq" Version="3.0.2" />
+    <PackageReference Include="UtilsSharp.RabbitMq" Version="3.1.0" />
   </ItemGroup>
 
   <ItemGroup>

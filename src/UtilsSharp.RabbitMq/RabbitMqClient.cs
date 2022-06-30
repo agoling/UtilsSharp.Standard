@@ -55,11 +55,11 @@ namespace UtilsSharp.RabbitMq
 
             if (_requestedConnectionTimeout != default)
             {
-                _rabbitConnectionFactory.RequestedConnectionTimeout = _requestedConnectionTimeout;
+                _rabbitConnectionFactory.RequestedConnectionTimeout = _requestedConnectionTimeout.Milliseconds;
             }
             if (_requestedHeartbeat != default)
             {
-                _rabbitConnectionFactory.RequestedHeartbeat = _requestedHeartbeat;
+                _rabbitConnectionFactory.RequestedHeartbeat = (ushort)_requestedHeartbeat.Seconds;
             }
             if (_automaticRecoveryEnabled != null)
             {
@@ -285,7 +285,7 @@ namespace UtilsSharp.RabbitMq
                 {
                     try
                     {
-                        var message = Encoding.UTF8.GetString(ea.Body.ToArray());
+                        var message = Encoding.UTF8.GetString(ea.Body);
                         callback.Invoke(message);
                         channel.BasicAck(ea.DeliveryTag, false);
                     }
@@ -409,7 +409,7 @@ namespace UtilsSharp.RabbitMq
                 {
                     try
                     {
-                        var message = Encoding.UTF8.GetString(ea.Body.ToArray());
+                        var message = Encoding.UTF8.GetString(ea.Body);
                         callback.Invoke(message);
                         channel.BasicAck(ea.DeliveryTag, false);
                     }

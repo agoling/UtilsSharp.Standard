@@ -103,26 +103,71 @@ namespace UtilsSharp.AspNetCore.Swagger
             }
             try
             {
-                if (AspNetCoreExtensionsConfig.SwaggerDocOptions.Enable)
+                var swaggerDocOptions = AspNetCoreExtensionsConfig.SwaggerDocOptions;
+                if (swaggerDocOptions.Enable)
                 {
                     services.AddSwaggerGen(c =>
                     {
                         c.CustomSchemaIds(i => i.FullName);
+
                         #region Swagger接口模块分组配置
-                        AspNetCoreExtensionsConfig.SwaggerDocOptions.Groups.ForEach(group =>
+                        swaggerDocOptions.Groups.ForEach(group =>
                         {
                             c.SwaggerDoc(group.GroupName, new OpenApiInfo { Title = group.Title, Description = group.Description, Version = group.Version });
                         });
                         #endregion
+
+                        #region 添加注释
                         var enumerable = AssemblyHelper.GetAllAssemblies();
                         foreach (var xmlPath in from item in enumerable let xmlName = $"{item.GetName().Name}.xml" select item.ManifestModule.FullyQualifiedName.Replace(item.ManifestModule.Name, xmlName) into xmlPath where File.Exists(xmlPath) select xmlPath)
                         {
                             c.IncludeXmlComments(xmlPath, true); //添加控制器层注释（true表示显示控制器注释）
                         }
-                        if (AspNetCoreExtensionsConfig.SwaggerDocOptions.HeaderParameters != null && AspNetCoreExtensionsConfig.SwaggerDocOptions.HeaderParameters.Count > 0)
+                        #endregion
+                        
+                        #region Header
+                        if (swaggerDocOptions.HeaderParameters != null && swaggerDocOptions.HeaderParameters.Count > 0)
                         {
                             c.OperationFilter<AddRequiredHeaderParameter>();//添加header参数
                         }
+                        #endregion
+                        
+                        #region Authorization
+                        if (swaggerDocOptions.EnableAuthorization)
+                        {
+                         
+                            if (!string.IsNullOrEmpty(swaggerDocOptions.SecurityName) && swaggerDocOptions.SecurityScheme != null &&swaggerDocOptions.SecurityRequirement != null)
+                            {
+                                c.AddSecurityDefinition(swaggerDocOptions.SecurityName, swaggerDocOptions.SecurityScheme);
+                                c.AddSecurityRequirement(swaggerDocOptions.SecurityRequirement);
+                            }
+                            else
+                            {
+                                //添加Authorization
+                                c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+                                {
+                                    Description = "JWT认证授权，使用直接在下框中输入Bearer {token}（注意两者之间是一个空格）",
+                                    Name = "Authorization",
+                                    In = ParameterLocation.Header,
+                                    Scheme = "bearer",
+                                    Type = SecuritySchemeType.Http,
+                                    BearerFormat = "JWT"
+                                });
+
+                                c.AddSecurityRequirement(new OpenApiSecurityRequirement
+                                {
+                                    {
+                                        new OpenApiSecurityScheme
+                                        {
+                                            Reference = new OpenApiReference { Type = ReferenceType.SecurityScheme, Id = "Bearer" }
+                                        },
+                                        new List<string>()
+                                    }
+                                });
+                            }
+                        }
+                        #endregion
+
                     });
                 }
                 return services;

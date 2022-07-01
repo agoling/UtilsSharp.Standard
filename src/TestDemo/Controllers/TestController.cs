@@ -37,7 +37,8 @@ namespace TestDemo.Controllers
         [HttpGet]
         public string Get()
         {
-            var token = UtilsSharp.Standard.HttpContext.Current.Request.Headers["token"];
+            var szy = UtilsSharp.Standard.HttpContext.Current.Request.Headers["szy"];
+            var token = UtilsSharp.Standard.HttpContext.Current.Request.Headers["Authorization"];
             return $"{_wxPayService.PayType()}和{_aliPayService.PayType()}";
         }
 

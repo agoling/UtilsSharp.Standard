@@ -14,6 +14,22 @@ namespace UtilsSharp.AspNetCore.Swagger
         /// 生产环境可禁用Swagger
         /// </summary>
         public bool Enable { set; get; } = true;
+        /// <summary>
+        /// 是否开启Authorization
+        /// </summary>
+        public bool EnableAuthorization { set; get; } = false;
+        /// <summary>
+        /// Authorization  SecurityName
+        /// </summary>
+        public string SecurityName { set; get; }
+        /// <summary>
+        /// Authorization  SecurityScheme
+        /// </summary>
+        public OpenApiSecurityScheme SecurityScheme { set; get; }
+        /// <summary>
+        /// Authorization  SecurityRequirement
+        /// </summary>
+        public OpenApiSecurityRequirement SecurityRequirement { set; get; }
 
         /// <summary>
         /// 项目名称
@@ -52,6 +68,10 @@ namespace UtilsSharp.AspNetCore.Swagger
         /// </summary>
         public string Name { set; get; }
         /// <summary>
+        /// 参数的位置:可能的值为“query”、“header”、“path”或“cookie”。
+        /// </summary>
+        public ParameterLocation? In { set; get; } = ParameterLocation.Header;
+        /// <summary>
         /// Header默认值
         /// </summary>
         public string Value { set; get; }
@@ -59,6 +79,11 @@ namespace UtilsSharp.AspNetCore.Swagger
         /// Header描述
         /// </summary>
         public string Description { set; get; }
+        /// <summary>
+        /// 是否是必须的
+        /// </summary>
+        public bool Required { set; get; } = false;
+
     }
 
     /// <summary>

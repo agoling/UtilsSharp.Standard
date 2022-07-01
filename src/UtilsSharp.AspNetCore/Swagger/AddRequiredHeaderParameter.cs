@@ -23,8 +23,9 @@ namespace UtilsSharp.AspNetCore.Swagger
                 var param = new OpenApiParameter
                 {
                     Name = item.Name,
-                    In = ParameterLocation.Header,
-                    Description = item.Description
+                    In = item.In,
+                    Description = item.Description,
+                    Required = item.Required
                 };
                 if (!string.IsNullOrEmpty(item.Value))
                 {

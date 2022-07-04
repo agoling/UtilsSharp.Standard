@@ -45,8 +45,8 @@ namespace TestDemo
             
             Init<LoggerInterceptor>(builder);
 
-            builder.RegisterType<WxPayService>().Named<IPayService>(typeof(WxPayService).Name);
-            builder.RegisterType<AliPayService>().Named<IPayService>(typeof(AliPayService).Name);
+            builder.RegisterType<WxPayService>().Named<IPayService>(nameof(WxPayService));
+            builder.RegisterType<AliPayService>().Named<IPayService>(nameof(AliPayService));
         }
     }
 }

@@ -93,6 +93,14 @@
             <param name="assemblyNameKeyword">程序集名称关键词</param>
             <returns></returns>
         </member>
+        <member name="M:UtilsSharp.Protobuf.ProtobufRunTimeExtensions.AddProtobufRunTimeExtensions(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Collections.Generic.List{ProtoBuf.Grpc.Configuration.MarshallerFactory})">
+            <summary>
+             注册ProtoContract、ProtoInclude、ProtoMember
+            </summary>
+            <param name="services">services</param>
+            <param name="marshallerFactories">程序集名称关键词</param>
+            <returns></returns>
+        </member>
         <member name="T:UtilsSharp.Protobuf.ProtobufConvert">
             <summary>
             序列化和反序列化

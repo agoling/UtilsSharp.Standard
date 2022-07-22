@@ -42,7 +42,7 @@ namespace UtilsSharp.Protobuf
             }
 
             //程序集下的所有RuntimeTypeModels
-            IDictionary<string, RuntimeTypeModel> _dllRuntimeTypeModels = new Dictionary<string, RuntimeTypeModel>();
+            IDictionary<string, RuntimeTypeModel> dllRuntimeTypeModels = new Dictionary<string, RuntimeTypeModel>();
             var assemblyNameDic = types.GroupBy(g => g.Assembly.FullName).ToDictionary(t=>t.Key,t=>t.ToList());
             foreach (var assemblyNameKeyValuePair in assemblyNameDic)
             {
@@ -84,14 +84,14 @@ namespace UtilsSharp.Protobuf
                 {
                     #region RuntimeTypeModel
                     RuntimeTypeModel runtimeTypeModel;
-                    if (!_dllRuntimeTypeModels.ContainsKey(currentAssemblyName))
+                    if (!dllRuntimeTypeModels.ContainsKey(currentAssemblyName))
                     {
                         runtimeTypeModel = RuntimeTypeModel.Create(currentAssemblyName);
-                        _dllRuntimeTypeModels.Add(currentAssemblyName, runtimeTypeModel);
+                        dllRuntimeTypeModels.Add(currentAssemblyName, runtimeTypeModel);
                     }
                     else
                     {
-                        runtimeTypeModel = _dllRuntimeTypeModels[currentAssemblyName];
+                        runtimeTypeModel = dllRuntimeTypeModels[currentAssemblyName];
                     }
                     var meta = runtimeTypeModel.Add(t, false);
                     #endregion
@@ -129,14 +129,10 @@ namespace UtilsSharp.Protobuf
                 }
             }
             var marshallerFactory = new Dictionary<string, MarshallerFactory>();
-            foreach (var item in _dllRuntimeTypeModels.Values)
+            foreach (var item in dllRuntimeTypeModels)
             {
-                var newMarshallerFactory = ProtoBufMarshallerFactory.Create(item);
-                if (!marshallerFactory.ContainsKey(item.ToString()))
-                {
-                    marshallerFactory.Add(item.ToString(), newMarshallerFactory);
-                }
-                
+                var newMarshallerFactory = ProtoBufMarshallerFactory.Create(item.Value);
+                marshallerFactory.Add(item.Key, newMarshallerFactory);
             }
             return marshallerFactory;
         }
@@ -154,20 +150,18 @@ namespace UtilsSharp.Protobuf
             if (baseType == null || baseType == typeof(object)) return baseType;
             var baseTypeMeta = runtimeTypeModel.Add(baseType, false);
             var subtypes = baseTypeMeta.GetSubtypes();
-            if (subtypes.All(t => t.DerivedType.Type != type))
+            if (subtypes.Any(t => t.DerivedType.Type == type)) return baseType;
+            if (fieldsTag.ContainsKey(baseTypeMeta))
             {
-                if (fieldsTag.ContainsKey(baseTypeMeta))
-                {
-                    fieldsTag[baseTypeMeta] += 1;
+                fieldsTag[baseTypeMeta] += 1;
 
-                    baseTypeMeta.AddSubType(fieldsTag[baseTypeMeta], type);
-                }
-                else
-                {
-                    var fields = baseTypeMeta.GetFields();
-                    fieldsTag.Add(baseTypeMeta, fields.Length + 1);
-                    baseTypeMeta.AddSubType(fieldsTag[baseTypeMeta], type);
-                }
+                baseTypeMeta.AddSubType(fieldsTag[baseTypeMeta], type);
+            }
+            else
+            {
+                var fields = baseTypeMeta.GetFields();
+                fieldsTag.Add(baseTypeMeta, fields.Length + 1);
+                baseTypeMeta.AddSubType(fieldsTag[baseTypeMeta], type);
             }
             return baseType;
         }

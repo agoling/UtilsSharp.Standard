@@ -9,6 +9,7 @@ using UtilsSharp;
 using UtilsSharp.AspNetCore;
 using UtilsSharp.AspNetCore.Interceptor;
 using UtilsSharp.AspNetCore.Swagger;
+using UtilsSharp.Protobuf;
 
 namespace TestDemo
 {
@@ -18,6 +19,8 @@ namespace TestDemo
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            ProtobufRunTime.Initialize();
+
             services.AddControllers();
             AspNetCoreExtensionsConfig.SwaggerDocOptions = AppsettingsHelper.GetSection<SwaggerDocOptions>("SwaggerDocOptions");
             services.AddAspNetCoreExtensions();

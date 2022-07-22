@@ -6,8 +6,92 @@
     <members>
         <member name="T:UtilsSharp.Protobuf.ProtobufRunTime">
             <summary>
-            注册ProtoContract、ProtoInclude、ProtoMember
+            根据程序集注册ProtoContract、ProtoInclude、ProtoMember
             </summary>
+            <summary>
+            根据程序集注册ProtoContract、ProtoInclude、ProtoMember
+            </summary>
+        </member>
+        <member name="F:UtilsSharp.Protobuf.ProtobufRunTime._dic">
+            <summary>
+            AllMarshallerFactory
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.Protobuf.ProtobufRunTime.AllMarshallerFactory">
+            <summary>
+            AllMarshallerFactory
+            </summary>
+        </member>
+        <member name="M:UtilsSharp.Protobuf.ProtobufRunTime.Initialize">
+            <summary>
+            根据程序集注册ProtoContract、ProtoInclude、ProtoMember
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.Protobuf.ProtobufRunTime.RegisterBaseType(ProtoBuf.Meta.RuntimeTypeModel,System.Collections.Generic.IDictionary{ProtoBuf.Meta.MetaType,System.Int32},System.Type,System.Type)">
+            <summary>
+            注册基类
+            </summary>
+            <param name="runtimeTypeModel">runtimeTypeModel</param>
+            <param name="fieldsTag">fieldsTag</param>
+            <param name="type">type</param>
+            <param name="baseType">baseType</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.Protobuf.ProtobufRunTime.GetMarshallerFactory``1">
+            <summary>
+            GetMarshallerFactory
+            </summary>
+            <typeparam name="T">类型</typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.Protobuf.ProtobufRunTime.GetMarshallerFactory(System.String)">
+            <summary>
+            GetMarshallerFactory
+            </summary>
+            <param name="assemblyName">程序集名称</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.Protobuf.ProtobufRunTime.GetMarshallerFactoryByKeyword(System.String)">
+            <summary>
+            GetMarshallerFactoryByKeyword
+            </summary>
+            <param name="assemblyNameKeyword">程序集名称关键词</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.Protobuf.ProtobufRunTime.GetClientFactory``1">
+            <summary>
+            GetClientFactory
+            </summary>
+            <typeparam name="T">类型</typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.Protobuf.ProtobufRunTime.GetClientFactory(System.String)">
+            <summary>
+            GetClientFactory
+            </summary>
+            <param name="assemblyName">程序集名称</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.Protobuf.ProtobufRunTime.GetClientFactoryByKeyword(System.String)">
+            <summary>
+            GetClientFactoryByKeyword
+            </summary>
+            <param name="assemblyNameKeyword">程序集名称关键词</param>
+            <returns></returns>
+        </member>
+        <member name="T:UtilsSharp.Protobuf.ProtobufRunTimeExtensions">
+            <summary>
+            注册ProtoContract、ProtoInclude、ProtoMember扩展
+            </summary>
+        </member>
+        <member name="M:UtilsSharp.Protobuf.ProtobufRunTimeExtensions.AddProtobufRunTimeExtensions(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.String)">
+            <summary>
+             注册ProtoContract、ProtoInclude、ProtoMember
+            </summary>
+            <param name="services">services</param>
+            <param name="assemblyNameKeyword">程序集名称关键词</param>
+            <returns></returns>
         </member>
         <member name="T:UtilsSharp.Protobuf.ProtobufConvert">
             <summary>

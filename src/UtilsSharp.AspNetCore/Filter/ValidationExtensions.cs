@@ -9,7 +9,7 @@ namespace UtilsSharp.AspNetCore.Filter
     public static class ValidationExtensions
     {
         /// <summary>
-        /// 添加Swagger扩展服务
+        /// 添加入参验证扩展服务
         /// </summary>
         /// <param name="services">services</param>
         /// <returns></returns>

@@ -1,7 +1,6 @@
 ﻿using Autofac;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
-using UtilsSharp;
 using UtilsSharp.AspNetCore.Autofac;
 using UtilsSharp.AspNetCore.Swagger;
 
@@ -23,7 +22,7 @@ namespace UtilsSharp.AspNetCore
             app.UseAutofacExtensions();
             //注册HttpContext
             var httpContextAccessor = AutofacContainer.Current.Resolve<IHttpContextAccessor>();
-            UtilsSharp.Standard.HttpContext.Register(httpContextAccessor);
+            Standard.HttpContext.Register(httpContextAccessor);
             //注册swagger
             app.UseSwaggerExtensions();
             //注册后使可以支持.Net平台上不支持的编码

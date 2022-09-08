@@ -38,11 +38,13 @@ namespace UtilsSharp.AspNetCore.Jwt
         /// <returns></returns>
         public static IServiceCollection AddJwtExtensions(this IServiceCollection services, JwtOptions jwtOptions)
         {
-            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-                .AddJwtBearer(options =>
+            services.AddAuthentication(options =>
                 {
-                    //取出私钥
-                    var secretByte = Encoding.UTF8.GetBytes(jwtOptions.SecretKey);
+                    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+                })
+                .AddJwtBearer(JwtBearerDefaults.AuthenticationScheme,(options) =>
+                {
                     options.TokenValidationParameters = new TokenValidationParameters()
                     {
                         //验证发布者
@@ -55,7 +57,7 @@ namespace UtilsSharp.AspNetCore.Jwt
                         ValidateLifetime = true,
                         //验证全局私钥
                         ValidateIssuerSigningKey = true,
-                        IssuerSigningKey = new SymmetricSecurityKey(secretByte),
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtOptions.SecretKey)),
                         ClockSkew = TimeSpan.Zero
                     };
                 });

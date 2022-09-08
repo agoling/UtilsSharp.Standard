@@ -356,14 +356,14 @@
             Jwt帮助类
             </summary>
         </member>
-        <member name="F:UtilsSharp.AspNetCore.Jwt.JwtHelper.Jwt">
+        <member name="F:UtilsSharp.AspNetCore.Jwt.JwtHelper.JwtSth">
             <summary>
-            Jwt
+            JwtSecurityTokenHandler
             </summary>
         </member>
-        <member name="M:UtilsSharp.AspNetCore.Jwt.JwtHelper.Issue(UtilsSharp.AspNetCore.Jwt.JwtOptions,System.Security.Claims.Claim[])">
+        <member name="M:UtilsSharp.AspNetCore.Jwt.JwtHelper.Create(UtilsSharp.AspNetCore.Jwt.JwtOptions,System.Security.Claims.Claim[])">
             <summary>
-            生成发布Jwt
+            生成JwtToken
             </summary>
             <param name="jwtOptions">Jwt参数</param>
             <param name="claims">Payload||存放用户信息</param>

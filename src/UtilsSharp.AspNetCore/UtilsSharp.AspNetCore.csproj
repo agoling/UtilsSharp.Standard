@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <PackageId>UtilsSharp.AspNetCore</PackageId>
-    <Version>2.1.1</Version>
+    <Version>2.1.1.6</Version>
     <Authors>Agoling</Authors>
     <Product>Agoling</Product>
     <Description>本项目是.net core3.1扩展类，属于UtilsSharp项目分支，应用于B/S网页端项目。</Description>

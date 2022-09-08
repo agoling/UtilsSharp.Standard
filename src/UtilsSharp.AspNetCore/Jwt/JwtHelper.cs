@@ -2,6 +2,8 @@
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using System.Text.RegularExpressions;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using UtilsSharp.Standard;
 
@@ -14,17 +16,17 @@ namespace UtilsSharp.AspNetCore.Jwt
     {
 
         /// <summary>
-        /// Jwt
+        /// JwtSecurityTokenHandler
         /// </summary>
-        public static JwtSecurityTokenHandler Jwt = new JwtSecurityTokenHandler();
+        public static JwtSecurityTokenHandler JwtSth = new JwtSecurityTokenHandler();
 
         /// <summary>
-        /// 生成发布Jwt
+        /// 生成JwtToken
         /// </summary>
         /// <param name="jwtOptions">Jwt参数</param>
         /// <param name="claims">Payload||存放用户信息</param>
         /// <returns></returns>
-        public static BaseResult<string> Issue(JwtOptions jwtOptions,Claim[] claims)
+        public static BaseResult<string> Create(JwtOptions jwtOptions,Claim[] claims)
         {
             var result = new BaseResult<string>();
             try
@@ -48,7 +50,8 @@ namespace UtilsSharp.AspNetCore.Jwt
                     signingCredentials //数字签名
                 );
                 //生成字符串token
-                result.Result = Jwt.WriteToken(token);
+                var jwtToken= JwtSth.WriteToken(token);
+                result.Result = $"{JwtBearerDefaults.AuthenticationScheme} {jwtToken}";
 
             }
             catch (Exception ex)
@@ -68,7 +71,13 @@ namespace UtilsSharp.AspNetCore.Jwt
             var result = new BaseResult<JwtPayload>();
             try
             {
-                var jwtToken = Jwt.ReadJwtToken(token);
+                if (string.IsNullOrEmpty(token))
+                {
+                    result.SetError("token不能为空！");
+                    return result;
+                }
+                token = Regex.Replace(token, "Bearer\\s+", "");
+                var jwtToken = JwtSth.ReadJwtToken(token);
                 result.Result = jwtToken.Payload;
                 return result;
             }
@@ -89,7 +98,13 @@ namespace UtilsSharp.AspNetCore.Jwt
             var result = new BaseResult<JwtSecurityToken>();
             try
             {
-                result.Result = Jwt.ReadJwtToken(token);
+                if (string.IsNullOrEmpty(token))
+                {
+                    result.SetError("token不能为空！");
+                    return result;
+                }
+                token= Regex.Replace(token, "Bearer\\s+", "");
+                result.Result = JwtSth.ReadJwtToken(token);
                 return result;
             }
             catch (Exception ex)

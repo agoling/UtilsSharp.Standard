@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 using UtilsSharp.Standard;
 using HttpContext = Microsoft.AspNetCore.Http.HttpContext;
 
@@ -51,6 +52,10 @@ namespace UtilsSharp.AspNetCore.Jwt
                         code = 4010;
                         msg = $"未授权:{statusCode}";
                         break;
+                    case 403:
+                        code = 4030;
+                        msg = $"暂无权限:{statusCode}";
+                        break;
                     case 404:
                         code = 999;
                         msg = $"未找到服务:{statusCode}";
@@ -81,8 +86,10 @@ namespace UtilsSharp.AspNetCore.Jwt
         /// </summary>
         private static Task HandleExceptionAsync(HttpContext context, int code, string msg)
         {
-            var result = JsonConvert.SerializeObject(new BaseResult<string>() { Code = code, Msg = msg, });
+            var setting = new JsonSerializerSettings{ContractResolver = new CamelCasePropertyNamesContractResolver()};
+            var result = JsonConvert.SerializeObject(new BaseResult<string>() { Code = code, Msg = msg, }, setting);
             context.Response.ContentType = "application/json;charset=utf-8";
+            context.Response.StatusCode = 200;
             return context.Response.WriteAsync(result);
         }
     }

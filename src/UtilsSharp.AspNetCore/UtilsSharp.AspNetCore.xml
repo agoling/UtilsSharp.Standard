@@ -149,6 +149,31 @@
             由线程池根据需要创建的新的最小空闲异步 I/O 线程数
             </summary>
         </member>
+        <member name="T:UtilsSharp.AspNetCore.Filter.RequestFilterAttribute">
+            <summary>
+            参数验签
+            </summary>
+        </member>
+        <member name="M:UtilsSharp.AspNetCore.Filter.RequestFilterAttribute.#ctor">
+            <summary>
+            参数验签
+            </summary>
+        </member>
+        <member name="M:UtilsSharp.AspNetCore.Filter.RequestFilterAttribute.#ctor(System.Int32)">
+            <summary>
+            参数验签
+            </summary>
+            <param name="expireTime">签名过期时间|单位秒，默认2分钟</param>
+        </member>
+        <member name="M:UtilsSharp.AspNetCore.Filter.RequestFilterAttribute.VerifySign(Microsoft.AspNetCore.Http.IHeaderDictionary,System.String,System.Int32)">
+            <summary>
+            验签
+            </summary>
+            <param name="headers">headers</param>
+            <param name="body">body参数</param>
+            <param name="expireTime">缓存过期时间</param>
+            <returns></returns>
+        </member>
         <member name="T:UtilsSharp.AspNetCore.Filter.ValidationActionFilter">
             <summary>
             验证入参模型过滤器

@@ -46,7 +46,7 @@ namespace UtilsSharp.AspNetCore.Jwt
                     audience: jwtOptions.Audience,//接收者
                     claims: claims,  //Payload,存放用户信息
                     notBefore: DateTime.UtcNow,//发布时间
-                    expires: DateTime.UtcNow.AddSeconds(jwtOptions.ExpireTime),//有效期设置为1天
+                    expires: DateTime.UtcNow.AddSeconds(jwtOptions.ExpireTime),//有效期设置为秒
                     signingCredentials //数字签名
                 );
                 //生成字符串token

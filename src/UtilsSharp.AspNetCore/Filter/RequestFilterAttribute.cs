@@ -99,7 +99,7 @@ namespace UtilsSharp.AspNetCore.Filter
 
                 if (sign != s)
                 {
-                    result.SetError("非法签名", 500);
+                    result.SetError("非法签名", 6010);
                     return result;
                 }
                 #endregion

@@ -165,6 +165,12 @@
             </summary>
             <param name="expireTime">签名过期时间|单位秒，默认2分钟</param>
         </member>
+        <member name="M:UtilsSharp.AspNetCore.Filter.RequestFilterAttribute.OnAuthorization(Microsoft.AspNetCore.Mvc.Filters.AuthorizationFilterContext)">
+            <summary>
+            OnAuthorization
+            </summary>
+            <param name="context">context</param>
+        </member>
         <member name="M:UtilsSharp.AspNetCore.Filter.RequestFilterAttribute.VerifySign(Microsoft.AspNetCore.Http.IHeaderDictionary,System.String,System.Int32)">
             <summary>
             验签

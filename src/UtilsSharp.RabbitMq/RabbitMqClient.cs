@@ -55,11 +55,11 @@ namespace UtilsSharp.RabbitMq
 
             if (_requestedConnectionTimeout != default)
             {
-                _rabbitConnectionFactory.RequestedConnectionTimeout = _requestedConnectionTimeout.Milliseconds;
+                _rabbitConnectionFactory.RequestedConnectionTimeout =(int)_requestedConnectionTimeout.TotalMilliseconds;
             }
             if (_requestedHeartbeat != default)
             {
-                _rabbitConnectionFactory.RequestedHeartbeat = (ushort)_requestedHeartbeat.Seconds;
+                _rabbitConnectionFactory.RequestedHeartbeat = (ushort)_requestedHeartbeat.TotalSeconds;
             }
             if (_automaticRecoveryEnabled != null)
             {

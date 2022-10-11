@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <LangVersion>latest</LangVersion>
-    <Version>3.1.0</Version>
+    <Version>3.1.1</Version>
     <Authors>Agoling</Authors>
     <Description>UtilsSharp.RabbitMq 帮助类</Description>
     <PackageProjectUrl>https://github.com/agoling/UtilsSharp.Standard</PackageProjectUrl>

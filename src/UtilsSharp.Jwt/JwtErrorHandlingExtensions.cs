@@ -4,7 +4,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 
-namespace UtilsSharp.AspNetCore.Jwt
+namespace UtilsSharp.Jwt
 {
     /// <summary>
     /// Jwt错误处理扩展方法

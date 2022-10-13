@@ -1,0 +1,123 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>UtilsSharp.Jwt</name>
+    </assembly>
+    <members>
+        <member name="T:UtilsSharp.Jwt.JwtErrorHandlingExtensions">
+            <summary>
+            Jwt错误处理扩展方法
+            </summary>
+        </member>
+        <member name="M:UtilsSharp.Jwt.JwtErrorHandlingExtensions.UseJwtErrorHandlingExtensions(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
+            <summary>
+            Jwt错误处理扩展方法
+            </summary>
+        </member>
+        <member name="T:UtilsSharp.Jwt.JwtErrorHandlingMiddleware">
+            <summary>
+            Jwt错误处理插件
+            </summary>
+        </member>
+        <member name="M:UtilsSharp.Jwt.JwtErrorHandlingMiddleware.#ctor(Microsoft.AspNetCore.Http.RequestDelegate)">
+            <summary>
+            Jwt错误处理插件
+            </summary>
+        </member>
+        <member name="M:UtilsSharp.Jwt.JwtErrorHandlingMiddleware.Invoke(Microsoft.AspNetCore.Http.HttpContext)">
+            <summary>
+            context
+            </summary>
+        </member>
+        <member name="M:UtilsSharp.Jwt.JwtErrorHandlingMiddleware.HandleExceptionAsync(Microsoft.AspNetCore.Http.HttpContext,System.Int32,System.String)">
+            <summary>
+            异常错误信息捕获，将错误信息用Json方式返回
+            </summary>
+        </member>
+        <member name="T:UtilsSharp.Jwt.JwtExtensions">
+            <summary>
+            JwtExtensions
+            </summary>
+        </member>
+        <member name="M:UtilsSharp.Jwt.JwtExtensions.UseJwtExtensions(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
+            <summary>
+            注册Jwt
+            </summary>
+            <param name="app">app</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.Jwt.JwtExtensions.AddJwtExtensions(Microsoft.Extensions.DependencyInjection.IServiceCollection,UtilsSharp.Jwt.JwtSetting)">
+            <summary>
+            添加Jwt扩展
+            </summary>
+            <param name="services">services</param>
+            <param name="jwtSetting">Jwt参数</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.Jwt.JwtExtensions.AddJwtExtensions(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.IdentityModel.Tokens.TokenValidationParameters)">
+            <summary>
+            添加Jwt扩展
+            </summary>
+            <param name="services">services</param>
+            <param name="tokenValidationParameters">token验证参数</param>
+            <returns></returns>
+        </member>
+        <member name="T:UtilsSharp.Jwt.JwtHelper">
+            <summary>
+            Jwt帮助类
+            </summary>
+        </member>
+        <member name="F:UtilsSharp.Jwt.JwtHelper.JwtSth">
+            <summary>
+            JwtSecurityTokenHandler
+            </summary>
+        </member>
+        <member name="M:UtilsSharp.Jwt.JwtHelper.Create(UtilsSharp.Jwt.JwtSetting,System.Security.Claims.Claim[])">
+            <summary>
+            生成JwtToken
+            </summary>
+            <param name="jwtSetting">Jwt参数</param>
+            <param name="claims">Payload||存放用户信息</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.Jwt.JwtHelper.GetPayload(System.String)">
+            <summary>
+            获取用户信息Payload内容
+            </summary>
+            <param name="token">token</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.Jwt.JwtHelper.GetTokenInfo(System.String)">
+            <summary>
+            获取用户信息Payload内容
+            </summary>
+            <param name="token">token</param>
+            <returns></returns>
+        </member>
+        <member name="T:UtilsSharp.Jwt.JwtSetting">
+            <summary>
+            JwtOptions
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.Jwt.JwtSetting.SecretKey">
+            <summary>
+            私钥
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.Jwt.JwtSetting.Issuer">
+            <summary>
+            签发人
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.Jwt.JwtSetting.Audience">
+            <summary>
+            受众
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.Jwt.JwtSetting.ExpireTime">
+            <summary>
+            过期时间||单位:s
+            </summary>
+        </member>
+    </members>
+</doc>

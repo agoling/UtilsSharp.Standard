@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <Version>2.0.0</Version>
+    <Version>2.0.3</Version>
     <Authors>Agoling</Authors>
     <Company>Agoling</Company>
     <Product>Agoling</Product>
@@ -23,7 +23,7 @@
     <PackageReference Include="Microsoft.Bcl.AsyncInterfaces" Version="6.0.0" />
     <PackageReference Include="NEST" Version="5.6.5" />
     <PackageReference Include="System.ServiceModel.Primitives" Version="4.9.0" />
-    <PackageReference Include="UtilsSharp.Protobuf" Version="2.0.2" />
+    <PackageReference Include="UtilsSharp.Protobuf" Version="2.0.3" />
   </ItemGroup>
 
   <ItemGroup>

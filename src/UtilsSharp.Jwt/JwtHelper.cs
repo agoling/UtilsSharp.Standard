@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using UtilsSharp.Standard;
 
-namespace UtilsSharp.AspNetCore.Jwt
+namespace UtilsSharp.Jwt
 {
     /// <summary>
     /// Jwt帮助类
@@ -23,10 +23,10 @@ namespace UtilsSharp.AspNetCore.Jwt
         /// <summary>
         /// 生成JwtToken
         /// </summary>
-        /// <param name="jwtOptions">Jwt参数</param>
+        /// <param name="jwtSetting">Jwt参数</param>
         /// <param name="claims">Payload||存放用户信息</param>
         /// <returns></returns>
-        public static BaseResult<string> Create(JwtOptions jwtOptions,Claim[] claims)
+        public static BaseResult<string> Create(JwtSetting jwtSetting, Claim[] claims)
         {
             var result = new BaseResult<string>();
             try
@@ -35,18 +35,18 @@ namespace UtilsSharp.AspNetCore.Jwt
                 var signingAlgorithm = SecurityAlgorithms.HmacSha256;
                 //Signature
                 //取出私钥并以utf8编码字节输出
-                var secretByte = Encoding.UTF8.GetBytes(jwtOptions.SecretKey);
+                var secretByte = Encoding.UTF8.GetBytes(jwtSetting.SecretKey);
                 //使用非对称算法对私钥进行加密
                 var signingKey = new SymmetricSecurityKey(secretByte);
                 //使用HmacSha256来验证加密后的私钥生成数字签名
                 var signingCredentials = new SigningCredentials(signingKey, signingAlgorithm);
                 //生成Token
                 var token = new JwtSecurityToken(
-                    issuer: jwtOptions.Issuer, //发布者
-                    audience: jwtOptions.Audience,//接收者
+                    issuer: jwtSetting.Issuer, //发布者
+                    audience: jwtSetting.Audience,//接收者
                     claims: claims,  //Payload,存放用户信息
                     notBefore: DateTime.UtcNow,//发布时间
-                    expires: DateTime.UtcNow.AddSeconds(jwtOptions.ExpireTime),//有效期设置为秒
+                    expires: DateTime.UtcNow.AddSeconds(jwtSetting.ExpireTime),//有效期设置为秒
                     signingCredentials //数字签名
                 );
                 //生成字符串token

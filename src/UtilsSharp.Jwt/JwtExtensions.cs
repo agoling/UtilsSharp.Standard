@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 
-namespace UtilsSharp.AspNetCore.Jwt
+namespace UtilsSharp.Jwt
 {
     /// <summary>
     /// JwtExtensions
@@ -34,9 +34,9 @@ namespace UtilsSharp.AspNetCore.Jwt
         /// 添加Jwt扩展
         /// </summary>
         /// <param name="services">services</param>
-        /// <param name="jwtOptions">Jwt参数</param>
+        /// <param name="jwtSetting">Jwt参数</param>
         /// <returns></returns>
-        public static IServiceCollection AddJwtExtensions(this IServiceCollection services, JwtOptions jwtOptions)
+        public static IServiceCollection AddJwtExtensions(this IServiceCollection services, JwtSetting jwtSetting)
         {
             services.AddAuthentication(options =>
                 {
@@ -49,15 +49,15 @@ namespace UtilsSharp.AspNetCore.Jwt
                     {
                         //验证发布者
                         ValidateIssuer = true,
-                        ValidIssuer = jwtOptions.Issuer,
+                        ValidIssuer = jwtSetting.Issuer,
                         //验证接收者
                         ValidateAudience = true,
-                        ValidAudience = jwtOptions.Audience,
+                        ValidAudience = jwtSetting.Audience,
                         //验证生命周期(是否过期)
                         ValidateLifetime = true,
                         //验证全局私钥
                         ValidateIssuerSigningKey = true,
-                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtOptions.SecretKey)),
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSetting.SecretKey)),
                         ClockSkew = TimeSpan.Zero
                     };
                 });
@@ -72,8 +72,12 @@ namespace UtilsSharp.AspNetCore.Jwt
         /// <returns></returns>
         public static IServiceCollection AddJwtExtensions(this IServiceCollection services, TokenValidationParameters tokenValidationParameters)
         {
-            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-                .AddJwtBearer(options =>
+            services.AddAuthentication(options =>
+                {
+                    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+                })
+               .AddJwtBearer(options =>
                 {
                     options.TokenValidationParameters = tokenValidationParameters;
                 });

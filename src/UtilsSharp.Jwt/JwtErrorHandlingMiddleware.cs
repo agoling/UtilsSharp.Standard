@@ -6,7 +6,7 @@ using Newtonsoft.Json.Serialization;
 using UtilsSharp.Standard;
 using HttpContext = Microsoft.AspNetCore.Http.HttpContext;
 
-namespace UtilsSharp.AspNetCore.Jwt
+namespace UtilsSharp.Jwt
 {
     /// <summary>
     /// Jwt错误处理插件

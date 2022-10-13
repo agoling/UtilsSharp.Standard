@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -14,22 +15,26 @@ namespace UtilsSharp.Protobuf
     /// </summary>
     public static partial class ProtobufRunTime
     {
+        /// <summary>
+        /// AllMarshallerFactory
+        /// </summary>
+        private static ConcurrentDictionary<string, MarshallerFactory> _dic;
+        
+        /// <summary>
+        /// 所有ProtoJson
+        /// </summary>
+        public static string AllProtoJson {get; private set; }
 
         /// <summary>
         /// AllMarshallerFactory
         /// </summary>
-        private static Dictionary<string, MarshallerFactory> _dic;
-
-        /// <summary>
-        /// AllMarshallerFactory
-        /// </summary>
-        public static Dictionary<string, MarshallerFactory> AllMarshallerFactory => _dic ?? (_dic = Initialize());
+        public static ConcurrentDictionary<string, MarshallerFactory> AllMarshallerFactory => _dic ?? (_dic = Initialize());
 
         /// <summary>
         /// 根据程序集注册ProtoContract、ProtoInclude、ProtoMember
         /// </summary>
         /// <returns></returns>
-        public static Dictionary<string, MarshallerFactory> Initialize()
+        public static ConcurrentDictionary<string, MarshallerFactory> Initialize()
         {
             //获取基于ProtoEntity的类
             var enumerable = AssemblyHelper.GetAllAssemblies();
@@ -42,7 +47,7 @@ namespace UtilsSharp.Protobuf
             }
 
             //程序集下的所有RuntimeTypeModels
-            IDictionary<string, RuntimeTypeModel> dllRuntimeTypeModels = new Dictionary<string, RuntimeTypeModel>();
+            var dllRuntimeTypeModels = new ConcurrentDictionary<string, RuntimeTypeModel>();
             var assemblyNameDic = types.GroupBy(g => g.Assembly.FullName).ToDictionary(t=>t.Key,t=>t.ToList());
             foreach (var assemblyNameKeyValuePair in assemblyNameDic)
             {
@@ -53,7 +58,7 @@ namespace UtilsSharp.Protobuf
                 #endregion
                 
                 #region 得到基类类型
-                var baseTypeAssemblyNameDic = new Dictionary<string, string>();
+                var baseTypeAssemblyNameDic = new ConcurrentDictionary<string, string>();
                 foreach (var item in currentAssemblyTypes)
                 {
                     var baseType = item.BaseType;
@@ -64,7 +69,7 @@ namespace UtilsSharp.Protobuf
                         {
                             if (!baseTypeAssemblyNameDic.ContainsKey(baseTypeAssemblyName))
                             {
-                                baseTypeAssemblyNameDic.Add(baseTypeAssemblyName, baseTypeAssemblyName);
+                                baseTypeAssemblyNameDic.TryAdd(baseTypeAssemblyName, baseTypeAssemblyName);
                             }
                         }
                         baseType = baseType.BaseType;
@@ -76,9 +81,17 @@ namespace UtilsSharp.Protobuf
                 {
                     if (!assemblyNameDic.ContainsKey(item.Key)) continue;
                     var values = assemblyNameDic[item.Key];
-                    currentAssemblyTypes.AddRange(values);
+                    if (values != null && values.Any())
+                    {
+                        values.ForEach(v => {
+                            if (!currentAssemblyTypes.Contains(v))
+                            {
+                                currentAssemblyTypes.Add(v);
+                            }
+                        });
+                    }
                 }
-                var fieldsTag = new Dictionary<MetaType, int>();
+                var fieldsTag = new ConcurrentDictionary<MetaType, int>();
                 //注册ProtoContract、ProtoInclude、ProtoMember
                 foreach (var t in currentAssemblyTypes)
                 {
@@ -87,7 +100,7 @@ namespace UtilsSharp.Protobuf
                     if (!dllRuntimeTypeModels.ContainsKey(currentAssemblyName))
                     {
                         runtimeTypeModel = RuntimeTypeModel.Create(currentAssemblyName);
-                        dllRuntimeTypeModels.Add(currentAssemblyName, runtimeTypeModel);
+                        dllRuntimeTypeModels.TryAdd(currentAssemblyName, runtimeTypeModel);
                     }
                     else
                     {
@@ -121,19 +134,54 @@ namespace UtilsSharp.Protobuf
                         else
                         {
                             var fields = meta.GetFields();
-                            fieldsTag.Add(meta, fields.Length + 1);
+                            fieldsTag.TryAdd(meta, fields.Length + 1);
                             meta.Add(fieldsTag[meta], p.Name);
                         }
                     }
                     #endregion
                 }
             }
-            var marshallerFactory = new Dictionary<string, MarshallerFactory>();
+            var marshallerFactory = new ConcurrentDictionary<string, MarshallerFactory>();
             foreach (var item in dllRuntimeTypeModels)
             {
                 var newMarshallerFactory = ProtoBufMarshallerFactory.Create(item.Value);
-                marshallerFactory.Add(item.Key, newMarshallerFactory);
+                marshallerFactory.TryAdd(item.Key, newMarshallerFactory);
             }
+            #region 打印所有IProtobufEntity类型的Dll下的proto文件json
+
+            //所有IProtobufEntity类型的Dll下的proto文件字典
+            var allProtoDic = new ConcurrentDictionary<string, ConcurrentDictionary<string, string>>();
+            dllRuntimeTypeModels.Keys.ToList().ForEach(key =>
+            {
+                //每个IProtobufEntity类型的Dll下的proto文件字典
+                var protoDic = new ConcurrentDictionary<string, string>();
+                var i = 0;
+                foreach (MetaType type in dllRuntimeTypeModels[key].GetTypes())
+                {
+                    try
+                    {
+                        //每个类下面的proto元素内容（含message、字段、枚举等）
+                        var schema = dllRuntimeTypeModels[key].GetSchema(type.Type);
+                        if (protoDic.ContainsKey(type.Type.FullName))
+                        {
+                            protoDic.TryAdd(type.Type.FullName + "_" + i.ToString(), schema);
+                        }
+                        else
+                        {
+                            protoDic.TryAdd(type.Type.FullName, schema);
+                        }
+                        i++;
+                    }
+                    catch (Exception ex)
+                    {
+
+                    }
+                }
+                allProtoDic.TryAdd(key, protoDic);
+
+            });
+            AllProtoJson = Newtonsoft.Json.JsonConvert.SerializeObject(allProtoDic);
+            #endregion
             return marshallerFactory;
         }
 
@@ -172,6 +220,11 @@ namespace UtilsSharp.Protobuf
     /// </summary>
     public static partial class ProtobufRunTime
     {
+        /// <summary>
+        /// ClientFactory 字典
+        /// </summary>
+        private static readonly ConcurrentDictionary<string,ClientFactory> ClientFactoryDic = new ConcurrentDictionary<string, ClientFactory>();
+
         /// <summary>
         /// GetMarshallerFactory
         /// </summary>
@@ -212,7 +265,7 @@ namespace UtilsSharp.Protobuf
         {
             var result = new List<MarshallerFactory>();
             var marshallerFactories = AllMarshallerFactory.Where(t => t.Key.Contains(assemblyNameKeyword)).ToDictionary(t => t.Key, t => t.Value).Values.ToList();
-            if (marshallerFactories.Count>0)
+            if (marshallerFactories.Count > 0)
             {
                 result.AddRange(marshallerFactories);
             }
@@ -227,7 +280,19 @@ namespace UtilsSharp.Protobuf
         public static ClientFactory GetClientFactory<T>()
         {
             var marshallerFactories = GetMarshallerFactory<T>();
-            return ClientFactory.Create(BinderConfiguration.Create(marshallerFactories));
+            try
+            {
+                var key = typeof(T).FullName;
+                if (string.IsNullOrEmpty(key)) { return null; }
+                if (ClientFactoryDic.ContainsKey(key)) { return ClientFactoryDic[key]; }
+                var value = ClientFactory.Create(BinderConfiguration.Create(marshallerFactories));
+                ClientFactoryDic.TryAdd(key, value);
+                return ClientFactoryDic[key];
+            }
+            catch (Exception)
+            {
+                return null;
+            }
         }
 
         /// <summary>
@@ -238,7 +303,18 @@ namespace UtilsSharp.Protobuf
         public static ClientFactory GetClientFactory(string assemblyName)
         {
             var marshallerFactories = GetMarshallerFactory(assemblyName);
-            return ClientFactory.Create(BinderConfiguration.Create(marshallerFactories));
+            try
+            {
+                if (string.IsNullOrEmpty(assemblyName)) { return null; }
+                if (ClientFactoryDic.ContainsKey(assemblyName)) { return ClientFactoryDic[assemblyName]; }
+                var value = ClientFactory.Create(BinderConfiguration.Create(marshallerFactories));
+                ClientFactoryDic.TryAdd(assemblyName, value);
+                return ClientFactoryDic[assemblyName];
+            }
+            catch (Exception)
+            {
+                return null;
+            }
         }
 
         /// <summary>

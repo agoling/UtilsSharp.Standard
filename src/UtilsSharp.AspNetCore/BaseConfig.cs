@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using UtilsSharp;
-using UtilsSharp.AspNetCore.Jwt;
-using UtilsSharp.AspNetCore.Swagger;
+﻿using UtilsSharp.AspNetCore.Swagger;
 
 namespace UtilsSharp.AspNetCore
 {
@@ -56,11 +51,6 @@ namespace UtilsSharp.AspNetCore
         /// swagger配置
         /// </summary>
         public static SwaggerDocOptions SwaggerDocOptions { get; } = AppsettingsHelper.GetSection<SwaggerDocOptions>("SwaggerDocOptions");
-
-        /// <summary>
-        /// Jwt参数
-        /// </summary>
-        public static JwtOptions JwtOptions { get; } = AppsettingsHelper.GetSection<JwtOptions>("JwtOptions");
 
         /// <summary>
         /// 由线程池根据需要创建的新的最小工作程序线程数

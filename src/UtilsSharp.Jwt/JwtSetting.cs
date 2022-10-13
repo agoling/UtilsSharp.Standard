@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace UtilsSharp.AspNetCore.Jwt
+namespace UtilsSharp.Jwt
 {
     /// <summary>
     /// JwtOptions
     /// </summary>
-    public class JwtOptions
+    public class JwtSetting
     {
         /// <summary>
         /// 私钥

@@ -41,13 +41,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UtilsSharp.Logger", "UtilsS
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UtilsSharp.Logger.Config", "UtilsSharp.Logger.Config\UtilsSharp.Logger.Config.csproj", "{21D3CCC6-00CE-4176-AF50-9F7C2B5028C6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UtilsSharp.Kafka", "UtilsSharp.Kafka\UtilsSharp.Kafka.csproj", "{9CA3CC83-F80E-45C5-8DA8-EFC6526EBB49}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UtilsSharp.Kafka", "UtilsSharp.Kafka\UtilsSharp.Kafka.csproj", "{9CA3CC83-F80E-45C5-8DA8-EFC6526EBB49}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UtilsSharp.MsSql", "UtilsSharp.MsSql\UtilsSharp.MsSql.csproj", "{92B8048A-6E9D-4517-9348-4BE60F8B006D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UtilsSharp.MsSql", "UtilsSharp.MsSql\UtilsSharp.MsSql.csproj", "{92B8048A-6E9D-4517-9348-4BE60F8B006D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UtilsSharp.MySql", "UtilsSharp.MySql\UtilsSharp.MySql.csproj", "{49860A96-7E1F-47E1-BC0D-ADF1AFEF2626}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UtilsSharp.MySql", "UtilsSharp.MySql\UtilsSharp.MySql.csproj", "{49860A96-7E1F-47E1-BC0D-ADF1AFEF2626}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UtilsSharp.AsyncInterceptor", "UtilsSharp.AsyncInterceptor\UtilsSharp.AsyncInterceptor.csproj", "{50D60C78-2AFF-4FE0-8F59-3B61492EAB84}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UtilsSharp.AsyncInterceptor", "UtilsSharp.AsyncInterceptor\UtilsSharp.AsyncInterceptor.csproj", "{50D60C78-2AFF-4FE0-8F59-3B61492EAB84}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UtilsSharp.Jwt", "UtilsSharp.Jwt\UtilsSharp.Jwt.csproj", "{96287B4D-1745-42CC-B216-DBC2915EF901}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -147,6 +149,10 @@ Global
 		{50D60C78-2AFF-4FE0-8F59-3B61492EAB84}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{50D60C78-2AFF-4FE0-8F59-3B61492EAB84}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{50D60C78-2AFF-4FE0-8F59-3B61492EAB84}.Release|Any CPU.Build.0 = Release|Any CPU
+		{96287B4D-1745-42CC-B216-DBC2915EF901}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{96287B4D-1745-42CC-B216-DBC2915EF901}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{96287B4D-1745-42CC-B216-DBC2915EF901}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{96287B4D-1745-42CC-B216-DBC2915EF901}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

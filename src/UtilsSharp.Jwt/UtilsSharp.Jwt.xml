@@ -4,6 +4,16 @@
         <name>UtilsSharp.Jwt</name>
     </assembly>
     <members>
+        <member name="T:UtilsSharp.Jwt.JwtConfig">
+            <summary>
+            Jwt配置
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.Jwt.JwtConfig.JwtSetting">
+            <summary>
+            Jwt设置
+            </summary>
+        </member>
         <member name="T:UtilsSharp.Jwt.JwtErrorHandlingExtensions">
             <summary>
             Jwt错误处理扩展方法
@@ -96,7 +106,7 @@
         </member>
         <member name="T:UtilsSharp.Jwt.JwtSetting">
             <summary>
-            JwtOptions
+            Jwt设置
             </summary>
         </member>
         <member name="P:UtilsSharp.Jwt.JwtSetting.SecretKey">

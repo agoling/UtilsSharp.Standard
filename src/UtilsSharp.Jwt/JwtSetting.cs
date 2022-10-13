@@ -5,7 +5,7 @@ using System.Text;
 namespace UtilsSharp.Jwt
 {
     /// <summary>
-    /// JwtOptions
+    /// Jwt设置
     /// </summary>
     public class JwtSetting
     {

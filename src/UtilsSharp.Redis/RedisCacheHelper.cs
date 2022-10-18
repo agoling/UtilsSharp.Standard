@@ -73,13 +73,12 @@ namespace UtilsSharp.Redis
         /// <param name="pattern">如：test*</param>
         public static long RemoveByPattern(string pattern)
         {
-            var keys = Instance.Keys(pattern);
-            var newKeys = new List<string>();
+            var keys = GetByPattern(pattern);
             if (keys != null && keys.Length > 0)
             {
-                newKeys.AddRange(from item in keys let index = item.IndexOf(":", StringComparison.Ordinal) select item.Substring(index + 1));
+                return Instance.Del(keys.ToArray());
             }
-            return Instance.Del(newKeys.ToArray());
+            return default;
         }
 
         /// <summary>
@@ -112,12 +111,7 @@ namespace UtilsSharp.Redis
         public static string[] GetByPattern(string pattern)
         {
             var keys = Instance.Keys(pattern);
-            var newKeys = new List<string>();
-            if (keys != null && keys.Length > 0)
-            {
-                newKeys.AddRange(from item in keys let index = item.IndexOf(":", StringComparison.Ordinal) select item.Substring(index + 1));
-            }
-            return newKeys.ToArray();
+            return keys;
         }
 
     }
@@ -161,13 +155,12 @@ namespace UtilsSharp.Redis
         /// <param name="pattern">如：test*</param>
         public static async Task<long> RemoveByPatternAsync(string pattern)
         {
-            var keys =await Instance.KeysAsync(pattern);
-            var newKeys = new List<string>();
+            var keys =await GetByPatternAsync(pattern);
             if (keys != null && keys.Length > 0)
             {
-                newKeys.AddRange(from item in keys let index = item.IndexOf(":", StringComparison.Ordinal) select item.Substring(index + 1));
+                return await Instance.DelAsync(keys.ToArray());
             }
-            return await Instance.DelAsync(newKeys.ToArray());
+            return default;
         }
 
         /// <summary>
@@ -200,14 +193,8 @@ namespace UtilsSharp.Redis
         public static async Task<string[]> GetByPatternAsync(string pattern)
         {
             var keys =await Instance.KeysAsync(pattern);
-            var newKeys = new List<string>();
-            if (keys != null && keys.Length > 0)
-            {
-                newKeys.AddRange(from item in keys let index = item.IndexOf(":", StringComparison.Ordinal) select item.Substring(index + 1));
-            }
-            return newKeys.ToArray();
+            return keys;
         }
-
     }
 
     #endregion

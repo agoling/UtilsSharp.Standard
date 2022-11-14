@@ -11,6 +11,7 @@ namespace TestDemoApp.ElasticSearch
     /// </summary>
     public class TestUserInfoDataSource: EsBaseDataSource<TestUserInfo>, ITestUserInfoDataSource
     {
+
         /// <summary>
         /// 按天生成
         /// </summary>

@@ -112,6 +112,11 @@
             锁
             </summary>
         </member>
+        <member name="F:UtilsSharp.ElasticSearch7.EsBaseDataMapping.EsBaseAliasIndexBindLock">
+            <summary>
+            锁
+            </summary>
+        </member>
         <member name="P:UtilsSharp.ElasticSearch7.EsBaseDataMapping.CurSetting">
             <summary>
             表当前配置
@@ -125,6 +130,11 @@
         <member name="P:UtilsSharp.ElasticSearch7.EsBaseDataMapping.AliasIndex">
             <summary>
             新索引别名
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.ElasticSearch7.EsBaseDataMapping.AppendBindAliasIndexs">
+            <summary>
+            附加绑定别名
             </summary>
         </member>
         <member name="P:UtilsSharp.ElasticSearch7.EsBaseDataMapping.EsMappingType">
@@ -179,7 +189,14 @@
             <param name="client">es客户端</param>
             <param name="index">索引名称</param>
         </member>
-        <member name="M:UtilsSharp.ElasticSearch7.EsBaseDataMapping.GetIndex(System.DateTime)">
+        <member name="M:UtilsSharp.ElasticSearch7.EsBaseDataMapping.RunBindAliasIndex(Nest.ElasticClient,System.String)">
+            <summary>
+            绑定索引别名
+            </summary>
+            <param name="client"></param>
+            <param name="index"></param>
+        </member>
+        <member name="M:UtilsSharp.ElasticSearch7.EsBaseDataMapping.GetIndex(System.DateTime,System.String)">
             <summary>
             获取指定时间索引
             </summary>
@@ -410,6 +427,11 @@
         <member name="F:UtilsSharp.ElasticSearch7.EsClientProvider.MappingDictionary">
             <summary>
             es表结构映射
+            </summary>
+        </member>
+        <member name="F:UtilsSharp.ElasticSearch7.EsClientProvider.AliasIndexBindDictionary">
+            <summary>
+            es别名索引
             </summary>
         </member>
         <member name="M:UtilsSharp.ElasticSearch7.EsClientProvider.Init(UtilsSharp.OptionConfig.ElasticSearchSetting)">

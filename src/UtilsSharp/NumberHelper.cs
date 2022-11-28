@@ -5,13 +5,13 @@ using UtilsSharp.Standard;
 namespace UtilsSharp
 {
     /// <summary>
-    /// 中文数字帮助类
+    /// 数字帮助类
     /// </summary>
     public class NumberHelper
     {
 
         /// <summary>
-        /// 阿拉伯数字转中文数字
+        /// 阿拉伯数字转中文数字(仅支持0~10)
         /// </summary>
         /// <param name="num">数字(仅支持0~10)</param>
         /// <param name="capitalization">是否返回大写中文数字</param>
@@ -125,6 +125,23 @@ namespace UtilsSharp
                 return result;
             }
 
+        }
+
+        /// <summary>
+        /// 金额以元和万元为单位
+        /// </summary>
+        /// <param name="num">需转换的金额</param>
+        /// <returns></returns>
+        public static string ToUnitMoney(decimal num)
+        {
+            if (10000 <= num)
+            {
+                return (num / 10000) + "万元";
+            }
+            else
+            {
+                return num + "元";
+            }
         }
 
     }

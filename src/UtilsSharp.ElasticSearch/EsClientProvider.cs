@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Concurrent;
+using System.Collections.Generic;
 using System.Linq;
 using Elasticsearch.Net;
 using Nest;
@@ -21,6 +22,11 @@ namespace UtilsSharp.ElasticSearch
         /// es表结构映射
         /// </summary>
         internal static readonly ConcurrentDictionary<string, string> MappingDictionary = new ConcurrentDictionary<string, string>();
+
+        /// <summary>
+        /// es别名索引
+        /// </summary>
+        internal static readonly ConcurrentDictionary<string, List<string>> AliasIndexBindDictionary = new ConcurrentDictionary<string, List<string>>();
 
         /// <summary>
         /// 初始化

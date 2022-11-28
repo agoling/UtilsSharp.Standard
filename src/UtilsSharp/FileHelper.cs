@@ -99,5 +99,36 @@ namespace UtilsSharp
             stream.Seek(0, SeekOrigin.Begin);
             return stream;
         }
+
+        /// <summary>
+        /// 创建文件，如果文件不存在
+        /// </summary>
+        /// <param name="fileName">要创建的文件</param>
+        public static void CreateIfNotExists(string fileName)
+        {
+            if (File.Exists(fileName))
+            {
+                return;
+            }
+            string dir = Path.GetDirectoryName(fileName);
+            if (dir != null)
+            {
+                DirectoryHelper.CreateIfNotExists(dir);
+            }
+            File.Create(fileName);
+        }
+
+        /// <summary>
+        /// 删除指定文件
+        /// </summary>
+        /// <param name="fileName">要删除的文件名</param>
+        public static void DeleteIfExists(string fileName)
+        {
+            if (!File.Exists(fileName))
+            {
+                return;
+            }
+            File.Delete(fileName);
+        }
     }
 }

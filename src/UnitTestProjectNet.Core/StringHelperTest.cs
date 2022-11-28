@@ -18,5 +18,15 @@ namespace UnitTestProjectNet.Core
             var bb = StringHelper.GetCharLength(txt);
            
         }
+
+
+        [TestMethod]
+        public void HideMobilePhone()
+        {
+            var phoneNum = "13655265956";
+            var aa = StringHelper.HideMobilePhone(phoneNum);
+        }
+
+        
     }
 }

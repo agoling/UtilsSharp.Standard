@@ -1,14 +1,14 @@
 ﻿using System;
-using Newtonsoft.Json;
+using System.Collections.Generic;
+using System.Text;
 
 namespace UtilsSharp
 {
     /// <summary>
-    /// 公共工具类
+    /// 数据计算辅助操作类
     /// </summary>
-    public static class UtilsHelper
+    public class MathHelper
     {
-
         /// <summary>
         /// 计算进度条进度
         /// </summary>
@@ -35,25 +35,12 @@ namespace UtilsSharp
         }
 
         /// <summary>
-        /// 反射对象深度拷贝
+        /// 获取两个坐标的距离
         /// </summary>
-        /// <typeparam name="T">对象模型</typeparam>
-        /// <param name="obj">对象</param>
-        /// <returns></returns>
-        public static T DeepCopy<T>(this T obj)
+        public static double GetDistance(double x1, double y1, double x2, double y2)
         {
-            try
-            {
-                //如果是字符串或值类型则直接返回
-                if (obj is string || obj.GetType().IsValueType) return obj;
-                var oldObjJson = JsonConvert.SerializeObject(obj);//序列化
-                var newObj = JsonConvert.DeserializeObject<T>(oldObjJson);
-                return newObj;
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
+            return Math.Sqrt(Math.Pow((x1 - x2), 2) + Math.Pow((y1 - y2), 2));
         }
+
     }
 }

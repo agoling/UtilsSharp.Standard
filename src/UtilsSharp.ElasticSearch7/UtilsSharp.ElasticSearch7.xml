@@ -127,12 +127,17 @@
             连接设置
             </summary>
         </member>
+        <member name="P:UtilsSharp.ElasticSearch7.EsBaseDataMapping.IndexName">
+            <summary>
+            新索引名称
+            </summary>
+        </member>
         <member name="P:UtilsSharp.ElasticSearch7.EsBaseDataMapping.AliasIndex">
             <summary>
             新索引别名
             </summary>
         </member>
-        <member name="P:UtilsSharp.ElasticSearch7.EsBaseDataMapping.AppendBindAliasIndexs">
+        <member name="P:UtilsSharp.ElasticSearch7.EsBaseDataMapping.AppendBindAliasIndexes">
             <summary>
             附加绑定别名
             </summary>
@@ -201,6 +206,7 @@
             获取指定时间索引
             </summary>
             <param name="dateTime">时间</param>
+            <param name="appendKey">appendKey</param>
             <returns></returns>
         </member>
         <member name="T:UtilsSharp.ElasticSearch7.EsMappingType">

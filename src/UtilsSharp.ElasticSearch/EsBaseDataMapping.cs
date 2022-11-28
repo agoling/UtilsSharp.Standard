@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Concurrent;
+using System.Collections.Generic;
+using System.Linq;
 using Nest;
 using UtilsSharp.OptionConfig;
 
@@ -25,6 +27,11 @@ namespace UtilsSharp.ElasticSearch
         private static readonly object EsBaseDataMappingLock = new object();
 
         /// <summary>
+        /// 锁
+        /// </summary>
+        private static readonly object EsBaseAliasIndexBindLock = new object();
+
+        /// <summary>
         /// 表当前配置
         /// </summary>
         private ElasticSearchSetting CurSetting { get; set; }
@@ -35,9 +42,19 @@ namespace UtilsSharp.ElasticSearch
         public virtual ElasticSearchSetting Setting { get; set; }
 
         /// <summary>
+        /// 新索引名称
+        /// </summary>
+        public virtual string IndexName { get; set; } = "";
+
+        /// <summary>
         /// 新索引别名
         /// </summary>
         public virtual string AliasIndex { get; set; } = "";
+
+        /// <summary>
+        /// 附加绑定别名
+        /// </summary>
+        public virtual List<string> AppendBindAliasIndexes { get; set; } = new List<string>();
 
         /// <summary>
         /// 映射并创建索引类型
@@ -48,6 +65,11 @@ namespace UtilsSharp.ElasticSearch
         /// 分片数
         /// </summary>
         public virtual int NumberOfShards => 5;
+
+        /// <summary>
+        /// 索引最大查询
+        /// </summary>
+        public virtual int MaxResultWindow => 10000;
 
         /// <summary>
         /// 实体映射
@@ -127,6 +149,7 @@ namespace UtilsSharp.ElasticSearch
                     };
                 }
             }
+            AppendBindAliasIndexes = AppendBindAliasIndexes == null ? new List<string>() : AppendBindAliasIndexes;
             if (!string.IsNullOrWhiteSpace(index) && index != CurrentIndex)
             {
                 //传参进来的索引
@@ -139,8 +162,20 @@ namespace UtilsSharp.ElasticSearch
                 }
                 //判断索引是否存在
                 var exists = curClient.IndexExists(CurSetting.EsDefaultIndex).Exists;
-                if (!exists) throw new Exception($"Index:{CurSetting.EsDefaultIndex} does not exist");
+                if (!exists)
+                {
+                    //创建索引
+                    var saveResult = curClient.CreateIndex(CurSetting.EsDefaultIndex, c => c.InitializeUsing(new IndexState()
+                    {
+                        Settings = new IndexSettings()
+                        {
+                            NumberOfReplicas = 0,
+                            NumberOfShards = NumberOfShards
+                        }
+                    }).Settings(s => s.Setting("max_result_window", MaxResultWindow)));
+                }
                 RunEntityMapping(curClient, CurSetting.EsDefaultIndex);
+                RunBindAliasIndex(curClient, CurSetting.EsDefaultIndex);
                 return curClient;
             }
             else
@@ -151,14 +186,12 @@ namespace UtilsSharp.ElasticSearch
                 //索引是否已映射
                 if (EsClientProvider.MappingDictionary.ContainsKey(CurSetting.EsDefaultIndex))
                 {
+                    RunBindAliasIndex(curClient, CurSetting.EsDefaultIndex);
                     return curClient;
                 }
-                var aliasIndex = AliasIndex;
-                if (string.IsNullOrEmpty(AliasIndex))
-                {
-                    aliasIndex = CurSetting.EsDefaultIndex;
-                }
-                IIndexState indexState = new IndexState()
+
+                //创建索引
+                IndexState indexState = new IndexState()
                 {
                     Settings = new IndexSettings()
                     {
@@ -166,22 +199,13 @@ namespace UtilsSharp.ElasticSearch
                         NumberOfShards = NumberOfShards
                     }
                 };
-
-                //创建索引
-                if (!string.IsNullOrEmpty(aliasIndex) && !aliasIndex.Equals(CurSetting.EsDefaultIndex))
-                {
-                    //绑定别名
-                    curClient.CreateIndex(CurSetting.EsDefaultIndex, c => c.InitializeUsing(indexState).Aliases(a => a.Alias(aliasIndex)));
-                }
-                else
-                {
-                    curClient.CreateIndex(CurSetting.EsDefaultIndex, c => c.InitializeUsing(indexState));
-                }
+                indexState.Settings.Add("max_result_window", MaxResultWindow);
+                curClient.CreateIndex(CurSetting.EsDefaultIndex, c => c.InitializeUsing(indexState));
                 RunEntityMapping(curClient, CurSetting.EsDefaultIndex);
+                RunBindAliasIndex(curClient, CurSetting.EsDefaultIndex);
                 return curClient;
             }
         }
-
 
         /// <summary>
         /// 执行实体映射
@@ -197,13 +221,81 @@ namespace UtilsSharp.ElasticSearch
             }
         }
 
+        /// <summary>
+        /// 绑定索引别名
+        /// </summary>
+        /// <param name="client">client</param>
+        /// <param name="index">索引</param>
+        private void RunBindAliasIndex(ElasticClient client, string index)
+        {
+            lock (EsBaseAliasIndexBindLock)
+            {
+                var allAliasIndexs = new List<string>();
+                var isHave = false;
+                if (EsClientProvider.AliasIndexBindDictionary.ContainsKey(index))
+                {
+                    EsClientProvider.AliasIndexBindDictionary.TryGetValue(index, out allAliasIndexs);
+                    isHave = true;
+                }
+                allAliasIndexs = allAliasIndexs ?? new List<string>();
+                var addAliasIndexes = new List<string>();
+
+                //过滤未添加的别名
+                if (AppendBindAliasIndexes != null && AppendBindAliasIndexes.Any(w => !allAliasIndexs.Contains(w)) || !isHave)
+                {
+
+
+                    var indices = client.GetAlias(w => w.Index(index)).Indices;
+                    //重新 获取索引的全部别名
+                    indices?.Keys.ToList().ForEach(key =>
+                    {
+                        indices[key].ToList().ForEach(alias =>
+                        {
+                            if (!allAliasIndexs.Contains(alias.Name))
+                            {
+                                allAliasIndexs.Add(alias.Name);
+                            }
+                        });
+                    });
+                    if (AppendBindAliasIndexes != null && AppendBindAliasIndexes.Any(w => !allAliasIndexs.Contains(w)))
+                    {
+                        addAliasIndexes = AppendBindAliasIndexes.Where(w => !allAliasIndexs.Contains(w)).ToList();
+                    }
+                }
+                //把默认别名附加进去
+                if (!string.IsNullOrWhiteSpace(index) && !addAliasIndexes.Contains(AliasIndex) && !allAliasIndexs.Contains(AliasIndex))
+                {
+                    addAliasIndexes.Add(AliasIndex);
+                }
+                //排除别名和索引名一样的情况
+                addAliasIndexes = addAliasIndexes.Where(w => w != index).ToList();
+                if (addAliasIndexes.Any())
+                {
+
+                    var bulkAliasRequest = new BulkAliasRequest() { Actions = addAliasIndexes.Select(sel => new AliasAddAction() { Add = new AliasAddOperation() { Alias = sel, Index = index } }).ToList<IAliasAction>() };
+                    client.Alias(bulkAliasRequest);
+                    allAliasIndexs.AddRange(addAliasIndexes);
+                }
+                allAliasIndexs = allAliasIndexs.Distinct().ToList();
+                if (isHave)
+                {
+                    EsClientProvider.AliasIndexBindDictionary[index] = allAliasIndexs;
+                }
+                else
+                {
+                    EsClientProvider.AliasIndexBindDictionary.TryAdd(index, allAliasIndexs);
+                }
+            }
+        }
+
 
         /// <summary>
         /// 获取指定时间索引
         /// </summary>
         /// <param name="dateTime">时间</param>
+        /// <param name="appendKey">appendKey</param>
         /// <returns></returns>
-        public string GetIndex(DateTime dateTime)
+        public string GetIndex(DateTime dateTime, string appendKey = "")
         {
             if (string.IsNullOrEmpty(AliasIndex))
             {
@@ -218,15 +310,15 @@ namespace UtilsSharp.ElasticSearch
                 case EsMappingType.Default:
                     return ElasticSearchConfig.ElasticSearchSetting?.EsDefaultIndex;
                 case EsMappingType.New:
-                    return AliasIndex;
+                    return (string.IsNullOrWhiteSpace(IndexName) ? AliasIndex : IndexName) + (!string.IsNullOrEmpty(appendKey) ? ("_" + appendKey) : string.Empty);
                 case EsMappingType.Hour:
-                    return $"{AliasIndex}_{dateTime:yyyyMMddHH}";
+                    return $"{(string.IsNullOrWhiteSpace(IndexName) ? AliasIndex : IndexName)}{(!string.IsNullOrEmpty(appendKey) ? ("_" + appendKey) : string.Empty)}_{dateTime:yyyyMMddHH}";
                 case EsMappingType.Day:
-                    return $"{AliasIndex}_{dateTime:yyyyMMdd}";
+                    return $"{(string.IsNullOrWhiteSpace(IndexName) ? AliasIndex : IndexName)}{(!string.IsNullOrEmpty(appendKey) ? ("_" + appendKey) : string.Empty)}_{dateTime:yyyyMMdd}";
                 case EsMappingType.Month:
-                    return $"{AliasIndex}_{dateTime:yyyyMM}";
+                    return $"{(string.IsNullOrWhiteSpace(IndexName) ? AliasIndex : IndexName)}{(!string.IsNullOrEmpty(appendKey) ? ("_" + appendKey) : string.Empty)}_{dateTime:yyyyMM}";
                 case EsMappingType.Year:
-                    return $"{AliasIndex}_{dateTime:yyyy}";
+                    return $"{(string.IsNullOrWhiteSpace(IndexName) ? AliasIndex : IndexName)}{(!string.IsNullOrEmpty(appendKey) ? ("_" + appendKey) : string.Empty)}_{dateTime:yyyy}";
                 default:
                     return ElasticSearchConfig.ElasticSearchSetting?.EsDefaultIndex;
             }

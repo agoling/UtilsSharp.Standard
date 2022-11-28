@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Globalization;
+using System.Linq;
 
 namespace UtilsSharp
 {
@@ -93,7 +94,7 @@ namespace UtilsSharp
         /// <returns>日</returns>
         public static int GetMonthLastDate(int year, int month)
         {
-            DateTime lastDay = new DateTime(year, month, new System.Globalization.GregorianCalendar().GetDaysInMonth(year, month));
+            DateTime lastDay = new DateTime(year, month, new GregorianCalendar().GetDaysInMonth(year, month));
             int day = lastDay.Day;
             return day;
         }
@@ -243,6 +244,28 @@ namespace UtilsSharp
             var gc = new GregorianCalendar();
             var weekOfYear = gc.GetWeekOfYear(dt, CalendarWeekRule.FirstDay, DayOfWeek.Monday);
             return weekOfYear;
+        }
+
+        /// <summary>
+        /// 当前时间是否周末
+        /// </summary>
+        /// <param name="dateTime">时间点</param>
+        /// <returns></returns>
+        public static bool IsWeekend(DateTime dateTime)
+        {
+            DayOfWeek[] weeks = { DayOfWeek.Saturday, DayOfWeek.Sunday };
+            return weeks.Contains(dateTime.DayOfWeek);
+        }
+
+        /// <summary>
+        /// 当前时间是否工作日
+        /// </summary>
+        /// <param name="dateTime">时间点</param>
+        /// <returns></returns>
+        public static bool IsWeekday(DateTime dateTime)
+        {
+            DayOfWeek[] weeks = { DayOfWeek.Monday, DayOfWeek.Tuesday, DayOfWeek.Wednesday, DayOfWeek.Thursday, DayOfWeek.Friday };
+            return weeks.Contains(dateTime.DayOfWeek);
         }
     }
 

@@ -185,14 +185,16 @@ namespace UtilsSharp.ElasticSearch7
                     return curClient;
                 }
                 //创建索引
-                curClient.Indices.Create(CurSetting.EsDefaultIndex, c => c.InitializeUsing(new IndexState()
+                IndexState indexState = new IndexState()
                 {
                     Settings = new IndexSettings()
                     {
                         NumberOfReplicas = 0,
                         NumberOfShards = NumberOfShards
                     }
-                }).Settings(s => s.Setting(UpdatableIndexSettings.MaxResultWindow, MaxResultWindow)));
+                };
+                indexState.Settings.Add("max_result_window", MaxResultWindow);
+                curClient.Indices.Create(CurSetting.EsDefaultIndex, c => c.InitializeUsing(indexState));
                 RunEntityMapping(curClient, CurSetting.EsDefaultIndex);
                 RunBindAliasIndex(curClient, CurSetting.EsDefaultIndex);
                 return curClient;

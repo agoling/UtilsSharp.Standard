@@ -909,41 +909,6 @@
             文件夹帮助类
             </summary>
         </member>
-        <member name="M:UtilsSharp.DirectoryHelper.CreateIfNotExists(System.String)">
-            <summary>
-            创建文件夹，如果不存在
-            </summary>
-            <param name="dirPath">要创建的文件夹路径</param>
-        </member>
-        <member name="M:UtilsSharp.DirectoryHelper.Copy(System.String,System.String,System.String[])">
-            <summary>
-            递归复制文件夹及文件夹/文件
-            </summary>
-            <param name="sourcePath"> 源文件夹路径 </param>
-            <param name="targetPath"> 目的文件夹路径 </param>
-            <param name="searchPatterns"> 要复制的文件扩展名数组 </param>
-        </member>
-        <member name="M:UtilsSharp.DirectoryHelper.Delete(System.String,System.Boolean)">
-            <summary>
-            递归删除目录
-            </summary>
-            <param name="dirPath"> 目录路径 </param>
-            <param name="isDeleteRoot"> 是否删除根目录 </param>
-            <returns> 是否成功 </returns>
-        </member>
-        <member name="M:UtilsSharp.DirectoryHelper.SetAttributes(System.String,System.IO.FileAttributes,System.Boolean)">
-            <summary>
-            设置或取消目录的<see cref="T:System.IO.FileAttributes"/>属性。
-            </summary>
-            <param name="dirPath">目录路径</param>
-            <param name="attribute">要设置的目录属性</param>
-            <param name="isSet">true为设置，false为取消</param>
-        </member>
-        <member name="M:UtilsSharp.DirectoryHelper.GetRootDirectory">
-            <summary>
-            获取程序根目录路径
-            </summary>
-        </member>
         <member name="M:UtilsSharp.DirectoryHelper.GetDesktopDirectory">
             <summary>
             获取桌面目录路径
@@ -1297,21 +1262,9 @@
             <param name="bytes">参数</param>
             <returns></returns>
         </member>
-        <member name="M:UtilsSharp.FileHelper.CreateIfNotExists(System.String)">
-            <summary>
-            创建文件，如果文件不存在
-            </summary>
-            <param name="fileName">要创建的文件</param>
-        </member>
-        <member name="M:UtilsSharp.FileHelper.DeleteIfExists(System.String)">
-            <summary>
-            删除指定文件
-            </summary>
-            <param name="fileName">要删除的文件名</param>
-        </member>
         <member name="T:UtilsSharp.IdCardHelper">
             <summary>
-            身份证相关验证帮助类
+            身份证相关验证
             </summary>
         </member>
         <member name="M:UtilsSharp.IdCardHelper.IsIdCard(System.String)">
@@ -1745,38 +1698,6 @@
             错误信息
             </summary>
         </member>
-        <member name="T:UtilsSharp.JsonHelper">
-            <summary>
-            Json帮助类
-            </summary>
-        </member>
-        <member name="M:UtilsSharp.JsonHelper.JsonDateTimeFormat(System.String)">
-            <summary>
-            处理Json的时间格式为正常格式
-            </summary>
-        </member>
-        <member name="M:UtilsSharp.JsonHelper.ToJson(System.Object,System.Boolean,System.Boolean)">
-            <summary>
-            把对象序列化成Json字符串格式
-            </summary>
-            <param name="obj">Json 对象</param>
-            <param name="camelCase">是否小写名称</param>
-            <param name="indented"></param>
-            <returns>Json 字符串</returns>
-        </member>
-        <member name="M:UtilsSharp.JsonHelper.FromJson``1(System.String)">
-            <summary>
-            把Json字符串转换为强类型对象
-            </summary>
-        </member>
-        <member name="M:UtilsSharp.JsonHelper.DeepCopy``1(``0)">
-            <summary>
-            反射对象深度拷贝
-            </summary>
-            <typeparam name="T">对象模型</typeparam>
-            <param name="obj">对象</param>
-            <returns></returns>
-        </member>
         <member name="T:UtilsSharp.JsonXmlHelper">
             <summary>
             JsonXml帮助类
@@ -1842,43 +1763,9 @@
             <param name="targetType"></param>
             <returns></returns>
         </member>
-        <member name="T:UtilsSharp.MathHelper">
-            <summary>
-            数据计算辅助操作类
-            </summary>
-        </member>
-        <member name="M:UtilsSharp.MathHelper.CalcProgress(System.Int32,System.Int32,System.Int32)">
-            <summary>
-            计算进度条进度
-            </summary>
-            <param name="step">增加的量</param>
-            <param name="totalCount">总条数</param>
-            <param name="completeProgress">总完成进度</param>
-            <returns></returns>
-        </member>
-        <member name="M:UtilsSharp.MathHelper.GetDistance(System.Double,System.Double,System.Double,System.Double)">
-            <summary>
-            获取两个坐标的距离
-            </summary>
-        </member>
-        <member name="T:UtilsSharp.NetworkHelper">
-            <summary>
-            网络辅助帮助类
-            </summary>
-        </member>
-        <member name="M:UtilsSharp.NetworkHelper.Ping(System.String)">
-            <summary>
-            是否能Ping通指定主机
-            </summary>
-        </member>
-        <member name="M:UtilsSharp.NetworkHelper.IsInternetConnected">
-            <summary>
-            网络是否畅通
-            </summary>
-        </member>
         <member name="T:UtilsSharp.NumberHelper">
             <summary>
-            数字帮助类
+            中文数字帮助类
             </summary>
         </member>
         <member name="M:UtilsSharp.NumberHelper.ToCnNumber(System.Int32,System.Boolean)">
@@ -3119,20 +3006,6 @@
             <param name="dt">指定时间</param>
             <reutrn>返回第几周</reutrn>
         </member>
-        <member name="M:UtilsSharp.TimeHelper.IsWeekend(System.DateTime)">
-            <summary>
-            当前时间是否周末
-            </summary>
-            <param name="dateTime">时间点</param>
-            <returns></returns>
-        </member>
-        <member name="M:UtilsSharp.TimeHelper.IsWeekday(System.DateTime)">
-            <summary>
-            当前时间是否工作日
-            </summary>
-            <param name="dateTime">时间点</param>
-            <returns></returns>
-        </member>
         <member name="T:UtilsSharp.TimeStampType">
             <summary>
             时间戳类型
@@ -3147,6 +3020,28 @@
             <summary>
             毫秒类型
             </summary>
+        </member>
+        <member name="T:UtilsSharp.UtilsHelper">
+            <summary>
+            公共工具类
+            </summary>
+        </member>
+        <member name="M:UtilsSharp.UtilsHelper.CalcProgress(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            计算进度条进度
+            </summary>
+            <param name="step">增加的量</param>
+            <param name="totalCount">总条数</param>
+            <param name="completeProgress">总完成进度</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.UtilsHelper.DeepCopy``1(``0)">
+            <summary>
+            反射对象深度拷贝
+            </summary>
+            <typeparam name="T">对象模型</typeparam>
+            <param name="obj">对象</param>
+            <returns></returns>
         </member>
         <member name="T:UtilsSharp.ValidationHelper">
             <summary>

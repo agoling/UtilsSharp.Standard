@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <Version>2.0.3</Version>
+    <Version>2.0.4</Version>
     <Authors>Agoling</Authors>
     <Company>Agoling</Company>
     <Product>Agoling</Product>
@@ -20,9 +20,7 @@
 
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="9.0.0" />
-    <PackageReference Include="Microsoft.Bcl.AsyncInterfaces" Version="6.0.0" />
     <PackageReference Include="NEST" Version="5.6.5" />
-    <PackageReference Include="System.ServiceModel.Primitives" Version="4.9.0" />
     <PackageReference Include="UtilsSharp.Protobuf" Version="2.0.3" />
   </ItemGroup>
 

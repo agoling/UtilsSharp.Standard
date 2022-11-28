@@ -261,7 +261,7 @@ namespace UtilsSharp
         {
             if (string.IsNullOrEmpty(mobilePhone)||mobilePhone.Length!=11) return mobilePhone;
             var first = mobilePhone.Substring(0, 3);
-            var third = mobilePhone.Substring(7, 4);
+            var third = mobilePhone.Substring(mobilePhone.Length-4);
             return $"{first}****{third}";
         }
 

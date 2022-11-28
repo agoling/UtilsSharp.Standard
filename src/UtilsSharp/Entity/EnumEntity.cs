@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using UtilsSharp.Standard.Interface;
 
 namespace UtilsSharp.Entity
 {
     /// <summary>
     /// 枚举对象模型
     /// </summary>
-    public class EnumEntity
+    public class EnumEntity: IProtobufEntity
     {
         /// <summary>  
         /// 枚举名称  

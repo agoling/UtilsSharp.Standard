@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
 
 namespace UtilsSharp
@@ -299,25 +298,6 @@ namespace UtilsSharp
 
                 }
             }
-        }
-
-        /// <summary>
-        /// 验证身份证是否合法，如果为空认为验证不合格
-        /// </summary>
-        /// <param name="idCard">要验证的身份证</param>        
-        public static bool IsIdCard(string idCard)
-        {
-            //如果为空认为验证不合格
-            if (string.IsNullOrEmpty(idCard))
-            {
-                return false;
-            }
-            idCard = idCard.Trim();
-            var pattern = new StringBuilder();
-            pattern.Append(@"^(11|12|13|14|15|21|22|23|31|32|33|34|35|36|37|41|42|43|44|45|46|");
-            pattern.Append(@"50|51|52|53|54|61|62|63|64|65|71|81|82|91)");
-            pattern.Append(@"(\d{13}|\d{15}[\dx])$");
-            return IsMatch(idCard, pattern.ToString());
         }
 
         /// <summary>

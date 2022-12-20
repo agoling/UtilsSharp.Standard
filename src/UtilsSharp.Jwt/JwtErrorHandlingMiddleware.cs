@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
-using UtilsSharp.Standard;
+using UtilsSharp.Shared.Standard;
 using HttpContext = Microsoft.AspNetCore.Http.HttpContext;
 
 namespace UtilsSharp.Jwt

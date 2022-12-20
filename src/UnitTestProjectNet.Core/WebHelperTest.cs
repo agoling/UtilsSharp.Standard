@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json;
 using UtilsSharp;
-using UtilsSharp.Standard;
+using UtilsSharp.Shared.Standard;
 
 namespace UnitTestProjectNet.Core
 {

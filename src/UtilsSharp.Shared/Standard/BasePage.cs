@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Runtime.Serialization;
-using System.Text;
-using UtilsSharp.Standard.Interface;
+﻿using UtilsSharp.Shared.Interface;
 
-namespace UtilsSharp.Standard
+namespace UtilsSharp.Shared.Standard
 {
     /// <summary>
     /// 基础分页参数

@@ -9,7 +9,7 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
-using UtilsSharp.Standard;
+using UtilsSharp.Shared.Standard;
 
 namespace UtilsSharp
 {

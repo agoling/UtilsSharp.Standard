@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 
-namespace UtilsSharp.Standard
+namespace UtilsSharp.Shared.Standard
 {
     /// <summary>
     /// 返回结果模型

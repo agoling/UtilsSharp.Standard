@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using Castle.DynamicProxy;
 using Newtonsoft.Json;
 using UtilsSharp.Logger;
-using UtilsSharp.Standard;
+using UtilsSharp.Shared.Standard;
 
 namespace UtilsSharp.AspNetCore.Interceptor
 {

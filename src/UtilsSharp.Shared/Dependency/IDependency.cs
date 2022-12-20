@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace UtilsSharp.Dependency
+namespace UtilsSharp.Shared.Dependency
 {
     /// <summary>
     /// DI依赖接口标识

@@ -1,8 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
-using UtilsSharp.Standard;
+using UtilsSharp.Shared.Standard;
 
 namespace UtilsSharp
 {

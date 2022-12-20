@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.Extensions.Caching.Memory;
 using Newtonsoft.Json;
-using UtilsSharp.Standard.Interface;
+using UtilsSharp.Shared.Interface;
 
 namespace UtilsSharp
 {

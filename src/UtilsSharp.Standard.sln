@@ -49,7 +49,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UtilsSharp.MySql", "UtilsSh
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UtilsSharp.AsyncInterceptor", "UtilsSharp.AsyncInterceptor\UtilsSharp.AsyncInterceptor.csproj", "{50D60C78-2AFF-4FE0-8F59-3B61492EAB84}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UtilsSharp.Jwt", "UtilsSharp.Jwt\UtilsSharp.Jwt.csproj", "{96287B4D-1745-42CC-B216-DBC2915EF901}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UtilsSharp.Jwt", "UtilsSharp.Jwt\UtilsSharp.Jwt.csproj", "{96287B4D-1745-42CC-B216-DBC2915EF901}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UtilsSharp.Shared", "UtilsSharp.Shared\UtilsSharp.Shared.csproj", "{617B1A07-EC87-40E1-97AF-A3890B5CA4FF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -153,6 +155,10 @@ Global
 		{96287B4D-1745-42CC-B216-DBC2915EF901}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{96287B4D-1745-42CC-B216-DBC2915EF901}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{96287B4D-1745-42CC-B216-DBC2915EF901}.Release|Any CPU.Build.0 = Release|Any CPU
+		{617B1A07-EC87-40E1-97AF-A3890B5CA4FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{617B1A07-EC87-40E1-97AF-A3890B5CA4FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{617B1A07-EC87-40E1-97AF-A3890B5CA4FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{617B1A07-EC87-40E1-97AF-A3890B5CA4FF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

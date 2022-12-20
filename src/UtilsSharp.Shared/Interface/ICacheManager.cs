@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using UtilsSharp.Dependency;
+using UtilsSharp.Shared.Dependency;
 
-namespace UtilsSharp.Standard.Interface
+namespace UtilsSharp.Shared.Interface
 {
     /// <summary>
     /// 缓存管理接口

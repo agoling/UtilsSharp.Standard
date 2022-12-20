@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace UtilsSharp.Standard.Interface
+namespace UtilsSharp.Shared.Interface
 {
     /// <summary>
     /// ReSharper disable once CommentTypo

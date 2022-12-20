@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Microsoft.AspNetCore.Http;
 
-namespace UtilsSharp.Standard
+namespace UtilsSharp
 {
     /// <summary>
     /// HttpContext
@@ -20,9 +20,9 @@ namespace UtilsSharp.Standard
         /// <summary>
         /// HttpContext
         /// </summary>
-        public static void Register(IHttpContextAccessor ahttpContextAccessor)
+        public static void Register(IHttpContextAccessor httpContextAccessor)
         {
-            _httpContextAccessor = ahttpContextAccessor;
+            _httpContextAccessor = httpContextAccessor;
         }
     }
 }

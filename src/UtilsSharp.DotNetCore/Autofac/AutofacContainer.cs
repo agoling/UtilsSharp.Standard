@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using Autofac;
 using Autofac.Extras.DynamicProxy;
 using AutoMapper;
-using UtilsSharp.Dependency;
+using UtilsSharp.Shared.Dependency;
 
 namespace UtilsSharp.DotNetCore.Autofac
 {

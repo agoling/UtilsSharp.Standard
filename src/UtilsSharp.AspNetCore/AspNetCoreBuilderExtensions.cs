@@ -22,7 +22,7 @@ namespace UtilsSharp.AspNetCore
             app.UseAutofacExtensions();
             //注册HttpContext
             var httpContextAccessor = AutofacContainer.Current.Resolve<IHttpContextAccessor>();
-            Standard.HttpContext.Register(httpContextAccessor);
+            HttpContext.Register(httpContextAccessor);
             //注册swagger
             app.UseSwaggerExtensions();
             //注册后使可以支持.Net平台上不支持的编码

@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Text;
+﻿using System.Configuration;
 using System.Xml;
 
-namespace UtilsSharp.Standard
+namespace UtilsSharp
 {
     /// <summary>
     /// 通过Section生成配置文件

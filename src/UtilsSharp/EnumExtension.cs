@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Reflection;
-using System.Text;
-using UtilsSharp.Entity;
+using UtilsSharp.Shared.Entity;
 
 namespace UtilsSharp
 {

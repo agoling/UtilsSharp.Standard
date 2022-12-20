@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace UtilsSharp.Standard
+namespace UtilsSharp.Shared.Standard
 {
     /// <summary>
     /// 提示信息模板

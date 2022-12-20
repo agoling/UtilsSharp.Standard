@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using UtilsSharp.Standard.Interface;
+﻿using UtilsSharp.Shared.Interface;
 
-namespace UtilsSharp.Entity
+namespace UtilsSharp.Shared.Entity
 {
     /// <summary>
     /// 枚举对象模型

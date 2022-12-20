@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using UtilsSharp.Standard.Interface;
+using UtilsSharp.Shared.Interface;
 
-namespace UtilsSharp.Standard
+namespace UtilsSharp.Shared.Standard
 {
     /// <summary>
     /// 列表分页

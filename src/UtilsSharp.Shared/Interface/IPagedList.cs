@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
-namespace UtilsSharp.Standard.Interface
+namespace UtilsSharp.Shared.Interface
 {
     /// <summary>
     ///列表分页接口

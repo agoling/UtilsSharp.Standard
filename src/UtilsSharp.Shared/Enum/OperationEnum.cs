@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Text;
 
-namespace UtilsSharp.Entity
+namespace UtilsSharp.Shared.Enum
 {
     /// <summary>
     /// 关系运算符

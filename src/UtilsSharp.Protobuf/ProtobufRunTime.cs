@@ -3,10 +3,13 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.Loader;
+using Newtonsoft.Json;
 using ProtoBuf;
 using ProtoBuf.Grpc.Configuration;
 using ProtoBuf.Meta;
-using UtilsSharp.Standard.Interface;
+using UtilsSharp.Shared.Interface;
+using Microsoft.Extensions.DependencyModel;
 
 namespace UtilsSharp.Protobuf
 {
@@ -180,7 +183,7 @@ namespace UtilsSharp.Protobuf
                 allProtoDic.TryAdd(key, protoDic);
 
             });
-            AllProtoJson = Newtonsoft.Json.JsonConvert.SerializeObject(allProtoDic);
+            AllProtoJson = JsonConvert.SerializeObject(allProtoDic);
             #endregion
             return marshallerFactory;
         }
@@ -212,6 +215,31 @@ namespace UtilsSharp.Protobuf
                 baseTypeMeta.AddSubType(fieldsTag[baseTypeMeta], type);
             }
             return baseType;
+        }
+
+        /// <summary>
+        /// 获取所有的程序集(含所有系统程序集、Nuget下载包)
+        /// </summary>
+        /// <returns>程序集集合</returns>
+        private static List<Assembly> GetAllAssemblies()
+        {
+            var list = new List<Assembly>();
+            var deps = DependencyContext.Default;
+            //排除所有的系统程序集、Nuget下载包
+            var libs = deps.CompileLibraries;
+            foreach (var lib in libs)
+            {
+                try
+                {
+                    var assembly = AssemblyLoadContext.Default.LoadFromAssemblyName(new AssemblyName(lib.Name));
+                    list.Add(assembly);
+                }
+                catch (Exception)
+                {
+                    // ignored
+                }
+            }
+            return list;
         }
     }
 

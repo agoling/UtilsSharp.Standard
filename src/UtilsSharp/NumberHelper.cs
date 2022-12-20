@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Globalization;
-using UtilsSharp.Standard;
+using UtilsSharp.Shared.Standard;
 
 namespace UtilsSharp
 {

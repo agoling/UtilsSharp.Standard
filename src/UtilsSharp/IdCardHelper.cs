@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using UtilsSharp.Standard;
+using UtilsSharp.Shared.Standard;
 
 namespace UtilsSharp
 {

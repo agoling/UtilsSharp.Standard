@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Nest;
-using UtilsSharp.Dependency;
 using UtilsSharp.ElasticSearch7.Extension.Entity;
-using UtilsSharp.Standard;
+using UtilsSharp.Shared.Dependency;
+using UtilsSharp.Shared.Standard;
 
 namespace UtilsSharp.ElasticSearch7.Extension
 {

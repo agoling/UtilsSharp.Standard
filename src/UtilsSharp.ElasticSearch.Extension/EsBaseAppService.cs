@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Nest;
 using UtilsSharp.ElasticSearch.Extension.Entity;
-using UtilsSharp.Standard;
+using UtilsSharp.Shared.Standard;
 
 namespace UtilsSharp.ElasticSearch.Extension
 {

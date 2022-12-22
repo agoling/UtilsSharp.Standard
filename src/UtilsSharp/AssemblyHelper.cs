@@ -39,9 +39,9 @@ namespace UtilsSharp
         public static List<Assembly> GetAssemblies()
         {
             var list = new List<Assembly>();
-            var deps = DependencyContext.Default;
+            var dependency = DependencyContext.Default;
             //排除所有的系统程序集、Nuget下载包
-            var libs = deps.CompileLibraries.Where(lib => !lib.Serviceable && lib.Type != "package");
+            var libs = dependency.CompileLibraries.Where(lib => !lib.Serviceable && lib.Type != "package");
             foreach (var lib in libs)
             {
                 try
@@ -65,9 +65,9 @@ namespace UtilsSharp
         public static List<Assembly> GetAllAssemblies()
         {
             var list = new List<Assembly>();
-            var deps = DependencyContext.Default;
+            var dependency = DependencyContext.Default;
             //排除所有的系统程序集、Nuget下载包
-            var libs = deps.CompileLibraries;
+            var libs = dependency.CompileLibraries;
             foreach (var lib in libs)
             {
                 try

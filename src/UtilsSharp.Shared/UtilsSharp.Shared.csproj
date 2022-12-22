@@ -23,7 +23,6 @@
   <ItemGroup>
     <Folder Include="Dependency\" />
     <Folder Include="Entity\" />
-    <Folder Include="Interface\" />
     <Folder Include="Standard\" />
   </ItemGroup>
   

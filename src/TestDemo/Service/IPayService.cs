@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using UtilsSharp.Dependency;
+using UtilsSharp.Shared.Dependency;
 
 namespace TestDemo.Service
 {

@@ -13,8 +13,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestDemoApp", "TestDemoApp\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitTestProjectNet.Core", "UnitTestProjectNet.Core\UnitTestProjectNet.Core.csproj", "{CEB634EB-592D-4F09-83D2-C72705DE1E2C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UtilsSharp.Protobuf", "UtilsSharp.Protobuf\UtilsSharp.Protobuf.csproj", "{B5F9DB1D-0074-48CE-AE5F-A5FA1832A2F2}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UtilsSharp.ElasticSearch.Extension", "UtilsSharp.ElasticSearch.Extension\UtilsSharp.ElasticSearch.Extension.csproj", "{23EDBE70-8309-471B-8E2A-504F0EE49DCE}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UtilsSharp.ElasticSearch7.Extension", "UtilsSharp.ElasticSearch7.Extension\UtilsSharp.ElasticSearch7.Extension.csproj", "{4CF7A300-56BA-4AF8-8CB7-9A5243E2B293}"
@@ -51,7 +49,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UtilsSharp.AsyncInterceptor
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UtilsSharp.Jwt", "UtilsSharp.Jwt\UtilsSharp.Jwt.csproj", "{96287B4D-1745-42CC-B216-DBC2915EF901}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UtilsSharp.Shared", "UtilsSharp.Shared\UtilsSharp.Shared.csproj", "{617B1A07-EC87-40E1-97AF-A3890B5CA4FF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UtilsSharp.Shared", "UtilsSharp.Shared\UtilsSharp.Shared.csproj", "{617B1A07-EC87-40E1-97AF-A3890B5CA4FF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UtilsSharp.Grpc", "UtilsSharp.Grpc\UtilsSharp.Grpc.csproj", "{B4B81C14-E108-4A36-BBF7-0EB96B6A0CD4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UtilsSharp.Grpc.AspNetCore", "UtilsSharp.Grpc.AspNetCore\UtilsSharp.Grpc.AspNetCore.csproj", "{8755EC60-D474-4B32-830E-31585F44E955}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UtilsSharp.Grpc.ClientFactory", "UtilsSharp.Grpc.ClientFactory\UtilsSharp.Grpc.ClientFactory.csproj", "{BDE3F118-D2EE-4104-8CF0-8339ED1A7B59}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -79,10 +83,6 @@ Global
 		{CEB634EB-592D-4F09-83D2-C72705DE1E2C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CEB634EB-592D-4F09-83D2-C72705DE1E2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CEB634EB-592D-4F09-83D2-C72705DE1E2C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B5F9DB1D-0074-48CE-AE5F-A5FA1832A2F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B5F9DB1D-0074-48CE-AE5F-A5FA1832A2F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B5F9DB1D-0074-48CE-AE5F-A5FA1832A2F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B5F9DB1D-0074-48CE-AE5F-A5FA1832A2F2}.Release|Any CPU.Build.0 = Release|Any CPU
 		{23EDBE70-8309-471B-8E2A-504F0EE49DCE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{23EDBE70-8309-471B-8E2A-504F0EE49DCE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{23EDBE70-8309-471B-8E2A-504F0EE49DCE}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -159,6 +159,18 @@ Global
 		{617B1A07-EC87-40E1-97AF-A3890B5CA4FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{617B1A07-EC87-40E1-97AF-A3890B5CA4FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{617B1A07-EC87-40E1-97AF-A3890B5CA4FF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B4B81C14-E108-4A36-BBF7-0EB96B6A0CD4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B4B81C14-E108-4A36-BBF7-0EB96B6A0CD4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B4B81C14-E108-4A36-BBF7-0EB96B6A0CD4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B4B81C14-E108-4A36-BBF7-0EB96B6A0CD4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8755EC60-D474-4B32-830E-31585F44E955}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8755EC60-D474-4B32-830E-31585F44E955}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8755EC60-D474-4B32-830E-31585F44E955}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8755EC60-D474-4B32-830E-31585F44E955}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BDE3F118-D2EE-4104-8CF0-8339ED1A7B59}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BDE3F118-D2EE-4104-8CF0-8339ED1A7B59}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BDE3F118-D2EE-4104-8CF0-8339ED1A7B59}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BDE3F118-D2EE-4104-8CF0-8339ED1A7B59}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

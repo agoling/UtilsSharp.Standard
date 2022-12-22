@@ -19,7 +19,7 @@ namespace TestDemo.Areas.Admin.Controllers
         [HttpGet]
         public string Get()
         {
-            var token = UtilsSharp.Standard.HttpContext.Current.Request.Headers["token"];
+            var token = UtilsSharp.HttpContext.Current.Request.Headers["token"];
             return "value";
         }
 
@@ -31,7 +31,7 @@ namespace TestDemo.Areas.Admin.Controllers
         [HttpGet("{id}")]
         public string Get(int id)
         {
-            var token = UtilsSharp.Standard.HttpContext.Current.Request.Headers["token"];
+            var token = UtilsSharp.HttpContext.Current.Request.Headers["token"];
             return "value";
         }
 

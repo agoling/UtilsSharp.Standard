@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using UtilsSharp.Dependency;
+﻿using System.Collections.Generic;
+using UtilsSharp.Shared.Dependency;
 
 namespace UtilsSharp.RabbitMq.Extension
 {

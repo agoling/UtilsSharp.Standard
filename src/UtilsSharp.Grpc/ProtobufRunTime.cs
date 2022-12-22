@@ -11,7 +11,7 @@ using ProtoBuf.Meta;
 using UtilsSharp.Shared.Interface;
 using Microsoft.Extensions.DependencyModel;
 
-namespace UtilsSharp.Protobuf
+namespace UtilsSharp.Grpc
 {
     /// <summary>
     /// 根据程序集注册ProtoContract、ProtoInclude、ProtoMember
@@ -40,7 +40,7 @@ namespace UtilsSharp.Protobuf
         public static ConcurrentDictionary<string, MarshallerFactory> Initialize()
         {
             //获取基于ProtoEntity的类
-            var enumerable = AssemblyHelper.GetAllAssemblies();
+            var enumerable = GetAllAssemblies();
             var types = new List<Type>();
             foreach (var ts in enumerable.Select(item => item.GetTypes()
                          .Where(x => typeof(IProtobufEntity).IsAssignableFrom(x) && typeof(IProtobufEntity) != x)
@@ -95,6 +95,7 @@ namespace UtilsSharp.Protobuf
                     }
                 }
                 var fieldsTag = new ConcurrentDictionary<MetaType, int>();
+                currentAssemblyTypes= currentAssemblyTypes.OrderBy(o => o.FullName).ToList();
                 //注册ProtoContract、ProtoInclude、ProtoMember
                 foreach (var t in currentAssemblyTypes)
                 {
@@ -221,12 +222,12 @@ namespace UtilsSharp.Protobuf
         /// 获取所有的程序集(含所有系统程序集、Nuget下载包)
         /// </summary>
         /// <returns>程序集集合</returns>
-        private static List<Assembly> GetAllAssemblies()
+        private static IEnumerable<Assembly> GetAllAssemblies()
         {
             var list = new List<Assembly>();
-            var deps = DependencyContext.Default;
+            var dependency = DependencyContext.Default;
             //排除所有的系统程序集、Nuget下载包
-            var libs = deps.CompileLibraries;
+            var libs = dependency.CompileLibraries;
             foreach (var lib in libs)
             {
                 try

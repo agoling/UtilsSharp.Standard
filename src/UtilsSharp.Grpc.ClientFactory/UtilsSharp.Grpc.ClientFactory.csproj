@@ -1,0 +1,31 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <Authors>Agoling</Authors>
+    <Description>本项目是Grpc客户端帮助类基于.net standard2.0封装，属于UtilsSharp项目分支，依赖于protobuf-net.Grpc</Description>
+    <PackageProjectUrl>https://github.com/agoling/UtilsSharp.Standard</PackageProjectUrl>
+    <PackageIcon>UtilsSharp.jpg</PackageIcon>
+    <PackageIconUrl />
+    <RepositoryUrl>https://github.com/agoling/UtilsSharp.Standard</RepositoryUrl>
+    <PackageTags>UtilsSharp.Grpc.ClientFactory UtilsSharp Protobuf帮助类 Protobuf-net UtilsSharp.Protobuf</PackageTags>
+    <Version>1.0.0</Version>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DocumentationFile>D:\GitHub\Project\UtilsSharp.Standard\src\UtilsSharp.Grpc.ClientFactory\UtilsSharp.Grpc.ClientFactory.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Grpc.Net.Client" Version="2.50.0" />
+    <PackageReference Include="UtilsSharp.Grpc" Version="1.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\UtilsSharp.jpg">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+  </ItemGroup>
+
+</Project>

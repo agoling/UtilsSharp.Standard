@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>UtilsSharp.Grpc.AspNetCore</name>
+    </assembly>
+    <members>
+        <member name="T:UtilsSharp.Grpc.AspNetCore.GrpcExtensions">
+            <summary>
+            注册Grpc扩展
+            </summary>
+        </member>
+        <member name="M:UtilsSharp.Grpc.AspNetCore.GrpcExtensions.AddGrpcExtensions(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.String,System.Action{Grpc.AspNetCore.Server.GrpcServiceOptions})">
+            <summary>
+             注册Grpc
+            </summary>
+            <param name="services">services</param>
+            <param name="assemblyNameKeyword">程序集名称关键词</param>
+            <param name="configureOptions">GrpcServiceOptions</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.Grpc.AspNetCore.GrpcExtensions.AddGrpcExtensions(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Collections.Generic.List{ProtoBuf.Grpc.Configuration.MarshallerFactory},System.Action{Grpc.AspNetCore.Server.GrpcServiceOptions})">
+            <summary>
+             注册Grpc
+            </summary>
+            <param name="services">services</param>
+            <param name="marshallerFactories">程序集名称关键词</param>
+            <param name="configureOptions">GrpcServiceOptions</param>
+            <returns></returns>
+        </member>
+        <member name="T:UtilsSharp.Grpc.AspNetCore.ProtobufRunTimeExtensions">
+            <summary>
+            注册ProtoContract、ProtoInclude、ProtoMember扩展
+            </summary>
+        </member>
+        <member name="M:UtilsSharp.Grpc.AspNetCore.ProtobufRunTimeExtensions.AddProtobufRunTimeExtensions(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.String)">
+            <summary>
+             注册ProtoContract、ProtoInclude、ProtoMember
+            </summary>
+            <param name="services">services</param>
+            <param name="assemblyNameKeyword">程序集名称关键词</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.Grpc.AspNetCore.ProtobufRunTimeExtensions.AddProtobufRunTimeExtensions(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Collections.Generic.List{ProtoBuf.Grpc.Configuration.MarshallerFactory})">
+            <summary>
+             注册ProtoContract、ProtoInclude、ProtoMember
+            </summary>
+            <param name="services">services</param>
+            <param name="marshallerFactories">程序集名称关键词</param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

@@ -132,6 +132,11 @@
             ValueTask
             </summary>
         </member>
+        <member name="T:UtilsSharp.AsyncInterceptor.AsyncTimingInterceptor">
+            <summary>
+            AsyncTimingInterceptor
+            </summary>
+        </member>
         <member name="M:UtilsSharp.AsyncInterceptor.AsyncTimingInterceptor.StartingInvocation(Castle.DynamicProxy.IInvocation)">
             <summary>
             Signals <see cref="M:UtilsSharp.AsyncInterceptor.AsyncTimingInterceptor.StartingTiming(Castle.DynamicProxy.IInvocation)"/> before starting a <see cref="T:System.Diagnostics.Stopwatch"/> to time the method
@@ -163,37 +168,48 @@
             <param name="stopwatch">A <see cref="T:System.Diagnostics.Stopwatch"/> used to time the method <paramref name="invocation"/>.
             </param>
         </member>
+        <member name="T:UtilsSharp.AsyncInterceptor.IAsyncInterceptor">
+            <summary>
+            异步拦截
+            </summary>
+        </member>
         <member name="M:UtilsSharp.AsyncInterceptor.IAsyncInterceptor.InterceptSynchronous(Castle.DynamicProxy.IInvocation)">
             <summary>
-            Intercepts a synchronous method <paramref name="invocation"/>.
+            同步拦截
             </summary>
-            <param name="invocation">The method invocation.</param>
+            <param name="invocation">IInvocation</param>
         </member>
         <member name="M:UtilsSharp.AsyncInterceptor.IAsyncInterceptor.InterceptTaskAsynchronous(Castle.DynamicProxy.IInvocation)">
             <summary>
-            Intercepts an asynchronous method <paramref name="invocation"/> with return type of <see cref="T:System.Threading.Tasks.Task"/>.
+            异步Task拦截
             </summary>
-            <param name="invocation">The method invocation.</param>
+            <param name="invocation">IInvocation</param>
         </member>
         <member name="M:UtilsSharp.AsyncInterceptor.IAsyncInterceptor.InterceptTaskAsynchronous``1(Castle.DynamicProxy.IInvocation)">
             <summary>
-            Intercepts an asynchronous method <paramref name="invocation"/> with return type of <see cref="T:System.Threading.Tasks.Task`1"/>.
+            异步Task`1拦截
             </summary>
-            <typeparam name="TResult">The type of the <see cref="T:System.Threading.Tasks.Task`1"/> <see cref="P:System.Threading.Tasks.Task`1.Result"/>.</typeparam>
-            <param name="invocation">The method invocation.</param>
+            <typeparam name="TResult">返回参数</typeparam>
+            <param name="invocation">IInvocation</param>
         </member>
         <member name="M:UtilsSharp.AsyncInterceptor.IAsyncInterceptor.InterceptValueTaskAsynchronous(Castle.DynamicProxy.IInvocation)">
             <summary>
-            Intercepts an asynchronous method <paramref name="invocation"/> with return type of <see cref="T:System.Threading.Tasks.Task"/>.
+            异步ValueTask拦截
             </summary>
-            <param name="invocation">The method invocation.</param>
+            <param name="invocation">IInvocation</param>
         </member>
         <member name="M:UtilsSharp.AsyncInterceptor.IAsyncInterceptor.InterceptValueTaskAsynchronous``1(Castle.DynamicProxy.IInvocation)">
             <summary>
-            Intercepts an asynchronous method <paramref name="invocation"/> with return type of <see cref="T:System.Threading.Tasks.Task`1"/>.
+            异步ValueTask`1拦截
             </summary>
-            <typeparam name="TResult">The type of the <see cref="T:System.Threading.Tasks.Task`1"/> <see cref="P:System.Threading.Tasks.Task`1.Result"/>.</typeparam>
-            <param name="invocation">The method invocation.</param>
+            <typeparam name="TResult">返回参数</typeparam>
+            <param name="invocation">IInvocation</param>
+        </member>
+        <member name="T:UtilsSharp.AsyncInterceptor.ProcessingAsyncInterceptor`1">
+            <summary>
+            ProcessingAsyncInterceptor
+            </summary>
+            <typeparam name="TState"></typeparam>
         </member>
         <member name="M:UtilsSharp.AsyncInterceptor.ProcessingAsyncInterceptor`1.InterceptSynchronous(Castle.DynamicProxy.IInvocation)">
             <summary>
@@ -308,6 +324,11 @@
             <param name="state">
             The <typeparamref name="TState"/> returned by <see cref="M:UtilsSharp.AsyncInterceptor.ProcessingAsyncInterceptor`1.StartingInvocation(Castle.DynamicProxy.IInvocation)"/>.
             </param>
+        </member>
+        <member name="T:UtilsSharp.AsyncInterceptor.ProxyGeneratorExtensions">
+            <summary>
+            ProxyGeneratorExtensions
+            </summary>
         </member>
         <member name="M:UtilsSharp.AsyncInterceptor.ProxyGeneratorExtensions.ToInterceptor(UtilsSharp.AsyncInterceptor.IAsyncInterceptor)">
             <summary>

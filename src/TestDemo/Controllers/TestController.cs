@@ -37,8 +37,8 @@ namespace TestDemo.Controllers
         [HttpGet]
         public string Get()
         {
-            var szy = UtilsSharp.Standard.HttpContext.Current.Request.Headers["szy"];
-            var token = UtilsSharp.Standard.HttpContext.Current.Request.Headers["Authorization"];
+            var szy = UtilsSharp.HttpContext.Current.Request.Headers["szy"];
+            var token = UtilsSharp.HttpContext.Current.Request.Headers["Authorization"];
             return $"{_wxPayService.PayType()}和{_aliPayService.PayType()}";
         }
 
@@ -50,7 +50,7 @@ namespace TestDemo.Controllers
         [HttpGet("{id}")]
         public string Get(int id)
         {
-            var token = UtilsSharp.Standard.HttpContext.Current.Request.Headers["token"];
+            var token = UtilsSharp.HttpContext.Current.Request.Headers["token"];
             return "value";
         }
 

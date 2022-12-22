@@ -1,0 +1,34 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <Authors>Agoling</Authors>
+    <Description>本项目是Grpc帮助类基于.net standard2.0封装，属于UtilsSharp项目分支，依赖于protobuf-net.Grpc</Description>
+    <PackageProjectUrl>https://github.com/agoling/UtilsSharp.Standard</PackageProjectUrl>
+    <PackageIcon>UtilsSharp.jpg</PackageIcon>
+    <PackageIconUrl />
+    <RepositoryUrl>https://github.com/agoling/UtilsSharp.Standard</RepositoryUrl>
+    <PackageTags>UtilsSharp.Grpc UtilsSharp Protobuf帮助类 Protobuf-net UtilsSharp.Protobuf</PackageTags>
+    <Version>1.0.0</Version>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DocumentationFile>D:\GitHub\Project\UtilsSharp.Standard\src\UtilsSharp.Grpc\UtilsSharp.Grpc.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.DependencyModel" Version="2.1.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <PackageReference Include="protobuf-net.Grpc" Version="1.0.179" />
+    <PackageReference Include="System.Runtime.Loader" Version="4.3.0" />
+    <PackageReference Include="UtilsSharp.Shared" Version="1.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\UtilsSharp.jpg">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+  </ItemGroup>
+
+</Project>

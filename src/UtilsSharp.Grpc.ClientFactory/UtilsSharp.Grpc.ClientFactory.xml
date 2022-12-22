@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>UtilsSharp.Grpc.ClientFactory</name>
+    </assembly>
+    <members>
+        <member name="T:UtilsSharp.Grpc.ClientFactory.GrpcHelper">
+            <summary>
+            GrpcHelper
+            </summary>
+        </member>
+        <member name="M:UtilsSharp.Grpc.ClientFactory.GrpcHelper.GetChannel(System.String,System.Boolean)">
+            <summary>
+            获取GrpcChannel
+            </summary>
+            <param name="address">address</param>
+            <param name="allowUnencryptedHttp2">如果服务端没有加密传输，客户端必须设置为true</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.Grpc.ClientFactory.GrpcHelper.GetChannel(System.String,Grpc.Net.Client.GrpcChannelOptions,System.Boolean)">
+            <summary>
+            获取GrpcChannel
+            </summary>
+            <param name="address">address</param>
+            <param name="channelOptions">channelOptions</param>
+            <param name="allowUnencryptedHttp2">如果服务端没有加密传输，客户端必须设置为true</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.Grpc.ClientFactory.GrpcHelper.GetService``1(System.String,System.Boolean)">
+            <summary>
+            获取接口服务
+            </summary>
+            <typeparam name="TService">接口服务</typeparam>
+            <param name="address">address</param>
+            <param name="allowUnencryptedHttp2">如果服务端没有加密传输，客户端必须设置为true</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.Grpc.ClientFactory.GrpcHelper.GetService``1(System.String,Grpc.Net.Client.GrpcChannelOptions,System.Boolean)">
+            <summary>
+            获取接口服务
+            </summary>
+            <typeparam name="TService">接口服务</typeparam>
+            <param name="address">address</param>
+            <param name="channelOptions">channelOptions</param>
+            <param name="allowUnencryptedHttp2">如果服务端没有加密传输，客户端必须设置为true</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.Grpc.ClientFactory.GrpcHelper.GetService``1(Grpc.Net.Client.GrpcChannel)">
+            <summary>
+            获取接口服务
+            </summary>
+            <typeparam name="TService">接口服务</typeparam>
+            <param name="channel">如果服务端没有加密传输，客户端必须设置为true</param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

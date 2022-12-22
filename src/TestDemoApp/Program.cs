@@ -1,21 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
-using TestDemoApp.ElasticSearch;
-using TestDemoApp.Kafka;
-using TestDemoApp.Logger;
-using TestDemoApp.RabbitMQ;
-
-namespace TestDemoApp
+﻿namespace TestDemoApp
 {
     class Program
     {
         static void Main(string[] args)
         {
-            LoggerInit.LoggerTest();
-            Console.ReadKey();
+
+            //LoggerInit.LoggerTest();
+            //Console.ReadKey();
 
             //ElasticSearchInit.Init();
             //Console.ReadKey();
@@ -32,6 +23,6 @@ namespace TestDemoApp
 
             //Console.ReadKey();
         }
-
     }
+
 }

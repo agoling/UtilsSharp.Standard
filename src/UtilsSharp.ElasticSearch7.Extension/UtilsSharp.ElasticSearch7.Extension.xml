@@ -107,7 +107,7 @@
              <param name="getFunc">单条获取方法</param>
              <returns></returns>
         </member>
-        <member name="M:UtilsSharp.ElasticSearch7.Extension.EsBaseAppService.Search``3(``0,System.Func{``0,UtilsSharp.Standard.BasePagedInfoResult{``1}})">
+        <member name="M:UtilsSharp.ElasticSearch7.Extension.EsBaseAppService.Search``3(``0,System.Func{``0,UtilsSharp.Shared.Standard.BasePagedInfoResult{``1}})">
             <summary>
             搜索
             </summary>
@@ -155,7 +155,7 @@
              <param name="getFuncAsync">单条获取方法</param>
              <returns></returns>
         </member>
-        <member name="M:UtilsSharp.ElasticSearch7.Extension.EsBaseAppService.SearchAsync``3(``0,System.Func{``0,System.Threading.Tasks.Task{UtilsSharp.Standard.BasePagedInfoResult{``1}}})">
+        <member name="M:UtilsSharp.ElasticSearch7.Extension.EsBaseAppService.SearchAsync``3(``0,System.Func{``0,System.Threading.Tasks.Task{UtilsSharp.Shared.Standard.BasePagedInfoResult{``1}}})">
             <summary>
             搜索
             </summary>
@@ -211,7 +211,7 @@
              <param name="getFunc">单条获取方法</param>
              <returns></returns>
         </member>
-        <member name="M:UtilsSharp.ElasticSearch7.Extension.IEsBaseAppService.Search``3(``0,System.Func{``0,UtilsSharp.Standard.BasePagedInfoResult{``1}})">
+        <member name="M:UtilsSharp.ElasticSearch7.Extension.IEsBaseAppService.Search``3(``0,System.Func{``0,UtilsSharp.Shared.Standard.BasePagedInfoResult{``1}})">
             <summary>
             搜索
             </summary>
@@ -259,13 +259,55 @@
              <param name="getFuncAsync">单条获取方法</param>
              <returns></returns>
         </member>
-        <member name="M:UtilsSharp.ElasticSearch7.Extension.IEsBaseAppService.SearchAsync``3(``0,System.Func{``0,System.Threading.Tasks.Task{UtilsSharp.Standard.BasePagedInfoResult{``1}}})">
+        <member name="M:UtilsSharp.ElasticSearch7.Extension.IEsBaseAppService.SearchAsync``3(``0,System.Func{``0,System.Threading.Tasks.Task{UtilsSharp.Shared.Standard.BasePagedInfoResult{``1}}})">
             <summary>
             搜索
             </summary>
             <param name="request">参数</param>
             <param name="searchFuncAsync">搜索方法</param>
             <returns></returns>
+        </member>
+        <member name="T:UtilsSharp.ElasticSearch7.Extension.ValidationHelper">
+            <summary>
+            验证入参模型帮助类
+            </summary>
+        </member>
+        <member name="M:UtilsSharp.ElasticSearch7.Extension.ValidationHelper.IsValid(System.Object)">
+            <summary>
+            验证模型参数
+            </summary>
+            <param name="value">模型对象</param>
+            <returns></returns>
+        </member>
+        <member name="T:UtilsSharp.ElasticSearch7.Extension.ValidResult">
+            <summary>
+            验证结果
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.ElasticSearch7.Extension.ValidResult.ErrorMembers">
+            <summary>
+            错误成员集合
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.ElasticSearch7.Extension.ValidResult.IsValid">
+            <summary>
+            是否验证成功
+            </summary>
+        </member>
+        <member name="T:UtilsSharp.ElasticSearch7.Extension.ErrorMember">
+            <summary>
+            错误成员
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.ElasticSearch7.Extension.ErrorMember.ErrorMessage">
+            <summary>
+            错误信息
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.ElasticSearch7.Extension.ErrorMember.ErrorMemberName">
+            <summary>
+            错误成员名称
+            </summary>
         </member>
     </members>
 </doc>

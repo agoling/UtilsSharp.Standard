@@ -1,5 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using UtilsSharp.Standard.Interface;
+using UtilsSharp.Shared.Interface;
 
 namespace UtilsSharp.ElasticSearch7.Extension.Entity
 {

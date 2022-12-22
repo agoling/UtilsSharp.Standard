@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using ProtoBuf.Grpc.Configuration;
 
-namespace UtilsSharp.Protobuf
+namespace UtilsSharp.Grpc.AspNetCore
 {
     /// <summary>
     /// 注册ProtoContract、ProtoInclude、ProtoMember扩展

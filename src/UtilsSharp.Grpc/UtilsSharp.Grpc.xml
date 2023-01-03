@@ -4,6 +4,21 @@
         <name>UtilsSharp.Grpc</name>
     </assembly>
     <members>
+        <member name="T:UtilsSharp.Grpc.ExportProtoType">
+            <summary>
+            导出Proto文件方式
+            </summary>
+        </member>
+        <member name="F:UtilsSharp.Grpc.ExportProtoType.AllIn">
+            <summary>
+            全部在一个文件中
+            </summary>
+        </member>
+        <member name="F:UtilsSharp.Grpc.ExportProtoType.TypeName">
+            <summary>
+            按类型名称创建文件
+            </summary>
+        </member>
         <member name="T:UtilsSharp.Grpc.ProtobufRunTime">
             <summary>
             根据程序集注册ProtoContract、ProtoInclude、ProtoMember
@@ -54,6 +69,16 @@
             ClientFactory 字典
             </summary>
         </member>
+        <member name="F:UtilsSharp.Grpc.ProtobufRunTime.BinderConfigDic">
+            <summary>
+            BinderConfiguration 字典
+            </summary>
+        </member>
+        <member name="F:UtilsSharp.Grpc.ProtobufRunTime.SchemaGenerator">
+            <summary>
+            proto脚本生成工具
+            </summary>
+        </member>
         <member name="M:UtilsSharp.Grpc.ProtobufRunTime.GetMarshallerFactory``1">
             <summary>
             GetMarshallerFactory
@@ -95,6 +120,25 @@
             </summary>
             <param name="assemblyNameKeyword">程序集名称关键词</param>
             <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.Grpc.ProtobufRunTime.GenerateProtoFile``1">
+            <summary>
+            生成proto文件文本内容
+            </summary>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+            <exception cref="T:System.Exception"></exception>
+        </member>
+        <member name="M:UtilsSharp.Grpc.ProtobufRunTime.GenerateProtoFile(System.String,System.Collections.Generic.List{System.Type},System.String,UtilsSharp.Grpc.ExportProtoType)">
+            <summary>
+            生成proto文件文本内容
+            </summary>
+            <param name="assemblyNameKeyword">程序集名称关键词</param>
+            <param name="types">types</param>
+            <param name="exportDirPath">导出目录</param>
+            <param name="exportProtoType">导出类型</param>
+            <returns></returns>
+            <exception cref="T:System.Exception"></exception>
         </member>
         <member name="T:UtilsSharp.Grpc.ProtobufConvert">
             <summary>

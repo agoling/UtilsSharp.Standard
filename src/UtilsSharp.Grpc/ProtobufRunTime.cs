@@ -10,6 +10,8 @@ using ProtoBuf.Grpc.Configuration;
 using ProtoBuf.Meta;
 using UtilsSharp.Shared.Interface;
 using Microsoft.Extensions.DependencyModel;
+using System.IO;
+using ProtoBuf.Grpc.Reflection;
 
 namespace UtilsSharp.Grpc
 {
@@ -22,11 +24,11 @@ namespace UtilsSharp.Grpc
         /// AllMarshallerFactory
         /// </summary>
         private static ConcurrentDictionary<string, MarshallerFactory> _dic;
-        
+
         /// <summary>
         /// 所有ProtoJson
         /// </summary>
-        public static string AllProtoJson {get; private set; }
+        public static string AllProtoJson { get; private set; }
 
         /// <summary>
         /// AllMarshallerFactory
@@ -51,15 +53,15 @@ namespace UtilsSharp.Grpc
 
             //程序集下的所有RuntimeTypeModels
             var dllRuntimeTypeModels = new ConcurrentDictionary<string, RuntimeTypeModel>();
-            var assemblyNameDic = types.GroupBy(g => g.Assembly.FullName).ToDictionary(t=>t.Key,t=>t.ToList());
+            var assemblyNameDic = types.GroupBy(g => g.Assembly.FullName).ToDictionary(t => t.Key, t => t.ToList());
             foreach (var assemblyNameKeyValuePair in assemblyNameDic)
             {
                 #region 得到主类类型
-                var currentAssemblyName= assemblyNameKeyValuePair.Key;
+                var currentAssemblyName = assemblyNameKeyValuePair.Key;
                 var currentAssemblyTypes = new List<Type>();
                 currentAssemblyTypes.AddRange(assemblyNameKeyValuePair.Value);
                 #endregion
-                
+
                 #region 得到基类类型
                 var baseTypeAssemblyNameDic = new ConcurrentDictionary<string, string>();
                 foreach (var item in currentAssemblyTypes)
@@ -95,7 +97,7 @@ namespace UtilsSharp.Grpc
                     }
                 }
                 var fieldsTag = new ConcurrentDictionary<MetaType, int>();
-                currentAssemblyTypes= currentAssemblyTypes.OrderBy(o => o.FullName).ToList();
+                currentAssemblyTypes = currentAssemblyTypes.OrderBy(o => o.FullName).ToList();
                 //注册ProtoContract、ProtoInclude、ProtoMember
                 foreach (var t in currentAssemblyTypes)
                 {
@@ -252,7 +254,15 @@ namespace UtilsSharp.Grpc
         /// <summary>
         /// ClientFactory 字典
         /// </summary>
-        private static readonly ConcurrentDictionary<string,ClientFactory> ClientFactoryDic = new ConcurrentDictionary<string, ClientFactory>();
+        private static readonly ConcurrentDictionary<string, ClientFactory> ClientFactoryDic = new ConcurrentDictionary<string, ClientFactory>();
+        /// <summary>
+        /// BinderConfiguration 字典
+        /// </summary>
+        private static readonly ConcurrentDictionary<string, BinderConfiguration> BinderConfigDic = new ConcurrentDictionary<string, BinderConfiguration>();
+        /// <summary>
+        /// proto脚本生成工具
+        /// </summary>
+        private static readonly SchemaGenerator SchemaGenerator = new SchemaGenerator();
 
         /// <summary>
         /// GetMarshallerFactory
@@ -356,6 +366,96 @@ namespace UtilsSharp.Grpc
             var marshallerFactories = GetMarshallerFactoryByKeyword(assemblyNameKeyword);
             return ClientFactory.Create(BinderConfiguration.Create(marshallerFactories));
         }
-    }
 
+        /// <summary>
+        /// 生成proto文件文本内容
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <returns></returns>
+        /// <exception cref="Exception"></exception>
+        public static string GenerateProtoFile<T>()
+        {
+            var result = string.Empty;
+            var marshallerFactories = GetMarshallerFactory<T>();
+            if (marshallerFactories == null || !marshallerFactories.Any())
+            {
+                return result;
+            }
+            var key = typeof(T).FullName;
+            BinderConfigDic.TryGetValue(key, out var binderConfig);
+            if (binderConfig == null)
+            {
+                binderConfig = BinderConfiguration.Create(marshallerFactories);
+                BinderConfigDic.TryAdd(key, binderConfig);
+            }
+            SchemaGenerator.BinderConfiguration = binderConfig;
+            result = SchemaGenerator.GetSchema<T>();
+            return result;
+        }
+
+        /// <summary>
+        /// 生成proto文件文本内容
+        /// </summary>
+        /// <param name="assemblyNameKeyword">程序集名称关键词</param>
+        /// <param name="types">types</param>
+        /// <param name="exportDirPath">导出目录</param>
+        /// <param name="exportProtoType">导出类型</param>
+        /// <returns></returns>
+        /// <exception cref="Exception"></exception>
+        public static void GenerateProtoFile(string assemblyNameKeyword, List<Type> types = null, string exportDirPath = "protoFiles", ExportProtoType exportProtoType = ExportProtoType.AllIn)
+        {
+            if (string.IsNullOrWhiteSpace(assemblyNameKeyword))
+            {
+                return;
+            }
+            if (types == null || !types.Any())
+            {
+                return;
+            }
+            BinderConfigDic.TryGetValue(assemblyNameKeyword, out var binderConfig);
+            if (binderConfig == null)
+            {
+                var marshallerFactories = GetMarshallerFactoryByKeyword(assemblyNameKeyword);
+                binderConfig = BinderConfiguration.Create(marshallerFactories);
+                BinderConfigDic.TryAdd(assemblyNameKeyword, binderConfig);
+            }
+            SchemaGenerator.BinderConfiguration = binderConfig;
+            var dirPath = $"{AppContext.BaseDirectory}{(string.IsNullOrWhiteSpace(exportDirPath) ? "protoFiles" : exportDirPath)}".TrimEnd('\\') + "\\";
+            string protoFilePath;
+            if (!Directory.Exists(dirPath))
+            {
+                Directory.CreateDirectory(dirPath);
+            }
+            //按命名空间/类名建文件
+            if (exportProtoType == ExportProtoType.TypeName)
+            {
+                types.ForEach(type => {
+                    protoFilePath = $"{dirPath}\\{type.Namespace}\\";
+                    if (!Directory.Exists(protoFilePath))
+                    {
+                        Directory.CreateDirectory(protoFilePath);
+                    }
+                    protoFilePath += $"{type.Name}.proto";
+                    File.WriteAllText(protoFilePath, SchemaGenerator.GetSchema(type));
+                });
+            }
+            else
+            {
+                //同个命名空间下的放同个文件里
+                var nameSpaceTypes = types.GroupBy(g => g.Namespace).Select(sel => new { NameSpace = sel.Key, Types = sel.ToList() }).ToList();
+                nameSpaceTypes.ForEach(type =>
+                {
+                    if (type.Types == null || !type.Types.Any()) return;
+                    protoFilePath = $"{dirPath}{assemblyNameKeyword}\\";
+                    if (!Directory.Exists(protoFilePath))
+                    {
+                        Directory.CreateDirectory(protoFilePath);
+                    }
+                    protoFilePath += $"{type.NameSpace}.proto";
+                    File.WriteAllText(protoFilePath, SchemaGenerator.GetSchema(type.Types.ToArray()));
+                });
+
+            }
+        }
+    }
 }

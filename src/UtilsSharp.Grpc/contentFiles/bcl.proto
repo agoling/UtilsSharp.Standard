@@ -1,0 +1,59 @@
+syntax = "proto3";
+
+package bcl;
+
+message TimeSpan {
+  sint64 value = 1;
+  TimeSpanScale scale = 2;
+  enum TimeSpanScale {
+    DAYS = 0;
+    HOURS = 1;
+    MINUTES = 2;
+    SECONDS = 3;
+    MILLISECONDS = 4;
+	TICKS = 5;
+    MINMAX = 15;
+  }
+}
+
+message DateTime {
+  sint64 value = 1;
+  TimeSpanScale scale = 2;
+  DateTimeKind kind = 3;
+  enum TimeSpanScale {
+    DAYS = 0;
+    HOURS = 1;
+    MINUTES = 2;
+    SECONDS = 3;
+    MILLISECONDS = 4;
+	TICKS = 5;
+
+    MINMAX = 15;
+  }
+  enum DateTimeKind
+  {     
+     UNSPECIFIED = 0;
+     UTC = 1;
+     LOCAL = 2;
+   }
+}
+
+message NetObjectProxy {
+  int32 existingObjectKey = 1;
+  int32 newObjectKey = 2;
+  int32 existingTypeKey = 3;
+  int32 newTypeKey = 4;
+  string typeName = 8;
+  bytes payload = 10;
+}
+
+message Guid {
+  fixed64 lo = 1;
+  fixed64 hi = 2;
+}
+
+message Decimal {
+  uint64 lo = 1;
+  uint32 hi = 2;
+  uint32 signScale = 3;
+}

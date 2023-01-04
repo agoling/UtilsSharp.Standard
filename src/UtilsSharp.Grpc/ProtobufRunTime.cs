@@ -390,6 +390,10 @@ namespace UtilsSharp.Grpc
             }
             SchemaGenerator.BinderConfiguration = binderConfig;
             result = SchemaGenerator.GetSchema<T>();
+            if (result.Contains("import \"protobuf-net/bcl.proto\"; // schema for protobuf-net's handling of core .NET types"))
+            {
+                result = result.Replace("import \"protobuf-net/bcl.proto\"; // schema for protobuf-net's handling of core .NET types", "import \"Public/bcl.proto\";");
+            }
             return result;
         }
 
@@ -421,22 +425,34 @@ namespace UtilsSharp.Grpc
             }
             SchemaGenerator.BinderConfiguration = binderConfig;
             var dirPath = $"{AppContext.BaseDirectory}{(string.IsNullOrWhiteSpace(exportDirPath) ? "protoFiles" : exportDirPath)}".TrimEnd('\\') + "\\";
+            var blcProtoFilePath = $"{AppContext.BaseDirectory}bcl.proto";
+            var copyBlcProtoFilePath = $"{dirPath}Public\\bcl.proto";
             string protoFilePath;
             if (!Directory.Exists(dirPath))
             {
                 Directory.CreateDirectory(dirPath);
             }
+            if (!Directory.Exists($"{dirPath}Public\\"))
+            {
+                Directory.CreateDirectory($"{dirPath}Public\\");
+            }
             //按命名空间/类名建文件
             if (exportProtoType == ExportProtoType.TypeName)
             {
                 types.ForEach(type => {
-                    protoFilePath = $"{dirPath}\\{type.Namespace}\\";
+                    protoFilePath = $"{dirPath}{type.Namespace}\\";
                     if (!Directory.Exists(protoFilePath))
                     {
                         Directory.CreateDirectory(protoFilePath);
                     }
                     protoFilePath += $"{type.Name}.proto";
-                    File.WriteAllText(protoFilePath, SchemaGenerator.GetSchema(type));
+                    var protoStr = SchemaGenerator.GetSchema(type);
+                    if (protoStr.Contains("import \"protobuf-net/bcl.proto\"; // schema for protobuf-net's handling of core .NET types") && File.Exists(blcProtoFilePath) && !File.Exists(copyBlcProtoFilePath))
+                    {
+                        protoStr = protoStr.Replace("import \"protobuf-net/bcl.proto\"; // schema for protobuf-net's handling of core .NET types", "import \"Public/bcl.proto\";");
+                        File.Copy(blcProtoFilePath, copyBlcProtoFilePath, true);
+                    }
+                    File.WriteAllText(protoFilePath, protoStr);
                 });
             }
             else
@@ -452,10 +468,17 @@ namespace UtilsSharp.Grpc
                         Directory.CreateDirectory(protoFilePath);
                     }
                     protoFilePath += $"{type.NameSpace}.proto";
-                    File.WriteAllText(protoFilePath, SchemaGenerator.GetSchema(type.Types.ToArray()));
+                    var protoStr = SchemaGenerator.GetSchema(type.Types.ToArray());
+                    if (protoStr.Contains("import \"protobuf-net/bcl.proto\"; // schema for protobuf-net's handling of core .NET types") && File.Exists(blcProtoFilePath) && !File.Exists(copyBlcProtoFilePath))
+                    {
+                        protoStr = protoStr.Replace("import \"protobuf-net/bcl.proto\"; // schema for protobuf-net's handling of core .NET types", "import \"Public/bcl.proto\";");
+                        File.Copy(blcProtoFilePath, copyBlcProtoFilePath, true);
+                    }
+                    File.WriteAllText(protoFilePath, protoStr);
                 });
 
             }
         }
+
     }
 }

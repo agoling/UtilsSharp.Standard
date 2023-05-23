@@ -213,11 +213,12 @@ namespace UtilsSharp.OssHelper
         /// <param name="tips">提示信息</param>
         /// <param name="reqOssEndpoint">ossEndpoint(默认访问内网)</param>
         /// <param name="ossDir">上传目录 默认："tools/webUpload/"</param>
+        /// <param name="fileName">文件名 默认为空</param>
         /// <param name="expireTime">过期时间(默认30秒)</param>
         /// <returns></returns>
-        public static Dictionary<string, string> GetSign(string ossCallbackUrl, string ossCallbackHost, out string tips, string reqOssEndpoint = "", string ossDir = "tools/webUpload/", long expireTime = 30)
+        public static Dictionary<string, string> GetSign(string ossCallbackUrl, string ossCallbackHost, out string tips, string reqOssEndpoint = "", string ossDir = "tools/webUpload/", string fileName = "", long expireTime = 30)
         {
-            return Instance.GetSign(ossCallbackUrl, ossCallbackHost, out tips, reqOssEndpoint, ossDir, expireTime);
+            return Instance.GetSign(ossCallbackUrl, ossCallbackHost, out tips, reqOssEndpoint, ossDir, fileName, expireTime);
         }
     }
     #endregion

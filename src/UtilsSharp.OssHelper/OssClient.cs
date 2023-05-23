@@ -384,9 +384,10 @@ namespace UtilsSharp.OssHelper
         /// <param name="tips">提示信息</param>
         /// <param name="reqOssEndpoint">ossEndpoint(默认访问内网)</param>
         /// <param name="ossDir">上传目录 默认："tools/webUpload/"</param>
+        /// <param name="fileName">文件名 默认为空</param>
         /// <param name="expireTime">过期时间(默认30秒)</param>
         /// <returns></returns>
-        public Dictionary<string, string> GetSign(string ossCallbackUrl, string ossCallbackHost, out string tips, string reqOssEndpoint = "", string ossDir = "tools/webUpload/", long expireTime = 30)
+        public Dictionary<string, string> GetSign(string ossCallbackUrl, string ossCallbackHost, out string tips, string reqOssEndpoint = "", string ossDir = "tools/webUpload/",string fileName = "", long expireTime = 30)
         {
             if (_ossSetting == null)
             {
@@ -423,7 +424,7 @@ namespace UtilsSharp.OssHelper
                 var hashBytes = hmac.ComputeHash(Encoding.UTF8.GetBytes(encodedPolicy));
                 var postSignature = Convert.ToBase64String(hashBytes);
                 var ts = expiration.ToUniversalTime() - new DateTime(1970, 1, 1, 0, 0, 0, 0);
-                var randomFileName = "oss" + Guid.NewGuid().ToString().Replace("-", "");
+                fileName = !string.IsNullOrWhiteSpace(fileName)? fileName: "oss" + Guid.NewGuid().ToString().Replace("-", "");
 
                 var signDic = new Dictionary<string, string>
                 {
@@ -433,7 +434,7 @@ namespace UtilsSharp.OssHelper
                     {"signature", postSignature},
                     {"expire", Convert.ToInt64(ts.TotalSeconds).ToString()},
                     {"dir", ossDir},
-                    {"filename",randomFileName}
+                    {"filename",fileName}
                 };
                 var callback = JsonConvert.SerializeObject(new
                 {

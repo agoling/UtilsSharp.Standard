@@ -1,4 +1,8 @@
-﻿namespace TestDemoApp
+﻿using System;
+using System.Text;
+using UtilsSharp;
+
+namespace TestDemoApp
 {
     class Program
     {

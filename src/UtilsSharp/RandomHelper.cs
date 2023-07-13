@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text;
 using System.Threading;
 using static System.Int32;
 
@@ -230,6 +231,45 @@ namespace UtilsSharp
             int i = random.Next(Math.Abs(maxValue));
 
             return minTime.AddSeconds(i);
+        }
+
+        #endregion
+
+        #region 生成随机汉字
+
+        /// <summary>
+        /// 生成随机汉字
+        /// </summary>
+        /// <param name="length">生成长度,默认10</param>
+        /// <param name="encoding">Encoding</param>
+        /// <returns></returns>
+        public static string ChineseCharacters(int length=10, Encoding encoding=null)
+        {
+            if (encoding == null)
+            {
+                encoding= Encoding.UTF8;
+            }
+            Random random = new Random();
+            StringBuilder stringBuilder = new StringBuilder();
+
+            for (int i = 0; i < length; i++)
+            {
+                // 生成随机汉字的Unicode编码范围为0x4E00到0x9FBF
+                int codePoint = random.Next(0x4E00, 0x9FBF + 1);
+
+                // 将Unicode编码转换为对应的汉字字符
+                string character = char.ConvertFromUtf32(codePoint);
+
+                // 将汉字字符转换为UTF-8字节序列
+                byte[] utf8Bytes = encoding.GetBytes(character);
+
+                // 将UTF-8字节序列转换为字符串并拼接
+                string utf8String = encoding.GetString(utf8Bytes);
+                stringBuilder.Append(utf8String);
+            }
+
+            string chineseCharacters = stringBuilder.ToString();
+            return chineseCharacters;
         }
 
         #endregion

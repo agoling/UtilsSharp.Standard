@@ -260,8 +260,8 @@
       <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net461\System.ValueTuple.dll</HintPath>
     </Reference>
     <Reference Include="System.Xml" />
-    <Reference Include="UtilsSharp, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\UtilsSharp.3.0.0\lib\netstandard2.0\UtilsSharp.dll</HintPath>
+    <Reference Include="UtilsSharp, Version=3.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\UtilsSharp.3.0.1\lib\netstandard2.0\UtilsSharp.dll</HintPath>
     </Reference>
     <Reference Include="UtilsSharp.Logger, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\UtilsSharp.Logger.2.0.0\lib\netstandard2.0\UtilsSharp.Logger.dll</HintPath>
@@ -269,8 +269,8 @@
     <Reference Include="UtilsSharp.OptionConfig, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\UtilsSharp.OptionConfig.2.0.0\lib\netstandard2.0\UtilsSharp.OptionConfig.dll</HintPath>
     </Reference>
-    <Reference Include="UtilsSharp.RabbitMq, Version=3.0.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\UtilsSharp.RabbitMq.3.0.2\lib\netstandard2.0\UtilsSharp.RabbitMq.dll</HintPath>
+    <Reference Include="UtilsSharp.RabbitMq, Version=3.1.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\UtilsSharp.RabbitMq.3.1.1\lib\netstandard2.0\UtilsSharp.RabbitMq.dll</HintPath>
     </Reference>
     <Reference Include="UtilsSharp.Shared, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\UtilsSharp.Shared.1.0.0\lib\netstandard2.0\UtilsSharp.Shared.dll</HintPath>

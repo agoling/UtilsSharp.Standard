@@ -1892,6 +1892,14 @@
             <param name="time2">结束时间</param>
             <returns>间隔时间之间的 随机时间</returns>
         </member>
+        <member name="M:UtilsSharp.RandomHelper.ChineseCharacters(System.Int32,System.Text.Encoding)">
+            <summary>
+            生成随机汉字
+            </summary>
+            <param name="length">生成长度,默认10</param>
+            <param name="encoding">Encoding</param>
+            <returns></returns>
+        </member>
         <member name="T:UtilsSharp.RegexHelper">
             <summary>
             正则匹配帮助类

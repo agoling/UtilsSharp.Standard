@@ -203,6 +203,18 @@ namespace UtilsSharp.RabbitMq
         }
 
         /// <summary>
+        /// 消费者批量接收消息
+        /// </summary>
+        /// <param name="queueName">队列名称</param>
+        /// <param name="callback">回调方法</param>
+        /// <param name="batchCount">每次批量接收条数</param>
+        /// <param name="errorCallback">错误回调方法</param>
+        public static void BatchReceivedOnceChannel(string queueName, Action<List<string>> callback, int batchCount = 50, Action<string> errorCallback = null)
+        {
+            Instance.BatchReceivedOnceChannel(queueName, callback, batchCount, errorCallback);
+        }
+
+        /// <summary>
         /// 获取消息
         /// </summary>
         /// <param name="queueName">队列名称</param>
@@ -287,6 +299,19 @@ namespace UtilsSharp.RabbitMq
         {
             var t = BindBusiness(businessName);
             Instance.BatchReceived(t.Item3, callback, batchCount, errorCallback);
+        }
+
+        /// <summary>
+        /// 批量消费者（消费消息）
+        /// </summary>
+        /// <param name="businessName">业务名称</param>
+        /// <param name="callback">消费回调方法</param>
+        /// <param name="batchCount">每次批量接收条数</param>
+        /// <param name="errorCallback">错误回调方法</param>
+        public static void BatchReceivedByBusinessOnceChannel(string businessName, Action<List<string>> callback, int batchCount = 50, Action<string> errorCallback = null)
+        {
+            var t = BindBusiness(businessName);
+            Instance.BatchReceivedOnceChannel(t.Item3, callback, batchCount, errorCallback);
         }
 
         /// <summary>
@@ -405,6 +430,19 @@ namespace UtilsSharp.RabbitMq
 
 
         /// <summary>
+        /// 消费者批量接收消息
+        /// </summary>
+        /// <param name="queueName">队列名称</param>
+        /// <param name="callback">回调方法</param>
+        /// <param name="batchCount">每次批量接收条数</param>
+        /// <param name="errorCallback">错误回调方法</param>
+        /// <param name="millisecondsDelay">如果队列无数据休眠时间：毫秒</param>
+        public static async Task BatchReceivedOnceChannelAsync(string queueName, Action<List<string>> callback, int batchCount = 50, Action<string> errorCallback = null, int millisecondsDelay = 100)
+        {
+            await Instance.BatchReceivedOnceChannelAsync(queueName, callback, batchCount, errorCallback, millisecondsDelay);
+        }
+
+        /// <summary>
         /// 消费者（消费消息）
         /// </summary>
         /// <param name="businessName">业务名称</param>
@@ -428,6 +466,20 @@ namespace UtilsSharp.RabbitMq
         {
             var t = BindBusiness(businessName);
             await Instance.BatchReceivedAsync(t.Item3, callback, batchCount, errorCallback, millisecondsDelay);
+        }
+
+        /// <summary>
+        /// 批量消费者（消费消息）
+        /// </summary>
+        /// <param name="businessName">业务名称</param>
+        /// <param name="callback">消费回调方法</param>
+        /// <param name="batchCount">每次批量接收条数</param>
+        /// <param name="errorCallback">错误回调方法</param>
+        /// <param name="millisecondsDelay">如果队列无数据休眠时间：毫秒</param>
+        public static async Task BatchReceivedByBusinessOnceChannelAsync(string businessName, Action<List<string>> callback, int batchCount = 50, Action<string> errorCallback = null, int millisecondsDelay = 100)
+        {
+            var t = BindBusiness(businessName);
+            await Instance.BatchReceivedOnceChannelAsync(t.Item3, callback, batchCount, errorCallback, millisecondsDelay);
         }
     }
     #endregion

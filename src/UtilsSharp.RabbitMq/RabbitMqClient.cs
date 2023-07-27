@@ -340,6 +340,75 @@ namespace UtilsSharp.RabbitMq
             });
         }
 
+
+        /// <summary>
+        /// 消费者批量接收消息
+        /// </summary>
+        /// <param name="queueName">队列名称</param>
+        /// <param name="callback">回调方法</param>
+        /// <param name="batchCount">每次批量接收条数</param>
+        /// <param name="errorCallback">错误回调方法</param>
+        /// <param name="millisecondsDelay">如果队列无数据休眠时间：毫秒</param>
+        public void BatchReceivedOnceChannel(string queueName, Action<List<string>> callback, int batchCount = 50, Action<string> errorCallback = null, int millisecondsDelay = 100)
+        {
+            Task.Run(() =>
+            {
+                using var channel = GetChannel();
+                var rabbitMessage = new List<MessageAskModel>();
+                while (true)
+                {
+                    try
+                    {
+                        var data = GetMessage(channel,queueName);
+                        if (data == null)
+                        {
+                            BatchReceivedHandle(callback, rabbitMessage);
+                            rabbitMessage = new List<MessageAskModel>();
+                            Thread.Sleep(millisecondsDelay);
+                            continue;
+                        }
+                        rabbitMessage.Add(data);
+                        if (rabbitMessage.Count < batchCount) continue;
+                        BatchReceivedHandle(callback, rabbitMessage);
+                        rabbitMessage = new List<MessageAskModel>();
+                    }
+                    catch (Exception ex)
+                    {
+                        BatchReceivedHandle(callback, rabbitMessage);
+                        rabbitMessage = new List<MessageAskModel>();
+                        errorCallback?.Invoke(ex.Message + ex.StackTrace);
+                    }
+                }
+            });
+        }
+
+
+        /// <summary>
+        /// 获取消息
+        /// </summary>
+        /// <param name="channel">channel</param>
+        /// <param name="queueName">队列名称</param>
+        /// <param name="autoAck">是否消息自动确认</param>
+        /// <param name="beforeAckAction">手动确认消息前回调(自动确认消息时无效)</param>
+        /// <returns></returns>
+        public MessageAskModel GetMessage(IModel channel, string queueName, bool autoAck = true, Action<IModel, MessageAskModel> beforeAckAction = null)
+        {
+            if (channel.MessageCount(queueName) == 0) return null;
+            var baseResult = channel.BasicGet(queueName, autoAck);
+            if (baseResult == null) return null;
+            var message = new MessageAskModel()
+            {
+                DeliveryTag = baseResult.DeliveryTag,
+                Message = Encoding.UTF8.GetString(baseResult.Body.ToArray())
+            };
+            if (autoAck == false)
+            {
+                beforeAckAction.Invoke(channel, message);
+            }
+            return message;
+        }
+
+
         /// <summary>
         /// 获取消息
         /// </summary>
@@ -440,6 +509,45 @@ namespace UtilsSharp.RabbitMq
                 try
                 {
                     var data = GetMessage(queueName);
+                    if (data == null)
+                    {
+                        await BatchReceivedHandleAsync(callback, rabbitMessage);
+                        rabbitMessage = new List<MessageAskModel>();
+                        await Task.Delay(millisecondsDelay);
+                        continue;
+                    }
+                    rabbitMessage.Add(data);
+                    if (rabbitMessage.Count < batchCount) continue;
+                    await BatchReceivedHandleAsync(callback, rabbitMessage);
+                    rabbitMessage = new List<MessageAskModel>();
+                }
+                catch (Exception ex)
+                {
+                    await BatchReceivedHandleAsync(callback, rabbitMessage);
+                    rabbitMessage = new List<MessageAskModel>();
+                    errorCallback?.Invoke(ex.Message + ex.StackTrace);
+                }
+            }
+        }
+
+
+        /// <summary>
+        /// 消费者批量接收消息
+        /// </summary>
+        /// <param name="queueName">队列名称</param>
+        /// <param name="callback">回调方法</param>
+        /// <param name="batchCount">每次批量接收条数</param>
+        /// <param name="errorCallback">错误回调方法</param>
+        /// <param name="millisecondsDelay">如果队列无数据休眠时间：毫秒</param>
+        public async Task BatchReceivedOnceChannelAsync(string queueName, Action<List<string>> callback, int batchCount = 50, Action<string> errorCallback = null, int millisecondsDelay = 100)
+        {
+            using var channel = GetChannel();
+            var rabbitMessage = new List<MessageAskModel>();
+            while (true)
+            {
+                try
+                {
+                    var data = GetMessage(channel,queueName);
                     if (data == null)
                     {
                         await BatchReceivedHandleAsync(callback, rabbitMessage);

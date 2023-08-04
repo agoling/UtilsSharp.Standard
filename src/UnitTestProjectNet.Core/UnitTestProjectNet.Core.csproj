@@ -11,11 +11,11 @@
     <PackageReference Include="MSTest.TestAdapter" Version="2.1.0" />
     <PackageReference Include="MSTest.TestFramework" Version="2.1.0" />
     <PackageReference Include="coverlet.collector" Version="1.2.0" />
+    <PackageReference Include="UtilsSharp.RabbitMq.Extension" Version="3.3.2" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\UtilsSharp.Logger\UtilsSharp.Logger.csproj" />
-    <ProjectReference Include="..\UtilsSharp.RabbitMq.Extension\UtilsSharp.RabbitMq.Extension.csproj" />
     <ProjectReference Include="..\UtilsSharp\UtilsSharp.csproj" />
   </ItemGroup>
 

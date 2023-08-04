@@ -69,32 +69,20 @@ namespace UtilsSharp
         }
 
         /// <summary>
-        /// 转换对象为字典
+        /// 转换对象为字典(Dictionary<string, object>转Dictionary<string,string>)
         /// </summary>
         /// <param name="obj">要转换的对象</param>
         /// <returns>返回字典</returns>
-        public static Dictionary<string, string> ToDictionaryStringValue(this object obj)
+        public static Dictionary<string, string> ToDictionaryStringValue(Dictionary<string, object> dic)
         {
-            var objDic = obj.ToDictionary();
-            var strDic = new Dictionary<string, string>();
-            if (objDic == null) return strDic;
-            foreach (var item in objDic)
+            var convertedDictionary = new Dictionary<string, string>();
+            foreach (var kvp in dic)
             {
-                if (string.IsNullOrEmpty(item.Key) || item.Value == null) continue;
-                var key = item.Key;
-                object objValue;
-                try
-                {
-                    objValue = Convert.ChangeType(item.Value, typeof(string));
-                }
-                catch (Exception)
-                {
-                    objValue = JsonConvert.SerializeObject(item.Value);
-                }
-                var value = objValue.ToString();
-                strDic.Add(key, value);
+                string key = kvp.Key;
+                string value =JsonConvert.SerializeObject(kvp.Value); // 将值转换为字符串
+                convertedDictionary.Add(key, value);
             }
-            return strDic;
+            return convertedDictionary;
         }
 
         /// <summary>
@@ -102,7 +90,19 @@ namespace UtilsSharp
         /// </summary>
         /// <param name="obj">要转换的对象</param>
         /// <returns>返回字典</returns>
-        public static Dictionary<string, object> ToDictionary(this object obj)
+        public static Dictionary<string, string> ToDictionaryStringValue<T>(this T obj)
+        {
+            var objDic = obj.ToDictionary();
+            return ToDictionaryStringValue(objDic);
+        }
+
+    
+        /// <summary>
+        /// 转换对象为字典
+        /// </summary>
+        /// <param name="obj">要转换的对象</param>
+        /// <returns>返回字典</returns>
+        public static Dictionary<string, object> ToDictionary<T>(this T obj)
         {
             return ToDictionary(obj, null, null);
         }
@@ -114,7 +114,7 @@ namespace UtilsSharp
         /// <param name="members">需要转换的成员</param>
         /// <param name="ignoreMembers">忽略转换的成员</param>
         /// <returns>返回字典</returns>
-        public static Dictionary<string, object> ToDictionary(this object obj, string[] members, string[] ignoreMembers)
+        public static Dictionary<string, object> ToDictionary<T>(this T obj, string[] members, string[] ignoreMembers)
         {
             if (obj == null) return null;
             // 创建目标字典
@@ -161,20 +161,41 @@ namespace UtilsSharp
                      (ignoreMembers.Contains("*") || ignoreMembers.Contains(name)))) continue;
                 // 判断当前属性是否可读的并且是简单的类型
                 if (!propertyInfo.CanRead) continue;
-                // 获取当前属性的GET访问器
-                var methodInfo = propertyInfo.GetGetMethod();
-                // 判断当前属性的GET访问器是否是公开的
-                if (!methodInfo.IsPublic) continue;
-                // 判断当前属性的GET访问器是否是静态的
-                if (methodInfo.IsStatic)
+                // 判断当前属性是否是索引器属性
+                if (propertyInfo.GetIndexParameters().Length > 0)
                 {
-                    // 获取成员属性的静态值并设置到字典中
-                    dictionary[name] = propertyInfo.GetValue(null, null);
+                    var indexParameters = propertyInfo.GetIndexParameters();
+                    // 创建索引参数数组并填充相应的值
+                    object[] indexValues = new object[indexParameters.Length]; // 根据实际情况调整数组大小
+                    // 获取索引器属性的值并设置到字典中
+                    try
+                    {
+                        // 获取索引器属性的值并设置到字典中
+                        dictionary[name] = propertyInfo.GetValue(obj, indexValues);
+                    }
+                    catch (Exception ex)
+                    {
+                        // 处理异常
+                        // 可以将异常信息输出或进行其他处理
+                    }
                 }
                 else
                 {
-                    // 获取成员属性的实例值并设置到字典中
-                    dictionary[name] = propertyInfo.GetValue(obj, null);
+                    // 获取当前属性的GET访问器
+                    var methodInfo = propertyInfo.GetGetMethod();
+                    // 判断当前属性的GET访问器是否是公开的
+                    if (!methodInfo.IsPublic) continue;
+                    // 判断当前属性的GET访问器是否是静态的
+                    if (methodInfo.IsStatic)
+                    {
+                        // 获取成员属性的静态值并设置到字典中
+                        dictionary[name] = propertyInfo.GetValue(null);
+                    }
+                    else
+                    {
+                        // 获取成员属性的实例值并设置到字典中
+                        dictionary[name] = propertyInfo.GetValue(obj);
+                    }
                 }
             }
             // 返回字典

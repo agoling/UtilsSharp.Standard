@@ -15,10 +15,14 @@ namespace UnitTestProjectNet.Core
         public void aa()
         {
 
-           var aa= RandomHelper.ChineseCharacters();
+            //调用函数产生4个随机中文汉字编码
+            var aa= RandomHelper.SimpleChineseCharacters();
+
+            var bb = RandomHelper.ChineseCharacters();
+
+            
 
         }
-
-
     }
+
 }

@@ -243,12 +243,13 @@ namespace UtilsSharp
         /// <param name="length">生成长度,默认10</param>
         /// <param name="encoding">Encoding</param>
         /// <returns></returns>
-        public static string ChineseCharacters(int length=10, Encoding encoding=null)
+        public static string ChineseCharacters(int length = 10, Encoding encoding = null)
         {
             if (encoding == null)
             {
-                encoding= Encoding.UTF8;
+                encoding = Encoding.UTF8;
             }
+            StringHelper.EncodingRegister();
             Random random = new Random();
             StringBuilder stringBuilder = new StringBuilder();
 
@@ -271,6 +272,86 @@ namespace UtilsSharp
             string chineseCharacters = stringBuilder.ToString();
             return chineseCharacters;
         }
+
+
+        /// <summary>
+        /// 生成随机汉字(简体字)
+        /// </summary>
+        /// <param name="length">生成长度,默认10</param>
+        /// <returns></returns>
+        public static string SimpleChineseCharacters(int length = 10)
+        {
+            StringHelper.EncodingRegister();
+            var encoding = Encoding.GetEncoding("gb2312");
+            Random rnd = new Random();
+            StringBuilder stringBuilder = new StringBuilder();
+
+            //定义一个字符串数组储存汉字编码的组成元素
+            string[] rBase = new String[16] { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "a", "b", "c", "d", "e", "f" };
+
+            /**//*每循环一次产生一个含两个元素的十六进制字节数组，并将其放入bject数组中
+             每个汉字有四个区位码组成
+             区位码第1位和区位码第2位作为字节数组第一个元素
+             区位码第3位和区位码第4位作为字节数组第二个元素
+            */
+            for (int i = 0; i < length; i++)
+            {
+                //区位码第1位
+                int r1 = rnd.Next(11, 14);
+                string str_r1 = rBase[r1].Trim();
+
+                //区位码第2位
+                rnd = new Random(r1 * unchecked((int)DateTime.Now.Ticks) + i);//更换随机数发生器的
+
+                //种子避免产生重复值
+                int r2;
+                if (r1 == 13)
+                {
+                    r2 = rnd.Next(0, 7);
+                }
+                else
+                {
+                    r2 = rnd.Next(0, 16);
+                }
+                string str_r2 = rBase[r2].Trim();
+
+                //区位码第3位
+                rnd = new Random(r2 * unchecked((int)DateTime.Now.Ticks) + i);
+                int r3 = rnd.Next(10, 16);
+                string str_r3 = rBase[r3].Trim();
+
+                //区位码第4位
+                rnd = new Random(r3 * unchecked((int)DateTime.Now.Ticks) + i);
+                int r4;
+                if (r3 == 10)
+                {
+                    r4 = rnd.Next(1, 16);
+                }
+                else if (r3 == 15)
+                {
+                    r4 = rnd.Next(0, 15);
+                }
+                else
+                {
+                    r4 = rnd.Next(0, 16);
+                }
+                string str_r4 = rBase[r4].Trim();
+
+                //定义两个字节变量存储产生的随机汉字区位码
+                byte byte1 = Convert.ToByte(str_r1 + str_r2, 16);
+                byte byte2 = Convert.ToByte(str_r3 + str_r4, 16);
+                //将两个字节变量存储在字节数组中
+                byte[] str_r = new byte[] { byte1, byte2 };
+
+                var str=encoding.GetString((byte[])Convert.ChangeType(str_r, typeof(byte[])));
+
+                stringBuilder.Append(str);
+
+            }
+            string chineseCharacters = stringBuilder.ToString();
+            return chineseCharacters;
+        }
+
 
         #endregion
     }

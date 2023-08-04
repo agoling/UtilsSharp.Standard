@@ -75,14 +75,26 @@ namespace UtilsSharp
         /// <returns>返回字典</returns>
         public static Dictionary<string, string> ToDictionaryStringValue(Dictionary<string, object> dic)
         {
-            var convertedDictionary = new Dictionary<string, string>();
-            foreach (var kvp in dic)
+            var strDic = new Dictionary<string, string>();
+            if (dic == null) return strDic;
+            foreach (var item in dic)
             {
-                string key = kvp.Key;
-                string value =JsonConvert.SerializeObject(kvp.Value); // 将值转换为字符串
-                convertedDictionary.Add(key, value);
+                if (string.IsNullOrEmpty(item.Key)) continue;
+                var key = item.Key;
+                object objValue;
+                string value;
+                try
+                {
+                    objValue = Convert.ChangeType(item.Value, typeof(string));
+                    value = objValue?.ToString();
+                }
+                catch (Exception)
+                {
+                    value = JsonConvert.SerializeObject(item.Value);
+                }
+                strDic.Add(key, value);
             }
-            return convertedDictionary;
+            return strDic;
         }
 
         /// <summary>

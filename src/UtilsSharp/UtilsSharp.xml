@@ -755,21 +755,22 @@
             <param name="dic">字典</param>
             <returns></returns>
         </member>
-        <member name="M:UtilsSharp.DictionaryHelper.ToDictionaryStringValue(System.Object)">
+        <!-- Badly formed XML comment ignored for member "M:UtilsSharp.DictionaryHelper.ToDictionaryStringValue(System.Collections.Generic.Dictionary{System.String,System.Object})" -->
+        <member name="M:UtilsSharp.DictionaryHelper.ToDictionaryStringValue``1(``0)">
             <summary>
             转换对象为字典
             </summary>
             <param name="obj">要转换的对象</param>
             <returns>返回字典</returns>
         </member>
-        <member name="M:UtilsSharp.DictionaryHelper.ToDictionary(System.Object)">
+        <member name="M:UtilsSharp.DictionaryHelper.ToDictionary``1(``0)">
             <summary>
             转换对象为字典
             </summary>
             <param name="obj">要转换的对象</param>
             <returns>返回字典</returns>
         </member>
-        <member name="M:UtilsSharp.DictionaryHelper.ToDictionary(System.Object,System.String[],System.String[])">
+        <member name="M:UtilsSharp.DictionaryHelper.ToDictionary``1(``0,System.String[],System.String[])">
             <summary>
             转换对象为字典
             </summary>
@@ -1898,6 +1899,13 @@
             </summary>
             <param name="length">生成长度,默认10</param>
             <param name="encoding">Encoding</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.RandomHelper.SimpleChineseCharacters(System.Int32)">
+            <summary>
+            生成随机汉字(简体字)
+            </summary>
+            <param name="length">生成长度,默认10</param>
             <returns></returns>
         </member>
         <member name="T:UtilsSharp.RegexHelper">

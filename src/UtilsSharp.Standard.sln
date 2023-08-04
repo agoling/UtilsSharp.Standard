@@ -1,13 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.29806.167
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33723.286
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UtilsSharp", "UtilsSharp\UtilsSharp.csproj", "{41EF5CB5-868F-4AC5-846C-F87F98531572}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestDemo", "TestDemo\TestDemo.csproj", "{237C6579-25B1-4B8F-BC70-5529B8322D11}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestProjectNet", "UnitTestProjectNet\UnitTestProjectNet.csproj", "{A86B4F09-784E-477C-8703-B446F395125D}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestDemoApp", "TestDemoApp\TestDemoApp.csproj", "{F017A0E2-2DB1-4CBB-9F07-0E36A9EBFDE7}"
 EndProject
@@ -51,11 +49,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UtilsSharp.Jwt", "UtilsShar
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UtilsSharp.Shared", "UtilsSharp.Shared\UtilsSharp.Shared.csproj", "{617B1A07-EC87-40E1-97AF-A3890B5CA4FF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UtilsSharp.Grpc", "UtilsSharp.Grpc\UtilsSharp.Grpc.csproj", "{B4B81C14-E108-4A36-BBF7-0EB96B6A0CD4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UtilsSharp.Grpc", "UtilsSharp.Grpc\UtilsSharp.Grpc.csproj", "{B4B81C14-E108-4A36-BBF7-0EB96B6A0CD4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UtilsSharp.Grpc.AspNetCore", "UtilsSharp.Grpc.AspNetCore\UtilsSharp.Grpc.AspNetCore.csproj", "{8755EC60-D474-4B32-830E-31585F44E955}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UtilsSharp.Grpc.AspNetCore", "UtilsSharp.Grpc.AspNetCore\UtilsSharp.Grpc.AspNetCore.csproj", "{8755EC60-D474-4B32-830E-31585F44E955}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UtilsSharp.Grpc.ClientFactory", "UtilsSharp.Grpc.ClientFactory\UtilsSharp.Grpc.ClientFactory.csproj", "{BDE3F118-D2EE-4104-8CF0-8339ED1A7B59}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UtilsSharp.Grpc.ClientFactory", "UtilsSharp.Grpc.ClientFactory\UtilsSharp.Grpc.ClientFactory.csproj", "{BDE3F118-D2EE-4104-8CF0-8339ED1A7B59}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -71,10 +69,6 @@ Global
 		{237C6579-25B1-4B8F-BC70-5529B8322D11}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{237C6579-25B1-4B8F-BC70-5529B8322D11}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{237C6579-25B1-4B8F-BC70-5529B8322D11}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A86B4F09-784E-477C-8703-B446F395125D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A86B4F09-784E-477C-8703-B446F395125D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A86B4F09-784E-477C-8703-B446F395125D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A86B4F09-784E-477C-8703-B446F395125D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F017A0E2-2DB1-4CBB-9F07-0E36A9EBFDE7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F017A0E2-2DB1-4CBB-9F07-0E36A9EBFDE7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F017A0E2-2DB1-4CBB-9F07-0E36A9EBFDE7}.Release|Any CPU.ActiveCfg = Release|Any CPU

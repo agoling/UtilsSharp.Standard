@@ -57,6 +57,27 @@
             </summary>
             <param name="contents">拉取到的内容</param>
         </member>
+        <member name="M:UtilsSharp.RabbitMq.Extension.AbsConsumer`1.ReceiveErrorCallBack(System.String)">
+            <summary>
+            消费者委托(异常错误捕捉)
+            </summary>
+            <param name="exception">异常信息</param>
+        </member>
+        <member name="T:UtilsSharp.RabbitMq.Extension.BatchReceivedRequest">
+            <summary>
+            接收参数
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.RabbitMq.Extension.BatchReceivedRequest.RabbitMqBusinessName">
+            <summary>
+            业务类型名称
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.RabbitMq.Extension.BatchReceivedRequest.ConsumerHandleCount">
+            <summary>
+            每个消费者每次执行条数
+            </summary>
+        </member>
         <member name="T:UtilsSharp.RabbitMq.Extension.IConsumer">
             <summary>
              消费者接口
@@ -85,6 +106,12 @@
             消费者委托
             </summary>
             <param name="contents">拉取到的内容</param>
+        </member>
+        <member name="M:UtilsSharp.RabbitMq.Extension.IConsumer.ReceiveErrorCallBack(System.String)">
+            <summary>
+            消费者委托(异常错误捕捉)
+            </summary>
+            <param name="exception">异常信息</param>
         </member>
     </members>
 </doc>

@@ -32,5 +32,11 @@ namespace UtilsSharp.RabbitMq.Extension
         /// <param name="contents">拉取到的内容</param>
         void ReceiveCallBack(List<string> contents);
 
+        /// <summary>
+        /// 消费者委托(异常错误捕捉)
+        /// </summary>
+        /// <param name="exception">异常信息</param>
+        void ReceiveErrorCallBack(string exception);
+
     }
 }

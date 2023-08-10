@@ -9,7 +9,7 @@
     <PackageIconUrl />
     <RepositoryUrl>https://github.com/agoling/UtilsSharp.Standard</RepositoryUrl>
     <PackageTags>RabbitMQ帮助类 RabbitMQ公共类 RabbitMQ封装 RabbitMQ类库</PackageTags>
-    <Version>3.3.2</Version>
+    <Version>3.4.0</Version>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">

@@ -360,7 +360,7 @@
             <param name="callback">回调方法</param>
             <param name="errorCallback">错误回调方法</param>
         </member>
-        <member name="M:UtilsSharp.RabbitMq.RabbitMqHelper`1.BatchReceived(System.String,System.Action{System.Collections.Generic.List{System.String}},System.Int32,System.Action{System.String})">
+        <member name="M:UtilsSharp.RabbitMq.RabbitMqHelper`1.BatchReceived(System.String,System.Action{System.Collections.Generic.List{System.String}},System.Int32,System.Action{System.String},System.Int32)">
             <summary>
             消费者批量接收消息
             </summary>
@@ -368,8 +368,9 @@
             <param name="callback">回调方法</param>
             <param name="batchCount">每次批量接收条数</param>
             <param name="errorCallback">错误回调方法</param>
+            <param name="millisecondsDelay">如果队列无数据休眠时间：毫秒</param>
         </member>
-        <member name="M:UtilsSharp.RabbitMq.RabbitMqHelper`1.BatchReceivedOnceChannel(System.String,System.Action{System.Collections.Generic.List{System.String}},System.Int32,System.Action{System.String})">
+        <member name="M:UtilsSharp.RabbitMq.RabbitMqHelper`1.BatchReceivedOnceChannel(System.String,System.Action{System.Collections.Generic.List{System.String}},System.Int32,System.Action{System.String},System.Int32)">
             <summary>
             消费者批量接收消息
             </summary>
@@ -377,6 +378,7 @@
             <param name="callback">回调方法</param>
             <param name="batchCount">每次批量接收条数</param>
             <param name="errorCallback">错误回调方法</param>
+            <param name="millisecondsDelay">如果队列无数据休眠时间：毫秒</param>
         </member>
         <member name="M:UtilsSharp.RabbitMq.RabbitMqHelper`1.GetMessage(System.String,System.Boolean,System.Action{RabbitMQ.Client.IModel,UtilsSharp.RabbitMq.MessageAskModel})">
             <summary>
@@ -429,7 +431,7 @@
             <param name="callback">消费回调方法</param>
             <param name="errorCallback">错误回调方法</param>
         </member>
-        <member name="M:UtilsSharp.RabbitMq.RabbitMqHelper`1.BatchReceivedByBusiness(System.String,System.Action{System.Collections.Generic.List{System.String}},System.Int32,System.Action{System.String})">
+        <member name="M:UtilsSharp.RabbitMq.RabbitMqHelper`1.BatchReceivedByBusiness(System.String,System.Action{System.Collections.Generic.List{System.String}},System.Int32,System.Action{System.String},System.Int32)">
             <summary>
             批量消费者（消费消息）
             </summary>
@@ -437,8 +439,9 @@
             <param name="callback">消费回调方法</param>
             <param name="batchCount">每次批量接收条数</param>
             <param name="errorCallback">错误回调方法</param>
+            <param name="millisecondsDelay">如果队列无数据休眠时间：毫秒</param>
         </member>
-        <member name="M:UtilsSharp.RabbitMq.RabbitMqHelper`1.BatchReceivedByBusinessOnceChannel(System.String,System.Action{System.Collections.Generic.List{System.String}},System.Int32,System.Action{System.String})">
+        <member name="M:UtilsSharp.RabbitMq.RabbitMqHelper`1.BatchReceivedByBusinessOnceChannel(System.String,System.Action{System.Collections.Generic.List{System.String}},System.Int32,System.Action{System.String},System.Int32)">
             <summary>
             批量消费者（消费消息）
             </summary>
@@ -446,6 +449,7 @@
             <param name="callback">消费回调方法</param>
             <param name="batchCount">每次批量接收条数</param>
             <param name="errorCallback">错误回调方法</param>
+            <param name="millisecondsDelay">如果队列无数据休眠时间：毫秒</param>
         </member>
         <member name="M:UtilsSharp.RabbitMq.RabbitMqHelper`1.QueuePurgeByBusiness(System.String)">
             <summary>

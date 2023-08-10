@@ -6,6 +6,7 @@ using RabbitMQ;
 using RabbitMQ.Client;
 using UtilsSharp.OptionConfig;
 using UtilsSharp.RabbitMq;
+using UtilsSharp.RabbitMq.Extension;
 
 namespace TestDemoApp.RabbitMQ
 {
@@ -121,4 +122,5 @@ namespace TestDemoApp.RabbitMQ
         }
 
     }
+
 }

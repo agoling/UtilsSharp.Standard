@@ -18,5 +18,15 @@ namespace UtilsSharp.RabbitMq.Extension
         /// </summary>
         public int ConsumerHandleCount { set; get; }
 
+        /// <summary>
+        /// 是否一次channel
+        /// </summary>
+        public bool IsOnceChannel { set; get; }
+
+        /// <summary>
+        /// 如果队列无数据休眠时间：毫秒
+        /// </summary>
+        public int MillisecondsDelay { set; get; }
+
     }
 }

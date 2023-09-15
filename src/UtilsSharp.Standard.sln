@@ -55,6 +55,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UtilsSharp.Grpc.AspNetCore"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UtilsSharp.Grpc.ClientFactory", "UtilsSharp.Grpc.ClientFactory\UtilsSharp.Grpc.ClientFactory.csproj", "{BDE3F118-D2EE-4104-8CF0-8339ED1A7B59}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UtilsSharp.Office", "UtilsSharp.Office\UtilsSharp.Office.csproj", "{B53581B9-3A3B-4C90-BEB3-F777869E29B6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -165,6 +167,10 @@ Global
 		{BDE3F118-D2EE-4104-8CF0-8339ED1A7B59}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BDE3F118-D2EE-4104-8CF0-8339ED1A7B59}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BDE3F118-D2EE-4104-8CF0-8339ED1A7B59}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B53581B9-3A3B-4C90-BEB3-F777869E29B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B53581B9-3A3B-4C90-BEB3-F777869E29B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B53581B9-3A3B-4C90-BEB3-F777869E29B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B53581B9-3A3B-4C90-BEB3-F777869E29B6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

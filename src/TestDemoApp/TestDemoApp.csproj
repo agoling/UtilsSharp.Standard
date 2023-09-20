@@ -14,6 +14,7 @@
   <ItemGroup>
     <ProjectReference Include="..\UtilsSharp.DotNetCore\UtilsSharp.DotNetCore.csproj" />
     <ProjectReference Include="..\UtilsSharp.ElasticSearch7\UtilsSharp.ElasticSearch7.csproj" />
+    <ProjectReference Include="..\UtilsSharp.Office\UtilsSharp.Office.csproj" />
     <ProjectReference Include="..\UtilsSharp.RabbitMq.Extension\UtilsSharp.RabbitMq.Extension.csproj" />
   </ItemGroup>
 

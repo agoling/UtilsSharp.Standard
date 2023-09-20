@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text;
+using TestDemoApp.Office;
 using UtilsSharp;
 
 namespace TestDemoApp
@@ -8,7 +9,7 @@ namespace TestDemoApp
     {
         static void Main(string[] args)
         {
-
+            ExcelInit.All();
             //LoggerInit.LoggerTest();
             //Console.ReadKey();
 

@@ -1,9 +1,9 @@
-﻿using NPOI.OpenXmlFormats.Wordprocessing;
+﻿using NPOI.Util;
 using NPOI.XWPF.UserModel;
-using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Text;
+using System.Net;
+using UtilsSharp.Office.Entity;
 
 namespace UtilsSharp.Office
 {
@@ -12,116 +12,284 @@ namespace UtilsSharp.Office
     /// </summary>
     public class WordHelper
     {
+        private XWPFDocument document;
+
         /// <summary>
-        /// 创建文档
+        /// WordHelper
         /// </summary>
-        /// <param name="setting"></param>
-        public static void ExportDocument(DocumentSetting setting)
+        public WordHelper()
         {
-            XWPFDocument docx = new XWPFDocument();
-            MemoryStream ms = new MemoryStream();
+            document = new XWPFDocument();
+        }
 
-            //设置文档
-            docx.Document.body.sectPr = new CT_SectPr();
-            CT_SectPr setPr = docx.Document.body.sectPr;
-            //获取页面大小
-            Tuple<int, int> size = GetPaperSize(setting.PaperType);
-            setPr.pgSz.w = (ulong)size.Item1;
-            setPr.pgSz.h = (ulong)size.Item2;
-            //创建一个段落
-            CT_P p = docx.Document.body.AddNewP();
-            //段落水平居中
-            p.AddNewPPr().AddNewJc().val = ST_Jc.center;
-            XWPFParagraph gp = new XWPFParagraph(p, docx);
-
-            XWPFRun gr = gp.CreateRun();
-            //创建标题
-            if (!string.IsNullOrEmpty(setting.TitleSetting.Title))
+        /// <summary>
+        /// 添加主标题
+        /// </summary>
+        /// <param name="text">文本</param>
+        public void InsertTitle(string text)
+        {
+            var request = new WordTextRequest()
             {
-                gr.GetCTR().AddNewRPr().AddNewRFonts().ascii = setting.TitleSetting.FontName;
-                gr.GetCTR().AddNewRPr().AddNewRFonts().eastAsia = setting.TitleSetting.FontName;
-                gr.GetCTR().AddNewRPr().AddNewRFonts().hint = ST_Hint.eastAsia;
-                gr.GetCTR().AddNewRPr().AddNewSz().val = (ulong)setting.TitleSetting.FontSize;//2号字体
-                gr.GetCTR().AddNewRPr().AddNewSzCs().val = (ulong)setting.TitleSetting.FontSize;
-                gr.GetCTR().AddNewRPr().AddNewB().val = setting.TitleSetting.HasBold; //加粗
-                gr.GetCTR().AddNewRPr().AddNewColor().val = "black";//字体颜色
-                gr.SetText(setting.TitleSetting.Title);
+                Text = text,
+                FontName = "Arial",
+                FontSize = 25,
+                Color = "000000",
+                IsBold = true,
+                IsItalic = false,
+                Underline = UnderlinePatterns.None
+            };
+            InsertText(request,0, ParagraphAlignment.CENTER);
+        }
+
+        /// <summary>
+        /// 添加附标题
+        /// </summary>
+        /// <param name="text">文本</param>
+        public void InsertSubTitle(string text)
+        {
+            var request = new WordTextRequest()
+            {
+                Text = text,
+                FontName = "Arial",
+                FontSize = 15,
+                Color = "000000",
+                IsBold = true,
+                IsItalic = false,
+                Underline = UnderlinePatterns.None
+            };
+            InsertText(request,0, ParagraphAlignment.LEFT);
+        }
+
+        /// <summary>
+        /// 添加内容
+        /// </summary>
+        /// <param name="text">文本</param>
+        public void InsertContent(string text)
+        {
+            var request = new WordTextRequest()
+            {
+                Text = text,
+                FontName = "Arial",
+                FontSize = 12,
+                Color = "000000",
+                IsBold = false,
+                IsItalic = false,
+                Underline = UnderlinePatterns.None
+            };
+            InsertText(request,500, ParagraphAlignment.LEFT);
+        }
+
+        /// <summary>
+        /// 添加换行
+        /// </summary>
+        public void InsertWrap()
+        {
+            InsertContent("\n");
+        }
+
+        /// <summary>
+        /// 添加文本内容
+        /// </summary>
+        /// <param name="request">文本参数</param>
+        /// <param name="indentationFirstLine">首行缩进</param>
+        /// <param name="alignment">显示类型：居中,居左,居右</param>
+        public void InsertText(WordTextRequest request, int indentationFirstLine= 0, ParagraphAlignment alignment= ParagraphAlignment.CENTER)
+        {
+            var paragraph = document.CreateParagraph();
+            // 设置段落的缩进 首行缩进
+            paragraph.IndentationFirstLine = indentationFirstLine;
+            // 显示类型：居中,居左,居右
+            paragraph.Alignment = alignment;
+
+            var run = paragraph.CreateRun();
+            run.SetText(request.Text);
+            run.FontFamily = request.FontName;
+            run.FontSize = request.FontSize;
+            run.SetColor(request.Color);
+            run.IsBold = request.IsBold;
+            run.IsItalic = request.IsItalic;
+            run.Underline = request.Underline;
+        }
+
+        /// <summary>
+        /// 追加文本内容
+        /// </summary>
+        /// <param name="requests">文本参数</param>
+        public void AppendContent(List<WordTextRequest> requests)
+        {
+            AppendText(requests,500, ParagraphAlignment.LEFT);
+        }
+
+        /// <summary>
+        /// 追加文本内容
+        /// </summary>
+        /// <param name="requests">文本参数</param>
+        /// <param name="indentationFirstLine">首行缩进</param>
+        /// <param name="alignment">显示类型：居中,居左,居右</param>
+        public void AppendText(List<WordTextRequest> requests, int indentationFirstLine = 0, ParagraphAlignment alignment = ParagraphAlignment.LEFT)
+        {
+            var paragraph = document.CreateParagraph();
+            // 设置段落的缩进 首行缩进
+            paragraph.IndentationFirstLine = indentationFirstLine;
+            //居什么显示
+            paragraph.Alignment = alignment;
+
+            foreach(var request in requests)
+            {
+                var run = paragraph.CreateRun();
+                run.AppendText(request.Text);
+                run.FontFamily = request.FontName;
+                run.FontSize = request.FontSize;
+                run.SetColor(request.Color);
+                run.IsBold = request.IsBold;
+                run.IsItalic = request.IsItalic;
+                run.Underline = request.Underline;
             }
+        }
 
-            //创建文档主要内容
-            if (!string.IsNullOrEmpty(setting.MainContentSetting.MainContent))
+        /// <summary>
+        /// 替换文本信息
+        /// </summary>
+        /// <param name="oldText">旧文本信息</param>
+        /// <param name="newText">新文本信息</param>
+        public void ReplaceText(string oldText, string newText)
+        {
+            foreach (XWPFParagraph paragraph in document.Paragraphs)
             {
-                p = docx.Document.body.AddNewP();
-                p.AddNewPPr().AddNewJc().val = ST_Jc.both;
-                gp = new XWPFParagraph(p, docx)
+                foreach (XWPFRun run in paragraph.Runs)
                 {
-                    IndentationFirstLine = 2
-                };
-
-                //单倍为默认值（240）不需设置，1.5倍=240X1.5=360，2倍=240X2=480
-                p.AddNewPPr().AddNewSpacing().line = "400";//固定20磅
-                p.AddNewPPr().AddNewSpacing().lineRule = ST_LineSpacingRule.exact;
-
-                gr = gp.CreateRun();
-                CT_RPr rpr = gr.GetCTR().AddNewRPr();
-                CT_Fonts rfonts = rpr.AddNewRFonts();
-                rfonts.ascii = setting.MainContentSetting.FontName;
-                rfonts.eastAsia = setting.MainContentSetting.FontName;
-                rpr.AddNewSz().val = (ulong)setting.MainContentSetting.FontSize;//5号字体-21
-                rpr.AddNewSzCs().val = (ulong)setting.MainContentSetting.FontSize;
-                rpr.AddNewB().val = setting.MainContentSetting.HasBold;
-
-                gr.SetText(setting.MainContentSetting.MainContent);
+                    if (run.Text.Contains(oldText))
+                    {
+                        run.SetText(run.Text.Replace(oldText, newText));
+                    }
+                }
             }
-
-            //开始写入
-            docx.Write(ms);
-
-            using (FileStream fs = new FileStream(setting.SavePath, FileMode.Create, FileAccess.Write))
-            {
-                byte[] data = ms.ToArray();
-                fs.Write(data, 0, data.Length);
-                fs.Flush();
-            }
-            ms.Close();
         }
 
-        #region 私有方法
         /// <summary>
-        /// 获取纸张大小，单位：Twip
-        /// <para>换算关系：1英寸=1440缇  1厘米=567缇  1磅=20缇  1像素=15缇</para>
+        /// 删除含有文本的段落
         /// </summary>
-        /// <param name="type"></param>
-        /// <returns></returns>
-        private static Tuple<int, int> GetPaperSize(PaperType type)
+        /// <param name="text">文本信息</param>
+        public void DeleteParagraph(string text)
         {
-            Tuple<int, int> res = null;
-            switch (type)
+            foreach (XWPFParagraph paragraph in document.Paragraphs)
             {
-                case PaperType.A4_V:
-                    res = new Tuple<int, int>(11906, 16838);
-                    break;
-                case PaperType.A4_H:
-                    res = new Tuple<int, int>(16838, 11906);
-                    break;
-
-                case PaperType.A5_V:
-                    res = new Tuple<int, int>(8390, 11906);
-                    break;
-                case PaperType.A5_H:
-                    res = new Tuple<int, int>(11906, 8390);
-                    break;
-
-                case PaperType.A6_V:
-                    res = new Tuple<int, int>(5953, 8390);
-                    break;
-                case PaperType.A6_H:
-                    res = new Tuple<int, int>(8390, 5953);
-                    break;
+                for (int i = 0; i < paragraph.Runs.Count; i++)
+                {
+                    if (paragraph.Runs[i].Text.Contains(text))
+                    {
+                        paragraph.RemoveRun(i);
+                        i--;
+                    }
+                }
             }
-            return res;
         }
-        #endregion
+
+
+        /// <summary>
+        /// 插入在线图片
+        /// </summary>
+        /// <param name="imageUrl">图片地址</param>
+        /// <param name="description">图片描述</param>
+        /// <param name="width">图片宽</param>
+        /// <param name="height">图片高</param>
+        /// <param name="alignment">图片显示类型：居中,居左,居右</param>
+        public void InsertOnlineImage(string imageUrl, string description,int width=400,int height=400, ParagraphAlignment alignment = ParagraphAlignment.CENTER)
+        {
+            var paragraph = document.CreateParagraph();
+            paragraph.Alignment = alignment;
+            var run = paragraph.CreateRun();
+
+            byte[] imageBytes;
+            // 下载图片并读取为字节数组
+            using (WebClient webClient = new WebClient())
+            {
+                imageBytes = webClient.DownloadData(imageUrl);
+            }
+            // 向Run对象添加图片
+            using (MemoryStream ms = new MemoryStream(imageBytes))
+            {
+                run.AddPicture(ms, (int)PictureType.JPEG, description, Units.ToEMU(width), Units.ToEMU(height));
+            }
+        }
+
+
+        /// <summary>
+        /// 插入本地图片
+        /// </summary>
+        /// <param name="imagePath">图片文件地址</param>
+        /// <param name="description">图片描述</param>
+        /// <param name="width">图片宽</param>
+        /// <param name="height">图片高</param>
+        /// <param name="alignment">图片显示类型：居中,居左,居右</param>
+        public void InsertLocalImage(string imagePath,string description, int width = 400, int height = 400, ParagraphAlignment alignment = ParagraphAlignment.CENTER)
+        {
+            var paragraph = document.CreateParagraph();
+            paragraph.Alignment= alignment;
+            var run = paragraph.CreateRun();
+
+            // 向Run对象添加图片
+            using (var stream = new FileStream(imagePath, FileMode.Open, FileAccess.Read))
+            {
+                run.AddPicture(stream, (int)PictureType.JPEG, description, Units.ToEMU(width), Units.ToEMU(height));
+            }
+        }
+
+
+        /// <summary>
+        /// 插入表格
+        /// </summary>
+        /// <typeparam name="T">T</typeparam>
+        /// <param name="data">表格数据</param>
+        public void InsertTable<T>(List<T> data)
+        {
+            var table = document.CreateTable(data.Count + 1, typeof(T).GetProperties().Length);
+
+            //添加表头
+            var headerRow = table.GetRow(0);
+            var propertyNames = typeof(T).GetProperties();
+            for (var colIndex = 0; colIndex < propertyNames.Length; colIndex++)
+            {
+                var columnHeader = headerRow.GetCell(colIndex);
+                columnHeader.SetText(propertyNames[colIndex].Name);
+            }
+
+            //添加数据行
+            for (var rowIndex = 1; rowIndex <= data.Count; rowIndex++)
+            {
+                var rowData = data[rowIndex - 1];
+                var row = table.GetRow(rowIndex);
+
+                for (var colIndex = 0; colIndex < propertyNames.Length; colIndex++)
+                {
+                    var cell = row.GetCell(colIndex);
+                    var propertyValue = propertyNames[colIndex].GetValue(rowData)?.ToString();
+                    cell.SetText(propertyValue);
+                }
+            }
+
+            //添加列宽度
+            foreach (var row in table.Rows)
+            {
+                foreach (var cell in row.GetTableCells())
+                {
+                    cell.GetCTTc().AddNewTcPr().AddNewTcW().w = "1200"; // Set column width
+                }
+            }
+
+        }
+
+        /// <summary>
+        /// 保存文档
+        /// </summary>
+        /// <param name="filePath"></param>
+        public void Save(string filePath)
+        {
+            using (var fileStream = new FileStream(filePath, FileMode.Create))
+            {
+                document.Write(fileStream);
+            }
+        }
     }
 
 }

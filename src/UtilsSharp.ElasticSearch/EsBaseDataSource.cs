@@ -171,7 +171,8 @@ namespace UtilsSharp.ElasticSearch
                     .Sort(request.SortSelector)
                     .Source(request.SourceSelector)
                     .Aggregations(request.AggregationsSelector)
-                    .Index(execIndex));
+                    .Index(execIndex)
+                    .IgnoreUnavailable(true));
             return esResult;
         }
 
@@ -212,7 +213,8 @@ namespace UtilsSharp.ElasticSearch
                         .Sort(request.SortSelector)
                         .Source(request.SourceSelector)
                         .Aggregations(request.AggregationsSelector)
-                        .Index(execIndex));
+                        .Index(execIndex)
+                        .IgnoreUnavailable(true));
             }
             else
             {
@@ -399,7 +401,8 @@ namespace UtilsSharp.ElasticSearch
                      .Sort(request.SortSelector)
                      .Source(request.SourceSelector)
                      .Aggregations(request.AggregationsSelector)
-                     .Index(execIndex));
+                     .Index(execIndex)
+                     .IgnoreUnavailable(true));
             return esResult;
         }
 
@@ -440,7 +443,8 @@ namespace UtilsSharp.ElasticSearch
                          .Sort(request.SortSelector)
                          .Source(request.SourceSelector)
                          .Aggregations(request.AggregationsSelector)
-                         .Index(execIndex));
+                         .Index(execIndex)
+                         .IgnoreUnavailable(true));
             }
             else
             {

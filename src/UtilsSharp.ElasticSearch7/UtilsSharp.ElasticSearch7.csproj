@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <Version>3.1.0</Version>
+    <Version>3.1.1</Version>
     <Authors>Agoling</Authors>
     <Company>Agoling</Company>
     <Description>本项目是ElasticSearch帮助类基于.net standard2.0封装，属于UtilsSharp项目分支，依赖于Nest,ElasticSearch版本为7.x</Description>
@@ -18,7 +18,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="NEST" Version="7.17.2" />
+    <PackageReference Include="NEST" Version="7.17.5" />
     <PackageReference Include="UtilsSharp.OptionConfig" Version="2.0.0" />
   </ItemGroup>
 

@@ -5,28 +5,69 @@ using System.Threading.Tasks;
 using Autofac;
 using Microsoft.AspNetCore.Mvc;
 using TestDemo.Service;
+using UtilsSharp.AspNetCore.Autofac;
 using UtilsSharp.AspNetCore.MVC;
+using UtilsSharp.Shared.Standard;
 
 namespace TestDemo.Controllers
 {
     [ApiExplorerSettings(GroupName = "test")]
     public class TestController : BaseController
     {
+        private readonly ITestService _testService;
         private readonly IPayService _wxPayService;
         private readonly IPayService _aliPayService;
-        private IComponentContext _componentContext;
-        public TestController(IComponentContext componentContext)
+        public TestController(IComponentContext componentContext, ITestService testService)
         {
-            _componentContext = componentContext;
-            //解释组件
+            _testService = testService;
+            ////解释组件
             _wxPayService = componentContext.ResolveNamed<IPayService>(typeof(WxPayService).Name);
             _aliPayService = componentContext.ResolveNamed<IPayService>(typeof(AliPayService).Name);
 
-            //_wxPayService =AutofacContainer.Current.ResolveNamed<IPayService>(typeof(WxPayService).Name);
+            //_wxPayService = AutofacContainer.Current.ResolveNamed<IPayService>(typeof(WxPayService).Name);
             //_aliPayService = AutofacContainer.Current.ResolveNamed<IPayService>(typeof(AliPayService).Name);
 
-            //_wxPayService = AutofacContainer.Current.Resolve<IPayService>();
-            //_aliPayService = AutofacContainer.Current.Resolve<IPayService>();
+        }
+
+
+        /// <summary>
+        /// Get
+        /// </summary>
+        /// <param name="id">id</param>
+        /// <returns></returns>
+        [HttpGet]
+        public async Task<string> Pay1()
+        {
+            //var aa = await _testService.Pay1();
+            var aa = await _wxPayService.Pay1();
+            return aa;
+        }
+
+
+        /// <summary>
+        /// Get
+        /// </summary>
+        /// <param name="id">id</param>
+        /// <returns></returns>
+        [HttpGet]
+        public string Pay2()
+        {
+            //var aa = _testService.Pay2();
+            var aa = _wxPayService.Pay2();
+            return aa;
+        }
+
+        /// <summary>
+        /// Get
+        /// </summary>
+        /// <param name="id">id</param>
+        /// <returns></returns>
+        [HttpGet]
+        public BaseResult<string> Pay3()
+        {
+            var aa = _testService.Pay3();
+            //var token = _wxPayService.Pay2();
+            return aa;
         }
 
 

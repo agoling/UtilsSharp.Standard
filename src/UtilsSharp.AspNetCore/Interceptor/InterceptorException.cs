@@ -23,7 +23,7 @@ namespace UtilsSharp.AspNetCore.Interceptor
         {
             var returnType = invocation.Method.ReturnType;
             var setErrorMethod = returnType.GetMethod("SetError", new Type[] { typeof(string), typeof(int) });
-            var result = Activator.CreateInstance(returnType, true);
+            var result= returnType != typeof(string)?Activator.CreateInstance(returnType, true):"";
             var methodName = invocation.InvocationTarget + "." + invocation.Method.Name;
             var args = new List<string>();
             if (invocation.Arguments != null && invocation.Arguments.Length > 0)
@@ -54,7 +54,7 @@ namespace UtilsSharp.AspNetCore.Interceptor
         {
             var returnType = invocation.Method.ReturnType.GetGenericArguments().First();
             var setErrorMethod = returnType.GetMethod("SetError", new Type[] { typeof(string), typeof(int) });
-            var result = Activator.CreateInstance(returnType, true);
+            var result = returnType != typeof(string) ? Activator.CreateInstance(returnType, true) : "";
             var methodName = invocation.InvocationTarget + "." + invocation.Method.Name;
             var args = new List<string>();
             if (invocation.Arguments != null && invocation.Arguments.Length > 0)

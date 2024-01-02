@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using UtilsSharp.Shared.Dependency;
+using UtilsSharp.Shared.Standard;
 
 namespace TestDemo.Service
 {
@@ -16,5 +17,9 @@ namespace TestDemo.Service
         /// </summary>
         /// <returns></returns>
         string PayType();
+
+        Task<string> Pay1();
+        string Pay2();
+        BaseResult<string> Pay3();
     }
 }

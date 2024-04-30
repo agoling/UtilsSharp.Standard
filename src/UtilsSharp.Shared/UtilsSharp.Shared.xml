@@ -291,6 +291,51 @@
             <param name="sender"></param>
             <param name="e"></param>
         </member>
+        <member name="T:UtilsSharp.Shared.Standard.BaseException">
+            <summary>
+            Exception基础处理
+            </summary>
+        </member>
+        <member name="M:UtilsSharp.Shared.Standard.BaseException.GetDefaultRegexRule">
+            <summary>
+            获取默认规则
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.Shared.Standard.BaseException.Regex(System.Exception,System.String,System.Collections.Generic.List{UtilsSharp.Shared.Standard.ExceptionRegexRule})">
+            <summary>
+            匹配错误信息
+            </summary>
+            <param name="logId">日志Id</param>
+            <param name="ex">Exception</param>
+            <param name="rules">匹配规则</param>
+            <returns></returns>
+        </member>
+        <member name="T:UtilsSharp.Shared.Standard.ExceptionRegexRule">
+            <summary>
+            Exception匹配规则
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.Shared.Standard.ExceptionRegexRule.Rules">
+            <summary>
+            匹配规则 如：["未登入"]
+            </summary>
+        </member>
+        <member name="T:UtilsSharp.Shared.Standard.ExceptionRegexResult">
+            <summary>
+            Exception匹配结果
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.Shared.Standard.ExceptionRegexResult.Code">
+            <summary>
+            错误码 如：4010
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.Shared.Standard.ExceptionRegexResult.Msg">
+            <summary>
+            提示信息 如："您还未登入"
+            </summary>
+        </member>
         <member name="T:UtilsSharp.Shared.Standard.BaseMsg">
             <summary>
             提示信息模板
@@ -300,84 +345,92 @@
             <summary>
             2000|apiError|接口异常
             </summary>
-            <param name="errorCode">错误码</param>
+            <param name="logId">日志Id</param>
             <returns></returns>
         </member>
         <member name="M:UtilsSharp.Shared.Standard.BaseMsg.ToMsgNetworkError(System.String)">
             <summary>
             3000|networkError|网络异常
             </summary>
-            <param name="errorCode">错误码</param>
+            <param name="logId">日志Id</param>
             <returns></returns>
         </member>
         <member name="M:UtilsSharp.Shared.Standard.BaseMsg.ToMsgNotLogin(System.String)">
             <summary>
             4000|notLogin|未登录
             </summary>
-            <param name="errorCode">错误码</param>
+            <param name="logId">日志Id</param>
             <returns></returns>
         </member>
         <member name="M:UtilsSharp.Shared.Standard.BaseMsg.ToMsgAuthExpire(System.String)">
             <summary>
             4010|authExpire|授权过期
             </summary>
-            <param name="errorCode">错误码</param>
+            <param name="logId">日志Id</param>
             <returns></returns>
         </member>
         <member name="M:UtilsSharp.Shared.Standard.BaseMsg.ToMsgException(System.String)">
             <summary>
             5000|exception|TryCatch异常错误
             </summary>
-            <param name="errorCode">错误码</param>
+            <param name="logId">日志Id</param>
             <returns></returns>
         </member>
         <member name="M:UtilsSharp.Shared.Standard.BaseMsg.ToMsgDataNotFound(System.String)">
             <summary>
             6000|dataNotFound|数据找不到
             </summary>
-            <param name="errorCode">错误码</param>
+            <param name="logId">日志Id</param>
             <returns></returns>
         </member>
         <member name="M:UtilsSharp.Shared.Standard.BaseMsg.ToMsgDataNotValid(System.String)">
             <summary>
             6010|dataNotValid|数据验证不通过
             </summary>
-            <param name="errorCode">错误码</param>
+            <param name="logId">日志Id</param>
             <returns></returns>
         </member>
         <member name="M:UtilsSharp.Shared.Standard.BaseMsg.ToMsgBusinessError(System.String)">
             <summary>
             7000|businessError|默认业务性异常
             </summary>
-            <param name="errorCode">错误码</param>
+            <param name="logId">日志Id</param>
             <returns></returns>
         </member>
         <member name="M:UtilsSharp.Shared.Standard.BaseMsg.ToMsgParameterCannotBeEmpty(System.String)">
             <summary>
             7010|parameterCannotBeEmpty|参数不能为空
             </summary>
-            <param name="errorCode">错误码</param>
+            <param name="logId">日志Id</param>
             <returns></returns>
         </member>
         <member name="M:UtilsSharp.Shared.Standard.BaseMsg.ToMsgInvalidParameter(System.String)">
             <summary>
             7020|invalidParameter|非法参数
             </summary>
-            <param name="errorCode">错误码</param>
+            <param name="logId">日志Id</param>
             <returns></returns>
         </member>
         <member name="M:UtilsSharp.Shared.Standard.BaseMsg.ToMsgDbError(System.String)">
             <summary>
             8000|dbError|数据库异常
             </summary>
-            <param name="errorCode">错误码</param>
+            <param name="logId">日志Id</param>
             <returns></returns>
         </member>
         <member name="M:UtilsSharp.Shared.Standard.BaseMsg.ToMsgSystemError(System.String)">
             <summary>
             9000|SystemError|系统错误
             </summary>
-            <param name="errorCode">错误码</param>
+            <param name="logId">日志Id</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.Shared.Standard.BaseMsg.ToMsg(System.Int32,System.String)">
+            <summary>
+            获取提示信息
+            </summary>
+            <param name="code">日志Id</param>
+            <param name="logId"></param>
             <returns></returns>
         </member>
         <member name="T:UtilsSharp.Shared.Standard.BasePage">
@@ -500,6 +553,33 @@
             </summary>
             <param name="result">返回对象结果</param>
             <param name="msg">成功提示信息</param>
+        </member>
+        <member name="M:UtilsSharp.Shared.Standard.BaseResult`1.SetException(System.String)">
+            <summary>
+            设置异常提示
+            </summary>
+            <param name="msg">异常信息</param>
+        </member>
+        <member name="M:UtilsSharp.Shared.Standard.BaseResult`1.SetException(System.Exception)">
+            <summary>
+            设置异常提示
+            </summary>
+            <param name="ex">Exception</param>
+        </member>
+        <member name="M:UtilsSharp.Shared.Standard.BaseResult`1.SetException(System.Exception,System.String)">
+            <summary>
+            设置异常提示
+            </summary>
+            <param name="ex">Exception</param>
+            <param name="logId">日志Id</param>
+        </member>
+        <member name="M:UtilsSharp.Shared.Standard.BaseResult`1.SetException(System.Exception,System.String,System.Collections.Generic.List{UtilsSharp.Shared.Standard.ExceptionRegexRule})">
+            <summary>
+            设置异常提示
+            </summary>
+            <param name="ex">Exception</param>
+            <param name="logId">日志Id</param>
+            <param name="rules">匹配规则</param>
         </member>
         <member name="T:UtilsSharp.Shared.Standard.BasePagedResult`1">
             <summary>

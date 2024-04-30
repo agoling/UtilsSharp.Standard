@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Castle.DynamicProxy;
 using UtilsSharp.AsyncInterceptor;
+using UtilsSharp.Shared.Standard;
 
 namespace UtilsSharp.AspNetCore.Interceptor
 {
@@ -10,6 +12,11 @@ namespace UtilsSharp.AspNetCore.Interceptor
     /// </summary>
     public class LoggerAsyncInterceptor : IAsyncInterceptor
     {
+        /// <summary>
+        /// Exception 匹配规则
+        /// </summary>
+        public virtual List<ExceptionRegexRule> ExceptionRegexRule { set; get; } = BaseException.GetDefaultRegexRule();
+
         #region 同步方法拦截时使用
         /// <summary>
         /// 同步方法拦截时使用
@@ -23,7 +30,7 @@ namespace UtilsSharp.AspNetCore.Interceptor
             }
             catch (Exception ex)
             {
-                InterceptorException.Interceptor(invocation, ex);
+                InterceptorException.Interceptor(invocation, ex, ExceptionRegexRule);
             }
         }
         #endregion
@@ -57,7 +64,7 @@ namespace UtilsSharp.AspNetCore.Interceptor
             }
             catch (Exception ex)
             {
-                InterceptorException.Interceptor(invocation, ex);
+                InterceptorException.Interceptor(invocation, ex, ExceptionRegexRule);
             }
         }
 
@@ -95,7 +102,7 @@ namespace UtilsSharp.AspNetCore.Interceptor
             }
             catch (Exception ex)
             {
-                return InterceptorException.InterceptorAsync<TResult>(invocation, ex);
+                return InterceptorException.InterceptorAsync<TResult>(invocation, ex, ExceptionRegexRule);
             }
         }
 
@@ -130,7 +137,7 @@ namespace UtilsSharp.AspNetCore.Interceptor
             }
             catch (Exception ex)
             {
-                InterceptorException.Interceptor(invocation, ex);
+                InterceptorException.Interceptor(invocation, ex, ExceptionRegexRule);
             }
         }
 
@@ -168,7 +175,7 @@ namespace UtilsSharp.AspNetCore.Interceptor
             }
             catch (Exception ex)
             {
-                return InterceptorException.InterceptorAsync<TResult>(invocation, ex);
+                return InterceptorException.InterceptorAsync<TResult>(invocation, ex, ExceptionRegexRule);
             }
 
         }

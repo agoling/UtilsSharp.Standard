@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Reflection;
 using System.Threading.Tasks;
+using UtilsSharp.Logger;
 using UtilsSharp.Shared.Dependency;
 using UtilsSharp.Shared.Standard;
 
@@ -69,12 +72,33 @@ namespace TestDemo.Service
 
         public BaseResult<string> Pay3()
         {
-            //var r = PayMethod2();
             var r = _test2.PayMethod3();
+            //var r = PayMethod2();
+            throw new Exception("db error");
             return r;
         }
 
+        
+
         public BaseResult<string> PayMethod3()
+        {
+            BaseResult<string> result = new BaseResult<string>();
+            int i = 1;
+            int j = 0;
+            result.Result = (i / j).ToString();
+            return result;
+        }
+
+        public async Task<BaseResult<string>> Pay4()
+        {
+
+            throw new Exception("Unauthorized");
+            var r = await PayMethod4();
+            return r;
+
+        }
+
+        public async Task<BaseResult<string>> PayMethod4()
         {
             BaseResult<string> result = new BaseResult<string>();
             int i = 1;

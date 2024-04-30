@@ -125,7 +125,51 @@ namespace UtilsSharp.Shared.Standard
             Code = 200;
         }
         #endregion
-        
+
+        #region 设置异常
+        /// <summary>
+        /// 设置异常提示
+        /// </summary>
+        /// <param name="msg">异常信息</param>
+        public void SetException(string msg)
+        {
+            SetError(msg, 5000);
+        }
+
+        /// <summary>
+        /// 设置异常提示
+        /// </summary>
+        /// <param name="ex">Exception</param>
+        public void SetException(Exception ex)
+        {
+            SetError(ex.Message+ex.StackTrace, 5000);
+        }
+
+        /// <summary>
+        /// 设置异常提示
+        /// </summary>
+        /// <param name="ex">Exception</param>
+        /// <param name="logId">日志Id</param>
+        public void SetException(Exception ex,string logId)
+        {
+            var rules = BaseException.GetDefaultRegexRule();
+            var r =ex.Regex(logId, rules);
+            SetError(r.Msg, r.Code);
+        }
+
+
+        /// <summary>
+        /// 设置异常提示
+        /// </summary>
+        /// <param name="ex">Exception</param>
+        /// <param name="logId">日志Id</param>
+        /// <param name="rules">匹配规则</param>
+        public void SetException(Exception ex, string logId, List<ExceptionRegexRule> rules)
+        {
+            var r = ex.Regex(logId, rules);
+            SetError(r.Msg, r.Code);
+        }
+        #endregion
     }
 
     /// <summary>

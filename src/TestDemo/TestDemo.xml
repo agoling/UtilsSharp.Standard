@@ -51,6 +51,34 @@
             密码
             </summary>
         </member>
+        <member name="M:TestDemo.Controllers.TestController.Pay1">
+            <summary>
+            Get
+            </summary>
+            <param name="id">id</param>
+            <returns></returns>
+        </member>
+        <member name="M:TestDemo.Controllers.TestController.Pay2">
+            <summary>
+            Get
+            </summary>
+            <param name="id">id</param>
+            <returns></returns>
+        </member>
+        <member name="M:TestDemo.Controllers.TestController.Pay3">
+            <summary>
+            Get
+            </summary>
+            <param name="id">id</param>
+            <returns></returns>
+        </member>
+        <member name="M:TestDemo.Controllers.TestController.Pay4">
+            <summary>
+            Get
+            </summary>
+            <param name="id">id</param>
+            <returns></returns>
+        </member>
         <member name="M:TestDemo.Controllers.TestController.Get">
             <summary>
             IEnumerable
@@ -121,6 +149,11 @@
             依赖注入映射
             </summary>
             <param name="builder">builder</param>
+        </member>
+        <member name="P:TestDemo.Startup.LoggerAsyncInterceptorNew.ExceptionRegexRule">
+            <summary>
+            Exception 匹配规则
+            </summary>
         </member>
     </members>
 </doc>

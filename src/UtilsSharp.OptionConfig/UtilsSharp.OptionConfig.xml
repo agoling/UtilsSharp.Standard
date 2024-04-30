@@ -59,6 +59,11 @@
             连接数限制
             </summary>
         </member>
+        <member name="P:UtilsSharp.OptionConfig.ElasticSearchSetting.DisableIdInference">
+            <summary>
+            是否关闭自动Id推理
+            </summary>
+        </member>
         <member name="T:UtilsSharp.OptionConfig.KafkaConfig">
             <summary>
             KafkaHelper配置

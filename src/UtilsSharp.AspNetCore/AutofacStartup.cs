@@ -5,7 +5,6 @@ using Castle.DynamicProxy;
 using Microsoft.AspNetCore.Http;
 using UtilsSharp.AsyncInterceptor;
 using UtilsSharp.Shared.Dependency;
-using UtilsSharp.Shared.Standard;
 
 namespace UtilsSharp.AspNetCore
 {

@@ -128,7 +128,8 @@ namespace UtilsSharp.ElasticSearch7
                         Password = ElasticSearchConfig.ElasticSearchSetting.Password,
                         EsDefaultIndex = ElasticSearchConfig.ElasticSearchSetting.EsDefaultIndex,
                         EsNetworkProxy = ElasticSearchConfig.ElasticSearchSetting.EsNetworkProxy,
-                        EsConnectionLimit = ElasticSearchConfig.ElasticSearchSetting.EsConnectionLimit
+                        EsConnectionLimit = ElasticSearchConfig.ElasticSearchSetting.EsConnectionLimit,
+                        DisableIdInference = ElasticSearchConfig.ElasticSearchSetting.DisableIdInference,
                     };
                 }
                 else
@@ -140,7 +141,8 @@ namespace UtilsSharp.ElasticSearch7
                         Password = Setting.Password,
                         EsDefaultIndex = Setting.EsDefaultIndex,
                         EsNetworkProxy = Setting.EsNetworkProxy,
-                        EsConnectionLimit = Setting.EsConnectionLimit
+                        EsConnectionLimit = Setting.EsConnectionLimit,
+                        DisableIdInference = Setting.DisableIdInference
                     };
                 }
             }

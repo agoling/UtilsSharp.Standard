@@ -68,6 +68,8 @@ namespace UtilsSharp.ElasticSearch7
             {
                 settings.ConnectionLimit(setting.EsConnectionLimit);
             }
+            //是否关闭自动Id推理
+            settings.DefaultDisableIdInference(setting.DisableIdInference);
             return settings;
         }
     }

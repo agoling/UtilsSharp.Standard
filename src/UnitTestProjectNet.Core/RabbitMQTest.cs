@@ -74,8 +74,7 @@ namespace UnitTestProjectNet.Core
     /// </summary>
     public class xiaofeizhe : AbsConsumer<RabbitMqHelper>
     {
-
-        public override void ReceiveCallBack(List<string> contents)
+        protected override void ReceiveCallBack(List<string> contents)
         {
             Console.WriteLine("contents是队列里面取出来的数据");
         }

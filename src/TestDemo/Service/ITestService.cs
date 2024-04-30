@@ -9,5 +9,7 @@ namespace TestDemo.Service
         Task<string> Pay1();
         string Pay2();
         BaseResult<string> Pay3();
+
+        Task<BaseResult<string>> Pay4();
     }
 }

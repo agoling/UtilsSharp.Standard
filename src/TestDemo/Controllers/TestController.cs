@@ -21,11 +21,11 @@ namespace TestDemo.Controllers
         {
             _testService = testService;
             ////解释组件
-            _wxPayService = componentContext.ResolveNamed<IPayService>(typeof(WxPayService).Name);
-            _aliPayService = componentContext.ResolveNamed<IPayService>(typeof(AliPayService).Name);
+            //_wxPayService = componentContext.ResolveNamed<IPayService>(typeof(WxPayService).Name);
+            //_aliPayService = componentContext.ResolveNamed<IPayService>(typeof(AliPayService).Name);
 
-            //_wxPayService = AutofacContainer.Current.ResolveNamed<IPayService>(typeof(WxPayService).Name);
-            //_aliPayService = AutofacContainer.Current.ResolveNamed<IPayService>(typeof(AliPayService).Name);
+            _wxPayService = AutofacContainer.Current.ResolveNamed<IPayService>(typeof(WxPayService).Name);
+            _aliPayService = AutofacContainer.Current.ResolveNamed<IPayService>(typeof(AliPayService).Name);
 
         }
 
@@ -70,6 +70,18 @@ namespace TestDemo.Controllers
             return aa;
         }
 
+        /// <summary>
+        /// Get
+        /// </summary>
+        /// <param name="id">id</param>
+        /// <returns></returns>
+        [HttpGet]
+        public async Task<BaseResult<string>> Pay4()
+        {
+            var aa = await _testService.Pay4();
+            //var token = _wxPayService.Pay2();
+            return aa;
+        }
 
         /// <summary>
         /// IEnumerable

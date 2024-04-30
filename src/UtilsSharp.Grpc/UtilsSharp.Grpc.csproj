@@ -9,7 +9,7 @@
     <PackageIconUrl />
     <RepositoryUrl>https://github.com/agoling/UtilsSharp.Standard</RepositoryUrl>
     <PackageTags>UtilsSharp.Grpc UtilsSharp Protobuf帮助类 Protobuf-net UtilsSharp.Protobuf</PackageTags>
-    <Version>2.0.0</Version>
+    <Version>3.4.0</Version>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
@@ -22,7 +22,7 @@
     <PackageReference Include="protobuf-net.Grpc" Version="1.0.179" />
     <PackageReference Include="Protobuf.Grpc.Reflection" Version="1.0.170" />
     <PackageReference Include="System.Runtime.Loader" Version="4.3.0" />
-    <PackageReference Include="UtilsSharp.Shared" Version="1.0.0" />
+    <PackageReference Include="UtilsSharp.Shared" Version="3.4.0" />
   </ItemGroup>
 
   <ItemGroup>

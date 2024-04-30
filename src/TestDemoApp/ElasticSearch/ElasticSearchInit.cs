@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Autofac;
@@ -21,9 +20,10 @@ namespace TestDemoApp.ElasticSearch
             //依赖注入注册
             AutofacContainer.Register();
             //Es配置
-            const string localEsSettingJson = "{ \"EsHttpAddress\": \"http://192.168.0.91:9200/\", \"UserName\": \"\", \"Password\": \"\", \"EsDefaultIndex\": \"\", \"EsConnectionLimit\": 80 }";
+            const string localEsSettingJson = "{ \"EsHttpAddress\": \"http://192.168.0.56:9200/\", \"UserName\": \"\", \"Password\": \"\", \"EsDefaultIndex\": \"hang2\", \"EsConnectionLimit\": 80 }";
+          
             var localEsSetting = JsonConvert.DeserializeObject<ElasticSearchSetting>(localEsSettingJson);
-            localEsSetting.EsNetworkProxy = "http://192.168.0.141:8888";
+            //localEsSetting.EsNetworkProxy = "http://192.168.0.141:8888";
             ElasticSearchConfig.ElasticSearchSetting = localEsSetting;
             //获取对象
             //testUserInfoDataSource = AutofacContainer.Current.Resolve<ITestUserInfoDataSource>();
@@ -35,7 +35,7 @@ namespace TestDemoApp.ElasticSearch
                 Age = 15,
                 Description = "mydescription"
             };
-            Parallel.For(0, 50, (i) =>
+            Parallel.For(0, 3, (i) =>
             {
                 Thread t = new Thread(new ParameterizedThreadStart(DoSomethings));
                 userInfo.Age = i;

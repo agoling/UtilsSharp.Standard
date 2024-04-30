@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <Version>3.0.1</Version>
+    <Version>3.4.0</Version>
     <Authors>Agoling</Authors>
     <Company>Agoling</Company>
     <Product>Agoling</Product>
@@ -23,7 +23,7 @@
     <PackageReference Include="NEST" Version="5.6.6" />
     <PackageReference Include="System.ComponentModel.Annotations" Version="4.7.0" />
     <PackageReference Include="System.Threading.Tasks.Extensions" Version="4.5.4" />
-    <PackageReference Include="UtilsSharp.Shared" Version="1.0.0" />
+    <PackageReference Include="UtilsSharp.Shared" Version="3.4.0" />
   </ItemGroup>
 
   <ItemGroup>

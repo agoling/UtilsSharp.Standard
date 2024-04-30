@@ -10,7 +10,7 @@
     <PackageIconUrl />
     <RepositoryUrl>https://github.com/agoling/UtilsSharp.Standard</RepositoryUrl>
     <PackageTags>UtilsSharp UtilsSharp.Jwt Jwt Jwt帮助类 JwtHelper</PackageTags>
-    <Version>2.0.0</Version>
+    <Version>3.4.0</Version>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
@@ -19,7 +19,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.1.28" />
-    <PackageReference Include="UtilsSharp.Shared" Version="1.0.0" />
+    <PackageReference Include="UtilsSharp.Shared" Version="3.4.0" />
   </ItemGroup>
 
   <ItemGroup>

@@ -42,7 +42,7 @@ namespace UtilsSharp.ElasticSearch7
             var r = esClient.IndexMany(entities, execIndex);
             if (refresh)
             {
-                esClient.Indices.Refresh();
+                esClient.Indices.Refresh(execIndex);
             }
             return r;
         }
@@ -111,7 +111,7 @@ namespace UtilsSharp.ElasticSearch7
             var r = esClient.Bulk(m => m.DeleteMany<T>(ids).Index(execIndex));
             if (refresh)
             {
-                esClient.Indices.Refresh();
+                esClient.Indices.Refresh(execIndex);
             }
             return r;
         }
@@ -131,7 +131,7 @@ namespace UtilsSharp.ElasticSearch7
             var r = esClient.DeleteMany(entities, execIndex);
             if (refresh)
             {
-                esClient.Indices.Refresh();
+                esClient.Indices.Refresh(execIndex);
             }
             return r;
         }
@@ -276,7 +276,7 @@ namespace UtilsSharp.ElasticSearch7
             var r = await esClient.IndexManyAsync(entities, execIndex);
             if (refresh)
             {
-                await esClient.Indices.RefreshAsync();
+                await esClient.Indices.RefreshAsync(execIndex);
             }
             return r;
         }
@@ -345,7 +345,7 @@ namespace UtilsSharp.ElasticSearch7
             var r = await esClient.BulkAsync(m => m.DeleteMany<T>(ids).Index(execIndex));
             if (refresh)
             {
-                await esClient.Indices.RefreshAsync();
+                await esClient.Indices.RefreshAsync(execIndex);
             }
             return r;
         }
@@ -365,7 +365,7 @@ namespace UtilsSharp.ElasticSearch7
             var r = await esClient.DeleteManyAsync(entities, execIndex);
             if (refresh)
             {
-                await esClient.Indices.RefreshAsync();
+                await esClient.Indices.RefreshAsync(execIndex);
             }
             return r;
         }

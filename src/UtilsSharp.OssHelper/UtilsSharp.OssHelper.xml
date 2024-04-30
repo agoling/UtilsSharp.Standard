@@ -133,7 +133,7 @@
             <param name="reqOssEndpoint">ossEndpoint(默认访问内网)</param>
             <returns></returns>
         </member>
-        <member name="M:UtilsSharp.OssHelper.OssClient.GetSign(System.String,System.String,System.String@,System.String,System.String,System.Int64)">
+        <member name="M:UtilsSharp.OssHelper.OssClient.GetSign(System.String,System.String,System.String@,System.String,System.String,System.String,System.Int64)">
             <summary>
             获取服务端直传签名（policy和callback）
             </summary>
@@ -142,6 +142,7 @@
             <param name="tips">提示信息</param>
             <param name="reqOssEndpoint">ossEndpoint(默认访问内网)</param>
             <param name="ossDir">上传目录 默认："tools/webUpload/"</param>
+            <param name="fileName">文件名 默认为空</param>
             <param name="expireTime">过期时间(默认30秒)</param>
             <returns></returns>
         </member>
@@ -388,7 +389,7 @@
             <param name="reqOssEndpoint">ossEndpoint(默认访问内网)</param>
             <returns></returns>
         </member>
-        <member name="M:UtilsSharp.OssHelper.OssHelper`1.GetSign(System.String,System.String,System.String@,System.String,System.String,System.Int64)">
+        <member name="M:UtilsSharp.OssHelper.OssHelper`1.GetSign(System.String,System.String,System.String@,System.String,System.String,System.String,System.Int64)">
             <summary>
             获取服务端直传签名（policy和callback）
             </summary>
@@ -397,6 +398,7 @@
             <param name="tips">提示信息</param>
             <param name="reqOssEndpoint">ossEndpoint(默认访问内网)</param>
             <param name="ossDir">上传目录 默认："tools/webUpload/"</param>
+            <param name="fileName">文件名 默认为空</param>
             <param name="expireTime">过期时间(默认30秒)</param>
             <returns></returns>
         </member>

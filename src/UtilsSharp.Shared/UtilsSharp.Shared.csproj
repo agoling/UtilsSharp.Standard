@@ -3,7 +3,7 @@
     <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <LangVersion>latest</LangVersion>
-    <Version>1.0.0</Version>
+    <Version>3.4.0</Version>
     <Authors>Agoling</Authors>
     <Description>UtilsSharp.Shared主要封装了公共的接口、模型、枚举等内容</Description>
     <PackageTags>UtilsSharp UtilsSharp.Shared</PackageTags>
@@ -23,7 +23,6 @@
   <ItemGroup>
     <Folder Include="Dependency\" />
     <Folder Include="Entity\" />
-    <Folder Include="Standard\" />
   </ItemGroup>
   
   <ItemGroup>

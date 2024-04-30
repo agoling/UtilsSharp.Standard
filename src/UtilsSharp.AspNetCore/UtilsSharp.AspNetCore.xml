@@ -195,25 +195,48 @@
             拦截异常信息
             </summary>
         </member>
-        <member name="M:UtilsSharp.AspNetCore.Interceptor.InterceptorException.Interceptor(Castle.DynamicProxy.IInvocation,System.Exception)">
+        <member name="M:UtilsSharp.AspNetCore.Interceptor.InterceptorException.Interceptor(Castle.DynamicProxy.IInvocation,System.Exception,System.Collections.Generic.List{UtilsSharp.Shared.Standard.ExceptionRegexRule})">
             <summary>
             拦截异常信息
             </summary>
             <param name="invocation">IInvocation</param>
             <param name="ex">Exception</param>
+            <param name="rules">Exception 拦截规则</param>
         </member>
-        <member name="M:UtilsSharp.AspNetCore.Interceptor.InterceptorException.InterceptorAsync``1(Castle.DynamicProxy.IInvocation,System.Exception)">
+        <member name="M:UtilsSharp.AspNetCore.Interceptor.InterceptorException.InterceptorAsync``1(Castle.DynamicProxy.IInvocation,System.Exception,System.Collections.Generic.List{UtilsSharp.Shared.Standard.ExceptionRegexRule})">
             <summary>
             拦截异常信息(异步带参数)
             </summary>
             <typeparam name="TResult">TResult</typeparam>
             <param name="invocation">IInvocation</param>
             <param name="ex">Exception</param>
+            <param name="rules">Exception 拦截规则</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.AspNetCore.Interceptor.InterceptorException.Result(Castle.DynamicProxy.IInvocation,System.Exception,System.Collections.Generic.List{UtilsSharp.Shared.Standard.ExceptionRegexRule})">
+            <summary>
+            获取错误信息
+            </summary>
+            <param name="invocation">IInvocation</param>
+            <param name="ex">Exception</param>
+            <param name="rules">Exception 拦截规则</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.AspNetCore.Interceptor.InterceptorException.IsAsyncMethod(System.Reflection.MethodInfo)">
+            <summary>
+            判断是否是异步方法
+            </summary>
+            <param name="methodInfo">方法信息</param>
             <returns></returns>
         </member>
         <member name="T:UtilsSharp.AspNetCore.Interceptor.LoggerAsyncInterceptor">
             <summary>
             日志异步拦截
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.AspNetCore.Interceptor.LoggerAsyncInterceptor.ExceptionRegexRule">
+            <summary>
+            Exception 匹配规则
             </summary>
         </member>
         <member name="M:UtilsSharp.AspNetCore.Interceptor.LoggerAsyncInterceptor.InterceptSynchronous(Castle.DynamicProxy.IInvocation)">
@@ -281,6 +304,11 @@
         <member name="T:UtilsSharp.AspNetCore.Interceptor.LoggerInterceptor">
             <summary>
             日志拦截器
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.AspNetCore.Interceptor.LoggerInterceptor.ExceptionRegexRule">
+            <summary>
+            Exception 匹配规则
             </summary>
         </member>
         <member name="M:UtilsSharp.AspNetCore.Interceptor.LoggerInterceptor.Intercept(Castle.DynamicProxy.IInvocation)">

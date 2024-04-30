@@ -44,5 +44,9 @@ namespace UtilsSharp.OptionConfig
         /// 连接数限制
         /// </summary>
         public int EsConnectionLimit { get; set; }
+        /// <summary>
+        /// 是否关闭自动Id推理
+        /// </summary>
+        public bool DisableIdInference { get; set; }
     }
 }

@@ -1,4 +1,4 @@
-**由于国内访问github不方便,后期项目新版本将在码云进行更新，欢迎star**：https://gitee.com/agoling/UtilsSharp.Standard
+**由于国内访问github有时不稳定,后期也可以访问码云获取，欢迎star**：https://gitee.com/agoling/UtilsSharp.Standard
 
 **详细使用说明文档**：https://agoling.github.io/UtilsSharpDoc/#/
 

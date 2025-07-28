@@ -80,6 +80,13 @@
             Es基础实体自动映射
             </summary>
         </member>
+        <member name="M:UtilsSharp.ElasticSearch.EsBaseDataAutoMapping`1.Create(Nest.ElasticClient,System.String)">
+            <summary>
+            创建索引
+            </summary>
+            <param name="client">es客户端</param>
+            <param name="index">索引名称</param>
+        </member>
         <member name="M:UtilsSharp.ElasticSearch.EsBaseDataAutoMapping`1.EntityMapping(Nest.ElasticClient,System.String)">
             <summary>
             实体映射
@@ -156,6 +163,13 @@
             <summary>
             索引最大查询
             </summary>
+        </member>
+        <member name="M:UtilsSharp.ElasticSearch.EsBaseDataMapping.Create(Nest.ElasticClient,System.String)">
+            <summary>
+            创建索引
+            </summary>
+            <param name="client">es客户端</param>
+            <param name="index">索引名称</param>
         </member>
         <member name="M:UtilsSharp.ElasticSearch.EsBaseDataMapping.EntityMapping(Nest.ElasticClient,System.String)">
             <summary>

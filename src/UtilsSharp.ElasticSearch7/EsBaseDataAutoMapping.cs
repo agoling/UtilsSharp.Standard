@@ -11,6 +11,24 @@ namespace UtilsSharp.ElasticSearch7
     public abstract class EsBaseDataAutoMapping<T> : EsBaseDataMapping where T : class, new()
     {
         /// <summary>
+        /// 创建索引
+        /// </summary>
+        /// <param name="client">es客户端</param>
+        /// <param name="index">索引名称</param>
+        public override void Create(ElasticClient client, string index)
+        {
+            var exists = client.Indices.Exists(index).Exists;
+            if (exists) return;
+            client.Indices.Create(index, c => c
+                .Map<T>(m => m.AutoMap(new AllStringToKeywordValuesPropertyVisitor()))
+                .Settings(s => s
+                    .NumberOfReplicas(0)
+                    .NumberOfShards(NumberOfShards)
+                    .Setting(UpdatableIndexSettings.MaxResultWindow, MaxResultWindow)
+                ));
+        }
+
+        /// <summary>
         /// 实体映射
         /// </summary>
         /// <param name="client">es客户端</param>
@@ -34,8 +52,12 @@ namespace UtilsSharp.ElasticSearch7
             PropertyInfo propertyInfo,
             ElasticsearchPropertyAttributeBase attribute)
         {
-            type.Type = "keyword";
-            type.Fields = null;
+            var isTextAttribute = propertyInfo.GetCustomAttribute<TextAttribute>(inherit: true) != null;
+            if (!isTextAttribute)
+            {
+                type.Type = "keyword";
+                type.Fields = null;
+            }
         }
     }
 }

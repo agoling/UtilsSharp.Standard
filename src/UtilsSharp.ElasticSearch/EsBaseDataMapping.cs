@@ -72,6 +72,13 @@ namespace UtilsSharp.ElasticSearch
         public virtual int MaxResultWindow => 10000;
 
         /// <summary>
+        /// 创建索引
+        /// </summary>
+        /// <param name="client">es客户端</param>
+        /// <param name="index">索引名称</param>
+        public abstract void Create(ElasticClient client, string index);
+
+        /// <summary>
         /// 实体映射
         /// </summary>
         /// <param name="client">es客户端</param>
@@ -160,20 +167,7 @@ namespace UtilsSharp.ElasticSearch
                 {
                     return curClient;
                 }
-                //判断索引是否存在
-                var exists = curClient.IndexExists(CurSetting.EsDefaultIndex).Exists;
-                if (!exists)
-                {
-                    //创建索引
-                    var saveResult = curClient.CreateIndex(CurSetting.EsDefaultIndex, c => c.InitializeUsing(new IndexState()
-                    {
-                        Settings = new IndexSettings()
-                        {
-                            NumberOfReplicas = 0,
-                            NumberOfShards = NumberOfShards
-                        }
-                    }).Settings(s => s.Setting("max_result_window", MaxResultWindow)));
-                }
+                Create(curClient, CurSetting.EsDefaultIndex);
                 RunEntityMapping(curClient, CurSetting.EsDefaultIndex);
                 RunBindAliasIndex(curClient, CurSetting.EsDefaultIndex);
                 return curClient;
@@ -189,18 +183,7 @@ namespace UtilsSharp.ElasticSearch
                     RunBindAliasIndex(curClient, CurSetting.EsDefaultIndex);
                     return curClient;
                 }
-
-                //创建索引
-                IndexState indexState = new IndexState()
-                {
-                    Settings = new IndexSettings()
-                    {
-                        NumberOfReplicas = 0,
-                        NumberOfShards = NumberOfShards
-                    }
-                };
-                indexState.Settings.Add("max_result_window", MaxResultWindow);
-                curClient.CreateIndex(CurSetting.EsDefaultIndex, c => c.InitializeUsing(indexState));
+                Create(curClient, CurSetting.EsDefaultIndex);
                 RunEntityMapping(curClient, CurSetting.EsDefaultIndex);
                 RunBindAliasIndex(curClient, CurSetting.EsDefaultIndex);
                 return curClient;
@@ -297,7 +280,7 @@ namespace UtilsSharp.ElasticSearch
         /// <returns></returns>
         public string GetIndex(DateTime dateTime, string appendKey = "")
         {
-            if (string.IsNullOrEmpty(AliasIndex))
+            if (string.IsNullOrEmpty(IndexName) && string.IsNullOrEmpty(AliasIndex))
             {
                 EsMappingType = EsMappingType.Default;
             }

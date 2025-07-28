@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <PackageId>UtilsSharp.DotNetCore</PackageId>
-    <Version>3.4.0</Version>
+    <Version>3.4.1</Version>
     <Authors>Agoling</Authors>
     <Product>UtilsSharp.DotNetCore</Product>
     <Description>本项目是.net core3.1扩展类，属于UtilsSharp项目分支，应用于C/S客户端和控制台项目。</Description>
@@ -23,7 +23,7 @@
     <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="7.1.0" />
     <PackageReference Include="Autofac.Extras.DynamicProxy" Version="6.0.0" />
     <PackageReference Include="AutoMapper" Version="9.0.0" />
-    <PackageReference Include="UtilsSharp" Version="3.4.0" />
+    <PackageReference Include="UtilsSharp" Version="3.4.1" />
     <PackageReference Include="UtilsSharp.Logger" Version="2.0.0" />
   </ItemGroup>
 

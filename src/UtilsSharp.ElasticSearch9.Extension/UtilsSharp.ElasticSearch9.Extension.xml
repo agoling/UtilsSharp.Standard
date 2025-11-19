@@ -1,0 +1,313 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>UtilsSharp.ElasticSearch9.Extension</name>
+    </assembly>
+    <members>
+        <member name="T:UtilsSharp.ElasticSearch9.Extension.Entity.EsBaseIdRequest">
+            <summary>
+            基础单条Id参数
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.ElasticSearch9.Extension.Entity.EsBaseIdRequest.Id">
+            <summary>
+            素材Id
+            </summary>
+        </member>
+        <member name="T:UtilsSharp.ElasticSearch9.Extension.Entity.EsBaseIdsRequest">
+            <summary>
+            基础Id集合参数
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.ElasticSearch9.Extension.Entity.EsBaseIdsRequest.Ids">
+            <summary>
+            素材Id
+            </summary>
+        </member>
+        <member name="T:UtilsSharp.ElasticSearch9.Extension.Entity.EsBaseIncrementModifyRequest">
+            <summary>
+            基础增量修改参数
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.ElasticSearch9.Extension.Entity.EsBaseIncrementModifyRequest.Ids">
+            <summary>
+            Id集合
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.ElasticSearch9.Extension.Entity.EsBaseIncrementModifyRequest.Data">
+            <summary>
+            增量修改数据
+            </summary>
+        </member>
+        <member name="T:UtilsSharp.ElasticSearch9.Extension.Entity.EsBaseSaveRequest">
+            <summary>
+            基础保存参数
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.ElasticSearch9.Extension.Entity.EsBaseSaveRequest.Id">
+            <summary>
+            Id
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.ElasticSearch9.Extension.Entity.EsBaseSaveRequest.UpdateTime">
+            <summary>
+            更新时间
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.ElasticSearch9.Extension.Entity.EsBaseSaveRequest.CreateTime">
+            <summary>
+            创建时间
+            </summary>
+        </member>
+        <member name="T:UtilsSharp.ElasticSearch9.Extension.EsBaseAppService">
+            <summary>
+            公共增删查改
+            </summary>
+            <summary>
+            公共增删查改
+            </summary>
+        </member>
+        <member name="M:UtilsSharp.ElasticSearch9.Extension.EsBaseAppService.Save``2(``0,System.Func{``1,Elastic.Clients.Elasticsearch.IndexResponse})">
+            <summary>
+            保存
+            </summary>
+            <param name="request">参数</param>
+            <param name="saveFunc">保存方法</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.ElasticSearch9.Extension.EsBaseAppService.BulkSave``2(System.Collections.Generic.List{``0},System.Func{System.Collections.Generic.List{``1},Elastic.Clients.Elasticsearch.BulkResponse})">
+            <summary>
+            批量保存
+            </summary>
+            <param name="request">参数</param>
+            <param name="saveFunc">保存方法</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.ElasticSearch9.Extension.EsBaseAppService.IncrementModify``1(UtilsSharp.ElasticSearch9.Extension.Entity.EsBaseIncrementModifyRequest,System.Func{System.String,System.Collections.Generic.Dictionary{System.String,System.Object},Elastic.Clients.Elasticsearch.UpdateResponse{``0}})">
+            <summary>
+            批量增量修改
+            </summary>
+            <param name="request">参数</param>
+            <param name="incrementModifyFunc">增量修改方法</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.ElasticSearch9.Extension.EsBaseAppService.Delete(UtilsSharp.ElasticSearch9.Extension.Entity.EsBaseIdsRequest,System.Func{Elastic.Clients.Elasticsearch.Id[],Elastic.Clients.Elasticsearch.BulkResponse})">
+            <summary>
+            批量删除
+            </summary>
+            <param name="request">参数</param>
+            <param name="deleteFunc">删除方法</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.ElasticSearch9.Extension.EsBaseAppService.Get``2(UtilsSharp.ElasticSearch9.Extension.Entity.EsBaseIdRequest,System.Func{System.String,``0})">
+             <summary>
+            单条获取
+             </summary>
+             <param name="request">参数</param>
+             <param name="getFunc">单条获取方法</param>
+             <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.ElasticSearch9.Extension.EsBaseAppService.Search``3(``0,System.Func{``0,UtilsSharp.Shared.Standard.BasePagedInfoResult{``1}})">
+            <summary>
+            搜索
+            </summary>
+            <param name="request">参数</param>
+            <param name="searchFunc">搜索方法</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.ElasticSearch9.Extension.EsBaseAppService.SaveAsync``2(``0,System.Func{``1,System.Threading.Tasks.Task{Elastic.Clients.Elasticsearch.IndexResponse}})">
+            <summary>
+            保存
+            </summary>
+            <param name="request">参数</param>
+            <param name="saveFuncAsync">保存方法</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.ElasticSearch9.Extension.EsBaseAppService.BulkSaveAsync``2(System.Collections.Generic.List{``0},System.Func{System.Collections.Generic.List{``1},System.Threading.Tasks.Task{Elastic.Clients.Elasticsearch.BulkResponse}})">
+            <summary>
+            批量保存
+            </summary>
+            <param name="request">参数</param>
+            <param name="saveFuncAsync">保存方法</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.ElasticSearch9.Extension.EsBaseAppService.IncrementModifyAsync``1(UtilsSharp.ElasticSearch9.Extension.Entity.EsBaseIncrementModifyRequest,System.Func{System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.Threading.Tasks.Task{Elastic.Clients.Elasticsearch.UpdateResponse{``0}}})">
+            <summary>
+            批量增量修改
+            </summary>
+            <param name="request">参数</param>
+            <param name="incrementModifyFuncAsync">增量修改方法</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.ElasticSearch9.Extension.EsBaseAppService.DeleteAsync(UtilsSharp.ElasticSearch9.Extension.Entity.EsBaseIdsRequest,System.Func{Elastic.Clients.Elasticsearch.Id[],System.Threading.Tasks.Task{Elastic.Clients.Elasticsearch.BulkResponse}})">
+            <summary>
+            批量删除
+            </summary>
+            <param name="request">参数</param>
+            <param name="deleteFuncAsync">删除方法</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.ElasticSearch9.Extension.EsBaseAppService.GetAsync``2(UtilsSharp.ElasticSearch9.Extension.Entity.EsBaseIdRequest,System.Func{System.String,System.Threading.Tasks.Task{``0}})">
+             <summary>
+            单条获取
+             </summary>
+             <param name="request">参数</param>
+             <param name="getFuncAsync">单条获取方法</param>
+             <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.ElasticSearch9.Extension.EsBaseAppService.SearchAsync``3(``0,System.Func{``0,System.Threading.Tasks.Task{UtilsSharp.Shared.Standard.BasePagedInfoResult{``1}}})">
+            <summary>
+            搜索
+            </summary>
+            <param name="request">参数</param>
+            <param name="searchFuncAsync">搜索方法</param>
+            <returns></returns>
+        </member>
+        <member name="T:UtilsSharp.ElasticSearch9.Extension.IEsBaseAppService">
+            <summary>
+            公共增删查改
+            </summary>
+            <summary>
+            公共增删查改
+            </summary>
+        </member>
+        <member name="M:UtilsSharp.ElasticSearch9.Extension.IEsBaseAppService.Save``2(``0,System.Func{``1,Elastic.Clients.Elasticsearch.IndexResponse})">
+            <summary>
+            保存
+            </summary>
+            <param name="request">参数</param>
+            <param name="saveFunc">保存方法</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.ElasticSearch9.Extension.IEsBaseAppService.BulkSave``2(System.Collections.Generic.List{``0},System.Func{System.Collections.Generic.List{``1},Elastic.Clients.Elasticsearch.BulkResponse})">
+            <summary>
+            批量保存
+            </summary>
+            <param name="request">参数</param>
+            <param name="saveFunc">保存方法</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.ElasticSearch9.Extension.IEsBaseAppService.IncrementModify``1(UtilsSharp.ElasticSearch9.Extension.Entity.EsBaseIncrementModifyRequest,System.Func{System.String,System.Collections.Generic.Dictionary{System.String,System.Object},Elastic.Clients.Elasticsearch.UpdateResponse{``0}})">
+            <summary>
+            批量增量修改
+            </summary>
+            <param name="request">参数</param>
+            <param name="incrementModifyFunc">增量修改方法</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.ElasticSearch9.Extension.IEsBaseAppService.Delete(UtilsSharp.ElasticSearch9.Extension.Entity.EsBaseIdsRequest,System.Func{Elastic.Clients.Elasticsearch.Id[],Elastic.Clients.Elasticsearch.BulkResponse})">
+            <summary>
+            批量删除
+            </summary>
+            <param name="request">参数</param>
+            <param name="deleteFunc">删除方法</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.ElasticSearch9.Extension.IEsBaseAppService.Get``2(UtilsSharp.ElasticSearch9.Extension.Entity.EsBaseIdRequest,System.Func{System.String,``0})">
+             <summary>
+            单条获取
+             </summary>
+             <param name="request">参数</param>
+             <param name="getFunc">单条获取方法</param>
+             <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.ElasticSearch9.Extension.IEsBaseAppService.Search``3(``0,System.Func{``0,UtilsSharp.Shared.Standard.BasePagedInfoResult{``1}})">
+            <summary>
+            搜索
+            </summary>
+            <param name="request">参数</param>
+            <param name="searchFunc">搜索方法</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.ElasticSearch9.Extension.IEsBaseAppService.SaveAsync``2(``0,System.Func{``1,System.Threading.Tasks.Task{Elastic.Clients.Elasticsearch.IndexResponse}})">
+            <summary>
+            保存
+            </summary>
+            <param name="request">参数</param>
+            <param name="saveFuncAsync">保存方法</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.ElasticSearch9.Extension.IEsBaseAppService.BulkSaveAsync``2(System.Collections.Generic.List{``0},System.Func{System.Collections.Generic.List{``1},System.Threading.Tasks.Task{Elastic.Clients.Elasticsearch.BulkResponse}})">
+            <summary>
+            批量保存
+            </summary>
+            <param name="request">参数</param>
+            <param name="saveFuncAsync">保存方法</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.ElasticSearch9.Extension.IEsBaseAppService.IncrementModifyAsync``1(UtilsSharp.ElasticSearch9.Extension.Entity.EsBaseIncrementModifyRequest,System.Func{System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.Threading.Tasks.Task{Elastic.Clients.Elasticsearch.UpdateResponse{``0}}})">
+            <summary>
+            批量增量修改
+            </summary>
+            <param name="request">参数</param>
+            <param name="incrementModifyFuncAsync">增量修改方法</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.ElasticSearch9.Extension.IEsBaseAppService.DeleteAsync(UtilsSharp.ElasticSearch9.Extension.Entity.EsBaseIdsRequest,System.Func{Elastic.Clients.Elasticsearch.Id[],System.Threading.Tasks.Task{Elastic.Clients.Elasticsearch.BulkResponse}})">
+            <summary>
+            批量删除
+            </summary>
+            <param name="request">参数</param>
+            <param name="deleteFuncAsync">删除方法</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.ElasticSearch9.Extension.IEsBaseAppService.GetAsync``2(UtilsSharp.ElasticSearch9.Extension.Entity.EsBaseIdRequest,System.Func{System.String,System.Threading.Tasks.Task{``0}})">
+             <summary>
+            单条获取
+             </summary>
+             <param name="request">参数</param>
+             <param name="getFuncAsync">单条获取方法</param>
+             <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.ElasticSearch9.Extension.IEsBaseAppService.SearchAsync``3(``0,System.Func{``0,System.Threading.Tasks.Task{UtilsSharp.Shared.Standard.BasePagedInfoResult{``1}}})">
+            <summary>
+            搜索
+            </summary>
+            <param name="request">参数</param>
+            <param name="searchFuncAsync">搜索方法</param>
+            <returns></returns>
+        </member>
+        <member name="T:UtilsSharp.ElasticSearch9.Extension.ValidationHelper">
+            <summary>
+            验证入参模型帮助类
+            </summary>
+        </member>
+        <member name="M:UtilsSharp.ElasticSearch9.Extension.ValidationHelper.IsValid(System.Object)">
+            <summary>
+            验证模型参数
+            </summary>
+            <param name="value">模型对象</param>
+            <returns></returns>
+        </member>
+        <member name="T:UtilsSharp.ElasticSearch9.Extension.ValidResult">
+            <summary>
+            验证结果
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.ElasticSearch9.Extension.ValidResult.ErrorMembers">
+            <summary>
+            错误成员集合
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.ElasticSearch9.Extension.ValidResult.IsValid">
+            <summary>
+            是否验证成功
+            </summary>
+        </member>
+        <member name="T:UtilsSharp.ElasticSearch9.Extension.ErrorMember">
+            <summary>
+            错误成员
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.ElasticSearch9.Extension.ErrorMember.ErrorMessage">
+            <summary>
+            错误信息
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.ElasticSearch9.Extension.ErrorMember.ErrorMemberName">
+            <summary>
+            错误成员名称
+            </summary>
+        </member>
+    </members>
+</doc>

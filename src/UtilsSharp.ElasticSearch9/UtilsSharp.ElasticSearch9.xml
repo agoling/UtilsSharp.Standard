@@ -1,0 +1,656 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>UtilsSharp.ElasticSearch9</name>
+    </assembly>
+    <members>
+        <member name="T:UtilsSharp.ElasticSearch9.Entity.EsBaseSearchRequest`1">
+            <summary>
+            Es基础查询参数
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.ElasticSearch9.Entity.EsBaseSearchRequest`1.PageSize">
+            <summary>
+            每页大小
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.ElasticSearch9.Entity.EsBaseSearchRequest`1.Size">
+            <summary>
+            Size
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.ElasticSearch9.Entity.EsBaseSearchRequest`1.MustQuerys">
+            <summary>
+            查询条件
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.ElasticSearch9.Entity.EsBaseSearchRequest`1.SortSelector">
+            <summary>
+            排序
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.ElasticSearch9.Entity.EsBaseSearchRequest`1.SourceSelector">
+            <summary>
+            选取返回的字段
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.ElasticSearch9.Entity.EsBaseSearchRequest`1.AggregationsSelector">
+            <summary>
+            聚合查询
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.ElasticSearch9.Entity.EsBaseSearchRequest`1.Index">
+            <summary>
+            索引(不传则按别名来查询)
+            </summary>
+        </member>
+        <member name="T:UtilsSharp.ElasticSearch9.Entity.EsSearchQueryRequest`1">
+            <summary>
+            Es搜索查询参数
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="P:UtilsSharp.ElasticSearch9.Entity.EsSearchQueryRequest`1.PageIndex">
+            <summary>
+            页码
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.ElasticSearch9.Entity.EsSearchQueryRequest`1.From">
+            <summary>
+            From
+            </summary>
+        </member>
+        <member name="T:UtilsSharp.ElasticSearch9.Entity.EsSearchScrollRequest`1">
+            <summary>
+            Es搜索查询参数(scroll)
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.ElasticSearch9.Entity.EsSearchScrollRequest`1.ScrollTime">
+            <summary>
+            游标存活时间
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.ElasticSearch9.Entity.EsSearchScrollRequest`1.ScrollId">
+            <summary>
+            游标Id
+            </summary>
+        </member>
+        <member name="T:UtilsSharp.ElasticSearch9.EsBaseDataAutoMapping`1">
+            <summary>
+            Es基础实体自动映射
+            </summary>
+        </member>
+        <member name="M:UtilsSharp.ElasticSearch9.EsBaseDataAutoMapping`1.Create(Elastic.Clients.Elasticsearch.ElasticsearchClient,System.String)">
+            <summary>
+            创建索引
+            </summary>
+            <param name="client">es客户端</param>
+            <param name="index">索引名称</param>
+        </member>
+        <member name="M:UtilsSharp.ElasticSearch9.EsBaseDataAutoMapping`1.EntityMapping(Elastic.Clients.Elasticsearch.ElasticsearchClient,System.String)">
+            <summary>
+            实体映射
+            </summary>
+            <param name="client">es客户端</param>
+            <param name="index">索引名称</param>
+        </member>
+        <member name="T:UtilsSharp.ElasticSearch9.EsBaseDataMapping">
+            <summary>
+            Es基础实体
+            </summary>
+        </member>
+        <member name="M:UtilsSharp.ElasticSearch9.EsBaseDataMapping.#ctor">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="F:UtilsSharp.ElasticSearch9.EsBaseDataMapping.EsBaseDataMappingLock">
+            <summary>
+            锁
+            </summary>
+        </member>
+        <member name="F:UtilsSharp.ElasticSearch9.EsBaseDataMapping.EsBaseAliasIndexBindLock">
+            <summary>
+            锁
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.ElasticSearch9.EsBaseDataMapping.CurSetting">
+            <summary>
+            表当前配置
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.ElasticSearch9.EsBaseDataMapping.Setting">
+            <summary>
+            连接设置
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.ElasticSearch9.EsBaseDataMapping.IndexName">
+            <summary>
+            新索引名称
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.ElasticSearch9.EsBaseDataMapping.AliasIndex">
+            <summary>
+            新索引别名
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.ElasticSearch9.EsBaseDataMapping.AppendBindAliasIndexes">
+            <summary>
+            附加绑定别名
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.ElasticSearch9.EsBaseDataMapping.EsMappingType">
+            <summary>
+            映射并创建索引类型
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.ElasticSearch9.EsBaseDataMapping.NumberOfShards">
+            <summary>
+            分片数
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.ElasticSearch9.EsBaseDataMapping.MaxResultWindow">
+            <summary>
+            索引最大查询
+            </summary>
+        </member>
+        <member name="M:UtilsSharp.ElasticSearch9.EsBaseDataMapping.Create(Elastic.Clients.Elasticsearch.ElasticsearchClient,System.String)">
+            <summary>
+            创建索引
+            </summary>
+            <param name="client">es客户端</param>
+            <param name="index">索引名称</param>
+        </member>
+        <member name="M:UtilsSharp.ElasticSearch9.EsBaseDataMapping.EntityMapping(Elastic.Clients.Elasticsearch.ElasticsearchClient,System.String)">
+            <summary>
+            实体映射
+            </summary>
+            <param name="client">es客户端</param>
+            <param name="index">索引名称</param>
+        </member>
+        <member name="P:UtilsSharp.ElasticSearch9.EsBaseDataMapping.CurrentIndex">
+            <summary>
+            当前索引
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.ElasticSearch9.EsBaseDataMapping.EsClient">
+            <summary>
+            Es客户端
+            </summary>
+        </member>
+        <member name="M:UtilsSharp.ElasticSearch9.EsBaseDataMapping.GetClient(UtilsSharp.OptionConfig.ElasticSearchSetting)">
+            <summary>
+            获取客户端
+            </summary>
+            <param name="setting">Es配置信息</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.ElasticSearch9.EsBaseDataMapping.EsClientByIndex(System.String)">
+            <summary>
+            Es客户端
+            </summary>
+            <param name="index">索引名称</param>
+        </member>
+        <member name="M:UtilsSharp.ElasticSearch9.EsBaseDataMapping.RunEntityMapping(Elastic.Clients.Elasticsearch.ElasticsearchClient,System.String)">
+            <summary>
+            执行实体映射
+            </summary>
+            <param name="client">es客户端</param>
+            <param name="index">索引名称</param>
+        </member>
+        <member name="M:UtilsSharp.ElasticSearch9.EsBaseDataMapping.RunBindAliasIndex(Elastic.Clients.Elasticsearch.ElasticsearchClient,System.String)">
+            <summary>
+            绑定索引别名
+            </summary>
+            <param name="client"></param>
+            <param name="index"></param>
+        </member>
+        <member name="M:UtilsSharp.ElasticSearch9.EsBaseDataMapping.GetIndex(System.DateTime,System.String)">
+            <summary>
+            获取指定时间索引
+            </summary>
+            <param name="dateTime">时间</param>
+            <param name="appendKey">appendKey</param>
+            <returns></returns>
+        </member>
+        <member name="T:UtilsSharp.ElasticSearch9.EsMappingType">
+            <summary>
+            映射并创建索引类型
+            </summary>
+        </member>
+        <member name="F:UtilsSharp.ElasticSearch9.EsMappingType.Default">
+            <summary>
+            默认索引
+            </summary>
+        </member>
+        <member name="F:UtilsSharp.ElasticSearch9.EsMappingType.New">
+            <summary>
+            新创建索引
+            </summary>
+        </member>
+        <member name="F:UtilsSharp.ElasticSearch9.EsMappingType.Hour">
+            <summary>
+            按小时创建索引
+            </summary>
+        </member>
+        <member name="F:UtilsSharp.ElasticSearch9.EsMappingType.Day">
+            <summary>
+            按天创建索引
+            </summary>
+        </member>
+        <member name="F:UtilsSharp.ElasticSearch9.EsMappingType.Month">
+            <summary>
+            按月创建索引
+            </summary>
+        </member>
+        <member name="F:UtilsSharp.ElasticSearch9.EsMappingType.Year">
+            <summary>
+            按年创建索引
+            </summary>
+        </member>
+        <member name="T:UtilsSharp.ElasticSearch9.EsBaseDataSource`1">
+            <summary>
+            Es基础数据源
+            </summary>
+            <summary>
+            Es基础数据源
+            </summary>
+        </member>
+        <member name="M:UtilsSharp.ElasticSearch9.EsBaseDataSource`1.Save(`0,System.Boolean,System.String)">
+            <summary>
+            单条保存
+            </summary>
+            <param name="t">参数</param>
+            <param name="refresh">是否刷新索引</param>
+            <param name="index">索引</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.ElasticSearch9.EsBaseDataSource`1.Save(System.Collections.Generic.List{`0},System.Boolean,System.String)">
+            <summary>
+            批量保存
+            </summary>
+            <param name="entities">参数</param>
+            <param name="refresh">是否刷新索引</param>
+            <param name="index">索引</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.ElasticSearch9.EsBaseDataSource`1.IncrementModify(System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.Boolean,System.String)">
+            <summary>
+            增量更新
+            </summary>
+            <param name="id">Id</param>
+            <param name="incrementModifyParams">增量参数：key-字段,value-修改的值</param>
+            <param name="refresh">是否刷新索引</param>
+            <param name="index">索引</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.ElasticSearch9.EsBaseDataSource`1.Get(System.String,System.String)">
+            <summary>
+            获取一条数据
+            </summary>
+            <param name="id">Id</param>
+            <param name="index">索引</param>
+            <returns>T</returns>
+        </member>
+        <member name="M:UtilsSharp.ElasticSearch9.EsBaseDataSource`1.Get(System.String[],System.String)">
+            <summary>
+            批量获取数据
+            </summary>
+            <param name="ids">Id集合</param>
+            <param name="index">索引</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.ElasticSearch9.EsBaseDataSource`1.Delete(System.String[],System.Boolean,System.String)">
+            <summary>
+            批量删除
+            </summary>
+            <param name="ids">Id集合</param>
+            <param name="refresh">是否刷新索引</param>
+            <param name="index">索引</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.ElasticSearch9.EsBaseDataSource`1.Delete(System.Collections.Generic.List{`0},System.Boolean,System.String)">
+            <summary>
+            批量删除
+            </summary>
+            <param name="entities">参数</param>
+            <param name="refresh">是否刷新索引</param>
+            <param name="index">索引</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.ElasticSearch9.EsBaseDataSource`1.SearchQuery(UtilsSharp.ElasticSearch9.Entity.EsSearchQueryRequest{`0})">
+            <summary>
+            搜索查询
+            </summary>
+            <param name="request">参数</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.ElasticSearch9.EsBaseDataSource`1.SearchScroll(UtilsSharp.ElasticSearch9.Entity.EsSearchScrollRequest{`0})">
+            <summary>
+            搜索查询(scroll)
+            </summary>
+            <param name="request">参数</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.ElasticSearch9.EsBaseDataSource`1.ClearScroll(System.String[],System.String)">
+            <summary>
+            清除游标
+            </summary>
+            <param name="scrollIds">游标id集合</param>
+            <param name="index">索引</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.ElasticSearch9.EsBaseDataSource`1.SaveAsync(`0,System.Boolean,System.String)">
+            <summary>
+            单条保存
+            </summary>
+            <param name="t">参数</param>
+            <param name="refresh">是否刷新索引</param>
+            <param name="index">索引</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.ElasticSearch9.EsBaseDataSource`1.SaveAsync(System.Collections.Generic.List{`0},System.Boolean,System.String)">
+            <summary>
+            批量保存
+            </summary>
+            <param name="entities">参数</param>
+            <param name="refresh">是否刷新索引</param>
+            <param name="index">索引</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.ElasticSearch9.EsBaseDataSource`1.IncrementModifyAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.Boolean,System.String)">
+            <summary>
+            增量更新
+            </summary>
+            <param name="id">Id</param>
+            <param name="incrementModifyParams">增量参数：key-字段,value-修改的值</param>
+            <param name="refresh">是否刷新索引</param>
+            <param name="index">索引</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.ElasticSearch9.EsBaseDataSource`1.GetAsync(System.String,System.String)">
+            <summary>
+            获取一条数据
+            </summary>
+            <param name="id">Id</param>
+            <param name="index">索引</param>
+            <returns>T</returns>
+        </member>
+        <member name="M:UtilsSharp.ElasticSearch9.EsBaseDataSource`1.GetAsync(System.String[],System.String)">
+            <summary>
+            批量获取数据
+            </summary>
+            <param name="ids">Id集合</param>
+            <param name="index">索引</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.ElasticSearch9.EsBaseDataSource`1.DeleteAsync(System.String[],System.Boolean,System.String)">
+            <summary>
+            批量删除
+            </summary>
+            <param name="ids">Id集合</param>
+            <param name="refresh">是否刷新索引</param>
+            <param name="index">索引</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.ElasticSearch9.EsBaseDataSource`1.DeleteAsync(System.Collections.Generic.List{`0},System.Boolean,System.String)">
+            <summary>
+            批量删除
+            </summary>
+            <param name="entities">参数</param>
+            <param name="refresh">是否刷新索引</param>
+            <param name="index">索引</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.ElasticSearch9.EsBaseDataSource`1.SearchQueryAsync(UtilsSharp.ElasticSearch9.Entity.EsSearchQueryRequest{`0})">
+            <summary>
+            搜索查询
+            </summary>
+            <param name="request">参数</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.ElasticSearch9.EsBaseDataSource`1.SearchScrollAsync(UtilsSharp.ElasticSearch9.Entity.EsSearchScrollRequest{`0})">
+            <summary>
+            搜索查询(scroll)
+            </summary>
+            <param name="request">参数</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.ElasticSearch9.EsBaseDataSource`1.ClearScrollAsync(System.String[],System.String)">
+            <summary>
+            清除游标
+            </summary>
+            <param name="scrollIds">游标id集合</param>
+            <param name="index">索引</param>
+            <returns></returns>
+        </member>
+        <member name="T:UtilsSharp.ElasticSearch9.EsClientProvider">
+            <summary>
+            Es客户端
+            </summary>
+        </member>
+        <member name="F:UtilsSharp.ElasticSearch9.EsClientProvider.ClientDictionary">
+            <summary>
+            es客户端
+            </summary>
+        </member>
+        <member name="F:UtilsSharp.ElasticSearch9.EsClientProvider.MappingDictionary">
+            <summary>
+            es表结构映射
+            </summary>
+        </member>
+        <member name="F:UtilsSharp.ElasticSearch9.EsClientProvider.AliasIndexBindDictionary">
+            <summary>
+            es别名索引
+            </summary>
+        </member>
+        <member name="M:UtilsSharp.ElasticSearch9.EsClientProvider.Init(UtilsSharp.OptionConfig.ElasticSearchSetting)">
+            <summary>
+            初始化
+            </summary>
+            <param name="setting">Es配置信息</param>
+        </member>
+        <member name="M:UtilsSharp.ElasticSearch9.EsClientProvider.GetSettings(UtilsSharp.OptionConfig.ElasticSearchSetting)">
+            <summary>
+            获取Es链接设置
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:UtilsSharp.ElasticSearch9.EsCreateIndexSettings">
+            <summary>
+            创建索引参数
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.ElasticSearch9.EsCreateIndexSettings.Setting">
+            <summary>
+            ElasticSearch设置
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.ElasticSearch9.EsCreateIndexSettings.AliasIndex">
+            <summary>
+            索引别名
+            </summary>
+        </member>
+        <member name="P:UtilsSharp.ElasticSearch9.EsCreateIndexSettings.NumberOfShards">
+            <summary>
+            分片数
+            </summary>
+        </member>
+        <member name="T:UtilsSharp.ElasticSearch9.IEsBaseDataSource`1">
+            <summary>
+             Es基础数据源
+            </summary>
+            <summary>
+             Es基础数据源
+            </summary>
+        </member>
+        <member name="M:UtilsSharp.ElasticSearch9.IEsBaseDataSource`1.Save(`0,System.Boolean,System.String)">
+            <summary>
+            单条保存
+            </summary>
+            <param name="t">参数</param>
+            <param name="refresh">是否刷新索引</param>
+            <param name="index">索引</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.ElasticSearch9.IEsBaseDataSource`1.Save(System.Collections.Generic.List{`0},System.Boolean,System.String)">
+            <summary>
+            批量保存
+            </summary>
+            <param name="entities">参数</param>
+            <param name="refresh">是否刷新索引</param>
+            <param name="index">索引</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.ElasticSearch9.IEsBaseDataSource`1.IncrementModify(System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.Boolean,System.String)">
+            <summary>
+            增量更新
+            </summary>
+            <param name="id">Id</param>
+            <param name="incrementModifyParams">增量参数：key-字段,value-修改的值</param>
+            <param name="refresh">是否刷新索引</param>
+            <param name="index">索引</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.ElasticSearch9.IEsBaseDataSource`1.Get(System.String,System.String)">
+            <summary>
+            获取一条数据
+            </summary>
+            <param name="id">Id</param>
+            <param name="index">索引</param>
+            <returns>T</returns>
+        </member>
+        <member name="M:UtilsSharp.ElasticSearch9.IEsBaseDataSource`1.Get(System.String[],System.String)">
+            <summary>
+            批量获取数据
+            </summary>
+            <param name="ids">Id集合</param>
+            <param name="index">索引</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.ElasticSearch9.IEsBaseDataSource`1.Delete(System.String[],System.Boolean,System.String)">
+            <summary>
+            批量删除
+            </summary>
+            <param name="ids">Id集合</param>
+            <param name="refresh">是否刷新索引</param>
+            <param name="index">索引</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.ElasticSearch9.IEsBaseDataSource`1.Delete(System.Collections.Generic.List{`0},System.Boolean,System.String)">
+            <summary>
+            批量删除
+            </summary>
+            <param name="entities">参数</param>
+            <param name="refresh">是否刷新索引</param>
+            <param name="index">索引</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.ElasticSearch9.IEsBaseDataSource`1.SearchQuery(UtilsSharp.ElasticSearch9.Entity.EsSearchQueryRequest{`0})">
+            <summary>
+            搜索查询
+            </summary>
+            <param name="request">参数</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.ElasticSearch9.IEsBaseDataSource`1.SearchScroll(UtilsSharp.ElasticSearch9.Entity.EsSearchScrollRequest{`0})">
+            <summary>
+            搜索查询(scroll)
+            </summary>
+            <param name="request">参数</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.ElasticSearch9.IEsBaseDataSource`1.ClearScroll(System.String[],System.String)">
+            <summary>
+            清除游标
+            </summary>
+            <param name="scrollIds">游标id集合</param>
+            <param name="index">索引</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.ElasticSearch9.IEsBaseDataSource`1.SaveAsync(`0,System.Boolean,System.String)">
+            <summary>
+            单条保存
+            </summary>
+            <param name="t">参数</param>
+            <param name="refresh">是否刷新索引</param>
+            <param name="index">索引</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.ElasticSearch9.IEsBaseDataSource`1.SaveAsync(System.Collections.Generic.List{`0},System.Boolean,System.String)">
+            <summary>
+            批量保存
+            </summary>
+            <param name="entities">参数</param>
+            <param name="refresh">是否刷新索引</param>
+            <param name="index">索引</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.ElasticSearch9.IEsBaseDataSource`1.IncrementModifyAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.Boolean,System.String)">
+            <summary>
+            增量更新
+            </summary>
+            <param name="id">Id</param>
+            <param name="incrementModifyParams">增量参数：key-字段,value-修改的值</param>
+            <param name="refresh">是否刷新索引</param>
+            <param name="index">索引</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.ElasticSearch9.IEsBaseDataSource`1.GetAsync(System.String,System.String)">
+            <summary>
+            获取一条数据
+            </summary>
+            <param name="id">Id</param>
+            <param name="index">索引</param>
+            <returns>T</returns>
+        </member>
+        <member name="M:UtilsSharp.ElasticSearch9.IEsBaseDataSource`1.GetAsync(System.String[],System.String)">
+            <summary>
+            批量获取数据
+            </summary>
+            <param name="ids">Id集合</param>
+            <param name="index">索引</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.ElasticSearch9.IEsBaseDataSource`1.DeleteAsync(System.String[],System.Boolean,System.String)">
+            <summary>
+            批量删除
+            </summary>
+            <param name="ids">Id集合</param>
+            <param name="refresh">是否刷新索引</param>
+            <param name="index">索引</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.ElasticSearch9.IEsBaseDataSource`1.DeleteAsync(System.Collections.Generic.List{`0},System.Boolean,System.String)">
+            <summary>
+            批量删除
+            </summary>
+            <param name="entities">参数</param>
+            <param name="refresh">是否刷新索引</param>
+            <param name="index">索引</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.ElasticSearch9.IEsBaseDataSource`1.SearchQueryAsync(UtilsSharp.ElasticSearch9.Entity.EsSearchQueryRequest{`0})">
+            <summary>
+            搜索查询
+            </summary>
+            <param name="request">参数</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.ElasticSearch9.IEsBaseDataSource`1.SearchScrollAsync(UtilsSharp.ElasticSearch9.Entity.EsSearchScrollRequest{`0})">
+            <summary>
+            搜索查询(scroll)
+            </summary>
+            <param name="request">参数</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilsSharp.ElasticSearch9.IEsBaseDataSource`1.ClearScrollAsync(System.String[],System.String)">
+            <summary>
+            清除游标
+            </summary>
+            <param name="scrollIds">游标id集合</param>
+            <param name="index">索引</param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

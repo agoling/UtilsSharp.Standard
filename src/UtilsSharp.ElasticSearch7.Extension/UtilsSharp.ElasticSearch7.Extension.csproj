@@ -11,6 +11,7 @@
     <RepositoryUrl>https://github.com/agoling/UtilsSharp.Standard</RepositoryUrl>
     <PackageTags>UtilsSharp UtilsSharp.ElasticSearch ElasticSearch帮助类 Es帮助类</PackageTags>
     <Version>3.4.0</Version>
+    <Company>Agoling</Company>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">

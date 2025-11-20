@@ -63,55 +63,15 @@ namespace UtilsSharp.ElasticSearch9
             var propertyName = GetPropertyName(property);
             var propertyType = property.PropertyType;
             var underlyingType = Nullable.GetUnderlyingType(propertyType) ?? propertyType;
-            switch (Type.GetTypeCode(underlyingType))
+            if (Type.GetTypeCode(underlyingType) == TypeCode.Object)
             {
-                case TypeCode.Object:
-                    MapObjectProperty(descriptor, property, propertyName, underlyingType, seenTypes);
-                    break;
-                case TypeCode.Boolean:
-                    descriptor.Boolean(propertyName);
-                    break;
-                case TypeCode.Char:
-                    descriptor.Keyword(propertyName);
-                    break;
-                case TypeCode.SByte:
-                case TypeCode.Byte:
-                    descriptor.Binary(propertyName);
-                    break;
-                case TypeCode.Int16:
-                case TypeCode.UInt16:
-                case TypeCode.Int32:
-                case TypeCode.UInt32:
-                    descriptor.IntegerNumber(propertyName);
-                    break;
-                case TypeCode.Int64:
-                case TypeCode.UInt64:
-                    descriptor.LongNumber(propertyName);
-                    break;
-                case TypeCode.Single:
-                    descriptor.FloatNumber(propertyName);
-                    break;
-                case TypeCode.Double:
-                case TypeCode.Decimal:
-                    descriptor.DoubleNumber(propertyName);
-                    break;
-                case TypeCode.DateTime:
-                    descriptor.Date(propertyName);
-                    break;
-                case TypeCode.String:
-                    var isTextAttribute = property.GetCustomAttribute<TextAttribute>(inherit: true) != null;
-                    if (isTextAttribute)
-                    {
-                        descriptor.Text(propertyName);
-                    }
-                    else
-                    {
-                        descriptor.Keyword(propertyName);
-                    }
-                    break;
-                default:
-                    descriptor.Object(propertyName);
-                    break;
+                MapObjectProperty(descriptor, property, propertyName, underlyingType, seenTypes);
+                return;
+            }
+            var tryMapSimpleType = TryMapSimpleType(descriptor, property, propertyName, underlyingType);
+            if (!tryMapSimpleType)
+            {
+                descriptor.Object(propertyName);
             }
         }
 
@@ -149,34 +109,113 @@ namespace UtilsSharp.ElasticSearch9
 
         private static void MapObjectProperty<T>(PropertiesDescriptor<T> descriptor, PropertyInfo property, string propertyName, Type objectType, ConcurrentDictionary<Type, int> seenTypes) where T : class
         {
-            var isNestedAttribute = property.GetCustomAttribute<NestedAttribute>(inherit: true) != null;
-            if (isNestedAttribute)
-            {
-                if (ShouldRecursivelyMap(objectType))
-                {
-                    var mapPropertiesAction = CreateMapPropertiesAction<T>(objectType, seenTypes);
-                    descriptor.Nested(propertyName, obj => obj.Properties(mapPropertiesAction));
-                    return;
-                }
-                descriptor.Nested(propertyName);
-                return;
-            }
-            if (ShouldRecursivelyMap(objectType))
-            {
-                var mapPropertiesAction = CreateMapPropertiesAction<T>(objectType, seenTypes);
-                descriptor.Object(propertyName, obj => obj.Properties(mapPropertiesAction));
-                return;
-            }
-            descriptor.Object(propertyName);
+            var hasNestedAttribute = property.GetCustomAttribute<NestedAttribute>(inherit: true) != null;
+            var simpleMapper = hasNestedAttribute
+                ? new Action<string>(name => descriptor.Nested(name))
+                : new Action<string>(name => descriptor.Object(name));
+            var complexMapper = hasNestedAttribute
+                ? new Action<string, Action<PropertiesDescriptor<T>>>((name, mapAction) => descriptor.Nested(name, obj => obj.Properties(mapAction)))
+                : new Action<string, Action<PropertiesDescriptor<T>>>((name, mapAction) => descriptor.Object(name, obj => obj.Properties(mapAction)));
+            MapObjectPropertyCore(descriptor, property, propertyName, objectType, seenTypes, simpleMapper, complexMapper);
         }
 
-        private static bool ShouldRecursivelyMap(Type type)
+        private static void MapObjectPropertyCore<T>(PropertiesDescriptor<T> descriptor, PropertyInfo property, string propertyName, Type objectType, ConcurrentDictionary<Type, int> seenTypes, Action<string> simpleMapper, Action<string, Action<PropertiesDescriptor<T>>> complexMapper) where T : class
         {
-            return type.IsClass &&
-                   type != typeof(string) &&
-                   !type.IsArray &&
-                   !typeof(System.Collections.IEnumerable).IsAssignableFrom(type) &&
-                   !type.IsPrimitive;
+            if (objectType.IsClass && objectType != typeof(string) && !objectType.IsPrimitive)
+            {
+                if (objectType.IsArray || typeof(System.Collections.IEnumerable).IsAssignableFrom(objectType))
+                {
+                    var elementType = GetEnumerableElementType(objectType);
+                    if (elementType != null)
+                    {
+                        var underlyingElementType = Nullable.GetUnderlyingType(elementType) ?? elementType;
+                        if (TryMapSimpleType(descriptor, property, propertyName, underlyingElementType))
+                        {
+                            return;
+                        }
+                        if (underlyingElementType.IsClass && underlyingElementType != typeof(string) && !underlyingElementType.IsPrimitive)
+                        {
+                            var mapArrayPropertiesAction = CreateMapPropertiesAction<T>(underlyingElementType, seenTypes);
+                            complexMapper(propertyName, mapArrayPropertiesAction);
+                            return;
+                        }
+                    }
+                    simpleMapper(propertyName);
+                    return;
+                }
+                var mapPropertiesAction = CreateMapPropertiesAction<T>(objectType, seenTypes);
+                complexMapper(propertyName, mapPropertiesAction);
+                return;
+            }
+            simpleMapper(propertyName);
+        }
+
+        private static bool TryMapSimpleType<T>(PropertiesDescriptor<T> descriptor, PropertyInfo property, string propertyName, Type type) where T : class
+        {
+            switch (Type.GetTypeCode(type))
+            {
+                case TypeCode.Boolean:
+                    descriptor.Boolean(propertyName);
+                    return true;
+                case TypeCode.Char:
+                    descriptor.Keyword(propertyName);
+                    return true;
+                case TypeCode.SByte:
+                case TypeCode.Byte:
+                    descriptor.Binary(propertyName);
+                    return true;
+                case TypeCode.Int16:
+                case TypeCode.UInt16:
+                case TypeCode.Int32:
+                case TypeCode.UInt32:
+                    descriptor.IntegerNumber(propertyName);
+                    return true;
+                case TypeCode.Int64:
+                case TypeCode.UInt64:
+                    descriptor.LongNumber(propertyName);
+                    return true;
+                case TypeCode.Single:
+                    descriptor.FloatNumber(propertyName);
+                    return true;
+                case TypeCode.Double:
+                case TypeCode.Decimal:
+                    descriptor.DoubleNumber(propertyName);
+                    return true;
+                case TypeCode.DateTime:
+                    descriptor.Date(propertyName);
+                    return true;
+                case TypeCode.String:
+                    var isTextAttribute = property.GetCustomAttribute<TextAttribute>(inherit: true) != null;
+                    if (isTextAttribute)
+                    {
+                        descriptor.Text(propertyName);
+                    }
+                    else
+                    {
+                        descriptor.Keyword(propertyName);
+                    }
+                    return true;
+                default:
+                    return false;
+            }
+        }
+
+        private static Type GetEnumerableElementType(Type enumerableType)
+        {
+            if (enumerableType.IsArray)
+            {
+                return enumerableType.GetElementType();
+            }
+            if (enumerableType.IsGenericType)
+            {
+                var genericArguments = enumerableType.GetGenericArguments();
+                if (genericArguments.Length == 1)
+                {
+                    return genericArguments[0];
+                }
+            }
+            var interfaceType = enumerableType.GetInterfaces().FirstOrDefault(i => i.IsGenericType && i.GetGenericTypeDefinition() == typeof(System.Collections.Generic.IEnumerable<>));
+            return interfaceType?.GetGenericArguments().FirstOrDefault();
         }
     }
 

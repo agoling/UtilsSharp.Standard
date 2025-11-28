@@ -26,7 +26,7 @@ namespace UtilsSharp.ElasticSearch9
                 .Settings(s => s
                     .NumberOfReplicas(0)
                     .NumberOfShards(NumberOfShards)
-                    .MaxRescoreWindow(MaxResultWindow)
+                    .MaxResultWindow(MaxResultWindow)
                 ));
         }
 

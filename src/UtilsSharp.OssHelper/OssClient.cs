@@ -147,15 +147,27 @@ namespace UtilsSharp.OssHelper
             return SaveFileResult(ossFilePath, requestContent, reqOssEndpoint);
         }
 
+        /// <summary>
+        /// 保存文件流到阿里对象存储(oss)
+        /// </summary>
+        /// <param name="ossFilePath">阿里对象存储(oss)服务器文件路径如：tools/2017-03-24/xxxxxx.jpg</param>
+        /// <param name="content">文件流</param>  
+        /// <param name="reqOssEndpoint">ossEndpoint(默认访问内网)</param>
+        /// <returns></returns>
+        public OssResult<PutObjectResult> SaveFileResult(string ossFilePath, Stream content, string reqOssEndpoint = "")
+        {
+            return SaveFileResult(ossFilePath, content, null, reqOssEndpoint);
+        }
 
         /// <summary>
         /// 保存文件流到阿里对象存储(oss)
         /// </summary>
         /// <param name="ossFilePath">阿里对象存储(oss)服务器文件路径如：tools/2017-03-24/xxxxxx.jpg</param>
-        /// <param name="content">文件流</param>
+        /// <param name="content">文件流</param>  
+        /// <param name="metadata">自定义元数据：它包含用户的自定义元数据，以及 Content-Length、ETag 等标准 HTTP 标头</param>  
         /// <param name="reqOssEndpoint">ossEndpoint(默认访问内网)</param>
         /// <returns></returns>
-        public OssResult<PutObjectResult> SaveFileResult(string ossFilePath, Stream content, string reqOssEndpoint = "")
+        public OssResult<PutObjectResult> SaveFileResult(string ossFilePath, Stream content, ObjectMetadata metadata, string reqOssEndpoint = "")
         {
             var result = new OssResult<PutObjectResult>();
             if (_ossSetting == null)
@@ -169,7 +181,7 @@ namespace UtilsSharp.OssHelper
             var client = new Aliyun.OSS.OssClient(reqOssEndpoint, _ossSetting.OssAccessKeyId, _ossSetting.OssAccessKeySecret);
             try
             {
-                var r = client.PutObject(_ossSetting.OssBucketName, ossFilePath, content);
+                var r = client.PutObject(_ossSetting.OssBucketName, ossFilePath, content, metadata);
                 result.Result = r;
                 result.Code = Convert.ToInt32(r.HttpStatusCode);
                 return result;
@@ -195,7 +207,7 @@ namespace UtilsSharp.OssHelper
             r.Result = null;
             return r.Code == 200;
         }
-        
+
         /// <summary>
         /// 保存文件到阿里对象存储(oss)
         /// </summary>
@@ -204,6 +216,20 @@ namespace UtilsSharp.OssHelper
         /// <param name="reqOssEndpoint">ossEndpoint(默认访问内网)</param>
         /// <returns></returns>
         public OssResult<Tuple<PutObjectResult, byte[]>> SaveFileByUrlResult(string ossFilePath, string url, string reqOssEndpoint = "")
+        {
+            return SaveFileByUrlResult(ossFilePath, url,null,reqOssEndpoint);
+        }
+
+
+        /// <summary>
+        /// 保存文件到阿里对象存储(oss)
+        /// </summary>
+        /// <param name="ossFilePath">阿里对象存储(oss)服务器文件路径如：tools/2017-03-24/xxxxxx.jpg</param>
+        /// <param name="url">要上传的文件地址</param>
+        /// <param name="metadata">自定义元数据：它包含用户的自定义元数据，以及 Content-Length、ETag 等标准 HTTP 标头</param>  
+        /// <param name="reqOssEndpoint">ossEndpoint(默认访问内网)</param>
+        /// <returns></returns>
+        public OssResult<Tuple<PutObjectResult, byte[]>> SaveFileByUrlResult(string ossFilePath, string url, ObjectMetadata metadata, string reqOssEndpoint = "")
         {
             var result = new OssResult<Tuple<PutObjectResult,byte[]>>();
             if (_ossSetting == null)
@@ -220,7 +246,7 @@ namespace UtilsSharp.OssHelper
                 var wc = new WebClient();
                 var bytes = wc.DownloadData(url);
                 Stream stream = new MemoryStream(bytes);
-                var r = client.PutObject(_ossSetting.OssBucketName, ossFilePath, stream);
+                var r = client.PutObject(_ossSetting.OssBucketName, ossFilePath, stream, metadata);
                 result.Result = new Tuple<PutObjectResult, byte[]>(r, bytes);
                 result.Code = Convert.ToInt32(r.HttpStatusCode);
                 return result;
@@ -565,7 +591,6 @@ namespace UtilsSharp.OssHelper
             return await SaveFileResultAsync(ossFilePath, requestContent, reqOssEndpoint);
         }
 
-
         /// <summary>
         /// 保存文件流到阿里对象存储(oss)
         /// </summary>
@@ -573,7 +598,21 @@ namespace UtilsSharp.OssHelper
         /// <param name="content">文件流</param>
         /// <param name="reqOssEndpoint">ossEndpoint(默认访问内网)</param>
         /// <returns></returns>
-        public async Task<OssResult<PutObjectResult>> SaveFileResultAsync(string ossFilePath, Stream content, string reqOssEndpoint = "")
+        public async Task<OssResult<PutObjectResult>> SaveFileResultAsync(string ossFilePath, Stream content, string reqOssEndpoint = "") 
+        {
+            return await SaveFileResultAsync(ossFilePath, content, null, reqOssEndpoint);
+        }
+
+
+        /// <summary>
+        /// 保存文件流到阿里对象存储(oss)
+        /// </summary>
+        /// <param name="ossFilePath">阿里对象存储(oss)服务器文件路径如：tools/2017-03-24/xxxxxx.jpg</param>
+        /// <param name="content">文件流</param>
+        /// <param name="metadata">自定义元数据：它包含用户的自定义元数据，以及 Content-Length、ETag 等标准 HTTP 标头</param>
+        /// <param name="reqOssEndpoint">ossEndpoint(默认访问内网)</param>
+        /// <returns></returns>
+        public async Task<OssResult<PutObjectResult>> SaveFileResultAsync(string ossFilePath, Stream content, ObjectMetadata metadata, string reqOssEndpoint = "")
         {
             var result = new OssResult<PutObjectResult>();
             if (_ossSetting == null)
@@ -587,7 +626,7 @@ namespace UtilsSharp.OssHelper
             var client = new Aliyun.OSS.OssClient(reqOssEndpoint, _ossSetting.OssAccessKeyId, _ossSetting.OssAccessKeySecret);
             try
             {
-                var r = await client.PutObjectAsync(_ossSetting.OssBucketName, ossFilePath, content);
+                var r = await client.PutObjectAsync(_ossSetting.OssBucketName, ossFilePath, content, metadata);
                 result.Result = r;
                 result.Code = Convert.ToInt32(r.HttpStatusCode);
                 return result;
@@ -615,16 +654,28 @@ namespace UtilsSharp.OssHelper
             return r.Code == 200;
         }
 
+        /// <summary>
+        /// 保存文件到阿里对象存储(oss)
+        /// </summary>
+        /// <param name="ossFilePath">阿里对象存储(oss)服务器文件路径如：tools/2017-03-24/xxxxxx.jpg</param>
+        /// <param name="url">要上传的文件地址</param>
+        /// <param name="reqOssEndpoint">ossEndpoint(默认访问内网)</param>
+        /// <returns></returns>
+        public async Task<OssResult<Tuple<PutObjectResult, byte[]>>> SaveFileByUrlResultAsync(string ossFilePath, string url, string reqOssEndpoint = "")
+        {
+            return await SaveFileByUrlResultAsync(ossFilePath, url, null, reqOssEndpoint);
+        }
+
 
         /// <summary>
         /// 保存文件到阿里对象存储(oss)
         /// </summary>
         /// <param name="ossFilePath">阿里对象存储(oss)服务器文件路径如：tools/2017-03-24/xxxxxx.jpg</param>
         /// <param name="url">要上传的文件地址</param>
-        /// <param name="bytes">bytes信息</param>
+        /// <param name="metadata">自定义元数据：它包含用户的自定义元数据，以及 Content-Length、ETag 等标准 HTTP 标头</param> 
         /// <param name="reqOssEndpoint">ossEndpoint(默认访问内网)</param>
         /// <returns></returns>
-        public async Task<OssResult<Tuple<PutObjectResult, byte[]>>> SaveFileByUrlResultAsync(string ossFilePath, string url, string reqOssEndpoint = "")
+        public async Task<OssResult<Tuple<PutObjectResult, byte[]>>> SaveFileByUrlResultAsync(string ossFilePath, string url, ObjectMetadata metadata, string reqOssEndpoint = "")
         {
             var result = new OssResult<Tuple<PutObjectResult, byte[]>>();
             if (_ossSetting == null)
@@ -641,7 +692,7 @@ namespace UtilsSharp.OssHelper
                 var wc = new WebClient();
                 var bytes = wc.DownloadData(url);
                 Stream stream = new MemoryStream(bytes);
-                var r = await client.PutObjectAsync(_ossSetting.OssBucketName, ossFilePath, stream);
+                var r = await client.PutObjectAsync(_ossSetting.OssBucketName, ossFilePath, stream, metadata);
                 result.Result = new Tuple<PutObjectResult, byte[]>(r, bytes);
                 result.Code = Convert.ToInt32(r.HttpStatusCode);
                 return result;

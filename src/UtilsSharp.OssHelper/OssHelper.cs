@@ -102,7 +102,6 @@ namespace UtilsSharp.OssHelper
             return Instance.SaveStrResult(ossFilePath, content, reqOssEndpoint);
         }
 
-
         /// <summary>
         /// 保存文件流到阿里对象存储(oss)
         /// </summary>
@@ -112,7 +111,20 @@ namespace UtilsSharp.OssHelper
         /// <returns></returns>
         public static OssResult<PutObjectResult> SaveFileResult(string ossFilePath, Stream content, string reqOssEndpoint = "")
         {
-            return Instance.SaveFileResult(ossFilePath, content, reqOssEndpoint);
+            return Instance.SaveFileResult(ossFilePath, content,reqOssEndpoint);
+        }
+
+        /// <summary>
+        /// 保存文件流到阿里对象存储(oss)
+        /// </summary>
+        /// <param name="ossFilePath">阿里对象存储(oss)服务器文件路径如：tools/2017-03-24/xxxxxx.jpg</param>
+        /// <param name="content">文件流</param>
+        /// <param name="metadata">自定义元数据：它包含用户的自定义元数据，以及 Content-Length、ETag 等标准 HTTP 标头</param> 
+        /// <param name="reqOssEndpoint">ossEndpoint(默认访问内网)</param>
+        /// <returns></returns>
+        public static OssResult<PutObjectResult> SaveFileResult(string ossFilePath, Stream content, ObjectMetadata metadata, string reqOssEndpoint = "")
+        {
+            return Instance.SaveFileResult(ossFilePath, content, metadata,reqOssEndpoint);
         }
 
         /// <summary>
@@ -136,7 +148,20 @@ namespace UtilsSharp.OssHelper
         /// <returns></returns>
         public static OssResult<Tuple<PutObjectResult, byte[]>> SaveFileByUrlResult(string ossFilePath, string url, string reqOssEndpoint = "")
         {
-            return Instance.SaveFileByUrlResult(ossFilePath, url,  reqOssEndpoint);
+            return Instance.SaveFileByUrlResult(ossFilePath, url, reqOssEndpoint);
+        }
+
+        /// <summary>
+        /// 保存文件到阿里对象存储(oss)
+        /// </summary>
+        /// <param name="ossFilePath">阿里对象存储(oss)服务器文件路径如：tools/2017-03-24/xxxxxx.jpg</param>
+        /// <param name="url">要上传的文件地址</param>
+        /// <param name="metadata">自定义元数据：它包含用户的自定义元数据，以及 Content-Length、ETag 等标准 HTTP 标头</param>
+        /// <param name="reqOssEndpoint">ossEndpoint(默认访问内网)</param>
+        /// <returns></returns>
+        public static OssResult<Tuple<PutObjectResult, byte[]>> SaveFileByUrlResult(string ossFilePath, string url, ObjectMetadata metadata, string reqOssEndpoint = "")
+        {
+            return Instance.SaveFileByUrlResult(ossFilePath, url, metadata,reqOssEndpoint);
         }
 
         /// <summary>
@@ -300,6 +325,19 @@ namespace UtilsSharp.OssHelper
         }
 
         /// <summary>
+        /// 保存文件流到阿里对象存储(oss)
+        /// </summary>
+        /// <param name="ossFilePath">阿里对象存储(oss)服务器文件路径如：tools/2017-03-24/xxxxxx.jpg</param>
+        /// <param name="content">文件流</param>
+        /// <param name="metadata">自定义元数据：它包含用户的自定义元数据，以及 Content-Length、ETag 等标准 HTTP 标头</param>
+        /// <param name="reqOssEndpoint">ossEndpoint(默认访问内网)</param>
+        /// <returns></returns>
+        public static async Task<OssResult<PutObjectResult>> SaveFileResultAsync(string ossFilePath, Stream content, ObjectMetadata metadata, string reqOssEndpoint = "")
+        {
+            return await Instance.SaveFileResultAsync(ossFilePath, content, metadata,reqOssEndpoint);
+        }
+
+        /// <summary>
         /// 保存文件到阿里对象存储(oss)
         /// </summary>
         /// <param name="ossFilePath">阿里对象存储(oss)服务器文件路径如：tools/2017-03-24/xxxxxx.jpg</param>
@@ -320,7 +358,20 @@ namespace UtilsSharp.OssHelper
         /// <returns></returns>
         public static async Task<OssResult<Tuple<PutObjectResult, byte[]>>> SaveFileByUrlResultAsync(string ossFilePath, string url, string reqOssEndpoint = "")
         {
-            return await Instance.SaveFileByUrlResultAsync(ossFilePath, url,  reqOssEndpoint);
+            return await Instance.SaveFileByUrlResultAsync(ossFilePath, url, reqOssEndpoint);
+        }
+
+        /// <summary>
+        /// 保存文件到阿里对象存储(oss)
+        /// </summary>
+        /// <param name="ossFilePath">阿里对象存储(oss)服务器文件路径如：tools/2017-03-24/xxxxxx.jpg</param>
+        /// <param name="url">要上传的文件地址</param>
+        /// <param name="metadata">自定义元数据：它包含用户的自定义元数据，以及 Content-Length、ETag 等标准 HTTP 标头</param> 
+        /// <param name="reqOssEndpoint">ossEndpoint(默认访问内网)</param>
+        /// <returns></returns>
+        public static async Task<OssResult<Tuple<PutObjectResult, byte[]>>> SaveFileByUrlResultAsync(string ossFilePath, string url, ObjectMetadata metadata, string reqOssEndpoint = "")
+        {
+            return await Instance.SaveFileByUrlResultAsync(ossFilePath, url, metadata,reqOssEndpoint);
         }
 
         /// <summary>
